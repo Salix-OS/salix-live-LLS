@@ -1,0 +1,21 @@
+[X] autologin
+[X] hostname to salixlive
+[X] salixliveSLAX in ISO name must be corrected
+[X] generic salixlive created keys directly in /etc/ssh
+[X] use a script instead of a SLKBUILD
+[X] funionfs for modules
+[X] /dev/initctl problem
+[X] /etc/profile.d/alias.sh
+[X] /usr/share/locale/locale.alias on the initrd
+[X] noload keycode to disable some modules (already working)
+[X] keyboardsetup reference to del
+[X] 10-keymap.fdi is missing and must be added in live.lzm
+[X] Firefox as default browser
+[X] Splashy on initrd
+[X] salixos.org default domain name
+[X] grub2 (languages, keyboards)
+[ ] grub2 boot menu to choose between full, only basic, or only core
+[ ] Booting from USB KO ?
+[ ] Splashy segfault when relogin ?
+[ ] Localisation, see this (in french): http://doc.ubuntu-fr.org/traduction_live_cd_tuto_xubuntu
+[⋅] Multimedia codecs, keycode to enable without prompt (canceled due to software patents)

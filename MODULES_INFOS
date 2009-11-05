@@ -1,0 +1,6 @@
+module=core,packages-core
+module=basic,packages-basic
+module=full,packages-full
+module=kernel,packages-kernel
+module=live,packages-live
+#module=i18n,packages-i18n

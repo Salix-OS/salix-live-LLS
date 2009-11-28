@@ -1,0 +1,304 @@
+# TWM theme zenwalk
+# author		: Lontronics, http://www.lontronics.nl
+# maintainer		: Lontronics
+# latest update		: 05-nov-2006
+
+#*********************************
+# GENERAL SETTINGS
+#*********************************
+
+AutoRelativeResize				# No cross of window edge needed for resize
+BorderWidth		1			# Number of pixels for window border
+ButtonIndent		0			# Number of pixels by which title buttons are intented
+DecorateTransients				# Also decorate transient windows
+FramePadding		0			# Number of pixels between titlebar decorations and frame
+IconDirectory		"/etc/X11/twm/icons"	# Directory for non default icons
+IconifyByUnMapping				# Use icon manager
+MenuBorderWidth		1			# Number of pixels for menu border
+MoveDelta		2			# Number of pixels to move before anything happens
+NoBackingStore					# Minimize repainting of menus
+NoCaseSensitive					# Case ignoring for icon manager
+NoDefaults					# No default title buttons, we will define them
+NoGrabServer					# Do not grab the server when not needed
+NoIconManagers					# No icon manager is showed
+NoRaiseOnMove					# Allow moving under other windows
+NoRaiseOnResize					# Allow resizing under other windows
+NoMenuShadows					# No shadow behind the menu
+NoSaveUnders					# Faster to just repaint then save
+NoTitleHighlight				# No highlight for titlebar of selected window
+RandomPlacement					# Windows without geometry are placed randomly
+RestartPreviousState				# Try to restart defaults from last x session
+SortIconManager					# Keep Icon Manager in alpha order
+TitleButtonBorderWidth	0			# Number of pixels for button border
+TitlePadding		10			# Number of pixels around title buttons
+UsePPosition		"on"			# Honor placement
+
+
+#*********************************
+# TITLE BAR BUTTONS
+#*********************************
+
+RightTitleButton	"9x9-minimize.xbm"	= f.iconify
+RightTitleButton	"9x9-resize.xbm"	= f.resize
+RightTitleButton	"9x9-maximize.xbm"	= f.fullzoom
+RightTitleButton	"9x9-close.xbm"		= f.delete
+
+
+#*********************************
+# FONT SETTINGS
+#*********************************
+
+TitleFont       "6x13"
+MenuFont        "7x14"
+IconFont        "6x13"
+ResizeFont      "6x13"
+
+
+#*********************************
+# NO TITLE BAR SETTINGS
+#*********************************
+
+NoTitle
+{
+	"MPlayer"
+	"xeyes"
+	"xclock"
+}
+
+
+#*********************************
+# COLOR SETTINGS
+#*********************************
+
+Color
+{
+	DefaultForeground	"Grey80"
+	DefaultBackground	"#295173"
+	BorderColor		"Grey80"
+	{
+		"xclock"	"black"	
+	}
+	BorderTileForeground	"Grey60"
+	{
+		"xclock"	"black"	
+	}
+	BorderTileBackground	"Grey60"
+	{
+		"xclock"	"black"	
+	}
+	TitleBackground		"#295173"
+	TitleForeground		"White"
+	MenuBackground		"#ff6908"
+	MenuForeground		"White"
+	MenuTitleBackground	"#295173"
+	MenuTitleForeground	"White"
+	MenuBorderColor		"Grey80"
+}
+
+
+#*********************************
+# CURSOR SETTINGS
+#*********************************
+
+Cursors
+{
+	Frame	"top_left_arrow"
+	Title	"top_left_arrow"
+	Icon	"top_left_arrow"
+	Move	"fleur"
+	Resize	"fleur"
+	Menu	"top_left_arrow"
+	Button	"hand2"
+	Wait	"watch"
+	Select	"dot"
+	Destroy	"pirate"
+}
+# TWM menu for a default Zenwalk
+# author		: Lontronics, http://www.lontronics.nl
+# maintainer		: Lontronics
+# latest update		: 08-nov-2006
+
+# CHANGELOG:
+# 08-11-2006:
+# Changes F12 key bindings to Alt-Tab and Cntrl-Tab
+# 06-11-2006:
+# Added F12 key bindings
+# 05-11-2006:
+# Initial release
+
+#*********************************
+# FUNCTION SETTINGS
+#*********************************
+
+Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-lower" { f.move f.deltastop f.lower }
+
+#*********************************
+# MENU SETTINGS
+#*********************************
+
+Button1	=	: root		: f.menu "RootMenu"
+Button2	=	: root		: f.menu "System"
+Button3 =	: root		: f.menu "RootMenu"
+
+Button1	=	: title|frame	: f.function "move-or-raise"
+Button2	=	: title|frame	: f.menu "WindowMenu"
+Button3	=	: title|frame	: f.function "move-or-lower"
+
+Button1 = c|m	: title|frame	: f.zoom
+Button2 = c|m	: title|frame	: f.zoom
+Button3 = c|m	: title|frame	: f.iconify
+
+Button1 = m	: window	: f.move
+Button1 = m	: title|frame	: f.move
+
+Button3 = s	: window	: f.menu "RootMenu"
+Button3 = s	: title|frame	: f.menu "RootMenu"
+
+"Tab" = c	: all			: f.circleup
+"Tab" = m	: all			: f.circledown
+
+menu "RootMenu"
+{
+	"    Menu      "	f.title
+
+	"Window List   "	f.menu "TwmWindows"
+	"Terminal      "	f.exec "terminal &"
+	"Thunar        "	f.exec "thunar &"
+	"Firefox       "	f.exec "firefox &"
+
+	"Accessoiries  "	f.menu "Accessoiries"
+	"Office        "	f.menu "Office"
+	"Development   "	f.menu "Development"
+	"Graphics      "	f.menu "Graphics"
+	"Multimedia    "	f.menu "Multimedia"
+	"Network       "	f.menu "Network"
+	"System        "	f.menu "System"
+
+	"Logout        "	f.quit
+	"Reboot        "	f.exec "sudo /sbin/shutdown -r now &"
+	"Shutdown      "	f.exec "sudo /sbin/shutdown -h now &"
+}
+
+menu "WindowMenu"
+{
+	"Window Options"	f.title
+
+	"Vertical      "	f.zoom
+	"Horizontal    "	f.horizoom
+	"Top           "	f.topzoom
+	"Bottom        "	f.bottomzoom
+	"Left          "	f.leftzoom
+	"Right         "	f.rightzoom
+	"Kill          "	f.exec "xkill &"
+}
+
+menu "Accessoiries"
+{
+	" Accessoiries "	f.title
+
+	"Gcalcutor     "	f.exec "gcalculator &"
+	"Mousepad      "	f.exec "mousepad &"
+	"Xarchiver     "	f.exec "xarchiver &"
+	"Xpad          "	f.exec "xpad &"
+}
+
+menu "Office"
+{
+	"    Office    "	f.title
+
+	"Abiword       "	f.exec "abiword &"
+	"Gnumeric      "	f.exec "gnumeric &"
+	"Xsane         "	f.exec "xsane &"
+}
+
+menu "Development"
+{
+	"  Development "	f.title
+
+	"Geany         "	f.exec "geany &"
+	"Bluefish      "	f.exec "bluefish &"
+	"Ghex          "	f.exec "ghex &"
+}
+
+menu "Graphics"
+{
+	"   Graphics   "	f.title
+
+	"Evince         "	f.exec "evince &"
+	"Gimp          "	f.exec "gimp &"
+	"GQview        "	f.exec "gqview &"
+	"Dia           "	f.exec "dia &"
+}
+
+menu "Multimedia"
+{
+	"  Multimedia  "	f.title
+
+	"Graveman      "	f.exec "graveman &"
+	"Grip          "	f.exec "grip &"
+	"GXine         "	f.exec "gxine &"
+	"Audacious     "	f.exec "audacious &"
+	"Streamtuner   "	f.exec "streamtuner &"
+	"Aumix         "	f.exec "aumix &"
+}
+
+menu "Network"
+{
+	"     Network   "	f.title
+	
+	"Etherape       "	f.exec "etherape &"
+	"Fusesmbtool    "	f.exec "fusesmbtool &"
+	"Gaim           "	f.exec "gaim &"
+	"Gftp           "	f.exec "gftp &"
+	"Nmapfe         "	f.exec "nmapfe &"
+	"Thunderbird    "	f.exec "thunderbird &"
+	"Tightvnc client"	f.exec "vncviewer &"
+	"Tightvnc server"	f.exec "vncserver &"
+	"Transmission   "	f.exec "transmission &"
+	"Urlgfe         "	f.exec "urlgfe &"
+	"Wifi Radar     "	f.exec "gksu wifi-radar &"
+}
+
+menu "System"
+{
+	"    System    "	f.title
+
+	"Themes        "	f.menu "Themes"	
+	"Keyboardconfig"	f.exec "gksu keyboardconfig &"
+	"Localeconfig  "	f.exec "gksu localeconfig &"
+	"Netpkg        "	f.exec "gksu xnetpkg &"
+	"Networkconfig "	f.exec "gksu networkconfig &"
+	"Serviceconfig "	f.exec "gksu serviceconfig &"
+	"Userconfig    "	f.exec "gksu userconfig &"
+	"Videoconfig   "	f.exec "gksu videoconfig &"
+	"Display Off   "	f.exec "xset dpms force off &"
+	"Reread .twmrc "	f.twmrc
+	"Restart TWM   "	f.restart
+}
+
+# Functions needed to set the available themes
+Function "set-Blue" { f.exec "/etc/X11/twm/scripts/maketwmrc Blue" f.twmrc}
+Function "set-Green" { f.exec "/etc/X11/twm/scripts/maketwmrc Green" f.twmrc}
+Function "set-Grey" { f.exec "/etc/X11/twm/scripts/maketwmrc Grey" f.twmrc}
+Function "set-MouseGrey" { f.exec "/etc/X11/twm/scripts/maketwmrc MouseGrey" f.twmrc}
+Function "set-Purple" { f.exec "/etc/X11/twm/scripts/maketwmrc Purple" f.twmrc}
+Function "set-Red" { f.exec "/etc/X11/twm/scripts/maketwmrc Red" f.twmrc}
+Function "set-W2K" { f.exec "/etc/X11/twm/scripts/maketwmrc W2K" f.twmrc}
+Function "set-Yellow" { f.exec "/etc/X11/twm/scripts/maketwmrc Yellow" f.twmrc}
+Function "set-Zenwalk" { f.exec "/etc/X11/twm/scripts/maketwmrc Zenwalk" f.twmrc}
+
+menu "Themes"
+{
+	"    Themes    "	f.title
+
+	"Set theme Blue  "	f.function "set-Blue"
+	"Set theme Green  "	f.function "set-Green"
+	"Set theme Grey  "	f.function "set-Grey"
+	"Set theme MouseGrey  "	f.function "set-MouseGrey"
+	"Set theme Purple  "	f.function "set-Purple"
+	"Set theme Red  "	f.function "set-Red"
+	"Set theme W2K  "	f.function "set-W2K"
+	"Set theme Yellow  "	f.function "set-Yellow"
+	"Set theme Zenwalk  "	f.function "set-Zenwalk"
+}

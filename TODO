@@ -14,8 +14,10 @@
 [X] Splashy on initrd
 [X] salixos.org default domain name
 [X] grub2 (languages, keyboards)
-[ ] grub2 boot menu to choose between full, only basic, or only core
-[ ] Booting from USB KO ?
-[ ] Splashy segfault when relogin ?
+[X] grub2 boot menu to choose between full, only basic, or only core
+[X] Booting from USB
+[X] Splashy segfault
+[X] grub2 boot menu to choose for synaptics "fdi driver"
+[ ] Install from the Live Env.
 [ ] Localisation, see this (in french): http://doc.ubuntu-fr.org/traduction_live_cd_tuto_xubuntu
 [⋅] Multimedia codecs, keycode to enable without prompt (canceled due to software patents)

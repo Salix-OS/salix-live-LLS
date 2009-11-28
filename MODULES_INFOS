@@ -1,6 +1,7 @@
 module=core,packages-core
 module=basic,packages-basic
 module=full,packages-full
+module=common,packages-common
 module=kernel,packages-kernel
+module=livetools,packages-livetools
 module=live,packages-live
-#module=i18n,packages-i18n

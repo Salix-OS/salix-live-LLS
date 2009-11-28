@@ -1,3 +1,4 @@
+amrwb
 asunder
 aumix
 babl
@@ -9,6 +10,7 @@ bluez-utils
 catfish
 claws-mail
 cups
+cupsddk
 depfinder
 dirac
 enchant
@@ -74,6 +76,7 @@ libmms
 libmpcdec
 libproxy
 libshout
+libsndfile
 libsoup
 libtasn
 madplay
@@ -130,6 +133,7 @@ xfce4-screenshooter
 xfce4-systemload-plugin
 xfce4-wavelan-plugin
 xfce4-weather-plugin
+xfce4-xkb-plugin
 xsane
 xvidcore
 zd1211-firmware

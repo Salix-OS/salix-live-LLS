@@ -3,9 +3,6 @@ aaa_base
 aaa_terminfo
 acl
 acpid
-alsa-lib
-alsa-oss
-alsa-utils
 apr
 apr-util
 aspell
@@ -127,6 +124,7 @@ loadlin
 logrotate
 lsof
 lsscsi
+lvm2
 lzo
 m17n-lib
 m4
@@ -147,11 +145,11 @@ nc
 ncompress
 ncurses
 neon
+net-snmp
+net-tools
 netkit-ftp
 netkit-ntalk
 netkit-routed
-net-snmp
-net-tools
 network-scripts
 nfs-utils
 ntfs-3g
@@ -168,8 +166,8 @@ pcmciautils
 perl
 pidentd
 pkg-config
-pmake
 pm-utils
+pmake
 popt
 portmap
 ppp
@@ -207,8 +205,8 @@ sysvinit
 sysvinit-functions
 sysvinit-scripts
 tar
-tcpdump
 tcp_wrappers
+tcpdump
 tcsh
 telnet
 terminus-font

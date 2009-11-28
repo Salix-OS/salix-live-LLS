@@ -1,9 +1,18 @@
 What packages are needed ?
-At least :
+At least:
  - fake-uname (optionnal but usefull)
  - kernelsource (exploded in a directory, linked from /usr/src/)
  - kernelive (not installed)
  - linux-live (for mksquashfs, lzm2dir, ...)
+What needs to be installed to compile:
+ - pkgtools or spkg-pkgtools
+ - coreutils, sed, grep, tar, gzip, bzip2, xz, findutils
+ - glibc, sysfsutils, gcc, glib2, automake, autoconf, make
+ - wget
+ - fuse, util-linux-ng
+ - linux-live
+ - grub2
+ - cdrtools
 How to build a Live CD (here SalixLive) ?
 Steps :
 1/ Create kernelive package.
@@ -24,9 +33,11 @@ You must add at least the following packages:
   - aaa_base, devs, sysvinit, ...
   - ash
   - all GNU basic packages
-6/ run build-salixlive.sh (and wait) to output you an ISO file ready to burn or to be put on an USB key with Unetbootin.
+6/ run build-salixlive.sh (and wait) to output you an ISO file ready to burn or to be put on an USB key (not with Unetbootin, but with grub2-install).
 
 Good luck ^_^
 
 --
-JRD - jrd@enialis.net
+Akuna <akuna@free.fr>
+JRD <jrd@enialis.net>
+Shador <futur.andy@googlemail.com>

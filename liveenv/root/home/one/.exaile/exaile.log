@@ -1,0 +1,61 @@
+[08:43:46] Exaile 0.2.14
+[08:43:47] Importing sql changes file changes0001.sql
+[08:43:47] Importing sql changes file changes0002.sql
+[08:43:47] Importing sql changes file changes0003.sql
+[08:43:47] Importing sql changes file changes0004.sql
+[08:43:48] -----------------------
+[08:43:48]  __use_gnome ( /usr/lib/exaile/xl/xlmisc.py @ 197):
+[08:43:48] -----------------------
+[08:43:48] Traceback (most recent call last):
+[08:43:48]   File "/usr/lib/exaile/xl/xlmisc.py", line 218, in __use_gnome
+[08:43:48]     '/org/gnome/SettingsDaemon')
+[08:43:48]   File "/usr/lib/python2.6/site-packages/dbus/bus.py", line 244, in get_object
+[08:43:48]     follow_name_owner_changes=follow_name_owner_changes)
+[08:43:48]   File "/usr/lib/python2.6/site-packages/dbus/proxies.py", line 241, in __init__
+[08:43:48]     self._named_service = conn.activate_name_owner(bus_name)
+[08:43:48]   File "/usr/lib/python2.6/site-packages/dbus/bus.py", line 183, in activate_name_owner
+[08:43:48]     self.start_service_by_name(bus_name)
+[08:43:48]   File "/usr/lib/python2.6/site-packages/dbus/bus.py", line 281, in start_service_by_name
+[08:43:48]     'su', (bus_name, flags)))
+[08:43:48]   File "/usr/lib/python2.6/site-packages/dbus/connection.py", line 622, in call_blocking
+[08:43:48]     message, timeout)
+[08:43:48] DBusException: org.freedesktop.DBus.Error.ServiceUnknown: The name org.gnome.SettingsDaemon was not provided by any .service files
+[08:43:48] 
+[08:43:48] Using multimedia keys from: mmkeys
+[08:43:49] loading tracks...
+[08:43:49] done loading tracks...
+[08:43:49] loading songs
+[08:43:49] Clearing tracks cache
+[08:43:50] Last playlist loaded
+[08:43:53] Starting scan timer at 25
+[08:44:01] Fetching available plugin list
+[08:44:09] Downloading shoutcast.py from http://www.exaile.org/files/plugins/0.2.14/shoutcast.py
+[08:44:46] Exaile 0.2.14
+[08:44:47] -----------------------
+[08:44:47]  __use_gnome ( /usr/lib/exaile/xl/xlmisc.py @ 197):
+[08:44:47] -----------------------
+[08:44:47] Traceback (most recent call last):
+[08:44:47]   File "/usr/lib/exaile/xl/xlmisc.py", line 218, in __use_gnome
+[08:44:47]     '/org/gnome/SettingsDaemon')
+[08:44:47]   File "/usr/lib/python2.6/site-packages/dbus/bus.py", line 244, in get_object
+[08:44:47]     follow_name_owner_changes=follow_name_owner_changes)
+[08:44:47]   File "/usr/lib/python2.6/site-packages/dbus/proxies.py", line 241, in __init__
+[08:44:47]     self._named_service = conn.activate_name_owner(bus_name)
+[08:44:47]   File "/usr/lib/python2.6/site-packages/dbus/bus.py", line 183, in activate_name_owner
+[08:44:47]     self.start_service_by_name(bus_name)
+[08:44:47]   File "/usr/lib/python2.6/site-packages/dbus/bus.py", line 281, in start_service_by_name
+[08:44:47]     'su', (bus_name, flags)))
+[08:44:47]   File "/usr/lib/python2.6/site-packages/dbus/connection.py", line 622, in call_blocking
+[08:44:47]     message, timeout)
+[08:44:47] DBusException: org.freedesktop.DBus.Error.ServiceUnknown: The name org.gnome.SettingsDaemon was not provided by any .service files
+[08:44:47] 
+[08:44:47] Using multimedia keys from: mmkeys
+[08:44:48] loading tracks...
+[08:44:48] done loading tracks...
+[08:44:48] loading songs
+[08:44:48] Starting scan timer at 25
+[08:44:48] Clearing tracks cache
+[08:44:48] Importing /home/one/.exaile/saved/playlist0000.m3u
+[08:44:48] Last playlist loaded
+[08:44:49] Loading page 0
+[08:45:03] Starting scan timer at 25.0

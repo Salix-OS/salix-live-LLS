@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<registration_data version="1.0">
+   <environment>
+      <hostname>salixlive</hostname>
+      <hostId>007f0100</hostId>
+      <osName>Linux</osName>
+      <osVersion>2.6.29.6-smp-live</osVersion>
+      <osArchitecture>i386</osArchitecture>
+      <systemModel>GenuineIntel</systemModel>
+      <systemManufacturer/>
+      <cpuManufacturer>GenuineIntel</cpuManufacturer>
+      <serialNumber/>
+   </environment>
+   <registry urn="urn:st:248d4ae4-6cf2-4dd3-82f1-d5aa35834460" version="1.0">
+      <service_tag>
+         <instance_urn>urn:st:6cb5a07f-753f-4dcc-9a96-dd42f2f7f390</instance_urn>
+         <product_name>OpenOffice.org 3.1</product_name>
+         <product_version>3.1</product_version>
+         <product_urn>urn:uuid:a933af5e-f2fc-11dd-8c47-080020a9ed93</product_urn>
+         <product_parent_urn/>
+         <product_parent>OpenOffice.org 3.1</product_parent>
+         <product_defined_inst_id/>
+         <product_vendor>Sun Microsystems, Inc.</product_vendor>
+         <platform_arch>i386</platform_arch>
+         <timestamp>2009-11-27 19:53:15 GMT</timestamp>
+         <container>global</container>
+         <source>OOO310m19(Build:9420)</source>
+         <installer_uid>-1</installer_uid>
+      </service_tag>
+   </registry>
+</registration_data>

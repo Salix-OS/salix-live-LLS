@@ -1,0 +1,80 @@
+--- /etc/rc.d/rc.alsa	2009-03-02 00:34:06.000000000 +0100
++++ ../../../etc/rc.d/rc.alsa	2009-10-05 23:47:07.000000000 +0200
+@@ -1,62 +1,26 @@
+ #!/bin/sh
+ # Load the mixer settings and OSS compatibility for ALSA.
+ # (the Advanced Linux Sound Architecture)
++#
++### Modified for Live ###
++#
+ 
+ # A function to load the ALSA mixer settings:
+ load_alsa_mixer() {
+-  if [ -r /etc/asound.state ]; then
+-    echo "Loading ALSA mixer settings:  /usr/sbin/alsactl restore"
+-    /usr/sbin/alsactl restore
+-  else
+-    # It's possible a user might not want to set a default sound state.
+-    # In that case, do this:  touch /etc/no.asound.state
+-    if [ ! -r /etc/no.asound.state ]; then
+-      echo "Setting default ALSA mixer settings."
+-      # set default mixer volumes for ALSA
+-      # Taken from the alsaconfig script.
+-      amixer -s -q <<EOF
+-set Master 75% unmute
+-set Master -12dB
+-set 'Master Mono' 75% unmute
+-set 'Master Mono' -12dB
+-set Front 75% unmute
+-set Front -12dB
+-set PCM 90% unmute
+-set PCM 0dB
+-mixer Synth 90% unmute
+-mixer Synth 0dB
+-mixer CD 90% unmute
+-mixer CD 0dB
+-# mute mic
+-set Mic 0% mute
+-# ESS 1969 chipset has 2 PCM channels
+-set PCM,1 90% unmute
+-set PCM,1 0dB
+-# Trident/YMFPCI/emu10k1
+-set Wave 100% unmute
+-set Music 100% unmute
+-set AC97 100% unmute
+-# CS4237B chipset:
+-set 'Master Digital' 75% unmute
+-# Envy24 chips with analog outs
+-set DAC 90% unmute
+-set DAC -12dB
+-set DAC,0 90% unmute
+-set DAC,0 -12dB
+-set DAC,1 90% unmute
+-set DAC,1 -12dB
+-# some notebooks use headphone instead of master
+-set Headphone 75% unmute
+-set Headphone -12dB
+-set Playback 100% unmute
+-# turn off digital switches
+-set "SB Live Analog/Digital Output Jack" off
+-set "Audigy Analog/Digital Output Jack" off
+-EOF
+-      echo "Storing default ALSA mixer settings:  /usr/sbin/alsactl store"
+-      /usr/sbin/alsactl store
++### modified for Live ###
++  # Volume is muted by default. Set it to 71% unless nosound boot option given:
++  if ! cat /proc/cmdline | grep -w nosound >/dev/null 2>/dev/null; then
++    if [ -r /etc/asound.state ]; then
++      echo "Loading ALSA mixer settings:  /usr/sbin/alsactl restore"
++      /usr/sbin/alsactl restore
++    else
++      echo "Setting sound volume: 71%"
++      for SCONTROL in {"Master","PCM","Front","Surround","Center","CD","Video"}; do
++        /usr/bin/amixer -q sset $SCONTROL 71% unmute 2>/dev/null
++      done
+     fi
+   fi
++### /modified for Live ###
+ }
+ 
+ # A function to load the ALSA OSS compat modules:

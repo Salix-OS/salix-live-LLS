@@ -1,6 +1,6 @@
 #!/bin/bash
 # Maintainer: JRD <jrd@enialis.net>
-# Contributors: Shador <futur.andy@googlemail.com>
+# Contributors: Shador <futur.andy@googlemail.com>, Akuna <akuna@free.fr>
 #
 # Used to build the live ISO
 # Linux-Live-Script: the most innovative scripts available.
@@ -8,22 +8,19 @@
 # funionfs (unionfs with fuse) is still used for building the modules because it is simpler and easier than aufs which may not be compiled in your kernel and which is not available in FUSE. The 0.4.2 version is used in time of writing, instead of 0.4.3 because this one is buggy. Later versions must be checked to see if it's ok with "cp" and "mkfifo" for example.
 # url: http://www.linux-live.org/
 #
-# What needs to be installed to compile:
-# - pkgtools or spkg-pkgtools
-# - sed, grep, cat, tr, head, gzip, bzip2, xz
-# - glibc, sysfsutils, gcc, glib2
-# - wget
-# - fuse
-# - linux-live
-# - cdrtools
+# See INSTALL
+#
 
+cd $(dirname $0)
 startdir=$(pwd)
 export KVER=$(uname -r)
 export DISTRO=salix
 export VER=13.0
-export RLZ=beta1
+export RLZ=beta2
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
+export BBVER=1.15.2
+export BBURL=http://busybox.net/downloads/busybox-$BBVER.tar.bz2
 export FUFSVER=0.4.2
 export FUFSURL=http://funionfs.apiou.org/file/funionfs-$FUFSVER.tar.gz
 export ISO_NAME=${DISTRO}live-$VER-$RLZ.iso
@@ -59,6 +56,10 @@ if [ ! -x $startdir/funionfs ]; then
   )
   rm -rf funionfs-$FUFSVER
 fi
+echo3 "Making liveenv package"
+./liveenv/create_txz.sh
+rm -f PKGS/liveenv-*.txz
+mv liveenv-*.txz PKGS/
 mkdir -p src
 cd src
 echo3 "Reading modules"
@@ -83,10 +84,10 @@ while read m; do
     num=$((num + 1))
   fi
 done < $startdir/MODULES_INFOS
-#export RDEF=''
-#export kmodule=''
-export RDEF=K
-export kmodule=04-kernel
+export RDEF=''
+export kmodule=''
+#export RDEF=K
+#export kmodule=05-kernel
 if [ -z "$kmodule" ]; then
   while read m; do
     list=($(echo "$m"|cut -d\| -f3-))
@@ -149,11 +150,22 @@ while read m; do
 done < $modules
 rm -r $startdir/src/{empty,module}
 echo3 "Prepare the linux live scripts..."
-if [ -e $startdir/linux-live-$LLVER.tar.gz ]; then
-  cp $startdir/linux-live-$LLVER.tar.gz .
-else
+if [ ! -e linux-live-$LLVER.tar.gz ]; then
   wget $LLURL
 fi
+echo3 "Prepare BusyBox..."
+if [ ! -e busybox-$BBVER.tar.bz2 ]; then
+  wget $BBURL
+fi
+# compile busybox
+echo3 "Compile BusyBox..."
+rm -rf busybox-$BBVER
+tar -xf busybox-$BBVER.tar.bz2
+cd busybox-$BBVER
+cp $startdir/bbconfig .config
+make
+make install
+cd ..
 # install the linux live scripts binaries and libs for the Live distro
 echo3 "Creating live structure and initrd..."
 rm -rf linux-live-$LLVER
@@ -167,12 +179,27 @@ sed -i -e "s/CDLABEL=.*/CDLABEL=${DISTRO}live/" cd-root/linux/make_iso.*
 # add runlevel parameter to init, and assure that /dev/initctl is correctly initialized
 sed -i -e 's:^\(header "\)starting \(Linux Live.*\):header "Starting '$DISTRO' Live v.'$VER'-'$RLZ'..."\n\1...using \2: ; s:^.*cp -af $INIT /bin.*: rm -f /dev/initctl\n mkfifo -m 600 /dev/initctl\n runlevel=$(cmdline_parameter [0123456])\n\0: ; s:<dev/console:$runlevel \0:g' initrd/linuxrc
 # remove the /usr/share/locale/locale.alias warning at boot when no iocharset is defined.
-sed -i -e 's:.*cat /usr/share/locale/locale.alias.*:echo "utf8":' initrd/linuxrc
+sed -i -e 's:.*cat /usr/share/locale/locale.alias.*:echo "utf8":' initrd/liblinuxlive
+# deals with fs and modprobe
+sed -i -e 's:"ext3:"ext4\next3:' initrd/linuxrc
+sed -i -e 's:   modprobe_module squashfs:   modprobe_module sqlzma\n   modprobe_module unlzma\n\0:' initrd/liblinuxlive
+sed -i -e 's:   modprobe_module ext3:\0\n   modprobe_module ext4:' initrd/liblinuxlive
+# remove the 'users' option from mount options because it's useless
+# (initrd is run as root) and because this option is not always valid on
+# any filesystem.
+sed -i -e 's/,users,/,/' initrd/liblinuxlive
+# make the mksquashfs tool use 1MB memory when making a module
+sed -i -e 's/-b 256K -lzmadic 256K/-b 1M -lzmadic 1M/' initrd/liblinuxlive
 # remove the installation process of the linux live tools + patch for fake-uname
 sed -i -e 's:.*\. \./install.*:echo "":' -e 's@:/usr/sbin:@:/sbin:/usr/sbin:@' -e 's/^read NEWLIVECDNAME/NEWLIVECDNAME=""/' -e 's/^read NEWKERNEL/NEWKERNEL=""/' -e 's/^read junk//' build
 # remove the need to build aufs as a module for the initrd
 sed -i 's:^rcopy \(.*/aufs .*\):rcopy_ex \1:' initrd/initrd_create
-# install splashy and DirectDB in initrd
+echo3 "Install BusyBox..."
+rm -rf initrd/rootfs/bin/{busybox,eject}
+cp -rf ../busybox-$BBVER/_install/{bin,sbin}/* initrd/rootfs/bin/
+# remove the busybox symlinks creation in the initrd_create process.
+sed -i -e 's/ln -s busybox .*/echo -n/' initrd/initrd_create
+echo3 "Install splashy and DirectDB in initrd..."
 ROOT2=$ROOT
 export ROOT=$PWD/initrd/rootfs
 installpkg $startdir/PKGS/splashy-*.txz
@@ -235,7 +262,7 @@ while read m; do
     fi
   fi
   if [ ! -e iso/${DISTRO}live/base/$m.lzm ]; then
-    mksquashfs $startdir/src/$m iso/${DISTRO}live/base/$m.lzm -b 256K -lzmadic 256K
+    mksquashfs $startdir/src/$m iso/${DISTRO}live/base/$m.lzm -b 1M -lzmadic 1M
     chmod a+r-wx iso/${DISTRO}live/base/$m.lzm
   fi
 done < $modules
@@ -243,8 +270,18 @@ rm -f $modules
 # add grub2 menu
 echo3 "Adding Grub2..."
 cd iso
-tar xf $startdir/grub2-base-*.txz
-tar xf $startdir/grub2-live-*.txz
+# prepare the grub2 initial tree
+rm -rf boot/grub # just for sure
+sed -e "s;aux_dir=\`mktemp -d\`;aux_dir=\"${PWD}\";" \
+    -e "s/genisoimage/false/" \
+    -e 's/\(rm -rf ${aux_dir}\)/# \1/' \
+    /usr/bin/grub-mkrescue > grub-mkrescue
+chmod +x grub-mkrescue
+# ask grub2 to build the initial tree without making an ISO
+./grub-mkrescue xy.iso
+rm -f grub-mkrescue xy.iso
+cp -ar ${startdir}/livegrub2/build/* .
+cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
 # create the iso
 echo3 "Creating ISO..."
 mkisofs -b boot/grub/grub_eltorito \

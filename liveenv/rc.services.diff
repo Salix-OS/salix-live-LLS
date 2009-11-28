@@ -1,0 +1,87 @@
+--- /etc/rc.d/rc.services	2009-10-05 23:47:29.959481518 +0200
++++ ../../../etc/rc.d/rc.services	2009-10-05 23:52:20.000000000 +0200
+@@ -1,5 +1,36 @@
+ #!/bin/sh
++#
++# rc.services	This shell script starts daemons and mounts network filesystems
++# Author:	Jean-Philippe Guillemin <jp.guillemin@free.fr> for Zenwalk Linux  :)
++#
++### Modified for Live ###
+ 
++# Start the network control daemon
++if [ -x /etc/rc.d/rc.wicd ]; then
++  . /etc/rc.d/rc.wicd start 
++fi
++
++# Start the Avahi mDNS/DNS-SD daemon
++if [ -x /etc/rc.d/rc.avahidaemon ]; then
++  # We need DBUS
++  if ps axc | grep -q dbus-daemon ; then
++    . /etc/rc.d/rc.avahidaemon start 1>/dev/null 2>/dev/null &
++  else
++    echo -e "\n\033[01;31mPlease activate DBUS (rc.messagebus), Avahi needs it!:\033[00m"
++  fi
++fi
++
++# Start the portmapper
++if [ -x /etc/rc.d/rc.rpc ]; then
++  . /etc/rc.d/rc.rpc start 
++fi
++
++# At this point, we are ready to talk to The World...
++
++############## STARTING DAEMONS AND NETWORK SERVICES ##################
++
++### modified for Live ###
++### add rc.live to the list below ###
+ # We won't start these services from here, don't play with this list ;)
+ blacklist(){
+ for mask in \~ .new rc.S rc.M rc.K rc.4 rc.0 rc.6 .conf rc.services rc.inet1 rc.inet2 rc.rpc \
+@@ -8,10 +39,11 @@
+ 	rc.messagebus rc.licences rc.scanluns rc.ntpd rc.bluetooth \
+ 	rc.dnsmasq rc.snmpd rc.lprng rc.atalk rc.saslauthd rc.sendmail \
+ 	rc.mysqld rc.httpd rc.openldap rc.samba rc.gpm rc.sysvinit \
+-	rc.pcmcia rc.fuse rc.modules.local rc.modules-$(uname -r) ; do
++	rc.pcmcia rc.fuse rc.modules.local rc.modules-$(uname -r) rc.live ; do
+ 	echo $1 | grep $mask
+ done
+ }
++### /modified for Live ###
+ 
+ # Here we go
+ for rcscript in /etc/rc.d/rc.* ; do
+@@ -21,3 +53,34 @@
+     /usr/bin/ionice -c2 -n2 $rcscript start &
+   fi
+ done
++
++### modified for Live ###
++# Start the print spooling system
++if [ -x /etc/rc.d/rc.cups ]; then
++  # Start CUPS:
++  echo "Starting up the printer spooling daemon"
++  /usr/bin/ionice -c3 -n2 /etc/rc.d/rc.cups start 1>/dev/null 2>/dev/null 
++fi
++
++# Let's wait for network connectivity
++sleep 10
++
++# Mount remote (NFS) filesystems
++if cat /etc/fstab | grep -v '^#' | grep -w nfs 1> /dev/null 2> /dev/null ; then
++  # We need the portmapper
++  if ps axc | grep -q rpc.statd ; then
++    sbin/mount -a -t nfs      	 
++    # Show the mounted volumes
++    /sbin/mount -v -t nfs
++  else
++    echo "Please activate the portmapper (rc.rpc), NFS needs it!"
++  fi
++fi
++
++# Mount remote (CIFS) filesystems:
++if cat /etc/fstab | grep -v '^#' | grep -w cifs 1> /dev/null 2> /dev/null ; then
++  /sbin/mount -a -t cifs
++  # Show the mounted volumes:
++  /sbin/mount -v -t cifs
++fi
++### /modified for Live ###

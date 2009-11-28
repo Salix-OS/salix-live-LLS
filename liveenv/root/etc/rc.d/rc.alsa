@@ -1,0 +1,57 @@
+#!/bin/sh
+# Load the mixer settings and OSS compatibility for ALSA.
+# (the Advanced Linux Sound Architecture)
+#
+### Modified for Live ###
+#
+
+# A function to load the ALSA mixer settings:
+load_alsa_mixer() {
+### modified for Live ###
+  # Volume is muted by default. Set it to 71% unless nosound boot option given:
+  if ! cat /proc/cmdline | grep -w nosound >/dev/null 2>/dev/null; then
+    if [ -r /etc/asound.state ]; then
+      echo "Loading ALSA mixer settings:  /usr/sbin/alsactl restore"
+      /usr/sbin/alsactl restore
+    else
+      echo "Setting sound volume: 71%"
+      for SCONTROL in {"Master","PCM","Front","Surround","Center","CD","Video"}; do
+        /usr/bin/amixer -q sset $SCONTROL 71% unmute 2>/dev/null
+      done
+    fi
+  fi
+### /modified for Live ###
+}
+
+# A function to load the ALSA OSS compat modules:
+load_alsa_oss_modules() {
+  if ! cat /proc/modules | tr _ - | grep -wq snd-pcm-oss ; then
+    echo "Loading OSS compatibility modules for ALSA."
+    modprobe snd-pcm-oss
+    modprobe snd-seq-oss
+    modprobe snd-mixer-oss
+  fi
+}
+
+# If hotplug or something else has loaded the ALSA modules, then
+# simply load the mixer settings and make sure the OSS compat
+# modules are loaded:
+if [ -d /proc/asound ]; then
+  load_alsa_oss_modules
+  load_alsa_mixer
+else
+  # If there are ALSA modules defined in /etc/modprobe.conf, but
+  # ALSA is not yet loaded, then load the modules now:
+  DRIVERS=$(modprobe -c | grep -E "^[[:space:]]*alias[[:space:]]+snd-card-[[:digit:]]" | tr -s "[[:blank:]]" " " | cut -d " " -f 3)
+  if [ ! "$DRIVERS" = "" ]; then
+    echo "Loading ALSA kernel modules."
+    for module in $DRIVERS; do
+      modprobe $module
+    done
+  fi
+  # If ALSA is now up, then load the mixer settings and OSS modules:
+  if [ -d /proc/asound ]; then
+    load_alsa_oss_modules
+    load_alsa_mixer
+  fi
+fi

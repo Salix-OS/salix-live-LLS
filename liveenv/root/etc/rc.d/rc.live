@@ -1,0 +1,80 @@
+#!/bin/bash
+
+#
+# This script supports Live's cheatcodes & initiate some vital commands.
+#
+
+. /usr/lib/liblinuxlive
+
+# passwd: Change root's password at startup
+newrootpass="`cmdline_value passwd`"
+if [ "$newrootpass" = "ask" ]; then
+  echo -ne "\nEnter new password for root: "
+  read -s newrootpass
+fi
+
+if [ ! "$newrootpass" = "" ]; then
+  echo "root:$newrootpass" | /usr/sbin/chpasswd
+fi
+
+# lang: Override default language
+lang="`cmdline_value lang`"
+if [ "$lang" ]; then
+  [[ "`locale -a | grep -w $lang`" ]] && \
+  sed -i "s/^ *\(export LANG=\).*$/\1$lang/" /etc/profile.d/lang.sh
+fi
+
+# Make firefox match OS locale
+if [ -w /usr/lib/firefox/greprefs/all.js ]; then
+  sed -i -e 's/pref("intl.locale.matchOS",                 false);/pref("intl.locale.matchOS",                 true);/g' /usr/lib/firefox/greprefs/all.js
+fi
+
+# Make thunderbird match OS locale
+if [ -w /usr/lib/thunderbird/greprefs/all.js ]; then
+  sed -i -e 's/pref("intl.locale.matchOS",                 false);/pref("intl.locale.matchOS",                 true);/g' /usr/lib/thunderbird/greprefs/all.js
+fi
+
+# numlock: Override default numlock settings
+numlock="`cmdline_value numlock`"
+if [ "$numlock" = "on" ]; then
+  sh /etc/rc.d/rc.numlock start
+  chmod +x /etc/rc.d/rc.numlock
+  [ -w /etc/X11/gdm/Init/Default ] && sed -i 's/numlockx .*/numlockx on/' /etc/X11/gdm/Init/Default
+else
+  sh /etc/rc.d/rc.numlock stop
+  chmod -x /etc/rc.d/rc.numlock
+  [ -w /etc/X11/gdm/Init/Default ] && sed -i 's/numlockx .*/numlockx off/' /etc/X11/gdm/Init/Default
+fi
+
+# synaptics: Use the syanptics fdi for HAL
+synpatics="`cmdline_value synaptics`"
+if [ "$synpatics" = "on" ]; then
+  mkdir -p /etc/hal/fdi/policy
+  if [ ! -e /etc/hal/fdi/policy/11-x11-synpatics.fdi ]; then
+    cp /usr/lib/salixlive/11-x11-synpatics.fdi /etc/hal/fdi/policy
+    service restat hald
+  fi
+else
+  if [ -e /etc/hal/fdi/policy/11-x11-synpatics.fdi ]; then
+    rm -f /etc/hal/fdi/policy/11-x11-synpatics.fdi
+    service restat hald
+  fi
+fi
+# autologin: Enables autologin in GDM
+if [ "`cmdline_parameter autologin`" ]; then
+  sed -i 's/AutomaticLoginEnable=.*/AutomaticLoginEnable=true/' /etc/gdm/custom.conf
+fi
+
+# Updates dynamic library cache, essential for modular structure.
+if [ -x /sbin/ldconfig ]; then
+  /sbin/ldconfig
+fi
+
+# Re-generate modules dependencies
+/sbin/depmod -a
+
+# Re-starts hal daemon, just in case.
+/usr/sbin/hald --daemon=yes
+
+# deactivate itself
+chmod -x /etc/rc.d/rc.live

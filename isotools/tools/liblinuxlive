@@ -255,7 +255,7 @@ locale_id()
    fi
 
    if [ "$LOCALE" != "" ]; then
-      cat /usr/share/locale/locale.alias | sed -r "s/#.*//" | egrep "$LOCALE|$LOCALE""_" | tail -n 1 | tr -s "[[:space:]]" " " | cut -d " " -f 2- | tr -d " "
+      echo "utf8"
    fi
 }
 
@@ -301,7 +301,7 @@ fs_options()
    if [ "$NOAUTO" = "" ]; then NOAUTO="auto"; fi
    if [ "$2" = "fstab" ]; then echo -n "$NOAUTO," ; fi
    if [ "$1" = "swap" ]; then echo "defaults,pri=1"; return 0; fi
-   echo -n "noatime,users,suid,dev,exec"
+   echo -n "noatime,suid,dev,exec"
 
    IOCHARSET=$(iocharset)
 
@@ -462,7 +462,7 @@ create_module()
 {
    debug_log "create_module" "$*"
    rm -f "$2" # overwrite, never append to existing file
-   mksquashfs "$1" "$2" -b 256K -lzmadic 256K $3 $4 $5 $6 $7 $8 $9>/dev/null
+   mksquashfs "$1" "$2" -b 1M -lzmadic 1M $3 $4 $5 $6 $7 $8 $9>/dev/null
    if [ $? -ne 0 ]; then return 1; fi
    chmod a-wx "$2" # remove execute and write attrib
    chmod a+r "$2" # add read for everyone
@@ -861,9 +861,9 @@ modprobe_essential_modules()
    echolog "starting linux filesystem support"
    modprobe_module ext2
    modprobe_module ext3
+   modprobe_module ext4
    modprobe_module reiserfs
    modprobe_module xfs
-   modprobe_module vfat
    echolog "starting windows filesystem support"
    modprobe_module vfat
    modprobe_module fuse # for ntfs-3g

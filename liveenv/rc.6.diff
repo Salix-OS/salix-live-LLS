@@ -1,0 +1,60 @@
+--- /etc/rc.d/rc.6	2009-09-06 00:59:31.000000000 +0200
++++ ../../../etc/rc.d/rc.6	2009-10-05 23:35:20.000000000 +0200
+@@ -9,6 +9,12 @@
+ # Author:	Miquel van Smoorenburg <miquels@drinkel.nl.mugnet.org>
+ # Modified by:  Patrick J. Volkerding, <volkerdi@slackware.com>
+ #
++### Modified for Live ###
++#
++
++### modified for Live ###
++. /usr/lib/liblinuxlive
++### /modified for Live ###
+ 
+ # Set the path.
+ PATH=/sbin:/etc:/bin:/usr/bin
+@@ -181,10 +187,12 @@
+   rm -f /var/lock/subsys/*
+ fi
+ 
++### modified for Live ###
+ # Turn off swap:
+-echo "Turning off swap."
+-/sbin/swapoff -a
++#echo "Turning off swap."
++#/sbin/swapoff -a
+ /bin/sync
++### /modified for Live ###
+ 
+ # Umount any LVM volumes:
+ if /bin/mount | /bin/grep -q '^/dev/mapper/' ; then
+@@ -195,8 +203,12 @@
+ echo "Unmounting local file systems."
+ /bin/umount -v -a -t no,proc,sysfs
+ 
+-echo "Remounting root filesystem read-only."
+-/bin/mount -v -n -o remount,ro /
++### modified for Live ###
++if [ ! -x /mnt/live/cleanup ]; then
++  echo "Remounting root filesystem read-only."
++  /bin/mount -v -n -o remount,ro /
++fi	
++### /modified for Live ###
+ 
+ # This never hurts:
+ /bin/sync
+@@ -256,6 +268,14 @@
+   fi
+ fi
+ 
++### modified for Live ###
++# start Linux-live cleanup script, which ensures everything is correctly unmounted
++if [ -x /mnt/live/cleanup ]; then
++   cd /mnt/live/
++   exec ./cleanup $command <dev/console >dev/console 2>&1
++fi
++### /modified for Live ###
++
+ # Now halt (poweroff with APM or ACPI enabled kernels) or reboot.
+ if [ "$command" = "reboot" ]; then
+   echo "Rebooting."

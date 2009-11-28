@@ -8,3 +8,6 @@ libsigc++
 linux-live
 pangomm
 rdesktop
+os-prober
+lilosetup
+salix-live-installer

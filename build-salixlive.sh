@@ -60,9 +60,9 @@ echo3 "Making liveenv package"
 ./liveenv/create_txz.sh
 rm -f PKGS/liveenv-*.txz
 mv liveenv-*.txz PKGS/
+echo3 "Reading modules"
 mkdir -p src
 cd src
-echo3 "Reading modules"
 modules=$(mktemp)
 num=1
 while read m; do
@@ -137,7 +137,9 @@ while read m; do
       installpkg $file
     done
     # dotnew
-    find $ROOT/etc -name '*.new'|xargs -i@ bash -c '(N="$1"; F="$(dirname $N)/$(basename $N .new)"; if [ -e $F ]; then rm $N; else mv $N $F; fi)' -- @
+    if [ -e $ROOT/etc ]; then
+      find $ROOT/etc -name '*.new'|xargs -i@ bash -c '(N="$1"; F="$(dirname $N)/$(basename $N .new)"; if [ -e $F ]; then rm $N; else mv $N $F; fi)' -- @
+    fi
     # kernel modules path
     if [ -e "$ROOT/lib/modules/$KVER" ]; then
       cp -r $ROOT/lib/modules/$KVER/* $ROOT/lib/modules/$KVER-live/
@@ -282,6 +284,10 @@ chmod +x grub-mkrescue
 rm -f grub-mkrescue xy.iso
 cp -ar ${startdir}/livegrub2/build/* .
 cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
+# add the standard kernel
+echo3 "Adding the standard kernel too"
+mkdir -p packages/std-kernel
+cp $startdir/std-kernel/*.txz packages/std-kernel/
 # create the iso
 echo3 "Creating ISO..."
 mkisofs -b boot/grub/grub_eltorito \

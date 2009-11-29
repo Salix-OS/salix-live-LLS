@@ -283,6 +283,7 @@ chmod +x grub-mkrescue
 ./grub-mkrescue xy.iso
 rm -f grub-mkrescue xy.iso
 cp -ar ${startdir}/livegrub2/build/* .
+find . -type d -name '.svn' | xargs -i@ rm -rf @
 cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
 # add the standard kernel
 echo3 "Adding the standard kernel too"

@@ -50,14 +50,14 @@ fi
 synpatics="`cmdline_value synaptics`"
 if [ "$synpatics" = "on" ]; then
   mkdir -p /etc/hal/fdi/policy
-  if [ ! -e /etc/hal/fdi/policy/11-x11-synpatics.fdi ]; then
-    cp /usr/lib/salixlive/11-x11-synpatics.fdi /etc/hal/fdi/policy
-    service restat hald
+  if [ ! -e /etc/hal/fdi/policy/11-x11-synaptics.fdi ]; then
+    cp /usr/lib/salixlive/11-x11-synaptics.fdi /etc/hal/fdi/policy/
+    service restart hald
   fi
 else
-  if [ -e /etc/hal/fdi/policy/11-x11-synpatics.fdi ]; then
-    rm -f /etc/hal/fdi/policy/11-x11-synpatics.fdi
-    service restat hald
+  if [ -e /etc/hal/fdi/policy/11-x11-synaptics.fdi ]; then
+    rm -f /etc/hal/fdi/policy/11-x11-synaptics.fdi
+    service restart hald
   fi
 fi
 # autologin: Enables autologin in GDM

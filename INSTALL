@@ -33,8 +33,9 @@ You must add at least the following packages:
   - aaa_base, devs, sysvinit, ...
   - ash
   - all GNU basic packages
-6/ copy standard kernel packages in std-kernel directory.
-7/ run build-salixlive.sh (and wait) to output you an ISO file ready to burn or to be put on an USB key (not with Unetbootin, but with grub2-install).
+6/ copy standard kernel packages in std-kernel directory (huge, module & firmware).
+7/ update the libraries in ./libs with GNU ones if you want fresher ones. They will be use by initrd.
+8/ run build-salixlive.sh (and wait) to output you an ISO file ready to burn or to be put on an USB key (not with Unetbootin, but with install-on-USB).
 
 Good luck ^_^
 

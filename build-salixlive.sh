@@ -13,10 +13,14 @@
 
 cd $(dirname $0)
 startdir=$(pwd)
+if [ "$UID" -ne "0" ]; then
+  echo "You need to be root to build the ISO because some commands need it."
+  exit 1
+fi
 export KVER=$(uname -r)
 export DISTRO=salix
 export VER=13.0
-export RLZ=beta2
+export RLZ=rc1
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.15.2
@@ -50,7 +54,7 @@ fi
 if [ ! -x $startdir/funionfs ]; then
   wget $FUFSURL -O - | tar xzf - || exit 1
   (
-    cd funionfs-$FUFSVER
+    cd $startdir/funionfs-$FUFSVER
     ./configure && make || exit 1
     cp funionfs ..
   )
@@ -62,7 +66,7 @@ rm -f PKGS/liveenv-*.txz
 mv liveenv-*.txz PKGS/
 echo3 "Reading modules"
 mkdir -p src
-cd src
+cd $startdir/src
 modules=$(mktemp)
 num=1
 while read m; do
@@ -103,6 +107,13 @@ if [ -z "$kmodule" ]; then
         quit "$p, referenced by module $m, is not available in $startdir/PKGS/"
         exit 1
       fi
+      if [ "$p" = "kernelive" ]; then
+        filekernel=$(find $startdir/PKGS -name "$p-$(uname -r|sed 's/-/./g')-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
+        if [ ! -e "$filekernel" ]; then
+          quit "$file does not match you kernel version returned by 'uname -r'. Please install fake-uname to match it."
+          exit 1
+        fi
+      fi
     done
   done < $modules
 fi
@@ -132,7 +143,25 @@ while read m; do
     export ROOT=$startdir/src/module
     $startdir/funionfs -o "dirs=$funionfsopts:$startdir/src/$m" none $ROOT
     funionfsopts="$funionfsopts:$startdir/src/$m=ro"
+    nb=${#list[@]}
+    i=0
+    d0=$(date +%s)
     for p in "${list[@]}"; do
+      i=$(( $i + 1 ))
+      clear
+      echo "⋅⋅⋅---=== Installing packages for $m ===---⋅⋅⋅"
+      echo ''
+      echo -n 'Progression : ['
+      perct=$(($i * 100 / $nb))
+      nbSharp=$(($i * 50 / $nb))
+      nbSpace=$((50 - $nbSharp))
+      for j in $(seq $nbSharp); do echo -n '#'; done
+      for j in $(seq $nbSpace); do echo -n '_'; done
+      echo "] $i / $nb ($perct%)"
+      offset=$(($(date +%s) - $d0))
+      timeremain=$((($nb - $i) * $offset / $i))
+      echo 'Remaining time (estimated) :' $(date -d "1970-01-01 UTC +$timeremain seconds" +%M:%S)
+      echo ''
       file=$(find $startdir/PKGS -name "$p-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
       installpkg $file
     done
@@ -160,19 +189,31 @@ if [ ! -e busybox-$BBVER.tar.bz2 ]; then
   wget $BBURL
 fi
 # compile busybox
-echo3 "Compile BusyBox..."
-rm -rf busybox-$BBVER
-tar -xf busybox-$BBVER.tar.bz2
-cd busybox-$BBVER
-cp $startdir/bbconfig .config
-make
-make install
-cd ..
+R=$RDEF
+if [ -e busybox-$BBVER/_install/bin/busybox ]; then
+  while [[ "$R" != "K" && "$R" != "C" ]]; do
+    echo "busybox exists, keep (K) or compile (C) ?"
+    read -u 5 R
+  done
+else
+  R=C
+fi
+if [ "$R" = "C" ]; then
+  echo3 "Compile BusyBox..."
+  rm -rf busybox-$BBVER
+  tar -xf busybox-$BBVER.tar.bz2
+  (
+    cd $startdir/src/busybox-$BBVER
+    cp $startdir/bbconfig .config
+    make
+    make install
+  )
+fi
 # install the linux live scripts binaries and libs for the Live distro
 echo3 "Creating live structure and initrd..."
 rm -rf linux-live-$LLVER
 tar -xf linux-live-$LLVER.tar.gz
-cd linux-live-$LLVER
+cd $startdir/src/linux-live-$LLVER
 # specify where to find the kernel and the modules to build the initrd.
 export ROOT=$startdir/src/$kmodule
 sed -i -e "s/^LIVECDNAME=.*/LIVECDNAME=\"${DISTRO}live\"/ ; s/^KERNEL=\$(uname -r)/\0-live/ ; s@^ROOT=.*@ROOT=$ROOT@ ; s/^MKMOD=.*/MKMOD=none/" .config
@@ -192,6 +233,8 @@ sed -i -e 's:   modprobe_module ext3:\0\n   modprobe_module ext4:' initrd/liblin
 sed -i -e 's/,users,/,/' initrd/liblinuxlive
 # make the mksquashfs tool use 1MB memory when making a module
 sed -i -e 's/-b 256K -lzmadic 256K/-b 1M -lzmadic 1M/' initrd/liblinuxlive
+# remove ressources not correctly done in cleanup script
+sed -i -e 's/# eject cdrom devices/lo=$(losetup|cut -d: -f1); for d in $lo; do losetup -d $d; done\numount -a -r\n\n\0/' initrd/cleanup
 # remove the installation process of the linux live tools + patch for fake-uname
 sed -i -e 's:.*\. \./install.*:echo "":' -e 's@:/usr/sbin:@:/sbin:/usr/sbin:@' -e 's/^read NEWLIVECDNAME/NEWLIVECDNAME=""/' -e 's/^read NEWKERNEL/NEWKERNEL=""/' -e 's/^read junk//' build
 # remove the need to build aufs as a module for the initrd
@@ -218,10 +261,11 @@ rm -rf initrd/rootfs/var \
        initrd/rootfs/usr/src
 rm -f  initrd/rootfs/usr/bin/libpng* \
        initrd/rootfs/usr/sbin/splashy_config
-cp -L /lib/libm.so.6 initrd/rootfs/lib/
-cp -L /lib/libsysfs.so.2 initrd/rootfs/lib/
-cp -L /usr/lib/libgcc_s.so.1 initrd/rootfs/usr/lib/
-cp -L /usr/lib/libglib-2.0.so.0 initrd/rootfs/usr/lib/
+cp $startdir/libs/libm.so.6 initrd/rootfs/lib/
+cp $startdir/libs/libsysfs.so.2 initrd/rootfs/lib/
+cp $startdir/libs/libgcc_s.so.1 initrd/rootfs/usr/lib/
+cp $startdir/libs/libglib-2.0.so.0 initrd/rootfs/usr/lib/
+cp $startdir/libs/libblkid.so.1.0 initrd/rootfs/lib/
 sed -i -e 's:.*Then load.*:[ -z "$DEBUG_IS_ENABLED" -a -x /usr/sbin/splashy ] \&\& /usr/sbin/splashy boot\n\n\0:' initrd/linuxrc
 splashyup='[ ! -z "$(pidof splashy)" ] \&\& /usr/sbin/splashy_update "progress _P_"'
 pct=0
@@ -230,12 +274,13 @@ for pat in "Find livecd" "setting up directory for changes" "store the xino" "DA
   spup=$(echo "$splashyup"|sed "s/_P_/$pct/")
   sed -i -e "s:.*$pat.*:$spup\\n\\n\\0:" initrd/linuxrc
 done
+sed -i -e 's@^.*remount,ro.*@sed -e "s: /: /$INITRAMDISK/:" -e "s: /$INITRAMDISK/$UNION/\\?: /:" /etc/mtab | grep -v 'proc' > etc/mtab\n\n\0@' initrd/linuxrc
 sed -i -e 's:^.*cp -af $INIT /bin.*:[ ! -z "$(pidof splashy)" ] \&\& /usr/sbin/splashy_update "exit"\n\0:' initrd/linuxrc
 # remove any files present
 rm -rf /tmp/live_data_*
 # create ISO structure and create initrd.gz
 ./build
-cd ..
+cd $startdir/src
 # move the structure to the final dest.
 mkdir -p iso
 cp -a /tmp/live_data_*/* iso/
@@ -264,14 +309,14 @@ while read m; do
     fi
   fi
   if [ ! -e iso/${DISTRO}live/base/$m.lzm ]; then
-    mksquashfs $startdir/src/$m iso/${DISTRO}live/base/$m.lzm -b 1M -lzmadic 1M
+    mksquashfs $startdir/src/$m iso/${DISTRO}live/base/$m.lzm -b 1M -lzmadic 1M -processors 1
     chmod a+r-wx iso/${DISTRO}live/base/$m.lzm
   fi
 done < $modules
 rm -f $modules
 # add grub2 menu
 echo3 "Adding Grub2..."
-cd iso
+cd $startdir/src/iso
 # prepare the grub2 initial tree
 rm -rf boot/grub # just for sure
 sed -e "s;aux_dir=\`mktemp -d\`;aux_dir=\"${PWD}\";" \
@@ -282,9 +327,17 @@ chmod +x grub-mkrescue
 # ask grub2 to build the initial tree without making an ISO
 ./grub-mkrescue xy.iso
 rm -f grub-mkrescue xy.iso
+grub-mkimage -o boot/grub/core.img
+cp /usr/lib/grub/i386-pc/boot.img boot/grub/
 cp -ar ${startdir}/livegrub2/build/* .
 find . -type d -name '.svn' | xargs -i@ rm -rf @
 cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
+# patch the syslinux.cfg file for installing grub2 on USB if neeeded
+sed -i -e 's/Slax/Salixlive/' boot/bootinst.bat
+sed -i -e 's/Slax/Salixlive/' boot/bootinst.sh
+sed -i -e 's/ rw$/\0 grub2=install/' boot/syslinux/syslinux.cfg
+# add the unix script for installing grub2 on USB too
+cp $startdir/install-on-USB boot/
 # add the standard kernel
 echo3 "Adding the standard kernel too"
 mkdir -p packages/std-kernel

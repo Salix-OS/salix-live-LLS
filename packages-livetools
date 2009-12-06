@@ -9,5 +9,6 @@ linux-live
 pangomm
 rdesktop
 os-prober
+grub2
 lilosetup
 salix-live-installer

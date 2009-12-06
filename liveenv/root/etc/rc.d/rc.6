@@ -200,6 +200,11 @@ if /bin/mount | /bin/grep -q '^/dev/mapper/' ; then
   /bin/umount -v $(/bin/mount | /bin/grep '^/dev/mapper/' | /bin/cut -d ' ' -f 3 | /bin/tac)
 fi
 
+### modified for Live ###
+# remove any /mnt/live/ mention in the /etc/mtab file
+grep -v ' /mnt/live' /etc/mtab > /etc/mtablive && mv /etc/mtablive /etc/mtab
+### /modified for Live ###
+
 echo "Unmounting local file systems."
 /bin/umount -v -a -t no,proc,sysfs
 

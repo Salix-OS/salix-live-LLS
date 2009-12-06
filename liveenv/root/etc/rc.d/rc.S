@@ -7,7 +7,7 @@
 # Tweaked for Salix by George Vlahavas <vlahavas~at~gmail~dot~com>
 
 # Start splashy
-[ -x /usr/sbin/splashy ] && /usr/sbin/splashy boot | splashy_chvt 8
+[ -x /usr/sbin/splashy ] && /usr/sbin/splashy boot || splashy_chvt 8
 [ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 25"
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
@@ -246,15 +246,17 @@ else
   read junk;
 fi # Done checking root filesystem
 
+### modified for Live ###
 # Any /etc/mtab that exists here is old, so we delete it to start over:
-/bin/rm -f /etc/mtab*
+#/bin/rm -f /etc/mtab*
 # Remounting the / partition will initialize the new /etc/mtab:
-/sbin/mount -w -o remount /
+#/sbin/mount -w -o remount /
 
 # Read in the correct / filesystem complete with arguments so mount will
 # show them correctly. This does not stop those arguments from functioning
 # but does prevent a small bug with /etc/mtab.
-/bin/grep ' / ' /proc/mounts | grep -v "^rootfs" > /etc/mtab
+#/bin/grep ' / ' /proc/mounts | grep -v "^rootfs" > /etc/mtab
+### /modified for Live ###
 
 # Fix /etc/mtab to list sys and proc if they were not yet entered in
 # /etc/mtab because / was still mounted read-only:
@@ -266,6 +268,31 @@ if [ -d /sys/bus ]; then
 fi
 
 [ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 45"
+
+### modified for Live ###
+rm -f /needsreboot 2> /dev/null
+grub2=$(egrep -o '(^|[[:space:]])grub2=[^[:space:]]+' /proc/cmdline | cut -d "=" -f 2- | tail -n 1)
+if [ "$grub2" = "install" ]; then
+  partition=$(cat /proc/mounts|grep ' /boot'|cut -d' '  -f1|sed s:/dev/::)
+  # can be written ?
+  touch /boot/touch 2> /dev/null
+  if [ $? -eq 0 ]; then
+    rm -f /boot/touch
+    [ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "exit"
+    disk=${partition%${partition: -1}}
+    grub-install --root-directory=/mnt/live/mnt/$partition --no-floppy --recheck /dev/$disk
+    if [ $? -eq 0 ]; then
+      echo -e "\n\nGrub2 installed in $disk !\nRebooting..."
+      rm -f /mnt/live/mnt/$partition/{ubn*,ldlinux.sys,syslinux.cfg,vesamenu.c32}
+      # crate a file for asking reboot (see rc.live)
+      touch /needsreboot
+    else
+      echo -e "\n\nError : Grub2 failed to installed in $disk !"
+    fi
+  fi
+  unset partition disk
+fi
+### /modified for Live ###
 
 # Configure ISA Plug-and-Play devices:
 if [ -r /etc/isapnp.conf ]; then

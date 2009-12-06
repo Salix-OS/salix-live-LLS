@@ -4,6 +4,21 @@
 # This script supports Live's cheatcodes & initiate some vital commands.
 #
 
+# check if a immediate reboot is needed
+if [ -e /needsreboot ]; then
+  rm -f /needsreboot
+  reboot
+  exit
+fi
+
+# adding more loop devices
+for i in $(seq 99); do
+  if [ ! -e /dev/loop/$i ]; then
+    mknod /dev/loop$i b 7 $i
+  fi
+done
+
+# for cmdline_value
 . /usr/lib/liblinuxlive
 
 # passwd: Change root's password at startup
@@ -20,8 +35,7 @@ fi
 # lang: Override default language
 lang="`cmdline_value lang`"
 if [ "$lang" ]; then
-  [[ "`locale -a | grep -w $lang`" ]] && \
-  sed -i "s/^ *\(export LANG=\).*$/\1$lang/" /etc/profile.d/lang.sh
+  /usr/sbin/localesetup $lang
 fi
 
 # Make firefox match OS locale
@@ -34,17 +48,17 @@ if [ -w /usr/lib/thunderbird/greprefs/all.js ]; then
   sed -i -e 's/pref("intl.locale.matchOS",                 false);/pref("intl.locale.matchOS",                 true);/g' /usr/lib/thunderbird/greprefs/all.js
 fi
 
+# keyb: Override default keyb settings
+keyb="`cmdline_value keyb`"
+if [ -z "$keyb" ]; then
+  keyb=us
+fi
 # numlock: Override default numlock settings
 numlock="`cmdline_value numlock`"
-if [ "$numlock" = "on" ]; then
-  sh /etc/rc.d/rc.numlock start
-  chmod +x /etc/rc.d/rc.numlock
-  [ -w /etc/X11/gdm/Init/Default ] && sed -i 's/numlockx .*/numlockx on/' /etc/X11/gdm/Init/Default
-else
-  sh /etc/rc.d/rc.numlock stop
-  chmod -x /etc/rc.d/rc.numlock
-  [ -w /etc/X11/gdm/Init/Default ] && sed -i 's/numlockx .*/numlockx off/' /etc/X11/gdm/Init/Default
+if [ -z "$numlock" ]; then
+  numlock=off
 fi
+/usr/sbin/keyboardsetup $keyb $numlock
 
 # synaptics: Use the syanptics fdi for HAL
 synpatics="`cmdline_value synaptics`"
@@ -52,14 +66,13 @@ if [ "$synpatics" = "on" ]; then
   mkdir -p /etc/hal/fdi/policy
   if [ ! -e /etc/hal/fdi/policy/11-x11-synaptics.fdi ]; then
     cp /usr/lib/salixlive/11-x11-synaptics.fdi /etc/hal/fdi/policy/
-    service restart hald
   fi
 else
   if [ -e /etc/hal/fdi/policy/11-x11-synaptics.fdi ]; then
     rm -f /etc/hal/fdi/policy/11-x11-synaptics.fdi
-    service restart hald
   fi
 fi
+
 # autologin: Enables autologin in GDM
 if [ "`cmdline_parameter autologin`" ]; then
   sed -i 's/AutomaticLoginEnable=.*/AutomaticLoginEnable=true/' /etc/gdm/custom.conf
@@ -75,6 +88,3 @@ fi
 
 # Re-starts hal daemon, just in case.
 /usr/sbin/hald --daemon=yes
-
-# deactivate itself
-chmod -x /etc/rc.d/rc.live

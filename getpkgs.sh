@@ -1,5 +1,6 @@
 #!/bin/sh
-trap "{if [ -e /var/log/packages.ok ]; then rm -rf /var/log/packages; mv /var/log/packages.ok /var/log/packages; fi; exit 1}" SIGINT SIGTERM
+cd $(dirname $0)
+trap "{ rm -rf slapt-get* var PKGSLIST; exit 255; }" SIGINT SIGTERM
 mkdir -p slapt-get
 cat <<EOF > slapt-getrc
 WORKINGDIR=$PWD/slapt-get
@@ -9,17 +10,32 @@ SOURCE=http://salix.enialis.net/i486/slackware-13.0/extra/
 SOURCE=http://salix.enialis.net/i486/slackware-13.0/patches/:OFFICIAL
 SOURCE=http://salix.enialis.net/i486/13.0/:PREFERRED
 EOF
-mv /var/log/packages /var/log/packages.ok
-mkdir /var/log/packages
+export ROOT=$PWD
+mkdir -p var/log/packages
 /usr/sbin/slapt-get -c $PWD/slapt-getrc -u
 echo "ready ?"
 read pause
 cat packages-* | sort > PKGSLIST
+nb=$(cat PKGSLIST | wc -l)
+i=0
+d0=$(date +%s)
 cat PKGSLIST | while read p; do
+  i=$(( $i + 1 ))
+  clear
+  echo '⋅⋅⋅---=== getpkgs.sh ===---⋅⋅⋅'
+  echo ''
+  echo -n 'Progression : ['
+  perct=$(($i * 100 / $nb))
+  nbSharp=$(($i * 50 / $nb))
+  nbSpace=$((50 - $nbSharp))
+  for j in $(seq $nbSharp); do echo -n '#'; done
+  for j in $(seq $nbSpace); do echo -n '_'; done
+  echo "] $i / $nb ($perct%)"
+  offset=$(($(date +%s) - $d0))
+  timeremain=$((($nb - $i) * $offset / $i))
+  echo 'Remaining time (estimated) :' $(date -d "1970-01-01 UTC +$timeremain seconds" +%M:%S)
+  echo ''
   /usr/sbin/slapt-get -c $PWD/slapt-getrc -i -d -y --no-dep $p
 done
-rmdir /var/log/packages
-mv /var/log/packages.ok /var/log/packages
-rm -f PKGSLIST
 mkdir -p PKGS
-find slapt-get -name '*.t[gx]z' -exec mv '{}' PKGS/ \; && rm -rf slapt-get*
+find slapt-get -name '*.t[gx]z' -exec mv '{}' PKGS/ \; && rm -rf slapt-get* var PKGSLIST

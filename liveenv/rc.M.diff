@@ -1,5 +1,5 @@
 --- /etc/rc.d/rc.M	2009-09-14 09:57:14.000000000 +0200
-+++ ../../../etc/rc.d/rc.M	2009-10-05 23:42:15.000000000 +0200
++++ root/etc/rc.d/rc.M	2009-12-05 19:22:53.135801856 +0100
 @@ -10,9 +10,17 @@
  # Author:	Fred N. van Kempen, <waltje@uwalt.nl.mugnet.org>
  #		Heavily modified by Patrick Volkerding <volkerdi@slackware.com>

@@ -1,5 +1,5 @@
 --- /etc/rc.d/rc.6	2009-09-06 00:59:31.000000000 +0200
-+++ ../../../etc/rc.d/rc.6	2009-10-05 23:35:20.000000000 +0200
++++ root/etc/rc.d/rc.6	2009-12-06 00:23:49.039337540 +0100
 @@ -9,6 +9,12 @@
  # Author:	Miquel van Smoorenburg <miquels@drinkel.nl.mugnet.org>
  # Modified by:  Patrick J. Volkerding, <volkerdi@slackware.com>
@@ -28,7 +28,15 @@
  
  # Umount any LVM volumes:
  if /bin/mount | /bin/grep -q '^/dev/mapper/' ; then
-@@ -195,8 +203,12 @@
+@@ -192,11 +200,20 @@
+   /bin/umount -v $(/bin/mount | /bin/grep '^/dev/mapper/' | /bin/cut -d ' ' -f 3 | /bin/tac)
+ fi
+ 
++### modified for Live ###
++# remove any /mnt/live/ mention in the /etc/mtab file
++grep -v ' /mnt/live' /etc/mtab > /etc/mtablive && mv /etc/mtablive /etc/mtab
++### /modified for Live ###
++
  echo "Unmounting local file systems."
  /bin/umount -v -a -t no,proc,sysfs
  
@@ -43,7 +51,7 @@
  
  # This never hurts:
  /bin/sync
-@@ -256,6 +268,14 @@
+@@ -256,6 +273,14 @@
    fi
  fi
  

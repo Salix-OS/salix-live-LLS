@@ -20,7 +20,7 @@ fi
 export KVER=$(uname -r)
 export DISTRO=salix
 export VER=13.0
-export RLZ=rc1
+export RLZ=$(date +%Y%m%d)
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.15.2
@@ -124,6 +124,8 @@ umount $startdir/src/module >/dev/null 2>&1
 $startdir/funionfs none $startdir/src/empty || exit 1
 umount $startdir/src/empty
 funionfsopts="$startdir/src/empty=ro" # the first readonly directory (will always be empty)
+nmodule=0
+inittabfile=$(find $startdir/PKGS -name "sysvinit-scripts-*"|grep "sysvinit-scripts-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
 while read m; do
   list=($(echo "$m"|cut -d\| -f3-))
   m=$(echo "$m"|cut -d\| -f1-2|sed 's/|/-/')
@@ -165,6 +167,20 @@ while read m; do
       file=$(find $startdir/PKGS -name "$p-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
       installpkg $file
     done
+    if [ "$inittabfile" ]; then
+      if [ $nmodule -eq 0 ]; then
+        (
+          cd $ROOT
+          tar -xf $inittabfile etc/inittab.new
+          sed -i -e 's/^id:.:initdefault:/id:3:initdefault:/' etc/inittab.new
+        )
+      elif [ $nmodule -eq 1 ]; then
+        (
+          cd $ROOT
+          tar -xf $inittabfile etc/inittab.new
+        )
+      fi
+    fi
     # dotnew
     if [ -e $ROOT/etc ]; then
       find $ROOT/etc -name '*.new'|xargs -i@ bash -c '(N="$1"; F="$(dirname $N)/$(basename $N .new)"; if [ -e $F ]; then rm $N; else mv $N $F; fi)' -- @
@@ -177,6 +193,7 @@ while read m; do
     umount $ROOT
     # remove any fakely deleted files in RO branches, default suffix is _DELETED~
     find "$startdir/src/$m" -name '*_DELETED~' -exec rm -rf '{}' \;
+    nmodule=$(($nmodule + 1))
   fi
 done < $modules
 rm -r $startdir/src/{empty,module}
@@ -220,11 +237,11 @@ sed -i -e "s/^LIVECDNAME=.*/LIVECDNAME=\"${DISTRO}live\"/ ; s/^KERNEL=\$(uname -
 # CD Label
 sed -i -e "s/CDLABEL=.*/CDLABEL=${DISTRO}live/" cd-root/linux/make_iso.*
 # add runlevel parameter to init, and assure that /dev/initctl is correctly initialized
-sed -i -e 's:^\(header "\)starting \(Linux Live.*\):header "Starting '$DISTRO' Live v.'$VER'-'$RLZ'..."\n\1...using \2: ; s:^.*cp -af $INIT /bin.*: rm -f /dev/initctl\n mkfifo -m 600 /dev/initctl\n runlevel=$(cmdline_parameter [0123456])\n\0: ; s:<dev/console:$runlevel \0:g' initrd/linuxrc
+sed -i -e 's:^\(header "\)starting \(Linux Live.*\):header "Starting '$DISTRO' Live v.'$VER'-'$RLZ'..."\n\1...using \2: ; s:^.*cp -af $INIT /bin.*:rm -f /dev/initctl\nmkfifo -m 600 /dev/initctl\nrunlevel=$(cmdline_parameter [0123456])\n\0: ; s:<dev/console:$runlevel \0:g' initrd/linuxrc
 # remove the /usr/share/locale/locale.alias warning at boot when no iocharset is defined.
 sed -i -e 's:.*cat /usr/share/locale/locale.alias.*:echo "utf8":' initrd/liblinuxlive
 # deals with fs and modprobe
-sed -i -e 's:"ext3:"ext4\next3:' initrd/linuxrc
+sed -i -e 's:"ext3:"ext4\\next3:' initrd/linuxrc
 sed -i -e 's:   modprobe_module squashfs:   modprobe_module sqlzma\n   modprobe_module unlzma\n\0:' initrd/liblinuxlive
 sed -i -e 's:   modprobe_module ext3:\0\n   modprobe_module ext4:' initrd/liblinuxlive
 # remove the 'users' option from mount options because it's useless
@@ -274,7 +291,7 @@ for pat in "Find livecd" "setting up directory for changes" "store the xino" "DA
   spup=$(echo "$splashyup"|sed "s/_P_/$pct/")
   sed -i -e "s:.*$pat.*:$spup\\n\\n\\0:" initrd/linuxrc
 done
-sed -i -e 's@^.*remount,ro.*@sed -e "s: /: /$INITRAMDISK/:" -e "s: /$INITRAMDISK/$UNION/\\?: /:" /etc/mtab | grep -v 'proc' > etc/mtab\n\n\0@' initrd/linuxrc
+sed -i -e 's@^.*remount,ro.*@sed -e "s: /: /$INITRAMDISK/:" -e "s: /$INITRAMDISK/$UNION/\\?: /:" /etc/mtab | grep -v "proc" > etc/mtab0\ngrep -v "$DATAFROM" etc/mtab0 > etc/mtab1\n(cat etc/mtab1; grep "$DATAFROM"|tail -n 1) > etc/mtab\nrm -f etc/mtab0 etc/mtab1\n\n\0@' initrd/linuxrc
 sed -i -e 's:^.*cp -af $INIT /bin.*:[ ! -z "$(pidof splashy)" ] \&\& /usr/sbin/splashy_update "exit"\n\0:' initrd/linuxrc
 # remove any files present
 rm -rf /tmp/live_data_*
@@ -347,3 +364,4 @@ echo3 "Creating ISO..."
 mkisofs -b boot/grub/grub_eltorito \
 	-no-emul-boot -boot-load-size 4 -boot-info-table \
 	-o "$startdir/$ISO_NAME" -r -J .
+md5sum $startdir/$ISO_NAME > $startdir/$ISO_NAME.md5

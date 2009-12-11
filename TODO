@@ -21,6 +21,10 @@
 [X] Install from the Live Env.
 [X] /etc/mtab should show all mount points. rc.6 should take care of this.
 [X] an option should be used to be able to install grub2 when there is no way on the current running OS (not-unix-like).
+[X] 'noload' workaround when only 'core' is launched.
+[X] CDROM eject
+[ ] kernel-related packages module part must be merged in the kernellive package
+[ ] Finetune Splashy
 [ ] 'changes' cheatcode must be added to grub2 menu.
 [-] Localisation, see this (in french): http://doc.ubuntu-fr.org/traduction_live_cd_tuto_xubuntu
 [-] Multimedia codecs, keycode to enable without prompt (canceled due to software patents), will be provided as a optional module

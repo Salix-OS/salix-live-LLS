@@ -7,8 +7,7 @@
 # Tweaked for Salix by George Vlahavas <vlahavas~at~gmail~dot~com>
 
 # Start splashy
-[ -x /usr/sbin/splashy ] && /usr/sbin/splashy boot || splashy_chvt 8
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 25"
+[ -x /usr/sbin/splashy ] && /usr/sbin/splashy boot | splashy_chvt 8
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
@@ -23,6 +22,8 @@ if [ -d /sys ]; then
     fi
   fi
 fi
+
+[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 25"
 
 # Initialize udev to manage /dev entries and hotplugging for 2.6.x kernels.
 # You may turn off udev by making the /etc/rc.d/rc.udev file non-executable

@@ -1,0 +1,34 @@
+--- src/linux-live-6.3.0/initrd/cleanup	2007-11-13 16:11:40.000000000 +0100
++++ cleanup	2010-01-08 20:56:07.281174402 +0100
+@@ -48,17 +48,21 @@
+ 
+ fumount $MOUNTDIR/*
+ 
++lo=$(losetup|cut -d: -f1); for d in $lo; do losetup -d $d; done
++umount -a -r
++
+ # eject cdrom devices
+-for MNT in $(ls -1 $MOUNTDIR 2>/dev/null); do
+-   CD=$(cat /proc/sys/dev/cdrom/info 2>/dev/null | grep name | grep "$MNT")
+-   if [ "$CD" -a "$MNT" ]; then
+-      echo "Ejecting $MNT..."
+-      /bin/eject -m /dev/$MNT >/dev/null 2>&1
+-      echo "CD tray will be closed in 6 seconds..."
+-      sleep 6
+-      /bin/eject -t /dev/$MNT >/dev/null 2>&1
+-   fi
+-done
++if [ -e /bootdev ]; then
++  if [ "$(grep iso9660 /bootdev)" ]; then
++    bootcd=$(cut -d' ' -f1 /bootdev)
++    echo "Ejecting $bootcd..."
++    /bin/eject $bootcd 2>/dev/null
++    echo "CD tray will be closed in 10 seconds or hit enter..."
++    read -t 10
++    /bin/eject -t $bootcd 2>/dev/null
++  fi
++  rm -f /bootdev
++fi
+ 
+ if [ "$DEBUG_IS_ENABLED" ]; then
+    echo "Everything should be correctly unmounted now so we can $1"

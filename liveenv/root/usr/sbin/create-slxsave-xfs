@@ -2,8 +2,11 @@
 if [ -z "$1" ]; then
   echo "create-slxsave-xfs SIZE_IN_MEGABYTES"
   echo "  Will create a slxsave.xfs file with the"
-  echo "  Corresponding size."
-  echo "  Copy this file to the persist directory."
+  echo "  Corresponding size (in MB)."
+  echo "  Copy this file to the root directory of your USB key."
+  echo ""
+  echo "Copyright Cyrille Pontvieux - jrd@enialis.net"
+  echo "Released under GPL v3 or (at your option, any later version)"
   exit 1
 fi
 SIZE=$1

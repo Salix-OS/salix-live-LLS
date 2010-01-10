@@ -167,23 +167,21 @@ while read m; do
       file=$(find $startdir/PKGS -name "$p-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
       installpkg $file
     done
+    # dotnew
+    if [ -e $ROOT/etc ]; then
+      find $ROOT/etc -name '*.new'|xargs -i@ bash -c '(N="$1"; F="$(dirname $N)/$(basename $N .new)"; if [ -e $F ]; then rm $N; else mv $N $F; fi)' -- @
+    fi
+    # inittab
     if [ "$inittabfile" ]; then
       if [ $nmodule -eq 0 ]; then
         (
           cd $ROOT
           tar -xf $inittabfile etc/inittab.new
-          sed -i -e 's/^id:.:initdefault:/id:3:initdefault:/' etc/inittab.new
+          sed -e 's/^id:.:initdefault:/id:3:initdefault:/' etc/inittab.new > etc/inittab && rm etc/inittab.new
         )
       elif [ $nmodule -eq 1 ]; then
-        (
-          cd $ROOT
-          tar -xf $inittabfile etc/inittab.new
-        )
+        sed -i -e 's/^id:.:initdefault:/id:4:initdefault:/' $ROOT/etc/inittab
       fi
-    fi
-    # dotnew
-    if [ -e $ROOT/etc ]; then
-      find $ROOT/etc -name '*.new'|xargs -i@ bash -c '(N="$1"; F="$(dirname $N)/$(basename $N .new)"; if [ -e $F ]; then rm $N; else mv $N $F; fi)' -- @
     fi
     # kernel modules path
     if [ -e "$ROOT/lib/modules/$KVER" ]; then
@@ -193,8 +191,8 @@ while read m; do
     umount $ROOT
     # remove any fakely deleted files in RO branches, default suffix is _DELETED~
     find "$startdir/src/$m" -name '*_DELETED~' -exec rm -rf '{}' \;
-    nmodule=$(($nmodule + 1))
   fi
+  nmodule=$(($nmodule + 1))
 done < $modules
 rm -r $startdir/src/{empty,module}
 echo3 "Prepare the linux live scripts..."
@@ -236,12 +234,14 @@ export ROOT=$startdir/src/$kmodule
 sed -i -e "s/^LIVECDNAME=.*/LIVECDNAME=\"${DISTRO}live\"/ ; s/^KERNEL=\$(uname -r)/\0-live/ ; s@^ROOT=.*@ROOT=$ROOT@ ; s/^MKMOD=.*/MKMOD=none/" .config
 # CD Label
 sed -i -e "s/CDLABEL=.*/CDLABEL=${DISTRO}live/" cd-root/linux/make_iso.*
-# add runlevel parameter to init, and assure that /dev/initctl is correctly initialized
-sed -i -e 's:^\(header "\)starting \(Linux Live.*\):header "Starting '$DISTRO' Live v.'$VER'-'$RLZ'..."\n\1...using \2: ; s:^.*cp -af $INIT /bin.*:rm -f /dev/initctl\nmkfifo -m 600 /dev/initctl\nrunlevel=$(cmdline_parameter [0123456])\n\0: ; s:<dev/console:$runlevel \0:g' initrd/linuxrc
+# Live CD name on boot
+sed -i -e "s/__LIVECDNAME__/$DISTRO Live v.$VER-$RLZ/" $startdir/src/linuxrc.patch
+# patch linuxrc and cleanup in the initrd.
+patch -p2 < $startdir/src/linuxrc.patch
+patch -p2 < $startdir/src/cleanup.patch
 # remove the /usr/share/locale/locale.alias warning at boot when no iocharset is defined.
 sed -i -e 's:.*cat /usr/share/locale/locale.alias.*:echo "utf8":' initrd/liblinuxlive
 # deals with fs and modprobe
-sed -i -e 's:"ext3:"ext4\\next3:' initrd/linuxrc
 sed -i -e 's:   modprobe_module squashfs:   modprobe_module sqlzma\n   modprobe_module unlzma\n\0:' initrd/liblinuxlive
 sed -i -e 's:   modprobe_module ext3:\0\n   modprobe_module ext4:' initrd/liblinuxlive
 # remove the 'users' option from mount options because it's useless
@@ -250,8 +250,6 @@ sed -i -e 's:   modprobe_module ext3:\0\n   modprobe_module ext4:' initrd/liblin
 sed -i -e 's/,users,/,/' initrd/liblinuxlive
 # make the mksquashfs tool use 1MB memory when making a module
 sed -i -e 's/-b 256K -lzmadic 256K/-b 1M -lzmadic 1M/' initrd/liblinuxlive
-# remove ressources not correctly done in cleanup script
-sed -i -e 's/# eject cdrom devices/lo=$(losetup|cut -d: -f1); for d in $lo; do losetup -d $d; done\numount -a -r\n\n\0/' initrd/cleanup
 # remove the installation process of the linux live tools + patch for fake-uname
 sed -i -e 's:.*\. \./install.*:echo "":' -e 's@:/usr/sbin:@:/sbin:/usr/sbin:@' -e 's/^read NEWLIVECDNAME/NEWLIVECDNAME=""/' -e 's/^read NEWKERNEL/NEWKERNEL=""/' -e 's/^read junk//' build
 # remove the need to build aufs as a module for the initrd
@@ -283,16 +281,6 @@ cp $startdir/libs/libsysfs.so.2 initrd/rootfs/lib/
 cp $startdir/libs/libgcc_s.so.1 initrd/rootfs/usr/lib/
 cp $startdir/libs/libglib-2.0.so.0 initrd/rootfs/usr/lib/
 cp $startdir/libs/libblkid.so.1.0 initrd/rootfs/lib/
-sed -i -e 's:.*Then load.*:[ -z "$DEBUG_IS_ENABLED" -a -x /usr/sbin/splashy ] \&\& /usr/sbin/splashy boot\n\n\0:' initrd/linuxrc
-splashyup='[ ! -z "$(pidof splashy)" ] \&\& /usr/sbin/splashy_update "progress _P_"'
-pct=0
-for pat in "Find livecd" "setting up directory for changes" "store the xino" "DATA contains path to the base directory" "copying liblinuxlive library to union"; do
-  pct=$(($pct + 5))
-  spup=$(echo "$splashyup"|sed "s/_P_/$pct/")
-  sed -i -e "s:.*$pat.*:$spup\\n\\n\\0:" initrd/linuxrc
-done
-sed -i -e 's@^.*remount,ro.*@sed -e "s: /: /$INITRAMDISK/:" -e "s: /$INITRAMDISK/$UNION/\\?: /:" /etc/mtab | grep -v "proc" > etc/mtab0\ngrep -v "$DATAFROM" etc/mtab0 > etc/mtab1\n(cat etc/mtab1; grep "$DATAFROM"|tail -n 1) > etc/mtab\nrm -f etc/mtab0 etc/mtab1\n\n\0@' initrd/linuxrc
-sed -i -e 's:^.*cp -af $INIT /bin.*:[ ! -z "$(pidof splashy)" ] \&\& /usr/sbin/splashy_update "exit"\n\0:' initrd/linuxrc
 # remove any files present
 rm -rf /tmp/live_data_*
 # create ISO structure and create initrd.gz
@@ -350,8 +338,8 @@ cp -ar ${startdir}/livegrub2/build/* .
 find . -type d -name '.svn' | xargs -i@ rm -rf @
 cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
 # patch the syslinux.cfg file for installing grub2 on USB if neeeded
-sed -i -e 's/Slax/Salixlive/' boot/bootinst.bat
-sed -i -e 's/Slax/Salixlive/' boot/bootinst.sh
+sed -i -e "s/Slax/${DISTRO}live/" boot/bootinst.bat
+sed -i -e "s/Slax/${DISTRO}live/" boot/bootinst.sh
 sed -i -e 's/ rw$/\0 grub2=install/' boot/syslinux/syslinux.cfg
 # add the unix script for installing grub2 on USB too
 cp $startdir/install-on-USB boot/

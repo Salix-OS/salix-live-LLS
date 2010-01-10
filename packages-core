@@ -15,7 +15,6 @@ automake
 automoc4
 bash
 bin
-bind
 binutils
 bison
 bridge-utils
@@ -180,6 +179,7 @@ reiserfsprogs
 rp-pppoe
 rsync
 rzip
+salix-man
 salixtools
 screen
 sdparm

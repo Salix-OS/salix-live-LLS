@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Create a persistent file
+Name[fr]=Crée un fichier de persistence
+Name[de]=Persistente Datei erzeugen
+Comment=Create a slxsave.xfs file in order to persist changes in the live env.
+Comment[fr]=Crée un fichier slxsave.xfs pour persister les changements dans l'environnement live.
+Comment[de]=Erzeuge eine Datei slxsave.xfs, um Änderungen in der Live-Umgebung zu behalten.
+Exec=kdesu create-slxsave-xfs-gui
+Icon=salix
+Terminal=false
+Type=Application
+Categories=System;Application;
+StartupNotify=true
+Encoding=UTF-8
+NoDisplay=false
+OnlyShowIn=KDE

@@ -1,0 +1,157 @@
+--- src/linux-live-6.3.0/initrd/linuxrc	2009-04-24 17:38:32.000000000 +0200
++++ linuxrc	2010-01-08 20:56:07.281174402 +0100
+@@ -11,7 +11,8 @@
+ 
+ . liblinuxlive # it requires proc to be mounted
+ 
+-header "starting Linux Live scripts <http://www.linux-live.org/>"
++header "Starting __LIVECDNAME__..."
++header "...using Linux Live scripts <http://www.linux-live.org/>"
+ 
+ # Don't print kernel messages to konsole now.
+ # Syslog will reset printk settings, no need to remember it here anymore.
+@@ -28,21 +29,27 @@
+ # start hotplugging before hw drivers load
+ mdev_start_hotplug
+ 
++[ -z "$DEBUG_IS_ENABLED" -a -x /usr/sbin/splashy ] && /usr/sbin/splashy boot
++
+ # Then load drivers for data storage and input devices
+ modprobe_usb_modules
+ modprobe_pcmcia_modules
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
+ # make sure ext3 partitions are not mounted using ext2 driver,
+ # and vfat partitions are not mounted using msdos driver
+-echo -e "ext3\next2\nvfat\n*" >/etc/filesystems
++echo -e "ext4\next3\next2\nvfat\n*" >/etc/filesystems
+ 
+ mkdir -p $UNION
+ mkdir -p $MEMORY
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
++[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 5"
++
+ # Find livecd data directory by searching for livecd.sgn file
+ SGN=$(cmdline_value sgnfile)
+ if [ "$SGN" = "" ]; then SGN=livecd.sgn; fi
+@@ -95,9 +102,13 @@
+ fi
+ 
+ echolog "using $LIVECDNAME data from $DATA"
++mount | grep $(echo $DATA | sed 's@\(/mnt/[^/]*\)/.*@\1@') > /bootdev
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
++[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 10"
++
+ echolog "setting up directory for changes"
+ CHANGESVAL=$(cmdline_value changes)
+ 
+@@ -106,6 +117,7 @@
+    echolog $CHANGESMNT
+ fi
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
+ mount_device "$CHANGESMNT" $MEMORY # removes $MEMORY if CHANGESMNT is wrong
+@@ -153,8 +165,11 @@
+ mkdir -p $CHANGES
+ mkdir -p $IMAGES
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
++[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 15"
++
+ # store the xino file in memory in all cases, it's faster and safer
+ if [ "$XINO" != "$MEMORY" ]; then
+    mkdir -p $XINO
+@@ -165,6 +180,7 @@
+ mount -t aufs -o nowarn_perm,xino=$XINO/.aufs.xino,br:$CHANGES=rw aufs $UNION
+ if [ $? -ne 0 ]; then dmesg | tail -n 1; fatal "can't setup union (aufs)"; fi
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
+ # If toram or copy2ram boot parameter is present, copy all fs modules to RAM.
+@@ -186,8 +202,11 @@
+    cd_autoeject 0
+ fi
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
++[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 20"
++
+ # DATA contains path to the base directory of all fs modules which need
+ # to be mounted and inserted into live filesystem. Do it now.
+ echolog "inserting all modules and creating live filesystem"
+@@ -197,6 +216,7 @@
+ # in the case if changes= boot argument is used. If not, it doesn't hurt
+ union_insert_modules $UNION $MEMORY $IMAGES
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
+ echolog "copying content of rootcopy directory"
+@@ -207,9 +227,12 @@
+ #    rm from memory once ??
+ #fi
+ 
++[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 25"
++
+ echolog "copying liblinuxlive library to union"
+ cp -af /liblinuxlive $UNION/usr/lib/
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
+ echolog "recreating /etc/fstab and /mnt directories"
+@@ -236,6 +259,7 @@
+ # Error output goes to null, as nothing is mounted with copy2ram
+ mount -n -o rbind $(dirname $DATA)/boot $UNION/boot 2>/dev/null
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
+ # Union contains all the files and directories unioned from all modules.
+@@ -272,21 +296,30 @@
+ # using /sbin/init or whatever was found.
+ header "linux live end, starting $LIVECDNAME"
+ 
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
+ debug_shell
+ 
++BOOTDEV=$(mountpoint -n $(dirname $DATA) | cut -d\  -f1)
++sed -e "s: /: /$INITRAMDISK/:" -e "s: /$INITRAMDISK/$UNION/\?: /:" /etc/mtab | grep -v "proc" | grep -v "$BOOTDEV" > etc/mtab
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++debug_shell
+ mount -n -o remount,ro aufs .
+ 
+ # We will copy init from the distro to initrd (there should be 2MB free)
+ # This allows us to use the cleanup script during reboot, as init will be
+ # started from memory and not from the union and /union will not be busy.
+ 
++rm -f /dev/initctl
++mkfifo -m 600 /dev/initctl
++runlevel=$(cmdline_parameter [0123456])
++[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "exit"
+ cp -af $INIT /bin
+ if [ $? -eq 0 ]; then
+    pivot_root . $INITRAMDISK
+-   exec $CHROOT . $INITRAMDISK/bin/init <dev/console >dev/console 2>&1
++   exec $CHROOT . $INITRAMDISK/bin/init $runlevel <dev/console >dev/console 2>&1
+ else # If copying fails, start init directly.
+    pivot_root . $INITRAMDISK
+-   exec $CHROOT . $INIT <dev/console >dev/console 2>&1
++   exec $CHROOT . $INIT $runlevel <dev/console >dev/console 2>&1
+ fi
+ 
+ header "!!ERROR!!"

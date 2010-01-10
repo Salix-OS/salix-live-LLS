@@ -1,16 +1,15 @@
 --- /etc/rc.d/rc.S	2009-09-07 10:41:11.000000000 +0200
-+++ root/etc/rc.d/rc.S	2009-12-06 17:21:04.117625786 +0100
-@@ -7,7 +7,8 @@
- # Tweaked for Salix by George Vlahavas <vlahavas~at~gmail~dot~com>
++++ root/etc/rc.d/rc.S	2009-12-13 00:13:50.777976548 +0100
+@@ -23,6 +23,8 @@
+   fi
+ fi
  
- # Start splashy
--[ -x /usr/sbin/splashy ] && /usr/sbin/splashy boot | splashy_chvt 8
-+[ -x /usr/sbin/splashy ] && /usr/sbin/splashy boot || splashy_chvt 8
 +[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 25"
- 
- PATH=/sbin:/usr/sbin:/bin:/usr/bin
- 
-@@ -41,7 +42,7 @@
++
+ # Initialize udev to manage /dev entries and hotplugging for 2.6.x kernels.
+ # You may turn off udev by making the /etc/rc.d/rc.udev file non-executable
+ # or giving the "nohotplug" option at boot, but in the 2.6.x+ kernels udev
+@@ -41,7 +43,7 @@
    fi
  fi
  
@@ -19,7 +18,7 @@
  
  # Initialize the Logical Volume Manager.
  # This won't start unless we find /etc/lvmtab (LVM1) or
-@@ -109,7 +110,7 @@
+@@ -109,7 +111,7 @@
    done
  fi
  
@@ -28,7 +27,7 @@
  
  # Enable swapping:
  /sbin/swapon -a
-@@ -135,7 +136,7 @@
+@@ -135,7 +137,7 @@
    fi
  fi
  
@@ -37,7 +36,7 @@
  
  # Test to see if the root partition is read-only, like it ought to be.
  READWRITE=no
-@@ -245,15 +246,17 @@
+@@ -245,15 +247,17 @@
    read junk;
  fi # Done checking root filesystem
  
@@ -58,7 +57,7 @@
  
  # Fix /etc/mtab to list sys and proc if they were not yet entered in
  # /etc/mtab because / was still mounted read-only:
-@@ -264,7 +267,32 @@
+@@ -264,7 +268,32 @@
    /sbin/mount -f sysfs /sys -t sysfs
  fi
  
@@ -92,7 +91,7 @@
  
  # Configure ISA Plug-and-Play devices:
  if [ -r /etc/isapnp.conf ]; then
-@@ -316,7 +344,7 @@
+@@ -316,7 +345,7 @@
    fi
  fi
  
@@ -101,7 +100,7 @@
  
  # Mount non-root file systems in fstab, but not NFS or SMB 
  # because TCP/IP is not yet configured, and not proc or sysfs
-@@ -373,7 +401,7 @@
+@@ -373,7 +402,7 @@
    . /etc/rc.d/rc.sysvinit
  fi
  

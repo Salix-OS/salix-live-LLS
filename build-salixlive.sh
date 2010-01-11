@@ -235,10 +235,11 @@ sed -i -e "s/^LIVECDNAME=.*/LIVECDNAME=\"${DISTRO}live\"/ ; s/^KERNEL=\$(uname -
 # CD Label
 sed -i -e "s/CDLABEL=.*/CDLABEL=${DISTRO}live/" cd-root/linux/make_iso.*
 # Live CD name on boot
-sed -i -e "s/__LIVECDNAME__/$DISTRO Live v.$VER-$RLZ/" $startdir/src/linuxrc.patch
+cp $startdir/linuxrc.patch $startdir/cleanup.patch .
+sed -i -e "s/__LIVECDNAME__/$DISTRO Live v.$VER-$RLZ/" linuxrc.patch
 # patch linuxrc and cleanup in the initrd.
-patch -p2 < $startdir/src/linuxrc.patch
-patch -p2 < $startdir/src/cleanup.patch
+patch -p2 < linuxrc.patch
+patch -p2 < cleanup.patch
 # remove the /usr/share/locale/locale.alias warning at boot when no iocharset is defined.
 sed -i -e 's:.*cat /usr/share/locale/locale.alias.*:echo "utf8":' initrd/liblinuxlive
 # deals with fs and modprobe

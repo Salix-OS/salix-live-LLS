@@ -3,6 +3,6 @@
   <entry name="needs_terminal" mtime="1255907694" type="bool" value="false"></entry>
   <entry name="enabled" mtime="1255907694" type="bool" value="true"></entry>
   <entry name="command" mtime="1255907694" type="string">
-    <stringvalue>/usr/lib/firefox-3.5.5/firefox &quot;%s&quot;</stringvalue>
+    <stringvalue>/usr/lib/firefox-3.5.6/firefox &quot;%s&quot;</stringvalue>
   </entry>
 </gconf>

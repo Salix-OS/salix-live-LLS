@@ -46,7 +46,7 @@ cat /dev/null > $RWMP
 mount|egrep '^/.*\(rw(,[^,)]*)*\)$'|grep -v '/mnt/live'|cut -d' ' -f3|xargs -i@ bash -c "echo \$1 \$(LANG= df -m|grep \$1\$|awk '{print \$4}') >> $RWMP" -- @
 
 MOUNTPOINT=$(zenity \
-  --title "`eval_gettext 'Choose the mount point'`" \
+  --title "`eval_gettext 'Mount point selection'`" \
   --window-icon /usr/share/icons/hicolor/48x48/apps/salix.png \
   --list \
   --text "`eval_gettext 'Choose the mountpoint where to save the persistent file:'`" \
@@ -66,7 +66,7 @@ if [ $DEFSIZE -gt 500 ]; then # 500 MB max for default size
 fi
 export MOUNTPOINT MAXSIZE
 SIZE=$(zenity \
-  --title "`eval_gettext 'Choose the size'`" \
+  --title "`eval_gettext 'Size selection'`" \
   --window-icon /usr/share/icons/hicolor/48x48/apps/salix.png \
   --entry \
   --text "`eval_gettext 'Choose the size in megabytes (maximum $MAXSIZE) for persistent file on $MOUNTPOINT:'`" \

@@ -34,8 +34,8 @@ msgstr "ERREUR : xfsprogs doit êtres installé pour que ça s'exécute"
 
 #: create-slxsave-xfs:47
 #, sh-format
-msgid "Choose of mount point"
-msgstr "Choisir un point de montage"
+msgid "Mount point selection"
+msgstr "Sélection du point de montage"
 
 #: create-slxsave-xfs:50
 #, sh-format
@@ -54,8 +54,8 @@ msgstr "Taille (en Mo)"
 
 #: create-slxsave-xfs:67
 #, sh-format
-msgid "Choose of size"
-msgstr "Choisir une taille"
+msgid "Size selection"
+msgstr "Sélection de la taille"
 
 #: create-slxsave-xfs:70
 #, sh-format

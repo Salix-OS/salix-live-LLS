@@ -33,7 +33,7 @@ msgstr ""
 
 #: ../../libexec/create-slxsave-xfs:49
 #, sh-format
-msgid "Choose of mount point"
+msgid "Mount point selection"
 msgstr ""
 
 #: ../../libexec/create-slxsave-xfs:52
@@ -53,7 +53,7 @@ msgstr ""
 
 #: ../../libexec/create-slxsave-xfs:69
 #, sh-format
-msgid "Choose of size"
+msgid "Size selection"
 msgstr ""
 
 #: ../../libexec/create-slxsave-xfs:72

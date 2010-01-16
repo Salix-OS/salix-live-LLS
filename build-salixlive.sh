@@ -28,7 +28,7 @@ export BBURL=http://busybox.net/downloads/busybox-$BBVER.tar.bz2
 export FUFSVER=0.4.2
 export FUFSURL=http://funionfs.apiou.org/file/funionfs-$FUFSVER.tar.gz
 export ISO_NAME=${DISTRO}live-$VER-$RLZ.iso
-export KERNELPKGNAME=kernelivemerged
+export KERNELPKGNAME=kernelive
 echo3() {
   echo ''
   echo "############################################################"
@@ -186,11 +186,6 @@ while read m; do
       elif [ $nmodule -eq 1 ]; then
         sed -i -e 's/^id:.:initdefault:/id:4:initdefault:/' $ROOT/etc/inittab
       fi
-    fi
-    # kernel modules path
-    if [ -e "$ROOT/lib/modules/$KVER" ]; then
-      cp -r $ROOT/lib/modules/$KVER/* $ROOT/lib/modules/$KVER-live/
-      rm -r $ROOT/lib/modules/$KVER
     fi
     umount $ROOT
     # remove any fakely deleted files in RO branches, default suffix is _DELETED~

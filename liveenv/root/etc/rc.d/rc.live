@@ -4,13 +4,6 @@
 # This script supports Live's cheatcodes & initiate some vital commands.
 #
 
-# check if a immediate reboot is needed
-if [ -e /needsreboot ]; then
-  rm -f /needsreboot
-  reboot
-  exit
-fi
-
 # adding more loop devices
 for i in $(seq 99); do
   if [ ! -e /dev/loop$i ]; then

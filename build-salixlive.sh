@@ -28,6 +28,7 @@ export BBURL=http://busybox.net/downloads/busybox-$BBVER.tar.bz2
 export FUFSVER=0.4.2
 export FUFSURL=http://funionfs.apiou.org/file/funionfs-$FUFSVER.tar.gz
 export ISO_NAME=${DISTRO}live-$VER-$RLZ.iso
+export KERNELPKGNAME=kernelivemerged
 echo3() {
   echo ''
   echo "############################################################"
@@ -90,16 +91,19 @@ while read m; do
 done < $startdir/MODULES_INFOS
 export RDEF=''
 export kmodule=''
+export lastmodule=''
 #export RDEF=K
 #export kmodule=05-kernel
+#export lastmodule=07-live
 if [ -z "$kmodule" ]; then
   while read m; do
     list=($(echo "$m"|cut -d\| -f3-))
     m=$(echo "$m"|cut -d\| -f1-2|sed 's/|/-/')
     echo3 "Verifying packages for $m..."
+    lastmodule=$m
     for p in "${list[@]}"; do
-      if [ "$p" = "kernelive" ]; then
-        # module where the kernelive is
+      if [ $p = $KERNELPKGNAME ]; then
+        # module where the kernel live is
         kmodule=$m
       fi
       file=$(find $startdir/PKGS -name "$p-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
@@ -107,7 +111,7 @@ if [ -z "$kmodule" ]; then
         quit "$p, referenced by module $m, is not available in $startdir/PKGS/"
         exit 1
       fi
-      if [ "$p" = "kernelive" ]; then
+      if [ $p = $KERNELPKGNAME ]; then
         filekernel=$(find $startdir/PKGS -name "$p-$(uname -r|sed 's/-/./g')-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
         if [ ! -e "$filekernel" ]; then
           quit "$file does not match you kernel version returned by 'uname -r'. Please install fake-uname to match it."
@@ -235,22 +239,13 @@ sed -i -e "s/^LIVECDNAME=.*/LIVECDNAME=\"${DISTRO}live\"/ ; s/^KERNEL=\$(uname -
 # CD Label
 sed -i -e "s/CDLABEL=.*/CDLABEL=${DISTRO}live/" cd-root/linux/make_iso.*
 # Live CD name on boot
-cp $startdir/linuxrc.patch $startdir/cleanup.patch .
+cp $startdir/liblinuxlive.patch $startdir/linuxrc.patch $startdir/cleanup.patch .
 sed -i -e "s/__LIVECDNAME__/$DISTRO Live v.$VER-$RLZ/" linuxrc.patch
-# patch linuxrc and cleanup in the initrd.
+# patch liblinuxlive, linuxrc and cleanup in the initrd.
+patch -p2 < liblinuxlive.patch
+cp initrd/liblinuxlive tools/ $startdir/src/$lastmodule/usr/lib/
 patch -p2 < linuxrc.patch
 patch -p2 < cleanup.patch
-# remove the /usr/share/locale/locale.alias warning at boot when no iocharset is defined.
-sed -i -e 's:.*cat /usr/share/locale/locale.alias.*:echo "utf8":' initrd/liblinuxlive
-# deals with fs and modprobe
-sed -i -e 's:   modprobe_module squashfs:   modprobe_module sqlzma\n   modprobe_module unlzma\n\0:' initrd/liblinuxlive
-sed -i -e 's:   modprobe_module ext3:\0\n   modprobe_module ext4:' initrd/liblinuxlive
-# remove the 'users' option from mount options because it's useless
-# (initrd is run as root) and because this option is not always valid on
-# any filesystem.
-sed -i -e 's/,users,/,/' initrd/liblinuxlive
-# make the mksquashfs tool use 1MB memory when making a module
-sed -i -e 's/-b 256K -lzmadic 256K/-b 1M -lzmadic 1M/' initrd/liblinuxlive
 # remove the installation process of the linux live tools + patch for fake-uname
 sed -i -e 's:.*\. \./install.*:echo "":' -e 's@:/usr/sbin:@:/sbin:/usr/sbin:@' -e 's/^read NEWLIVECDNAME/NEWLIVECDNAME=""/' -e 's/^read NEWKERNEL/NEWKERNEL=""/' -e 's/^read junk//' build
 # remove the need to build aufs as a module for the initrd
@@ -341,7 +336,7 @@ cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
 # patch the syslinux.cfg file for installing grub2 on USB if neeeded
 sed -i -e "s/Slax/${DISTRO}live/" boot/bootinst.bat
 sed -i -e "s/Slax/${DISTRO}live/" boot/bootinst.sh
-sed -i -e 's/ rw$/\0 grub2=install/' boot/syslinux/syslinux.cfg
+sed -i -e 's/ rw$/\0 grub2=install 2/' boot/syslinux/syslinux.cfg
 # add the unix script for installing grub2 on USB too
 cp $startdir/install-on-USB boot/
 # add the standard kernel

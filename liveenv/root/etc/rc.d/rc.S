@@ -271,7 +271,6 @@ fi
 [ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 45"
 
 ### modified for Live ###
-rm -f /needsreboot 2> /dev/null
 grub2=$(egrep -o '(^|[[:space:]])grub2=[^[:space:]]+' /proc/cmdline | cut -d "=" -f 2- | tail -n 1)
 if [ "$grub2" = "install" ]; then
   partition=$(cat /proc/mounts|grep ' /boot'|cut -d' '  -f1|sed s:/dev/::)
@@ -280,16 +279,32 @@ if [ "$grub2" = "install" ]; then
   if [ $? -eq 0 ]; then
     rm -f /boot/touch
     [ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "exit"
+    if [ -x /usr/bin/chvt ]; then
+      /usr/bin/chvt 1
+    fi
+    clear
+    echo '+------------------------------+'
+    echo '| Installing grub2 boot loader |'
+    echo '+------------------------------+'
+    echo ''
+    needsreboot=0
     disk=${partition%${partition: -1}}
     grub-install --root-directory=/mnt/live/mnt/$partition --no-floppy --recheck /dev/$disk
     if [ $? -eq 0 ]; then
       echo -e "\n\nGrub2 installed in $disk !\nRebooting..."
       rm -f /mnt/live/mnt/$partition/{ubn*,ldlinux.sys,syslinux.cfg,vesamenu.c32}
-      # crate a file for asking reboot (see rc.live)
-      touch /needsreboot
+      needsreboot=1
+      sleep 3
+      echo ''
     else
-      echo -e "\n\nError : Grub2 failed to installed in $disk !"
+      echo -e "\n\nError : Grub2 failed to installed in $disk !\nContinue booting..."
+      sleep 3
+      echo ''
     fi
+    if [ $needsreboot -eq 1 ]; then
+      init 6
+    fi
+    unset needsreboot
   fi
   unset partition disk
 fi

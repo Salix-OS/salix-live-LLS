@@ -1,5 +1,5 @@
 --- /etc/rc.d/rc.M	2009-09-14 09:57:14.000000000 +0200
-+++ root/etc/rc.d/rc.M	2009-12-05 19:22:53.135801856 +0100
++++ root/etc/rc.d/rc.M	2010-01-15 21:31:07.651658751 +0100
 @@ -10,9 +10,17 @@
  # Author:	Fred N. van Kempen, <waltje@uwalt.nl.mugnet.org>
  #		Heavily modified by Patrick Volkerding <volkerdi@slackware.com>
@@ -18,12 +18,11 @@
  # Tell the viewers what's going to happen.
  echo "Going multiuser..."
  
-@@ -319,6 +327,13 @@
+@@ -319,6 +327,12 @@
    . /etc/rc.d/rc.keymap
  fi
  
 +#### modified for Live ###
-+# Start ZenLive extensions
 +if [ -x /etc/rc.d/rc.live ]; then
 +  . /etc/rc.d/rc.live
 +fi

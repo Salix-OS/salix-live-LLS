@@ -328,7 +328,6 @@ if [ -x /etc/rc.d/rc.keymap ]; then
 fi
 
 #### modified for Live ###
-# Start ZenLive extensions
 if [ -x /etc/rc.d/rc.live ]; then
   . /etc/rc.d/rc.live
 fi

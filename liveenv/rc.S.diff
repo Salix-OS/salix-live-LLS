@@ -1,5 +1,5 @@
 --- /etc/rc.d/rc.S	2009-09-07 10:41:11.000000000 +0200
-+++ root/etc/rc.d/rc.S	2009-12-13 00:13:50.777976548 +0100
++++ root/etc/rc.d/rc.S	2010-01-16 14:44:44.729293315 +0100
 @@ -23,6 +23,8 @@
    fi
  fi
@@ -57,7 +57,7 @@
  
  # Fix /etc/mtab to list sys and proc if they were not yet entered in
  # /etc/mtab because / was still mounted read-only:
-@@ -264,7 +268,32 @@
+@@ -264,7 +268,47 @@
    /sbin/mount -f sysfs /sys -t sysfs
  fi
  
@@ -65,7 +65,6 @@
 +[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 45"
 +
 +### modified for Live ###
-+rm -f /needsreboot 2> /dev/null
 +grub2=$(egrep -o '(^|[[:space:]])grub2=[^[:space:]]+' /proc/cmdline | cut -d "=" -f 2- | tail -n 1)
 +if [ "$grub2" = "install" ]; then
 +  partition=$(cat /proc/mounts|grep ' /boot'|cut -d' '  -f1|sed s:/dev/::)
@@ -74,16 +73,32 @@
 +  if [ $? -eq 0 ]; then
 +    rm -f /boot/touch
 +    [ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "exit"
++    if [ -x /usr/bin/chvt ]; then
++      /usr/bin/chvt 1
++    fi
++    clear
++    echo '+------------------------------+'
++    echo '| Installing grub2 boot loader |'
++    echo '+------------------------------+'
++    echo ''
++    needsreboot=0
 +    disk=${partition%${partition: -1}}
 +    grub-install --root-directory=/mnt/live/mnt/$partition --no-floppy --recheck /dev/$disk
 +    if [ $? -eq 0 ]; then
 +      echo -e "\n\nGrub2 installed in $disk !\nRebooting..."
 +      rm -f /mnt/live/mnt/$partition/{ubn*,ldlinux.sys,syslinux.cfg,vesamenu.c32}
-+      # crate a file for asking reboot (see rc.live)
-+      touch /needsreboot
++      needsreboot=1
++      sleep 3
++      echo ''
 +    else
-+      echo -e "\n\nError : Grub2 failed to installed in $disk !"
++      echo -e "\n\nError : Grub2 failed to installed in $disk !\nContinue booting..."
++      sleep 3
++      echo ''
 +    fi
++    if [ $needsreboot -eq 1 ]; then
++      init 6
++    fi
++    unset needsreboot
 +  fi
 +  unset partition disk
 +fi
@@ -91,7 +106,7 @@
  
  # Configure ISA Plug-and-Play devices:
  if [ -r /etc/isapnp.conf ]; then
-@@ -316,7 +345,7 @@
+@@ -316,7 +360,7 @@
    fi
  fi
  
@@ -100,7 +115,7 @@
  
  # Mount non-root file systems in fstab, but not NFS or SMB 
  # because TCP/IP is not yet configured, and not proc or sysfs
-@@ -373,7 +402,7 @@
+@@ -373,7 +417,7 @@
    . /etc/rc.d/rc.sysvinit
  fi
  

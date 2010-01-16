@@ -20,6 +20,7 @@ Steps :
   2/ Use a tiny script fake-uname (available on this site as a package) to fake the kernel version in use.
   3/ Create a config-KVER.live for the corresponding KVER kernel version. You could have a look to the patch file to know the diff from slackware kernel in order to apply to yours.
   4/ use the kernelive SLKBUILD file with slkbuild.
+  5/ use the script "mergePkgs.sh" to merge other packages/drivers you made, that depends on this kernel live, into this package, still using the fake-uname trick to build them.
 2/ Install the linux-live package
 3/ Create the PKGS directory and download there all packages that you want to put on the Live
 4/ Create a file per module you need which contains one package name per line

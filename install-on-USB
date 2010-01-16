@@ -29,6 +29,7 @@ fi
 which grub-install > /dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo "Error : grub2 must be installed on the running system"
+  echo "If you don't have grub2, use the install script boot/bootinst.sh"
   exit 2
 fi
 MNTDIR=$(echo $MNTDIR|sed 's:/$::')

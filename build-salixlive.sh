@@ -230,7 +230,7 @@ tar -xf linux-live-$LLVER.tar.gz
 cd $startdir/src/linux-live-$LLVER
 # specify where to find the kernel and the modules to build the initrd.
 export ROOT=$startdir/src/$kmodule
-sed -i -e "s/^LIVECDNAME=.*/LIVECDNAME=\"${DISTRO}live\"/ ; s/^KERNEL=\$(uname -r)/\0-live/ ; s@^ROOT=.*@ROOT=$ROOT@ ; s/^MKMOD=.*/MKMOD=none/" .config
+sed -i -e "s/^LIVECDNAME=.*/LIVECDNAME=\"${DISTRO}live\"/ ; s@^ROOT=.*@ROOT=$ROOT@ ; s/^MKMOD=.*/MKMOD=none/" .config
 # CD Label
 sed -i -e "s/CDLABEL=.*/CDLABEL=${DISTRO}live/" cd-root/linux/make_iso.*
 # Live CD name on boot
@@ -285,7 +285,7 @@ rm -rf /tmp/live_data_*
 mkdir iso/boot/initrd
 zcat iso/boot/initrd.gz > initrd
 mount -o loop initrd iso/boot/initrd
-sed -i "s:^:/lib/modules/$KVER-live/:" iso/boot/initrd/lib/modules/$KVER-live/modules.dep
+sed -i "s:^:/lib/modules/$KVER/:" iso/boot/initrd/lib/modules/$KVER/modules.dep
 umount iso/boot/initrd
 rmdir iso/boot/initrd
 gzip initrd

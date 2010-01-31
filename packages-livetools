@@ -1,14 +1,4 @@
 ash
-cairomm
-glibmm
-gparted
-gtkmm
-iftop
-libsigc++
 linux-live
-pangomm
-rdesktop
 os-prober
-grub2
 lilosetup
-salix-live-installer

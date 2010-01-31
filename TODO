@@ -26,5 +26,7 @@
 [X] kernel-related packages module part must be merged in the kernellive package
 [X] Finetune Splashy
 [X] 'changes' cheatcode must be added to grub2 menu.
+[X] kernelive must match kernel huge version string, so that modules could be shared.
+[X] icon and enhancement for create-slxsave-xfs
 [-] Localisation, see this (in french): http://doc.ubuntu-fr.org/traduction_live_cd_tuto_xubuntu
 [-] Multimedia codecs, keycode to enable without prompt (canceled due to software patents), will be provided as a optional module

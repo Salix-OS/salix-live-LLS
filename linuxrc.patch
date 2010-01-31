@@ -20,7 +20,7 @@
  modprobe_usb_modules
  modprobe_pcmcia_modules
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
  # make sure ext3 partitions are not mounted using ext2 driver,
@@ -31,7 +31,7 @@
  mkdir -p $UNION
  mkdir -p $MEMORY
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
 +[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 5"
@@ -45,7 +45,7 @@
  echolog "using $LIVECDNAME data from $DATA"
 +mount | grep $(echo $DATA | sed 's@\(/mnt/[^/]*\)/.*@\1@') > /bootdev
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
 +[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 10"
@@ -57,7 +57,7 @@
     echolog $CHANGESMNT
  fi
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
  mount_device "$CHANGESMNT" $MEMORY # removes $MEMORY if CHANGESMNT is wrong
@@ -65,7 +65,7 @@
  mkdir -p $CHANGES
  mkdir -p $IMAGES
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
 +[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 15"
@@ -77,7 +77,7 @@
  mount -t aufs -o nowarn_perm,xino=$XINO/.aufs.xino,br:$CHANGES=rw aufs $UNION
  if [ $? -ne 0 ]; then dmesg | tail -n 1; fatal "can't setup union (aufs)"; fi
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
  # If toram or copy2ram boot parameter is present, copy all fs modules to RAM.
@@ -85,7 +85,7 @@
     cd_autoeject 0
  fi
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
 +[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 20"
@@ -97,7 +97,7 @@
  # in the case if changes= boot argument is used. If not, it doesn't hurt
  union_insert_modules $UNION $MEMORY $IMAGES
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
  echolog "copying content of rootcopy directory"
@@ -110,7 +110,7 @@
  echolog "copying liblinuxlive library to union"
  cp -af /liblinuxlive $UNION/usr/lib/
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
  echolog "recreating /etc/fstab and /mnt directories"
@@ -118,7 +118,7 @@
  # Error output goes to null, as nothing is mounted with copy2ram
  mount -n -o rbind $(dirname $DATA)/boot $UNION/boot 2>/dev/null
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
  # Union contains all the files and directories unioned from all modules.
@@ -126,12 +126,12 @@
  # using /sbin/init or whatever was found.
  header "linux live end, starting $LIVECDNAME"
  
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
 +BOOTDEV=$(mountpoint -n $(dirname $DATA) | cut -d\  -f1)
 +sed -e "s: /: /$INITRAMDISK/:" -e "s: /$INITRAMDISK/$UNION/\?: /:" /etc/mtab | grep -v "proc" | grep -v "$BOOTDEV" > etc/mtab
-+export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES IMAGES
++export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
 +debug_shell
  mount -n -o remount,ro aufs .
  

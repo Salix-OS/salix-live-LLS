@@ -12,6 +12,9 @@
 # Written by: Cyrille Pontvieux <jrd~at~enialis~dot~net>
 # Date: 2010/01/10
 # Version: 0.1
+# Modified by: Pierrick Le Brun <akuna~at~free~dot~fr>
+# Date: 2010/01/31
+# Version: 0.2
 
 # Gettext internationalization
 export TEXTDOMAIN="create-slxsave-xfs"
@@ -43,11 +46,16 @@ fi
 
 # find possible writable partitions and free size in megabytes
 cat /dev/null > $RWMP
-mount|egrep '^/.*\(rw(,[^,)]*)*\)$'|grep -v '/mnt/live'|cut -d' ' -f3|xargs -i@ bash -c "echo \$1 \$(LANG= df -m|grep \$1\$|awk '{print \$4}') >> $RWMP" -- @
+mount|egrep '^/.*\(rw(,[^,)]*)*\)$'|grep -v '/mnt/live'|cut -d' ' -f3|xargs -i@ bash -c "echo \$1 \$(LANG= df -m|grep \" \$1\$\"|head -n1|awk '{print \$4}') >> $RWMP" -- @
+
+zenity --info \
+ --title "`eval_gettext 'Persistent changes'`" \
+ --window-icon /usr/share/icons/hicolor/128x128/apps/create-slxsave-xfs.png \
+ --text "`eval_gettext 'If you wish, you can save any of your work or modification performed while in a LiveCD cession.\n\nTo do this however, you must first create a special "persistent file" which will have a pre-decided fixed-size and will be formatted as a linux file system.\n\nOnce this file is created, simply reboot the LiveCD for your changes to become persistent from then on.'`"
 
 MOUNTPOINT=$(zenity \
   --title "`eval_gettext 'Mount point selection'`" \
-  --window-icon /usr/share/icons/hicolor/48x48/apps/salix.png \
+  --window-icon /usr/share/icons/hicolor/128x128/apps/create-slxsave-xfs.png \
   --list \
   --text "`eval_gettext 'Choose the mountpoint where to save the persistent file:'`" \
   --column "`eval_gettext 'Mount point'`" \
@@ -60,14 +68,14 @@ if [ -z "$MOUNTPOINT" ]; then
 fi
 
 MAXSIZE=$(grep $MOUNTPOINT $RWMP|cut -d' ' -f2)
-DEFSIZE=$((MAXSIZE - 250)) # so it's still remain 250 MB on the partition
+DEFSIZE=$((MAXSIZE - 250)) # so there is still 250 MB remaining on the partition
 if [ $DEFSIZE -gt 500 ]; then # 500 MB max for default size
   DEFSIZE=500
 fi
 export MOUNTPOINT MAXSIZE
 SIZE=$(zenity \
   --title "`eval_gettext 'Size selection'`" \
-  --window-icon /usr/share/icons/hicolor/48x48/apps/salix.png \
+  --window-icon /usr/share/icons/hicolor/128x128/apps/create-slxsave-xfs.png \
   --entry \
   --text "`eval_gettext 'Choose the size in megabytes (maximum $MAXSIZE) for persistent file on $MOUNTPOINT:'`" \
   --entry-text $DEFSIZE)
@@ -79,20 +87,24 @@ elif [ $SIZE -gt $MAXSIZE ]; then
   rm -f $RWMP
   zenity \
     --title "`eval_gettext 'Error'`" \
-    --window-icon /usr/share/icons/hicolor/48x48/apps/salix.png \
+    --window-icon /usr/share/icons/hicolor/128x128/apps/create-slxsave-xfs.png \
     --error \
     --text "`eval_gettext 'The chosen size is too big ($SIZE > $MAXSIZE)'`"
   exit 1
 fi
 
 cd $MOUNTPOINT
-$CLIPRGM $SIZE
 
-if [ $? -eq 0 ]; then
+(yes | zenity --progress --pulsate --auto-close --auto-kill) &
+$CLIPRGM $SIZE
+ret=$?
+killall yes
+
+if [ $ret -eq 0 ]; then
   rm -f $RWMP
   zenity \
     --title "$TEXTDOMAIN" \
-    --window-icon /usr/share/icons/hicolor/48x48/apps/salix.png \
+    --window-icon /usr/share/icons/hicolor/128x128/apps/create-slxsave-xfs.png \
     --info \
     --text "`eval_gettext 'slxsave.xfs ($SIZE MB) correctly created in $MOUNTPOINT'`"
   exit 0
@@ -100,7 +112,7 @@ else
   rm -f $RWMP
   zenity \
     --title "`eval_gettext 'Error'`" \
-    --window-icon /usr/share/icons/hicolor/48x48/apps/salix.png \
+    --window-icon /usr/share/icons/hicolor/128x128/apps/create-slxsave-xfs.png \
     --error \
     --text "`eval_gettext 'slxsave.xfs ($SIZE MB) cannot be created in $MOUNTPOINT'`"
   exit 1

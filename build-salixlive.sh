@@ -61,10 +61,6 @@ if [ ! -x $startdir/funionfs ]; then
   )
   rm -rf funionfs-$FUFSVER
 fi
-echo3 "Making liveenv package"
-./liveenv/create_txz.sh
-rm -f PKGS/liveenv-*.txz
-mv liveenv-*.txz PKGS/
 echo3 "Reading modules"
 mkdir -p src
 cd $startdir/src

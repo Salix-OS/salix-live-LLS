@@ -18,7 +18,7 @@
 
 # Gettext internationalization
 export TEXTDOMAIN="create-slxsave-xfs"
-export TEXTDOMAINDIR="/usr/share/locale"
+export TEXTDOMAINDIR="/home/jrd/salix/salix-live/trunk/liveenv/root/usr/share/locale"
 . gettext.sh
 
 CLIPRGM=/usr/sbin/create-slxsave-xfs

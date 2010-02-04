@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-31 20:32+0100\n"
+"POT-Creation-Date: 2010-02-04 14:42+0100\n"
 "PO-Revision-Date: 2010-01-31 20:52+0100\n"
 "Last-Translator: Pierrick Le Brun <akuna~at~free~dot~fr>\n"
 "Language-Team: French\n"
@@ -19,89 +19,97 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-Country: FRANCE\n"
 
-#: ../root/usr/libexec/create-slxsave-xfs:33
+#: ../root/usr/sbin/create-slxsave-xfs-gui:33
 #, sh-format
 msgid "ERROR: You need to be root to run this"
 msgstr "ERREUR : Vous devez être root pour que ça s'exécute"
 
-#: ../root/usr/libexec/create-slxsave-xfs:38
+#: ../root/usr/sbin/create-slxsave-xfs-gui:38
 #, sh-format
 msgid "ERROR: zenity must be installed and in your PATH to run this"
-msgstr "ERREUR : zenity doit être installé et dans votre PATH pour que ça s'exécute"
+msgstr ""
+"ERREUR : zenity doit être installé et dans votre PATH pour que ça s'exécute"
 
-#: ../root/usr/libexec/create-slxsave-xfs:43
+#: ../root/usr/sbin/create-slxsave-xfs-gui:43
 #, sh-format
 msgid "ERROR: xfsprogs must be installed to run this"
 msgstr "ERREUR : xfsprogs doit êtres installé pour que ça s'exécute"
 
-#: ../root/usr/libexec/create-slxsave-xfs:52
+#: ../root/usr/sbin/create-slxsave-xfs-gui:52
 #, sh-format
 msgid "Persistent changes"
 msgstr "Changements persistants"
 
-#: ../root/usr/libexec/create-slxsave-xfs:54
+#: ../root/usr/sbin/create-slxsave-xfs-gui:54
 #, sh-format
 msgid ""
-"If you wish, you can save any of your work or modification performed while in a LiveCD cession.\\n"
-"\\n"
-"To do this however, you must first create a special \"persistent file\" which will have a pre-decided fixed-size and will be formatted as a linux file system.\\n"
-"\\n"
-"Once this file is created, simply reboot the LiveCD for your changes to become persistent from then on."
+"If you wish, you can save any of your work or modification performed while "
+"in a LiveCD session.\\n\\nTo do this however, you must first create a "
+"special \"persistent file\" which will have a pre-decided fixed-size and "
+"will be formatted as a linux file system.\\n\\nOnce this file is created, "
+"simply reboot the LiveCD for your changes to become persistent from then on."
 msgstr ""
-"Si vous le désirez, vous pouvez sauvegarder votre travail ou les modifications que vous avez apporté à l'environnement de votre cession LiveCD.\\n"
-"\\n"
-"Pour ceci, vous devez auparavant créer un \"fichier de persistance\" spécial qui aura une taille fixe pré-décidée et qui sera formatée avec un système de fichiers Linux.\\n"
-"\\n"
-"Une fois ce fichier créé, il suffira de redémarrer le LiveCD pour que tous vos changements ultérieurs soient sauvegardés."
+"Si vous le désirez, vous pouvez sauvegarder votre travail ou les "
+"modifications que vous avez apporté à l'environnement de votre session "
+"LiveCD.\\n\\nPour ceci, vous devez auparavant créer un \"fichier de "
+"persistance\" spécial qui aura une taille fixe pré-décidée et qui sera "
+"formaté avec un système de fichiers Linux.\\n\\nUne fois ce fichier créé, il "
+"suffira de redémarrer le LiveCD pour que tous vos changements ultérieurs "
+"soient sauvegardés."
 
-#: ../root/usr/libexec/create-slxsave-xfs:57
+#: ../root/usr/sbin/create-slxsave-xfs-gui:57
 #, sh-format
 msgid "Mount point selection"
 msgstr "Sélection du point de montage"
 
-#: ../root/usr/libexec/create-slxsave-xfs:60
+#: ../root/usr/sbin/create-slxsave-xfs-gui:60
 #, sh-format
 msgid "Choose the mountpoint where to save the persistent file:"
 msgstr "Choisissez un point de montage où sauvegarder le fichier persistent :"
 
-#: ../root/usr/libexec/create-slxsave-xfs:61
+#: ../root/usr/sbin/create-slxsave-xfs-gui:61
 #, sh-format
 msgid "Mount point"
 msgstr "Point de montage"
 
-#: ../root/usr/libexec/create-slxsave-xfs:62
+#: ../root/usr/sbin/create-slxsave-xfs-gui:62
 #, sh-format
 msgid "Size (in MB)"
 msgstr "Taille (en Mo)"
 
-#: ../root/usr/libexec/create-slxsave-xfs:77
+#: ../root/usr/sbin/create-slxsave-xfs-gui:77
 #, sh-format
 msgid "Size selection"
 msgstr "Sélection de la taille"
 
-#: ../root/usr/libexec/create-slxsave-xfs:80
+#: ../root/usr/sbin/create-slxsave-xfs-gui:80
 #, sh-format
-msgid "Choose the size in megabytes (maximum $MAXSIZE) for persistent file on $MOUNTPOINT:"
-msgstr "Choisissez la taille en mégaoctets (maximum $MAXSIZE) pour le fichier persistent sur $MOUNTPOINT :"
+msgid ""
+"Choose the size in megabytes (maximum $MAXSIZE) for persistent file on "
+"$MOUNTPOINT:"
+msgstr ""
+"Choisissez la taille en mégaoctets (maximum $MAXSIZE) pour le fichier "
+"persistent sur $MOUNTPOINT :"
 
-#: ../root/usr/libexec/create-slxsave-xfs:89
-#: ../root/usr/libexec/create-slxsave-xfs:114
+#: ../root/usr/sbin/create-slxsave-xfs-gui:89
+#: ../root/usr/sbin/create-slxsave-xfs-gui:114
 #, sh-format
 msgid "Error"
 msgstr "Erreur"
 
-#: ../root/usr/libexec/create-slxsave-xfs:92
+#: ../root/usr/sbin/create-slxsave-xfs-gui:92
 #, sh-format
 msgid "The chosen size is too big ($SIZE > $MAXSIZE)"
 msgstr "La taille choisie est trop grande ($SIZE > $MAXSIZE)"
 
-#: ../root/usr/libexec/create-slxsave-xfs:109
+#: ../root/usr/sbin/create-slxsave-xfs-gui:109
 #, sh-format
 msgid "slxsave.xfs ($SIZE MB) correctly created in $MOUNTPOINT"
-msgstr "Le fichier slxsave.xfs ($SIZE Mo) a correctement été créé dans $MOUNTPOINT"
+msgstr ""
+"Le fichier slxsave.xfs ($SIZE Mo) a correctement été créé dans $MOUNTPOINT"
 
-#: ../root/usr/libexec/create-slxsave-xfs:117
+#: ../root/usr/sbin/create-slxsave-xfs-gui:117
 #, sh-format
 msgid "slxsave.xfs ($SIZE MB) cannot be created in $MOUNTPOINT"
-msgstr "Le fichier slxsave.xfs ($SIZE Mo) n'a pas pu être créé dans $MOUNTPOINT"
-
+msgstr ""
+"Le fichier slxsave.xfs ($SIZE Mo) n'a pas pu être créé dans $MOUNTPOINT"

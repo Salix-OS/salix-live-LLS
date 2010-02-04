@@ -1,5 +1,5 @@
 #!/bin/sh
-cd $(dirname $0)
+cd $(dirname "$0")
 root=../root
 cp *.desktop $root/usr/share/applications/
 cp create-slxsave-xfs.desktop $root/home/one/Desktop/

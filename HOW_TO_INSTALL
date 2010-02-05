@@ -1,8 +1,0 @@
-How to put the Salix Live ISO on USB?
-
-1. Open the iso using an archiver program (file-roller, xarchiver, 7-zip, ...)
-2. Extract all the files and folders (boot, packages and salixlive) to the USB root directory.
-3. Go the "boot" directory on the USB key.
-4. Run "bootinst.sh" if you're on Linux or Unix, "bootinst.bat" if you're on Windows. Alternatively, you can run "install-on-USB" if you're on Linux and have grub2 installed. This will prevent the first "reboot on first boot" operation.
-
-On the first boot on the USB key, a better bootloader will be installed (grub2) and the boot process will reboot, it's normal.

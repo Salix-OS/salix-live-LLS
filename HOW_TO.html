@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>Salixlive - How to...</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="content-language" content="en,fr"/>
+    <meta http-equiv="content-style-type" content="text/css"/>
+    <meta http-equiv="content-script-type" content="text/javascript"/>
+    <meta name="description" content="Salixlive How to"/>
+    <meta name="keywords" content="salix, salixlive, live, howto"/>
+    <meta name="date" content="2010-02-05"/>
+    <style>
+      a:link, a:visited, a:hover {
+        color: blue;
+      }
+      a:hover {
+        background-color: yellow;
+      }
+      h1 {
+        text-align: center;
+        font-size: 30px;
+        background: url(http://www.salixos.org/forum/styles/xandgreen/theme/images/cellpic3.gif) repeat-x;
+        color: white;
+        height: 38px;
+      }
+      div.infos, div.langs {
+        background-color: #EFEBE1;
+        padding: 5px 0 5px 0;
+        margin-bottom: 20px;
+        border: 1px solid black;
+      }
+      div.infos:before {
+        display: block;
+        content: "Infos";
+        background: url(http://www.salixos.org/forum/styles/xandgreen/theme/images/cellpic1.gif) repeat-x;
+        height: 25px;
+        padding-left: 20px;
+        border-bottom: 1px solid black;
+        font-weight: bold;
+      }
+      div.infos > ul {
+        list-style: none;
+        padding: 10px;
+        margin: 0;
+      }
+      span.info {
+        text-decoration: underline;
+        margin-right: 5px;
+      }
+      div.langs:before {
+        display: block;
+        content: "Languages";
+        background: url(http://www.salixos.org/forum/styles/xandgreen/theme/images/cellpic1.gif) repeat-x;
+        height: 25px;
+        padding-left: 20px;
+        border-bottom: 1px solid black;
+        font-weight: bold;
+      }
+      div.langs > ul > li > a:after {
+        content: " ↓";
+      }
+      div.doc {
+        margin-bottom: 100px;
+        clear: both;
+      }
+      div.title {
+        display: block;
+        background: url(http://www.salixos.org/forum/styles/xandgreen/theme/images/cellpic1.gif) repeat-x bottom #EFEBE1;
+        height: 25px;
+        padding-top: 5px;
+        padding-left: 20px;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        font-weight: bold;
+      }
+      a.top {
+        text-align: right;
+        float: right;
+      }
+      a.top:before {
+        content: "↑ ";
+      }
+      a.top:after {
+        content: " ↑";
+      }
+      ul.howto {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      ul.howto > li {
+        background-color: #EFEBE1;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      ul.howto > li:hover {
+        background-color: #DFFBD1;
+      }
+      p.question {
+        font-weight: bold;
+      }
+      p.answer {
+        padding: 0 20px 0 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <a name="_top"/>
+    <h1>Salixlive - How to…</h1>
+    <div class="infos">
+      <ul>
+        <li><span class="info">URL:</span><a href="http://enialis.net/~jrd/salix/salixlive/13.0-rc1/">http://enialis.net/~jrd/salix/salixlive/13.0-rc1/</a></li>
+        <li><span class="info">Authors:</span>Akuna, JRD, Shador</li>
+        <li><span class="info">Forum:</span><a href="http://www.salixos.org/forum/viewforum.php?f=31">http://www.salixos.org/forum/viewforum.php?f=31</a></li>
+      </ul>
+    </div>
+    <div class="langs">
+      <ul>
+        <li><a href="#english" lang="en" xml:lang="en">English</a></li>
+        <li><a href="#french" lang="fr" xml:lang="fr">Français</a></li>
+      </ul>
+    </div>
+
+    <div class="doc" dir="ltr" lang="en" xml:lang="en">
+      <a name="english"></a>
+      <div class="title">English</div>
+      <a href="#_top" class="top" lang="en" xml:lang="en">Go up</a>
+      <ul class="howto">
+        <li>
+          <p class="question">What is a Live CD?</p>
+          <p class="answer">
+          A Live CD is a operating system which loads into memory using only the data provided on the CD.<br/>
+          It will not modify the other operating systems installed or data in the computer and will leave no trace after a computer shutdown.<br/>
+          It is also a good way to discover an operating system without installation, a graphical way to install the operating system while still using the live environment, and of course a way of having its favourite OS with you everywhere.
+          </p>
+        </li>
+        <li>
+          <p class="question">What to do with the .iso file?</p>
+          <p class="answer">
+          An .iso file is a CD or DVD image. You can make a CD or DVD with it using a burning software.<br/>
+          The resulting CD must not contain the .iso file, or you made a mistake in the software options.<br/>
+          You can also explode the .iso file on an USB key. This is discuss further.
+          </p>
+        </li>
+        <li>
+          <p class="question">How to boot on Salixlive CD/DVD?</p>
+          <p class="answer">
+          You have to assure you that your computer will first try to boot on the optical drive before booting on your internal disk.<br/>
+          To be sure, you need to go the BIOS (the first program loaded by the computer) setup, often using the Del-key or the F2-key, and then go in the "boot menu" to choose the boot ordering.<br/>
+          If this is ok, the only thing to do is putting Salixlive in the optical drive and start or restart the computer.
+          </p>
+        </li>
+        <li>
+          <p class="question">How to install Salixlive on USB key?</p>
+          <p class="answer">
+            <ol>
+              <li>Open the .iso file using an archiver software (file-roller, xarchiver, 7-zip, ...).</li>
+              <li>Extract all files and folders (boot, packages and salixlive) to your USB root directory.</li>
+              <li>Go the "boot" directory on the USB key.</li>
+              <li>Run "bootinst.sh" if you're on Linux or Unix, "bootinst.bat" if you're on Windows.<br/>Alternatively, you can run "install-on-USB" if you're on Linux and have grub2 installed ; this will prevent the first "reboot on first boot" operation.</li>
+            </ol>
+          </p>
+        </li>
+        <li>
+          <p class="question">How to boot on Salixlive USB key?</p>
+          <p class="answer">
+          In the same manner to boot from the optical drive, you must assure you that the USB boot is set prior others in the BIOS setup.<br/>
+          On the first boot from the USB key, a better and nicer bootloader will be installed (grub2) and the boot process will reboot, it's normal.
+          </p>
+        </li>
+        <li>
+          <p class="question">How to keep changes uppon reboot?</p>
+          <p class="answer">
+          A software (create-slxsave-xfs) is included on the Salixlive desktop. Run it and follow the steps to create a file that will keep your changes uppon reboot.<br/>
+          This file will automatically be used on the next reboot, and so will begin to monitor and save any change.<br/>
+          To remove any changes and come back to the default settings, simply delete the slxsave.xfs file.
+          </p>
+        </li>
+        <li>
+          <p class="question">How to install Salix from Salixlive?</p>
+          <p class="answer">
+          Some softwares (gparted, salixlive-installer, lilosetup) are included on the Salixlive desktop.<br/>
+          gparted should be used to create partitions on the target hard disk.<br/>
+          Then run salixlive-installer and follow the steps to install Salix on your partition.<br/>
+          A bootloader (a program to boot multiple operating systems) will be installed if you wish (highly recommended).<br/>
+          Note: Salix will be installed, not the live environment. There is no difference from installing Salix from a installation CD.
+          </p>
+        </li>
+        <li>
+          <p class="question">What is the default root password?</p>
+          <p class="answer">
+          live
+          </p>
+        </li>
+        <li>
+          <p class="question">I have other questions not filled here…</p>
+          <p class="answer">
+          Just come in the <a href="http://www.salixos.org/forum/viewforum.php?f=31">forum</a>, and ask :)
+          </p>
+        </li>
+      </ul>
+      <a href="#_top" class="top" lang="en" xml:lang="en">Go up</a>
+    </div>
+    
+    <div class="doc" dir="ltr" lang="en" xml:lang="en">
+      <a name="french"></a>
+      <div class="title">Français</div>
+      <a href="#_top" class="top" lang="fr" xml:lang="fr">Revenir en haut</a>
+      <ul class="howto">
+        <li>
+          <p class="question">Qu'est-ce qu'un Live CD ?</p>
+          <p class="answer">
+          Un Live CD est un système d'exploitation qui se charge en mémoire en utilisant uniquement les données présentes sur le CD.<br/>
+          Ça ne modifiera pas les autres systèmes d'exploitation installés ou les données de l'ordinateur et ne laissera aucune trace après un arrêt de l'ordinateur.<br/>
+          C'est également un bon moyen de découvrir un système d'exploitation sans installation, une manière graphique d('installer le système d'exploitation tout en continuant d'utiliser l'environnement live, et bien sûr un moyen d'avoir son SE favoris avec soit partout.
+          </p>
+        </li>
+        <li>
+          <p class="question">Quoi faire avec le fichier .iso ?</p>
+          <p class="answer">
+          Un fichier .iso est une image CD ou DVD. Vous pouvez en faire un CD ou un DVD avec en utilisant un logiciel de gravure.<br/>
+          The CD résultant ne doit pas contenir le fichier .iso, ou vous avez fait une erreur dans les options du logiciel.<br/>
+          Vous pouvez aussi éclater le fichier .iso sur une clé USB. Ceci est abordé plus loin.
+          </p>
+        </li>
+        <li>
+          <p class="question">Commnet démarrer sur un CD/DVD de Salixlive ?</p>
+          <p class="answer">
+          Vous devez vous assurer que votre ordinateur va d'abbord essayer de démarrer sur le lecteur optique avant de démarrer sur votre disque interne.<br/>
+          Pour en être sûr, vous devez vous rendre dans le setup du BIOS (le premier programme chargé par l'ordinateur), bien souvent en utilisant la touche Suppr. ou la touche F2, et enfin dans le le menu de démarrage ("boot menu" en anglais) pour choisir l'ordre de démarrage.<br/>
+          Si c'est bon, la seule chose à faire est d'insérer Salixlive dans le lecteur optique et démarrer ou redémarrer l'ordinateur.
+          </p>
+        </li>
+        <li>
+          <p class="question">Comment installer Salixlive sur une clé USB ?</p>
+          <p class="answer">
+            <ol>
+              <li>Ouvrir le fichier .iso en utilisant un logiciel de gestion d'archives (file-roller, xarchiver, 7-zip, ...).</li>
+              <li>Extraire tous les fichiers et répertoires (boot, packages and salixlive) vers le répertoire racine de votre clé USB.</li>
+              <li>Aller dans le répertoire "boot" de la clé USB.</li>
+              <li>Exécuter "bootinst.sh" si vous êtes sur Linux ou Unix, "bootinst.bat" si vous êtes sur Windows.<br/>De manière alternative, vous pouvez exécuter "install-on-USB" si vous êtes sur Linux et que grub2 est installé ; ceci évitera l'opération de « redémarrage au premier démarrage ».</li>
+            </ol>
+          </p>
+        </li>
+        <li>
+          <p class="question">Comment démarrer Salixlive sur la clé USB ?</p>
+          <p class="answer">
+          De la même manière que pour démarrer sur le lecteur optique, vous devez vous assurer que le démarrage sur USB est prioritaire sur les autres dans les setup du BIOS.<br/>
+          Lors du premier démarrage sur la clé USB, a meilleur et plus joli chargeur de démarrage (bootloader) sera installé (grub2) et le processus de démarrage va redémarrer l'ordinateur, ceci est normal.
+          </p>
+        </li>
+        <li>
+          <p class="question">Comment garder les changements après un redémarrage ?</p>
+          <p class="answer">
+          Un logiciel (create-slxsave-xfs) est inclu sur le bureau de Salixlive. Exécutez-le et suivez les étapes pour créer un fichier qui gardera vos changements après redémarrage.<br/>
+          Ce fichier sera automatiquement utilisé au prochain redémarrage, et commencera donc à enregistrer chaque chanegement.<br/>
+          Pour supprimer tous les changements et revenir à la configuration par défaut, il suffit de supprimer le fichier slxsave.xfs.
+          </p>
+        </li>
+        <li>
+          <p class="question">Comment installer Salix depuis Salixlive ?</p>
+          <p class="answer">
+          Certains logiciels (gparted, salixlive-installer, lilosetup) sont inclus sur le bureau de Salixlive.<br/>
+          gparted doit être utilisé pour créer les partitions sur le disque destination.<br/>
+          Lancez alors salixlive-installer et suivez les étapes pour installer Salix dans votre partition.<br/>
+          Un chargeur de démarrage (un programme pour démarrer plusieurs systèmes d'exploitation) sera installé si vous le désirez (fortement conseillé).<br/>
+          Note : C'est Salix qui sera installé et non l'environnement live. Il n'y a aucune différence par rapport à l'installation de Salix depuis un CD d'installation.
+          </p>
+        </li>
+        <li>
+          <p class="question">Quel est le mot de passe root par défaut ?</p>
+          <p class="answer">
+          live
+          </p>
+        </li>
+        <li>
+          <p class="question">J'ai d'autres questions qui ne sont pas mentionnées ici…</p>
+          <p class="answer">
+          Venez simplement sur le <a href="http://www.salixos.org/forum/viewforum.php?f=31">forum</a>, et demandez :)
+          </p>
+        </li>
+      </ul>
+      <a href="#_top" class="top" lang="fr" xml:lang="fr">Revenir en haut</a>
+    </div>
+
+  </body>
+</html>

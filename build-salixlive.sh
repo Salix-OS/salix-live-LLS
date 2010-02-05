@@ -20,7 +20,8 @@ fi
 export KVER=$(uname -r)
 export DISTRO=salix
 export VER=13.0
-export RLZ=$(date +%Y%m%d)
+#export RLZ=$(date +%Y%m%d)
+export RLZ=rc1
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.15.2
@@ -140,7 +141,9 @@ while read m; do
       rm -rf $m
     fi
   fi
-  if [ ! -e $m ]; then
+  if [ -e $m ]; then
+    funionfsopts="$funionfsopts:$startdir/src/$m=ro"
+  else
     mkdir $m
     export ROOT=$startdir/src/module
     $startdir/funionfs -o "dirs=$funionfsopts:$startdir/src/$m" none $ROOT
@@ -339,4 +342,4 @@ echo3 "Creating ISO..."
 mkisofs -b boot/grub/grub_eltorito \
 	-no-emul-boot -boot-load-size 4 -boot-info-table \
 	-o "$startdir/$ISO_NAME" -r -J .
-md5sum $startdir/$ISO_NAME > $startdir/$ISO_NAME.md5
+( cd "$startdir" && md5sum "$ISO_NAME" > "$ISO_NAME.md5" )

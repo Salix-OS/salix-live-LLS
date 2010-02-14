@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Salixlive - How to
+Exec=xdg-open ~/docs/HOW_TO.html
+Icon=salix
+Terminal=false
+Type=Application
+Categories=Application;
+StartupNotify=true
+Encoding=UTF-8
+NoDisplay=false

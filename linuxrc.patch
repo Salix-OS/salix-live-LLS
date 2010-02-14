@@ -14,7 +14,7 @@
  # start hotplugging before hw drivers load
  mdev_start_hotplug
  
-+[ -z "$DEBUG_IS_ENABLED" -a -x /usr/sbin/splashy ] && /usr/sbin/splashy boot
++[ -z "$DEBUG_IS_ENABLED" -a -z "$(cmdline_parameter nosplash)" -a -x /usr/sbin/splashy ] && /usr/sbin/splashy boot
 +
  # Then load drivers for data storage and input devices
  modprobe_usb_modules

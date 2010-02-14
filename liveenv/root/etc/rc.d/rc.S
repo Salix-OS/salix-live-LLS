@@ -283,6 +283,7 @@ if [ "$grub2" = "install" ]; then
       /usr/bin/chvt 1
     fi
     clear
+    echo ''
     echo '+------------------------------+'
     echo '| Installing grub2 boot loader |'
     echo '+------------------------------+'

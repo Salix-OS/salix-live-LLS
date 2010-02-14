@@ -13,6 +13,8 @@ FIREFOXVER=$('ls' -1 ../PKGS/mozilla-firefox-*.txz | sed 's/.*-.*-\([^-]*\)-[^-]
 cp -ar root/* $T/
 cd $T
 find . -type d -name '.svn' | xargs -i@ rm -rf @
+mkdir -p home/one/docs
+cp "$HERE/../HOW_TO.html" "$HERE/../howto*.gif" home/one/docs/
 chown -R 0:0 .
 chown -R 1000:100 home/*
 chown -R 0:0 etc/ssh

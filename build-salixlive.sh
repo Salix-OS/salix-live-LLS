@@ -186,6 +186,13 @@ while read m; do
         sed -i -e 's/^id:.:initdefault:/id:4:initdefault:/' $ROOT/etc/inittab
       fi
     fi
+    # /var/log/setup
+    if [ $lastmodule = $m ]; then
+      for s in 04.mkfontdir 07.update-desktop-database 07.update-mime-database 08.gtk-update-icon-cache htmlview services; do
+        chroot $ROOT /bin/sh /var/log/setup/setup.$s
+      done
+      chmod -x $ROOT/etc/rc.d/rc.pcmcia
+    fi
     umount $ROOT
     # remove any fakely deleted files in RO branches, default suffix is _DELETED~
     find "$startdir/src/$m" -name '*_DELETED~' -exec rm -rf '{}' \;
@@ -330,13 +337,23 @@ cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
 # patch the syslinux.cfg file for installing grub2 on USB if neeeded
 sed -i -e "s/Slax/${DISTRO}live/" boot/bootinst.bat
 sed -i -e "s/Slax/${DISTRO}live/" boot/bootinst.sh
-sed -i -e 's/ rw$/\0 grub2=install 2/' boot/syslinux/syslinux.cfg
+sed -i -e 's/ rw$/\0 grub2=install nosplash 2/' boot/syslinux/syslinux.cfg
 # add the unix script for installing grub2 on USB too
+echo3 "Adding install-on-USB"
 cp $startdir/install-on-USB boot/
+# add our bootinst.sh
+echo3 "Adding bootinst.sh"
+cp $startdir/bootinst.sh boot/
 # add the standard kernel
 echo3 "Adding the standard kernel too"
 mkdir -p packages/std-kernel
 cp $startdir/std-kernel/*.txz packages/std-kernel/
+# add the HOW TO
+echo3 "Adding HOW TO"
+cp $startdir/HOW_TO.html $startdir/howto*.gif ./
+# add the packages lists
+echo3 "Adding packages lists"
+cp $startdir/packages-* packages/
 # create the iso
 echo3 "Creating ISO..."
 mkisofs -b boot/grub/grub_eltorito \

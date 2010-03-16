@@ -1,6 +1,13 @@
---- /etc/rc.d/rc.services	2009-10-24 10:40:42.000000000 +0200
+--- /etc/rc.d/rc.services	2010-03-10 01:10:31.000000000 +0100
 +++ root/etc/rc.d/rc.services	2010-01-16 15:04:58.111694511 +0100
-@@ -8,7 +8,7 @@
+@@ -2,13 +2,13 @@
+ 
+ # We won't start these services from here, don't play with this list ;)
+ blacklist(){
+-for mask in \~ .new rc.S rc.M rc.K rc.4 rc.0 rc.6 .conf rc.services rc.inet1 rc.inet2 rc.inetd rc.rpc \
++for mask in \~ .new rc.S rc.M rc.K rc.4 rc.0 rc.6 .conf rc.services rc.inet1 rc.inet2 rc.rpc \
+ 	rc.modules rc.local rc.keymap rc.hald rc.wicd rc.sample rc.font rc.serial rc.udev rc.uwd rc.acpid rc.wireless \
+ 	rc.alsa rc.numlock rc.syslog rc.cups rc.famd rc.gpm \
  	rc.messagebus rc.licences rc.scanluns rc.ntpd rc.bluetooth \
  	rc.dnsmasq rc.snmpd rc.lprng rc.atalk rc.saslauthd rc.sendmail \
  	rc.mysqld rc.httpd rc.openldap rc.samba rc.gpm rc.sysvinit \

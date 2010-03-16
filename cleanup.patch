@@ -1,11 +1,11 @@
 --- src/linux-live-6.3.0/initrd/cleanup	2007-11-13 16:11:40.000000000 +0100
-+++ cleanup	2010-01-08 20:56:07.281174402 +0100
++++ cleanup	2010-03-07 16:33:53.451809996 +0100
 @@ -48,17 +48,21 @@
  
  fumount $MOUNTDIR/*
  
 +lo=$(losetup|cut -d: -f1); for d in $lo; do losetup -d $d; done
-+umount -a -r
++umount -a -r 2> /dev/null
 +
  # eject cdrom devices
 -for MNT in $(ls -1 $MOUNTDIR 2>/dev/null); do

@@ -278,7 +278,11 @@ if [ "$grub2" = "install" ]; then
   touch /boot/touch 2> /dev/null
   if [ $? -eq 0 ]; then
     rm -f /boot/touch
-    [ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "exit"
+    if [ ! -z `pidof -o %PPID /usr/sbin/splashy` ]; then
+      /usr/sbin/splashy_update "progress 100"
+      /usr/sbin/splashy_chvt 1
+      kill -9 `pidof -o %PPID /usr/sbin/splashy`
+    fi
     if [ -x /usr/bin/chvt ]; then
       /usr/bin/chvt 1
     fi

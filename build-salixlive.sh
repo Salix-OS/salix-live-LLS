@@ -21,7 +21,7 @@ export KVER=$(uname -r)
 export DISTRO=salix
 export VER=13.0
 #export RLZ=$(date +%Y%m%d)
-export RLZ=rc2
+export RLZ=rc3
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.15.2
@@ -186,12 +186,28 @@ while read m; do
         sed -i -e 's/^id:.:initdefault:/id:4:initdefault:/' $ROOT/etc/inittab
       fi
     fi
+    if [ $kmodule = $m ]; then
+      (
+        cd $ROOT
+        mkdir -p usr/src/kernelive usr/sbin
+        cp usr/src/linux-*/.config usr/src/linux-*/Module.symvers usr/src/kernelive/
+        cat <<EOF > usr/sbin/init-live-kernel-compilation
+#!/bin/sh
+cp /usr/src/kernelive/.config /usr/src/kernelive/Module.symvers /usr/src/linux-2.*/
+EOF
+        chmod ug+x usr/sbin/init-live-kernel-compilation
+      )
+    fi
     # /var/log/setup
     if [ $lastmodule = $m ]; then
-      for s in 04.mkfontdir 07.update-desktop-database 07.update-mime-database 08.gtk-update-icon-cache htmlview services; do
-        chroot $ROOT /bin/sh /var/log/setup/setup.$s
-      done
-      chmod -x $ROOT/etc/rc.d/rc.pcmcia
+      (
+        cd $ROOT
+        for s in 04.mkfontdir 07.update-desktop-database 07.update-mime-database 08.gtk-update-icon-cache htmlview services; do
+          echo "Running '/var/log/setup/setup.$s $ROOT'"
+          echo ""
+          ./var/log/setup/setup.$s $ROOT
+        done
+      )
     fi
     umount $ROOT
     # remove any fakely deleted files in RO branches, default suffix is _DELETED~
@@ -348,9 +364,9 @@ cp $startdir/bootinst.sh boot/
 echo3 "Adding the standard kernel too"
 mkdir -p packages/std-kernel
 cp $startdir/std-kernel/*.txz packages/std-kernel/
-# add the HOW TO
-echo3 "Adding HOW TO"
-cp $startdir/HOW_TO.html $startdir/howto*.gif ./
+# add the Salix Live Guide
+echo3 "Adding Salix Live Guide"
+cp $startdir/SalixLiveGuide*.pdf ./
 # add the packages lists
 echo3 "Adding packages lists"
 cp $startdir/packages-* packages/

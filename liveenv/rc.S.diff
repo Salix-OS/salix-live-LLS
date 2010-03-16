@@ -1,5 +1,5 @@
 --- /etc/rc.d/rc.S	2009-09-07 10:41:11.000000000 +0200
-+++ root/etc/rc.d/rc.S	2010-01-16 14:44:44.729293315 +0100
++++ root/etc/rc.d/rc.S	2010-03-07 20:25:56.513077701 +0100
 @@ -23,6 +23,8 @@
    fi
  fi
@@ -57,7 +57,7 @@
  
  # Fix /etc/mtab to list sys and proc if they were not yet entered in
  # /etc/mtab because / was still mounted read-only:
-@@ -264,7 +268,47 @@
+@@ -264,7 +268,52 @@
    /sbin/mount -f sysfs /sys -t sysfs
  fi
  
@@ -72,11 +72,16 @@
 +  touch /boot/touch 2> /dev/null
 +  if [ $? -eq 0 ]; then
 +    rm -f /boot/touch
-+    [ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "exit"
++    if [ ! -z `pidof -o %PPID /usr/sbin/splashy` ]; then
++      /usr/sbin/splashy_update "progress 100"
++      /usr/sbin/splashy_chvt 1
++      kill -9 `pidof -o %PPID /usr/sbin/splashy`
++    fi
 +    if [ -x /usr/bin/chvt ]; then
 +      /usr/bin/chvt 1
 +    fi
 +    clear
++    echo ''
 +    echo '+------------------------------+'
 +    echo '| Installing grub2 boot loader |'
 +    echo '+------------------------------+'
@@ -106,7 +111,7 @@
  
  # Configure ISA Plug-and-Play devices:
  if [ -r /etc/isapnp.conf ]; then
-@@ -316,7 +360,7 @@
+@@ -316,7 +365,7 @@
    fi
  fi
  
@@ -115,7 +120,7 @@
  
  # Mount non-root file systems in fstab, but not NFS or SMB 
  # because TCP/IP is not yet configured, and not proc or sysfs
-@@ -373,7 +417,7 @@
+@@ -373,7 +422,7 @@
    . /etc/rc.d/rc.sysvinit
  fi
  

@@ -1,5 +1,5 @@
---- src/linux-live-6.3.0/initrd/liblinuxlive	2009-02-10 11:42:05.000000000 +0000
-+++ liblinuxlive	2010-01-15 21:06:47.465307865 +0000
+--- src/linux-live-6.3.0/initrd/liblinuxlive	2009-02-10 12:42:05.000000000 +0100
++++ liblinuxlive	2010-03-07 14:53:04.172362672 +0100
 @@ -255,7 +255,7 @@
     fi
  
@@ -9,7 +9,7 @@
     fi
  }
  
-@@ -301,7 +301,7 @@
+@@ -301,12 +301,12 @@
     if [ "$NOAUTO" = "" ]; then NOAUTO="auto"; fi
     if [ "$2" = "fstab" ]; then echo -n "$NOAUTO," ; fi
     if [ "$1" = "swap" ]; then echo "defaults,pri=1"; return 0; fi
@@ -18,6 +18,12 @@
  
     IOCHARSET=$(iocharset)
  
+    if [ "$1" = "vfat" ]; then
+-      echo -n ",quiet,umask=0,check=s,shortname=mixed"
++      echo -n ",quiet,umask=0,check=s,shortname=winnt,utf8"
+       if [ "$IOCHARSET" ]; then
+          echo ",iocharset=$IOCHARSET"
+       fi
 @@ -462,7 +462,7 @@
  {
     debug_log "create_module" "$*"

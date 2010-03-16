@@ -1,5 +1,5 @@
 --- /etc/rc.d/rc.M	2009-09-14 09:57:14.000000000 +0200
-+++ root/etc/rc.d/rc.M	2010-01-15 21:31:07.651658751 +0100
++++ root/etc/rc.d/rc.M	2010-03-14 10:15:14.536723571 +0100
 @@ -10,9 +10,17 @@
  # Author:	Fred N. van Kempen, <waltje@uwalt.nl.mugnet.org>
  #		Heavily modified by Patrick Volkerding <volkerdi@slackware.com>
@@ -18,16 +18,46 @@
  # Tell the viewers what's going to happen.
  echo "Going multiuser..."
  
-@@ -319,6 +327,12 @@
-   . /etc/rc.d/rc.keymap
+@@ -160,15 +168,17 @@
+   sh /etc/rc.d/rc.messagebus start
+ fi
+ 
++### modified for Live ###
+ # Start HAL:
+-if [ -x /etc/rc.d/rc.hald ]; then
+-  sh /etc/rc.d/rc.hald start
+-fi
++#if [ -x /etc/rc.d/rc.hald ]; then
++#  sh /etc/rc.d/rc.hald start
++#fi
+ 
+ # Start Bluetooth:
+-if [ -x /etc/rc.d/rc.bluetooth ]; then
+-  sh /etc/rc.d/rc.bluetooth start
+-fi
++#if [ -x /etc/rc.d/rc.bluetooth ]; then
++#  sh /etc/rc.d/rc.bluetooth start
++#fi
++### /modified for Live ###
+ 
+ # Start wicd:
+ if [ -x /etc/rc.d/rc.wicd ]; then
+@@ -314,10 +324,16 @@
+   . /etc/rc.d/rc.alsa
  fi
  
 +#### modified for Live ###
+ # Load a custom keymap if the user has an rc.keymap script.
+-if [ -x /etc/rc.d/rc.keymap ]; then
+-  . /etc/rc.d/rc.keymap
++#if [ -x /etc/rc.d/rc.keymap ]; then
++#  . /etc/rc.d/rc.keymap
++#fi
++
 +if [ -x /etc/rc.d/rc.live ]; then
 +  . /etc/rc.d/rc.live
-+fi
+ fi
 +#### /modified for Live ###
-+
+ 
  # Start the MySQL database:
  if [ -x /etc/rc.d/rc.mysqld ]; then
-   . /etc/rc.d/rc.mysqld start

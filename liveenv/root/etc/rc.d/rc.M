@@ -168,15 +168,17 @@ if [ -x /etc/rc.d/rc.messagebus ]; then
   sh /etc/rc.d/rc.messagebus start
 fi
 
+### modified for Live ###
 # Start HAL:
-if [ -x /etc/rc.d/rc.hald ]; then
-  sh /etc/rc.d/rc.hald start
-fi
+#if [ -x /etc/rc.d/rc.hald ]; then
+#  sh /etc/rc.d/rc.hald start
+#fi
 
 # Start Bluetooth:
-if [ -x /etc/rc.d/rc.bluetooth ]; then
-  sh /etc/rc.d/rc.bluetooth start
-fi
+#if [ -x /etc/rc.d/rc.bluetooth ]; then
+#  sh /etc/rc.d/rc.bluetooth start
+#fi
+### /modified for Live ###
 
 # Start wicd:
 if [ -x /etc/rc.d/rc.wicd ]; then
@@ -322,12 +324,12 @@ if [ -x /etc/rc.d/rc.alsa ]; then
   . /etc/rc.d/rc.alsa
 fi
 
-# Load a custom keymap if the user has an rc.keymap script.
-if [ -x /etc/rc.d/rc.keymap ]; then
-  . /etc/rc.d/rc.keymap
-fi
-
 #### modified for Live ###
+# Load a custom keymap if the user has an rc.keymap script.
+#if [ -x /etc/rc.d/rc.keymap ]; then
+#  . /etc/rc.d/rc.keymap
+#fi
+
 if [ -x /etc/rc.d/rc.live ]; then
   . /etc/rc.d/rc.live
 fi

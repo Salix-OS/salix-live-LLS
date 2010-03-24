@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: create-slxsave-xfs 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-10 20:53+0100\n"
+"POT-Creation-Date: 2010-03-25 00:10+0100\n"
 "PO-Revision-Date: 2010-01-11 21:26+0100\n"
 "Last-Translator: Tomoki Tsuchiya <hydrangea_and_snail@hotmail.com>\n"
 "Language-Team: Japanese \n"
@@ -16,71 +16,95 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../../libexec/create-slxsave-xfs:30
+#: ../root/usr/sbin/create-slxsave-xfs-gui:33
 #, sh-format
 msgid "ERROR: You need to be root to run this"
 msgstr "エラー：root·ログインしてから作動してください。"
 
-#: ../../libexec/create-slxsave-xfs:35
+#: ../root/usr/sbin/create-slxsave-xfs-gui:38
 #, sh-format
 msgid "ERROR: zenity must be installed and in your PATH to run this"
 msgstr "エラー：zenityをインストールし、正確にPATH設定をしてください。"
 
-#: ../../libexec/create-slxsave-xfs:40
+#: ../root/usr/sbin/create-slxsave-xfs-gui:43
 #, sh-format
 msgid "ERROR: xfsprogs must be installed to run this"
 msgstr "エラー：xfsprogsインストールしてから作動してください。"
 
-#: ../../libexec/create-slxsave-xfs:49
+#: ../root/usr/sbin/create-slxsave-xfs-gui:52
+#, sh-format
+msgid "Persistent changes"
+msgstr ""
+
+#: ../root/usr/sbin/create-slxsave-xfs-gui:54
+#, sh-format
+msgid ""
+"If you wish, you can save any of your work or modification performed while "
+"in a LiveCD session.\\n\\nTo do this however, you must first create a "
+"special \"persistent file\" which will have a pre-decided fixed-size and "
+"will be formatted as a linux file system.\\n\\nOnce this file is created, "
+"simply reboot the LiveCD for your changes to become persistent from then on."
+msgstr ""
+
+#: ../root/usr/sbin/create-slxsave-xfs-gui:57
 #, sh-format
 msgid "Mount point selection"
 msgstr "マウント·ポイントの設定"
 
-#: ../../libexec/create-slxsave-xfs:52
+#: ../root/usr/sbin/create-slxsave-xfs-gui:60
 #, sh-format
 msgid "Choose the mountpoint where to save the persistent file:"
 msgstr "パーシスタント·ファイルをマウントをするポイントを選んでください。:"
 
-#: ../../libexec/create-slxsave-xfs:53
+#: ../root/usr/sbin/create-slxsave-xfs-gui:61
 #, sh-format
 msgid "Mount point"
 msgstr "マウント·ポイント"
 
-#: ../../libexec/create-slxsave-xfs:54
+#: ../root/usr/sbin/create-slxsave-xfs-gui:62
 #, sh-format
 msgid "Size (in MB)"
 msgstr "サイズ　(MB)"
 
-#: ../../libexec/create-slxsave-xfs:69
+#: ../root/usr/sbin/create-slxsave-xfs-gui:77
 #, sh-format
 msgid "Size selection"
 msgstr "サイズ設定"
 
-#: ../../libexec/create-slxsave-xfs:72
+#: ../root/usr/sbin/create-slxsave-xfs-gui:80
 #, sh-format
 msgid ""
 "Choose the size in megabytes (maximum $MAXSIZE) for persistent file on "
 "$MOUNTPOINT:"
 msgstr ""
-"$MOUNTPOINTにマウントされるパーシスタント·ファイルのサイズ選んでください"
-"(最高 $MAXSIZE):"
+"$MOUNTPOINTにマウントされるパーシスタント·ファイルのサイズ選んでください(最"
+"高 $MAXSIZE):"
 
-#: ../../libexec/create-slxsave-xfs:81 ../../libexec/create-slxsave-xfs:102
+#: ../root/usr/sbin/create-slxsave-xfs-gui:89
+#: ../root/usr/sbin/create-slxsave-xfs-gui:114
 #, sh-format
 msgid "Error"
 msgstr "エラー"
 
-#: ../../libexec/create-slxsave-xfs:84
+#: ../root/usr/sbin/create-slxsave-xfs-gui:92
 #, sh-format
 msgid "The chosen size is too big ($SIZE > $MAXSIZE)"
 msgstr "選んだサイズが、大きすぎます ($SIZE > $MAXSIZE)。"
 
-#: ../../libexec/create-slxsave-xfs:97
+#: ../root/usr/sbin/create-slxsave-xfs-gui:109
 #, sh-format
 msgid "slxsave.xfs ($SIZE MB) correctly created in $MOUNTPOINT"
 msgstr "slxsave.xfs ($SIZE MB)を$MOUNTPOINTに作りました。"
 
-#: ../../libexec/create-slxsave-xfs:105
+#: ../root/usr/sbin/create-slxsave-xfs-gui:117
 #, sh-format
 msgid "slxsave.xfs ($SIZE MB) cannot be created in $MOUNTPOINT"
 msgstr "slxsave.xfs ($SIZE MB)を$MOUNTPOINTに作ることに失敗しました。"
+
+#: persistence-wizard.desktop.in.h:1 persistence-wizard-kde.desktop.in.h:1
+msgid "Create a slxsave.xfs file in order to persist changes in the live env."
+msgstr ""
+
+#: persistence-wizard.desktop.in.h:2 persistence-wizard-kde.desktop.in.h:2
+msgid "Persistence Wizard"
+msgstr ""

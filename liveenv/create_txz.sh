@@ -9,12 +9,18 @@ RLZ=$(cat release)
 T=$(mktemp -d)
 HERE="$PWD"
 FIREFOXVER=$('ls' -1 ../PKGS/mozilla-firefox-*.txz | sed 's/.*-.*-\([^-]*\)-[^-]*-[^-*]\.txz/\1/')
+GPARTED=$('ls' -1 ../PKGS/gparted-*.txz)
+SALIXLIVEINSTALLER=$('ls' -1 ../PKGS/salix-live-installer-*.txz)
 ./src-create-slxsave-xfs/compile.sh
+tar xf $GPARTED usr/share/applications
+tar xf $SALIXLIVEINSTALLER usr/share/applications
+cp usr/share/applications/*.desktop root/home/one/Desktop/
+rm -rf usr
+mkdir -p root/usr/doc/salixliveguide
+cp ../SalixLiveGuide*.pdf root/usr/doc/salixliveguide/
 cp -ar root/* $T/
 cd $T
 find . -type d -name '.svn' | xargs -i@ rm -rf @
-mkdir -p usr/doc/salixliveguide
-cp "$HERE/../SalixLiveGuide"*".pdf" usr/doc/salixliveguide/
 chown -R 0:0 .
 chown -R 1000:100 home/*
 chown -R 0:0 etc/ssh

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-04 14:42+0100\n"
+"POT-Creation-Date: 2010-03-25 00:10+0100\n"
 "PO-Revision-Date: 2010-01-31 20:52+0100\n"
 "Last-Translator: Pierrick Le Brun <akuna~at~free~dot~fr>\n"
 "Language-Team: French\n"
@@ -113,3 +113,12 @@ msgstr ""
 msgid "slxsave.xfs ($SIZE MB) cannot be created in $MOUNTPOINT"
 msgstr ""
 "Le fichier slxsave.xfs ($SIZE Mo) n'a pas pu être créé dans $MOUNTPOINT"
+
+#: persistence-wizard.desktop.in.h:1 persistence-wizard-kde.desktop.in.h:1
+msgid "Create a slxsave.xfs file in order to persist changes in the live env."
+msgstr ""
+
+#: persistence-wizard.desktop.in.h:2 persistence-wizard-kde.desktop.in.h:2
+#, fuzzy
+msgid "Persistence Wizard"
+msgstr "Changements persistants"

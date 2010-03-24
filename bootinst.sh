@@ -1,4 +1,5 @@
 #!/bin/bash
+cd -P $(dirname $0)
 
 set -e
 TARGET=""
@@ -15,7 +16,7 @@ if [ $? -eq 0 ]; then
 fi
 
 # Find out which partition or disk are we using
-MYMNT=$(cd -P $(dirname $0) ; pwd)
+MYMNT=$(pwd)
 while [ "$MYMNT" != "" -a "$MYMNT" != "." -a "$MYMNT" != "/" ]; do
   TARGET=$(egrep "[^[:space:]]+[[:space:]]+$MYMNT[[:space:]]+" /proc/mounts | tail -n 1 | cut -d " " -f 1)
   if [ "$TARGET" != "" ]; then break; fi
@@ -57,6 +58,10 @@ clear
 echo "Flushing filesystem buffers, this may take a while..."
 sync
 
+# determine is this is a 32 or 64 bits system
+ARCH=32
+[ "$(uname -m|grep 64)" ] && ARCH=64
+
 # setup MBR if the device is not in superfloppy format
 if [ "$MBR" != "$TARGET" ]; then
   which fdisk > /dev/null 2>&1 && which parted > /dev/null 2>&1
@@ -82,15 +87,15 @@ if [ "$MBR" != "$TARGET" ]; then
     fi
   fi
   echo "Setting up MBR on $MBR..."
-  ./boot/syslinux/lilo -S /dev/null -M $MBR ext # this must be here to support -A for extended partitions
+  ./boot/syslinux/lilo_$ARCH -S /dev/null -M $MBR ext # this must be here to support -A for extended partitions
   echo "Activating partition $TARGET..."
-  ./boot/syslinux/lilo -S /dev/null -A $MBR $NUM
+  ./boot/syslinux/lilo_$ARCH -S /dev/null -A $MBR $NUM
   echo "Updating MBR on $MBR..." # this must be here because LILO mbr is bad. mbr.bin is from syslinux
   cat ./boot/syslinux/mbr.bin > $MBR
 fi
 
 echo "Setting up boot record for $TARGET..."
-./boot/syslinux/syslinux -d boot/syslinux $TARGET
+./boot/syslinux/syslinux_$ARCH -d boot/syslinux $TARGET
 
 echo "Disk $TARGET should be bootable now. Installation finished."
 

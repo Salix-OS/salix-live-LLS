@@ -1,4 +1,5 @@
 #!/bin/sh
+cd $(dirname $0)
 ISO=$1
 MNTDIR=$2
 
@@ -29,8 +30,10 @@ fi
 which grub-install > /dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo "Error : grub2 must be installed on the running system"
-  echo "If you don't have grub2, use the install script boot/bootinst.sh"
-  exit 2
+  echo "The install script ‘boot/bootinsh.sh’ will be used instead."
+  echo "grub2 will be installed on the first USB boot and then a reboot will occur".
+  ./bootinst.sh
+  exit $?
 fi
 MNTDIR=$(echo $MNTDIR|sed 's:/$::')
 if [ ! -f "$ISO" -o ! -d "$MNTDIR" ]; then
@@ -68,5 +71,7 @@ T=$(mktemp -d)
 trap "umount $T; rm -rf $T" INT TERM EXIT
 grub-install --root-directory=$MNTDIR $DEVROOT || exit 5
 mount -o loop $ISO $T || exit 3
-#cp -rv $T/* $MNTDIR/ || exit 4
+cp -rv $T/* $MNTDIR/ || exit 4
+umount $T
+rm -rf $T
 exit 0

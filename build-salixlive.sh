@@ -350,16 +350,18 @@ cp /usr/lib/grub/i386-pc/boot.img boot/grub/
 cp -ar ${startdir}/livegrub2/build/* .
 find . -type d -name '.svn' | xargs -i@ rm -rf @
 cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
-# patch the syslinux.cfg file for installing grub2 on USB if neeeded
+# patch the bootinst.bat file Salixlive
 sed -i -e "s/Slax/${DISTRO}live/" boot/bootinst.bat
-sed -i -e "s/Slax/${DISTRO}live/" boot/bootinst.sh
-sed -i -e 's/ rw$/\0 grub2=install nosplash 2/' boot/syslinux/syslinux.cfg
 # add the unix script for installing grub2 on USB too
 echo3 "Adding install-on-USB"
 cp $startdir/install-on-USB boot/
 # add our bootinst.sh
 echo3 "Adding bootinst.sh"
 cp $startdir/bootinst.sh boot/
+# add our syslinux 32 and 64 bits
+echo3 "Adding syslinux 32 and 64 bits"
+rm -r boot/syslinux
+cp -r $startdir/syslinux boot/
 # add the standard kernel
 echo3 "Adding the standard kernel too"
 mkdir -p packages/std-kernel

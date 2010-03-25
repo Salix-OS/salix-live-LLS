@@ -2,7 +2,7 @@
 # Copyright (C) 2010 - Cyrille Pontvieux <jrd@enialis.net>
 # This file is distributed under the same license as the create-slxsave-xfs package.
 # George Vlahavas <vlahavas@gmail.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: create-slxsave-xfs 0.1\n"
@@ -38,19 +38,8 @@ msgstr "Μόνιμες αλλαγές"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:54
 #, sh-format
-msgid ""
-"If you wish, you can save any of your work or modification performed while "
-"in a LiveCD session.\\n\\nTo do this however, you must first create a "
-"special \"persistent file\" which will have a pre-decided fixed-size and "
-"will be formatted as a linux file system.\\n\\nOnce this file is created, "
-"simply reboot the LiveCD for your changes to become persistent from then on."
-msgstr ""
-"Αν το επιθυμείτε, μπορείτε να αποθηκεύσετε τις αλλαγές που πραγματοποιείτε "
-"σε μια συνεδρια live.\\n\\nΓια να το κάνετε αυτό, πρέπει αρχικά να "
-"δημιουργήσετε ένα ειδικό \"μόνιμο αρχείο\" το οποίο θα έχει ένα "
-"προκαθορισμένο, σταθερό μέγεθος και θα διαμορφωθεί ως σύστημα αρχείων linux."
-"\\nΌταν αυτό δημιουργηθεί, απλά επανεκκινήστε το LiveCD και οι αλλαγές που "
-"θα πραγματοποιήσετε από την επόμενη συνεδρία θα γίνουν μόνιμες."
+msgid "If you wish, you can save any of your work or modification performed while in a LiveCD session.\\n\\nTo do this however, you must first create a special \"persistent file\" which will have a pre-decided fixed-size and will be formatted as a linux file system.\\n\\nOnce this file is created, simply reboot the LiveCD for your changes to become persistent from then on."
+msgstr "Αν το επιθυμείτε, μπορείτε να αποθηκεύσετε τις αλλαγές που πραγματοποιείτε σε μια συνεδρια live.\\n\\nΓια να το κάνετε αυτό, πρέπει αρχικά να δημιουργήσετε ένα ειδικό \"μόνιμο αρχείο\" το οποίο θα έχει ένα προκαθορισμένο, σταθερό μέγεθος και θα διαμορφωθεί ως σύστημα αρχείων linux.\\nΌταν αυτό δημιουργηθεί, απλά επανεκκινήστε το LiveCD και οι αλλαγές που θα πραγματοποιήσετε από την επόμενη συνεδρία θα γίνουν μόνιμες."
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:57
 #, sh-format
@@ -79,12 +68,8 @@ msgstr "Επιλογή μεγέθους"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:80
 #, sh-format
-msgid ""
-"Choose the size in megabytes (maximum $MAXSIZE) for persistent file on "
-"$MOUNTPOINT:"
-msgstr ""
-"Επιλογή του μεγέθους σε MB (μέγιστο $MAXSIZE) για το διαρκές αρχείο στο "
-"$MOUNTPOINT:"
+msgid "Choose the size in megabytes (maximum $MAXSIZE) for persistent file on $MOUNTPOINT:"
+msgstr "Επιλογή του μεγέθους σε MB (μέγιστο $MAXSIZE) για το διαρκές αρχείο στο $MOUNTPOINT:"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:89
 #: ../root/usr/sbin/create-slxsave-xfs-gui:114
@@ -109,9 +94,8 @@ msgstr "Το slxsave.xfs ($SIZE MB) δεν μπορεί να δημιουργη�
 
 #: persistence-wizard.desktop.in.h:1 persistence-wizard-kde.desktop.in.h:1
 msgid "Create a slxsave.xfs file in order to persist changes in the live env."
-msgstr ""
+msgstr "Δημιουργήστε ένα αρχείο slxsave.xfs ώστε να γίνονται μόνιμες οι αλλαγές που πραγματοποιείτε στο live περιβάλλον"
 
 #: persistence-wizard.desktop.in.h:2 persistence-wizard-kde.desktop.in.h:2
-#, fuzzy
 msgid "Persistence Wizard"
-msgstr "Μόνιμες αλλαγές"
+msgstr "Οδηγός μόνιμων αλλαγών"

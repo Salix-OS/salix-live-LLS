@@ -3,7 +3,7 @@
 # Copyright (C) 2010 Cyrille Pontvieux
 # This file is distributed under the same license as the create-slxsave-xfs package.
 # Cyrille Pontvieux <jrd@enialis.net>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
@@ -27,8 +27,7 @@ msgstr "ERREUR : Vous devez être root pour que ça s'exécute"
 #: ../root/usr/sbin/create-slxsave-xfs-gui:38
 #, sh-format
 msgid "ERROR: zenity must be installed and in your PATH to run this"
-msgstr ""
-"ERREUR : zenity doit être installé et dans votre PATH pour que ça s'exécute"
+msgstr "ERREUR : zenity doit être installé et dans votre PATH pour que ça s'exécute"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:43
 #, sh-format
@@ -42,20 +41,8 @@ msgstr "Changements persistants"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:54
 #, sh-format
-msgid ""
-"If you wish, you can save any of your work or modification performed while "
-"in a LiveCD session.\\n\\nTo do this however, you must first create a "
-"special \"persistent file\" which will have a pre-decided fixed-size and "
-"will be formatted as a linux file system.\\n\\nOnce this file is created, "
-"simply reboot the LiveCD for your changes to become persistent from then on."
-msgstr ""
-"Si vous le désirez, vous pouvez sauvegarder votre travail ou les "
-"modifications que vous avez apporté à l'environnement de votre session "
-"LiveCD.\\n\\nPour ceci, vous devez auparavant créer un \"fichier de "
-"persistance\" spécial qui aura une taille fixe pré-décidée et qui sera "
-"formaté avec un système de fichiers Linux.\\n\\nUne fois ce fichier créé, il "
-"suffira de redémarrer le LiveCD pour que tous vos changements ultérieurs "
-"soient sauvegardés."
+msgid "If you wish, you can save any of your work or modification performed while in a LiveCD session.\\n\\nTo do this however, you must first create a special \"persistent file\" which will have a pre-decided fixed-size and will be formatted as a linux file system.\\n\\nOnce this file is created, simply reboot the LiveCD for your changes to become persistent from then on."
+msgstr "Si vous le désirez, vous pouvez sauvegarder votre travail ou les modifications que vous avez apporté à l'environnement de votre session LiveCD.\\n\\nPour ceci, vous devez auparavant créer un \"fichier de persistance\" spécial qui aura une taille fixe pré-décidée et qui sera formaté avec un système de fichiers Linux.\\n\\nUne fois ce fichier créé, il suffira de redémarrer le LiveCD pour que tous vos changements ultérieurs soient sauvegardés."
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:57
 #, sh-format
@@ -84,12 +71,8 @@ msgstr "Sélection de la taille"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:80
 #, sh-format
-msgid ""
-"Choose the size in megabytes (maximum $MAXSIZE) for persistent file on "
-"$MOUNTPOINT:"
-msgstr ""
-"Choisissez la taille en mégaoctets (maximum $MAXSIZE) pour le fichier "
-"persistent sur $MOUNTPOINT :"
+msgid "Choose the size in megabytes (maximum $MAXSIZE) for persistent file on $MOUNTPOINT:"
+msgstr "Choisissez la taille en mégaoctets (maximum $MAXSIZE) pour le fichier persistent sur $MOUNTPOINT :"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:89
 #: ../root/usr/sbin/create-slxsave-xfs-gui:114
@@ -105,20 +88,17 @@ msgstr "La taille choisie est trop grande ($SIZE > $MAXSIZE)"
 #: ../root/usr/sbin/create-slxsave-xfs-gui:109
 #, sh-format
 msgid "slxsave.xfs ($SIZE MB) correctly created in $MOUNTPOINT"
-msgstr ""
-"Le fichier slxsave.xfs ($SIZE Mo) a correctement été créé dans $MOUNTPOINT"
+msgstr "Le fichier slxsave.xfs ($SIZE Mo) a correctement été créé dans $MOUNTPOINT"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:117
 #, sh-format
 msgid "slxsave.xfs ($SIZE MB) cannot be created in $MOUNTPOINT"
-msgstr ""
-"Le fichier slxsave.xfs ($SIZE Mo) n'a pas pu être créé dans $MOUNTPOINT"
+msgstr "Le fichier slxsave.xfs ($SIZE Mo) n'a pas pu être créé dans $MOUNTPOINT"
 
 #: persistence-wizard.desktop.in.h:1 persistence-wizard-kde.desktop.in.h:1
 msgid "Create a slxsave.xfs file in order to persist changes in the live env."
-msgstr ""
+msgstr "Crée un fichier 'slxsave.xfs' pour persister les changements de l'environnement Live."
 
 #: persistence-wizard.desktop.in.h:2 persistence-wizard-kde.desktop.in.h:2
-#, fuzzy
 msgid "Persistence Wizard"
-msgstr "Changements persistants"
+msgstr "Assistant Persistance"

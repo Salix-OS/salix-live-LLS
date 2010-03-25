@@ -296,6 +296,7 @@ xorg-cf-files
 xorg-server
 xorg-server-xnest
 xorg-server-xvfb
+xorg-server-xephyr
 xpr
 xprehashprinterlist
 xprop

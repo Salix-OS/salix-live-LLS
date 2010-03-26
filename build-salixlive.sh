@@ -367,8 +367,8 @@ echo3 "Adding the standard kernel too"
 mkdir -p packages/std-kernel
 cp $startdir/std-kernel/*.txz packages/std-kernel/
 # add the Salix Live Guide
-echo3 "Adding Salix Live Guide"
-cp $startdir/SalixLiveGuide*.pdf ./
+echo3 "Adding Salix StartupGuide"
+cp $startdir/SalixStartupGuide*.pdf ./
 # add the packages lists
 echo3 "Adding packages lists"
 cp $startdir/packages-* packages/

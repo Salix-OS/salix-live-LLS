@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Salix Live Guide
-Exec=/usr/bin/salixliveguide.sh
+Name=Salix Startup Guide
+Exec=/usr/bin/salixstartupguide.sh
 Icon=salixlive-logo
 Terminal=false
 Type=Application

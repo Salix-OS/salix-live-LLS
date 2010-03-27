@@ -22,17 +22,17 @@ msgstr ""
 #: ../root/usr/sbin/create-slxsave-xfs-gui:33
 #, sh-format
 msgid "ERROR: You need to be root to run this"
-msgstr "ERREUR : Vous devez être root pour que ça s'exécute"
+msgstr "ERREUR : Vous devez être root afin d'exécuter ce programme"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:38
 #, sh-format
 msgid "ERROR: zenity must be installed and in your PATH to run this"
-msgstr "ERREUR : zenity doit être installé et dans votre PATH pour que ça s'exécute"
+msgstr "ERREUR : zenity doit être installé et dans votre PATH afin d'exécuter ce programme"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:43
 #, sh-format
 msgid "ERROR: xfsprogs must be installed to run this"
-msgstr "ERREUR : xfsprogs doit êtres installé pour que ça s'exécute"
+msgstr "ERREUR : xfsprogs doit êtres installé afin d'exécuter ce programme"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:52
 #, sh-format
@@ -42,7 +42,7 @@ msgstr "Changements persistants"
 #: ../root/usr/sbin/create-slxsave-xfs-gui:54
 #, sh-format
 msgid "If you wish, you can save any of your work or modification performed while in a LiveCD session.\\n\\nTo do this however, you must first create a special \"persistent file\" which will have a pre-decided fixed-size and will be formatted as a linux file system.\\n\\nOnce this file is created, simply reboot the LiveCD for your changes to become persistent from then on."
-msgstr "Si vous le désirez, vous pouvez sauvegarder votre travail ou les modifications que vous avez apporté à l'environnement de votre session LiveCD.\\n\\nPour ceci, vous devez auparavant créer un \"fichier de persistance\" spécial qui aura une taille fixe pré-décidée et qui sera formaté avec un système de fichiers Linux.\\n\\nUne fois ce fichier créé, il suffira de redémarrer le LiveCD pour que tous vos changements ultérieurs soient sauvegardés."
+msgstr "Si vous le désirez, vous pouvez sauvegarder votre travail ou les modifications que vous avez apportées à l'environnement de votre session LiveCD.\\n\\nPour ceci, vous devez auparavant créer un \"fichier de persistance\" spécial qui aura une taille fixe pré-décidée et qui sera formaté avec un système de fichiers Linux.\\n\\nUne fois ce fichier créé, il suffira de redémarrer le LiveCD pour que tous vos changements ultérieurs soient sauvegardés."
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:57
 #, sh-format

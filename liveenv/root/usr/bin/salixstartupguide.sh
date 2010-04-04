@@ -1,9 +1,10 @@
 #!/bin/sh
 L=$(echo $LANG|sed 's/\..*//')
-if [ ! -e /usr/doc/salixstartupguide/SalixStartupGuide-$L.pdf ]; then
+SEARCHPATH=/mnt/live$(cat /mnt/live/bootdev|gawk '{print $3}')/docs
+if [ ! -e $SEARCHPATH/SalixStartupGuide-$L.pdf ]; then
   L=$(echo $L|sed 's/_.*//')
-  if [ ! -e /usr/doc/salixstartupguide/SalixStartupGuide-$L.pdf ]; then
+  if [ ! -e $SEARCHPATH/SalixStartupGuide-$L.pdf ]; then
     L=en
   fi
 fi
-xdg-open /usr/doc/salixstartupguide/SalixStartupGuide-$L.pdf
+xdg-open $SEARCHPATH/SalixStartupGuide-$L.pdf

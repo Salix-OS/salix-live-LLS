@@ -16,8 +16,6 @@ tar xf $GPARTED usr/share/applications
 tar xf $SALIXLIVEINSTALLER usr/share/applications
 cp usr/share/applications/*.desktop root/home/one/Desktop/
 rm -rf usr
-mkdir -p root/usr/doc/salixstartupguide
-cp ../SalixStartupGuide*.pdf root/usr/doc/salixstartupguide/
 cp -ar root/* $T/
 cd $T
 find . -type d -name '.svn' | xargs -i@ rm -rf @

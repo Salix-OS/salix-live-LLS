@@ -21,7 +21,7 @@ export KVER=$(uname -r)
 export DISTRO=salix
 export VER=13.0
 #export RLZ=$(date +%Y%m%d)
-export RLZ=rc3
+export RLZ=final
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.15.2
@@ -368,7 +368,8 @@ mkdir -p packages/std-kernel
 cp $startdir/std-kernel/*.txz packages/std-kernel/
 # add the Salix Live Guide
 echo3 "Adding Salix StartupGuide"
-cp $startdir/SalixStartupGuide*.pdf ./
+mkdir -p docs
+cp $startdir/SalixStartupGuide*.pdf docs/
 # add the packages lists
 echo3 "Adding packages lists"
 cp $startdir/packages-* packages/

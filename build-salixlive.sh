@@ -21,7 +21,7 @@ export KVER=$(uname -r)
 export DISTRO=salix
 export VER=13.0
 #export RLZ=$(date +%Y%m%d)
-export RLZ=final
+export RLZ=final3
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.15.2
@@ -267,6 +267,11 @@ patch -p2 < cleanup.patch
 sed -i -e 's:.*\. \./install.*:echo "":' -e 's@:/usr/sbin:@:/sbin:/usr/sbin:@' -e 's/^read NEWLIVECDNAME/NEWLIVECDNAME=""/' -e 's/^read NEWKERNEL/NEWKERNEL=""/' -e 's/^read junk//' build
 # remove the need to build aufs as a module for the initrd
 sed -i 's:^rcopy \(.*/aufs .*\):rcopy_ex \1:' initrd/initrd_create
+# increase the size of the initrd
+sed -i 's:6666:8000:' .config
+sed -i 's:6666:8000:' cd-root/boot/dos/config
+sed -i 's:6666:8000:' cd-root/boot/syslinux/syslinux.cfg
+sed -i 's:6666:8000:' cd-root/boot/isolinux/isolinux.cfg
 echo3 "Install BusyBox..."
 rm -rf initrd/rootfs/bin/{busybox,eject}
 cp -rf ../busybox-$BBVER/_install/{bin,sbin}/* initrd/rootfs/bin/
@@ -278,6 +283,8 @@ export ROOT=$PWD/initrd/rootfs
 installpkg $startdir/PKGS/splashy-*.txz
 installpkg $startdir/PKGS/DirectFB-*.txz
 installpkg $startdir/PKGS/libpng-*.txz
+mkdir -p initrd/rootfs/usr/share/splashy/themes
+cp -r $startdir/liveenv/root/usr/share/splashy/themes/* initrd/rootfs/usr/share/splashy/themes/
 export ROOT=$ROOT2
 unset ROOT2
 rm -rf initrd/rootfs/var \

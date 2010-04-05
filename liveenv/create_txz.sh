@@ -51,6 +51,7 @@ user_pref("browser.rights.3.shown", true);
 user_pref("browser.startup.homepage_override.mstone", "rv:$FIREFOXMILESTONE");
 
 EOF
+chown -R 1000:100 home/one/.mozilla
 /sbin/makepkg -l y -c n "$HERE/../PKGS/liveenv-$VER-noarch-$RLZ.txz"
 cd "$HERE"
 rm -rf $T

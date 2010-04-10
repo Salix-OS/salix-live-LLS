@@ -21,14 +21,14 @@ export KVER=$(uname -r)
 export DISTRO=salix
 export VER=13.0
 #export RLZ=$(date +%Y%m%d)
-export RLZ=final
+export RLZ=
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.15.2
 export BBURL=http://busybox.net/downloads/busybox-$BBVER.tar.bz2
 export FUFSVER=0.4.2
 export FUFSURL=http://funionfs.apiou.org/file/funionfs-$FUFSVER.tar.gz
-export ISO_NAME=${DISTRO}live-$VER-$RLZ.iso
+export ISO_NAME=${DISTRO}live-$VER${RLZ:+-$RLZ}.iso
 export KERNELPKGNAME=kernelive
 echo3() {
   echo ''
@@ -257,7 +257,7 @@ sed -i -e "s/^LIVECDNAME=.*/LIVECDNAME=\"${DISTRO}live\"/ ; s@^ROOT=.*@ROOT=$ROO
 sed -i -e "s/CDLABEL=.*/CDLABEL=${DISTRO}live/" cd-root/linux/make_iso.*
 # Live CD name on boot
 cp $startdir/liblinuxlive.patch $startdir/linuxrc.patch $startdir/cleanup.patch .
-sed -i -e "s/__LIVECDNAME__/$DISTRO Live v.$VER-$RLZ/" linuxrc.patch
+sed -i -e "s/__LIVECDNAME__/$DISTRO Live v.$VER${RLZ:+-$RLZ}/" linuxrc.patch
 # patch liblinuxlive, linuxrc and cleanup in the initrd.
 patch -p2 < liblinuxlive.patch
 cp initrd/liblinuxlive tools/ $startdir/src/$lastmodule/usr/lib/
@@ -382,6 +382,7 @@ echo3 "Adding packages lists"
 cp $startdir/packages-* packages/
 # create the iso
 echo3 "Creating ISO..."
+find . -name '.svn' -exec rm -rf '{}' \; 2>/dev/null
 mkisofs -b boot/grub/grub_eltorito \
 	-no-emul-boot -boot-load-size 4 -boot-info-table \
 	-o "$startdir/$ISO_NAME" -r -J .

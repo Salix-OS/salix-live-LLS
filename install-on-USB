@@ -27,7 +27,8 @@ if [ "$UID" -ne "0" ]; then
   echo "Error : you must run this script as root"
   exit 2
 fi
-which grub-install > /dev/null 2>&1
+which grub-install > /dev/null 2>&1 \
+    && grub-install -v | grep -Gq 'GNU GRUB 1\.9[7-9]\{1\}' > /dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo "Error : grub2 must be installed on the running system"
   echo "The install script ‘boot/bootinsh.sh’ will be used instead."
@@ -68,10 +69,11 @@ if [ $? -eq 0 ]; then
   fi
 fi
 T=$(mktemp -d)
-trap "umount $T; rm -rf $T" INT TERM EXIT
+trap "umount $T >/dev/null 2>&1; rm -rf $T" INT TERM EXIT
 grub-install --root-directory=$MNTDIR $DEVROOT || exit 5
 mount -o loop $ISO $T || exit 3
 cp -rv $T/* $MNTDIR/ || exit 4
-umount $T
+trap "true" INT TERM EXIT
+umount $T >/dev/null 2>&1
 rm -rf $T
 exit 0

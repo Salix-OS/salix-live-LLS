@@ -6,7 +6,8 @@ TARGET=""
 MBR=""
 
 # If grub2 is available, tell that it should be used instead.
-which grub-install > /dev/null 2>&1
+which grub-install > /dev/null 2>&1 \
+    && grub-install -v | grep -Gq 'GNU GRUB 1\.9[7-9]\{1\}' > /dev/null 2>&1
 if [ $? -eq 0 ]; then
   echo "WARNING: grub2 is available on this running system."
   echo "You should preferably run /install-on-USB script instead."

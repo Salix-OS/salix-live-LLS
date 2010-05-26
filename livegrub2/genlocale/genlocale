@@ -1,0 +1,197 @@
+#! /usr/bin/env python
+# -*- coding: iso-8859-15 -*-
+"""
+Use this script to generate the translations and the language and
+keyboard selection menu.
+It should be called like this:
+./genlocale <localecfgdir> <cfgdir>
+
+Usually such values should be fine:
+localecfgdir = <someprefix>/boot/grub/locale
+cfgdir = <someprefix>/boot/grub
+
+IMPORTANT! Always call it from the directory it's stored in. Otherwise
+we're unable to find some needed files as we use cwd.
+"""
+
+import sys, os
+import locale
+import gettext
+
+projectname = "genlocale"
+cwd = os.getcwd()
+localedir = os.path.join(cwd, "locale")  # where tranlsations are stored
+
+# Here we "parse" commandline arguments
+localecfgdir = sys.argv[1];  # where to store the <locale>.cfg files
+cfgdir = sys.argv[2];  # where to store all other .cfg files
+
+kbtpl = os.path.join(cwd, 'keyboard.cfg.tpl')
+langtpl = os.path.join(cwd, 'lang.cfg.tpl')
+kbcfg = os.path.join(cfgdir, 'keyboard.cfg')
+langcfg = os.path.join(cfgdir, 'lang.cfg')
+
+# Initialize gettext
+gettext.bindtextdomain(projectname, localedir)
+gettext.textdomain(projectname)
+_ = gettext.gettext
+
+
+################################
+################################
+##      EDIT BELOW HERE       ##
+################################
+
+# this list defines the available languages, which should be used
+# to generate the menu
+langavailable = [
+    # locale, name, nativename, keyboard layout
+    ['cs_CZ.utf8', 'Czech', None, ['cz']],
+    ['da_DK.utf8', 'Danish', 'Dansk', ['dk']],
+    ['de_DE.utf8', 'German', 'Deutsch', ['de']],
+    ['en_US', 'English (US)', None, ['us']],
+    ['en_GB.utf8', 'English (GB)', None, ['uk']],
+    ['es_ES.utf8', 'Spanish', 'Español', ['es']],
+    ['fr_FR.utf8', 'French', 'Français', ['fr-latin9']],
+    ['el_GR.utf8', 'Greek', None, ['gr']],
+    ['it_IT.utf8', 'Italian', 'Italiano', ['it']],
+    ['ja_JP.utf8', 'Japanese', None, ['jp106']],
+    ['lt_LT.utf8', 'Lithuanian', 'Lietuviy', ['lt']],
+    ['hu_HU.utf8', 'Hungarian', 'Magyar', ['hu']],
+    ['nl_NL.utf8', 'Dutch', 'Nederlands', ['nl']],
+    ['pl_PL.utf8', 'Polish', 'Polski', ['pl']],
+    ['pt_PT.utf8', 'Portuguese', 'Português', ['pt-latin1']],
+    ['ru_RU.utf8', 'Russian', 'Русский', ['ru_win']],
+    ['tr_TR.utf8', 'Turkish', 'Türkçe', ['trq']],
+]
+
+# We need to ensure gettext is called on those strings at call time and
+# not earlier. Otherwise we couldn't iterate over the needed/available
+# translations
+def strings():
+    return  [
+                ("Lstart", _("Start Salix Live")),
+                ("Lmemtest", _("Memory Test")),
+                ("Lchangelang", _("Change language")),
+                ("Lchangekb", _("Change keyboard layout")),
+                ("Lcheatcode", _("Change boot options")),
+                ("Lrunlevel3", _("Boot to runlevel '3' (text mode)")),
+                ("Lrunlevel4", _("Boot to runlevel '4' (graphical login) (default)")),
+                ("Lentoram", _("Enable 'Copy everything to RAM'")),
+                ("Ldistoram", _("Disable 'Copy everything to RAM' (default)")),
+                ("Lennumlock", _("Enable numlock on boot")),
+                ("Ldisnumlock", _("Disable numlock on boot (default)")),
+                ("Lensynaptics", _("Enable synaptics fdi (sometimes unreliable)")),
+                ("Ldissynaptics", _("Disable synaptics fdi (reliable) (default)")),
+                ("Lback", _("Return to boot menu")),
+            ]
+
+kbmenuentry = """
+menuentry "%s" {
+  set kb="%s"
+  set kbnum="%d"
+  nextconfig()
+}
+"""
+
+langmenuentry = """
+menuentry "%s" {
+  set locale="%s"
+  set kb="%s"
+  set kbnum="%d"
+  nextconfig()
+}
+"""
+
+# which field to display as name
+displayname = 'nativename'
+
+# the sort order used by getlangavail, i.e. by the language menu
+langsortkey = displayname
+
+# put here the locale of the lang to set as default
+defaultlang = 'en_US'
+
+##################################
+##       EDIT ABOVE HERE        ##
+##################################
+##################################
+
+
+langdict = [ 'locale', 'name', 'nativename', 'kb' ]
+
+# returns a sorted list of dictionaries describing the available langs
+# If nativename is empty it changes it to equal name.
+def getlangavail():
+    temp = [dict(zip(langdict, lang)) for lang in langavailable]
+    for lang in temp:
+            if lang['nativename'] == None:
+                lang['nativename'] = lang['name']
+    return sorted(temp, key=lambda lang: lang[langsortkey])
+
+# returns a sorted dict of all available kb layouts
+def getkbs():
+    tempkbs = []
+    for lang in getlangavail():
+        for kb in lang['kb']:
+            tempkbs.append(kb)
+    tempkbs = sorted(set(tempkbs)) # ensure we have no duplicates
+    return dict(enumerate(tempkbs))
+
+# This is the inverse dictionary for a given dict
+# i.e. 'de' -> 0 instead of 0 -> 'de'
+# In map each value needs to be unique
+def inversedict(map):
+    return dict((v, k) for k, v in map.iteritems())
+
+# Generates the <locale>.cfg files containing the translations.
+def genlocalecfg(targetdir, locale):
+    os.environ['LANGUAGE'] = locale # force use of another locae
+    localefile = os.path.join(targetdir, locale + '.cfg')
+    with open(localefile, 'w') as f:
+        for string in strings():
+            f.write("set " + string[0] + "=\"" + string[1] +"\"\n")
+    f.close()
+
+# Generates the file cfg using tpl as header and kbmenuentry as
+# template for each keyboard layout in kbs.
+def genkbcfg(tpl, cfg, kbs):
+    with open(tpl, 'r') as ftpl:
+        with open(cfg, 'w') as fcfg:
+            fcfg.write(ftpl.read())
+            for k, v in kbs.iteritems():
+                fcfg.write(kbmenuentry % (v, v, k))
+
+def genlangcfg(tpl, cfg, langs, invkbs, deflangnum):
+    with open(tpl, 'r') as ftpl:
+        with open(cfg, 'w') as fcfg:
+            fcfg.write(ftpl.read())
+            fcfg.write('\nset default=%d\n' % deflangnum)
+            for l in langs:
+                name = l['nativename']
+                loc = l['locale']
+                kb = l['kb'][0]  # first element is the default
+                kbnum = invkbs[kb]  # look the position up
+                fcfg.write(langmenuentry % (name, loc, kb, kbnum))
+
+def main():
+    for dir in [localecfgdir, cfgdir]:
+        if not os.path.isdir(dir):
+            os.makedirs(dir)
+
+    kbs = getkbs()
+    invkbs = inversedict(getkbs())
+    langs = getlangavail()
+    invlanglocale = inversedict(
+                        dict(enumerate(
+                                [lang['locale'] for lang in langs])))
+    deflangnum = invlanglocale[defaultlang]
+
+    # now let's create our locale files, etc for each locale
+    for lang in langs:
+        genlocalecfg(localecfgdir, lang['locale'])
+
+    genkbcfg(kbtpl, kbcfg, kbs)
+    genlangcfg(langtpl, langcfg, langs, invkbs, deflangnum)
+
+main()

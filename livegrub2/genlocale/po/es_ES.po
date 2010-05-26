@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: genlocale\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-26 15:52+0200\n"
+"PO-Revision-Date: 2010-05-26 01:37+0100\n"
+"Last-Translator: Andreas Born <futur{{DOT}}andy{{AT}}googlemail{{DOT}}com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: genlocale:52 genlocale:63
+#, fuzzy
+msgid "Start Salix Live"
+msgstr "Iniciar Salix Live"
+
+#: genlocale:53 genlocale:64
+#, fuzzy
+msgid "Memory Test"
+msgstr "Comprobar la memoria"
+
+#: genlocale:54 genlocale:65
+#, fuzzy
+msgid "Change language"
+msgstr "Cambiar el idioma"
+
+#: genlocale:55 genlocale:66
+#, fuzzy
+msgid "Change keyboard layout"
+msgstr "Cambiar la distribución del teclado"
+
+#: genlocale:56 genlocale:67
+#, fuzzy
+msgid "Change boot options"
+msgstr "Cambiar las opciones de arranque"
+
+#: genlocale:57 genlocale:68
+#, fuzzy
+msgid "Boot to runlevel '3' (text mode)"
+msgstr "Arrancar en runlevel '3' (modo texto)"
+
+#: genlocale:58 genlocale:69
+#, fuzzy
+msgid "Boot to runlevel '4' (graphical login) (default)"
+msgstr "Arrancar en runlevel '4' (inicio de sesión gráfico) (por defecto)"
+
+#: genlocale:59 genlocale:70
+#, fuzzy
+msgid "Enable 'Copy everything to RAM'"
+msgstr "Habilitar 'Copiar todo a RAM'"
+
+#: genlocale:60 genlocale:71
+#, fuzzy
+msgid "Disable 'Copy everything to RAM' (default)"
+msgstr "Deshabilitar 'Copiar todo a RAM' (por defecto)"
+
+#: genlocale:61 genlocale:72
+#, fuzzy
+msgid "Enable numlock on boot"
+msgstr "Habilitar BloqNum en el arranque"
+
+#: genlocale:62 genlocale:73
+#, fuzzy
+msgid "Disable numlock on boot (default)"
+msgstr "Deshabilitar BloqNum en el arranque (por defecto)"
+
+#: genlocale:63 genlocale:74
+#, fuzzy
+msgid "Enable synaptics fdi (sometimes unreliable)"
+msgstr "Habilitar synaptics fdi (no confiable a veces)"
+
+#: genlocale:64 genlocale:75
+#, fuzzy
+msgid "Disable synaptics fdi (reliable) (default)"
+msgstr "Deshabilitar synaptics fdi (confiable) (por defecto)"
+
+#: genlocale:65 genlocale:76
+#, fuzzy
+msgid "Return to boot menu"
+msgstr "Volver al menú principal"

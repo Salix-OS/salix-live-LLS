@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: genlocale\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-26 15:52+0200\n"
+"PO-Revision-Date: 2010-05-26 01:37+0100\n"
+"Last-Translator: Andreas Born <futur{{DOT}}andy{{AT}}googlemail{{DOT}}com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: genlocale:52 genlocale:63
+#, fuzzy
+msgid "Start Salix Live"
+msgstr "Uruchom Salix Live"
+
+#: genlocale:53 genlocale:64
+#, fuzzy
+msgid "Memory Test"
+msgstr "Test pamieci"
+
+#: genlocale:54 genlocale:65
+#, fuzzy
+msgid "Change language"
+msgstr "Zmien jezyk"
+
+#: genlocale:55 genlocale:66
+msgid "Change keyboard layout"
+msgstr ""
+
+#: genlocale:56 genlocale:67
+msgid "Change boot options"
+msgstr ""
+
+#: genlocale:57 genlocale:68
+msgid "Boot to runlevel '3' (text mode)"
+msgstr ""
+
+#: genlocale:58 genlocale:69
+msgid "Boot to runlevel '4' (graphical login) (default)"
+msgstr ""
+
+#: genlocale:59 genlocale:70
+msgid "Enable 'Copy everything to RAM'"
+msgstr ""
+
+#: genlocale:60 genlocale:71
+msgid "Disable 'Copy everything to RAM' (default)"
+msgstr ""
+
+#: genlocale:61 genlocale:72
+msgid "Enable numlock on boot"
+msgstr ""
+
+#: genlocale:62 genlocale:73
+msgid "Disable numlock on boot (default)"
+msgstr ""
+
+#: genlocale:63 genlocale:74
+msgid "Enable synaptics fdi (sometimes unreliable)"
+msgstr ""
+
+#: genlocale:64 genlocale:75
+msgid "Disable synaptics fdi (reliable) (default)"
+msgstr ""
+
+#: genlocale:65 genlocale:76
+msgid "Return to boot menu"
+msgstr ""

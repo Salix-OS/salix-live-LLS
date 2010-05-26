@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: genlocale\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-26 15:52+0200\n"
+"PO-Revision-Date: 2010-05-26 01:37+0100\n"
+"Last-Translator: Andreas Born <futur{{DOT}}andy{{AT}}googlemail{{DOT}}com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: genlocale:52 genlocale:63
+#, fuzzy
+msgid "Start Salix Live"
+msgstr "Έναρξη του Salix Live"
+
+#: genlocale:53 genlocale:64
+#, fuzzy
+msgid "Memory Test"
+msgstr "Έλεγχος μνήμης"
+
+#: genlocale:54 genlocale:65
+#, fuzzy
+msgid "Change language"
+msgstr "Αλλαγή γλώσσας"
+
+#: genlocale:55 genlocale:66
+#, fuzzy
+msgid "Change keyboard layout"
+msgstr "Αλλαγή διάταξης πληκτρολογίου"
+
+#: genlocale:56 genlocale:67
+#, fuzzy
+msgid "Change boot options"
+msgstr "Αλλαγή επιλογών εκκίνησης"
+
+#: genlocale:57 genlocale:68
+#, fuzzy
+msgid "Boot to runlevel '3' (text mode)"
+msgstr "Έναρξη σε runlevel '3' (τερματικό)"
+
+#: genlocale:58 genlocale:69
+#, fuzzy
+msgid "Boot to runlevel '4' (graphical login) (default)"
+msgstr "Έναρξη σε runlevel '4' (γραφικό περιβάλλον) (εξ ορισμού)"
+
+#: genlocale:59 genlocale:70
+#, fuzzy
+msgid "Enable 'Copy everything to RAM'"
+msgstr "Ενεργοποίηση αντιγραφής όλων στη μνήμη RAM"
+
+#: genlocale:60 genlocale:71
+#, fuzzy
+msgid "Disable 'Copy everything to RAM' (default)"
+msgstr "Απενεργοποίηση αντιγραφής όλων στη μνήμη RAM (εξ ορισμού)"
+
+#: genlocale:61 genlocale:72
+#, fuzzy
+msgid "Enable numlock on boot"
+msgstr "Ενεργοποίηση του numlock κατά την έναρξη"
+
+#: genlocale:62 genlocale:73
+#, fuzzy
+msgid "Disable numlock on boot (default)"
+msgstr "Απενεργοποίηση του numlock κατά την έναρξη (εξ ορισμού)"
+
+#: genlocale:63 genlocale:74
+#, fuzzy
+msgid "Enable synaptics fdi (sometimes unreliable)"
+msgstr "Ενεργοποίηση του synaptics fdi (αναξιόπιστο μερικές φορές)"
+
+#: genlocale:64 genlocale:75
+#, fuzzy
+msgid "Disable synaptics fdi (reliable) (default)"
+msgstr "Απενεργοποίηση του synaptics fdi (αξιόπιστο) (εξ ορισμού)"
+
+#: genlocale:65 genlocale:76
+#, fuzzy
+msgid "Return to boot menu"
+msgstr "Επιστροφή στο μενού εκκίνησης"

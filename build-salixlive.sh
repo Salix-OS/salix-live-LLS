@@ -339,6 +339,15 @@ while read m; do
   fi
 done < $modules
 rm -f $modules
+# generate grub config
+echo3 "Generating Grub2 config..."
+cd $startdir/livegrub2/genlocale
+# compile mo files, create locale dir containg translations
+make install
+./genlocale \
+    $startdir/livegrub2/build/boot/grub/locale \
+    $startdir/livegrub2/build/boot/grub
+# now livegrub2/build/* should be ready for installation
 # add grub2 menu
 echo3 "Adding Grub2..."
 cd $startdir/src/iso

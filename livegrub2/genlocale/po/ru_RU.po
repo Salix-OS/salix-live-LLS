@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: genlocale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 15:52+0200\n"
+"POT-Creation-Date: 2010-05-26 22:54+0200\n"
 "PO-Revision-Date: 2010-05-26 01:37+0100\n"
 "Last-Translator: Andreas Born <futur{{DOT}}andy{{AT}}googlemail{{DOT}}com>\n"
 "Language-Team: \n"
@@ -15,72 +15,72 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: genlocale:52 genlocale:63
+#: genlocale:52 genlocale:63 genlocale:73
 #, fuzzy
 msgid "Start Salix Live"
 msgstr "Загрузить Salix Live"
 
-#: genlocale:53 genlocale:64
+#: genlocale:53 genlocale:64 genlocale:74
 #, fuzzy
 msgid "Memory Test"
 msgstr "Проверка оперативной памяти"
 
-#: genlocale:54 genlocale:65
+#: genlocale:54 genlocale:65 genlocale:75
 #, fuzzy
 msgid "Change language"
 msgstr "Изменить язык"
 
-#: genlocale:55 genlocale:66
+#: genlocale:55 genlocale:66 genlocale:76
 #, fuzzy
 msgid "Change keyboard layout"
 msgstr "Настройка клавиатуры"
 
-#: genlocale:56 genlocale:67
+#: genlocale:56 genlocale:67 genlocale:77
 #, fuzzy
 msgid "Change boot options"
 msgstr "Изменение варианта загрузки"
 
-#: genlocale:57 genlocale:68
+#: genlocale:57 genlocale:68 genlocale:78
 #, fuzzy
 msgid "Boot to runlevel '3' (text mode)"
 msgstr "Текстовая загрузка"
 
-#: genlocale:58 genlocale:69
+#: genlocale:58 genlocale:69 genlocale:79
 #, fuzzy
 msgid "Boot to runlevel '4' (graphical login) (default)"
 msgstr "Графическая загрузка"
 
-#: genlocale:59 genlocale:70
+#: genlocale:59 genlocale:70 genlocale:80
 #, fuzzy
 msgid "Enable 'Copy everything to RAM'"
 msgstr "Полная загрузка в оперативную память"
 
-#: genlocale:60 genlocale:71
+#: genlocale:60 genlocale:71 genlocale:81
 #, fuzzy
 msgid "Disable 'Copy everything to RAM' (default)"
 msgstr "Стандартная загрузка в память"
 
-#: genlocale:61 genlocale:72
+#: genlocale:61 genlocale:72 genlocale:82
 #, fuzzy
 msgid "Enable numlock on boot"
 msgstr "Запуск системы в консольном режиме"
 
-#: genlocale:62 genlocale:73
+#: genlocale:62 genlocale:73 genlocale:83
 #, fuzzy
 msgid "Disable numlock on boot (default)"
 msgstr "Запуск с графическим окружением"
 
-#: genlocale:63 genlocale:74
+#: genlocale:63 genlocale:74 genlocale:84
 #, fuzzy
 msgid "Enable synaptics fdi (sometimes unreliable)"
 msgstr "Запуск с сохранённой сессии (ненадёжно)"
 
-#: genlocale:64 genlocale:75
+#: genlocale:64 genlocale:75 genlocale:85
 #, fuzzy
 msgid "Disable synaptics fdi (reliable) (default)"
 msgstr "Запуск без сохранённой сессии (надёжно)"
 
-#: genlocale:65 genlocale:76
+#: genlocale:65 genlocale:76 genlocale:86
 #, fuzzy
 msgid "Return to boot menu"
 msgstr "Вернуться в меню загрузки"

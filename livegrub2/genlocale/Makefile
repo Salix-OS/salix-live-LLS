@@ -34,7 +34,7 @@ uninstall:
 	rm -f $(LOCALEDIR)/*/LC_MESSAGES/$(PACKAGE).mo
 	rmdir -p $(LOCALEDIR)/*/LC_MESSAGES/ 2>/dev/null || true
 
-updatepo:
+updatetrans:
 	touch $(POTFILE)
 	xgettext --from-code=utf-8 \
 		-j \
@@ -45,4 +45,4 @@ updatepo:
 		msgmerge -U $$i $(POTFILE); \
 	done
 
-.PHONY: clean uninstall installmo updatepo
+.PHONY: clean uninstall installmo updatetrans

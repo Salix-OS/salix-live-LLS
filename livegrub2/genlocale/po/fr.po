@@ -76,9 +76,11 @@ msgid "Enable synaptics fdi (sometimes unreliable)"
 msgstr "Retourner au menu de démarrage"
 
 #: genlocale:64 genlocale:75 genlocale:85
+#, fuzzy
 msgid "Disable synaptics fdi (reliable) (default)"
-msgstr ""
+msgstr "Désactiver le FDI synaptics/touchscreen (fiable) (défaut)"
 
 #: genlocale:65 genlocale:76 genlocale:86
+#, fuzzy
 msgid "Return to boot menu"
-msgstr ""
+msgstr "Retourner au menu de démarrage"

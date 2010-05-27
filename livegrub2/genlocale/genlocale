@@ -46,16 +46,16 @@ _ = gettext.gettext
 # to generate the menu
 langavailable = [
     # locale, name, nativename, keyboard layout
-    ['cs_CZ.utf8', 'Czech', None, ['cz']],
+    ['cs_CZ.utf8', 'Czech', 'Česky', ['cz']],
     ['da_DK.utf8', 'Danish', 'Dansk', ['dk']],
     ['de_DE.utf8', 'German', 'Deutsch', ['de']],
-    ['en_US', 'English (US)', None, ['us']],
+    ['en_US',      'English (US)', None, ['us']],
     ['en_GB.utf8', 'English (GB)', None, ['uk']],
     ['es_ES.utf8', 'Spanish', 'Español', ['es']],
     ['fr_FR.utf8', 'French', 'Français', ['fr-latin9']],
-    ['el_GR.utf8', 'Greek', None, ['gr']],
+    ['el_GR.utf8', 'Greek', 'Ελληνικά', ['gr']],
     ['it_IT.utf8', 'Italian', 'Italiano', ['it']],
-    ['ja_JP.utf8', 'Japanese', None, ['jp106']],
+    ['ja_JP.utf8', 'Japanese', '日本語', ['jp106']],
     ['lt_LT.utf8', 'Lithuanian', 'Lietuviy', ['lt']],
     ['hu_HU.utf8', 'Hungarian', 'Magyar', ['hu']],
     ['nl_NL.utf8', 'Dutch', 'Nederlands', ['nl']],

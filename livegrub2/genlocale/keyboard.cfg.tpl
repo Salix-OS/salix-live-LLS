@@ -1,4 +1,4 @@
-source ${prefix}/include.cfg
+source ${cfgprefix}/include.cfg
 initmenu()
 
 set default=${kbnum}
@@ -7,6 +7,6 @@ set default=${kbnum}
 function 'nextconfig()' {
   globalexports()
   cheatcodeexports()
-  configfile ${prefix}/boot.cfg
+  configfile ${cfgprefix}/boot.cfg
 }
 

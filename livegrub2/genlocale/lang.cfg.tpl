@@ -1,8 +1,8 @@
-source ${prefix}/include.cfg
+source ${cfgprefix}/include.cfg
 initmenu()
 
 # next config file to load
 function 'nextconfig()' {
   globalexports()
-  configfile ${prefix}/boot.cfg
+  configfile ${cfgprefix}/boot.cfg
 }

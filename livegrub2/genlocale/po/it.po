@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: genlocale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 22:54+0200\n"
+"POT-Creation-Date: 2010-05-27 22:25+0200\n"
 "PO-Revision-Date: 2010-05-26 01:37+0100\n"
 "Last-Translator: Andreas Born <futur{{DOT}}andy{{AT}}googlemail{{DOT}}com>\n"
 "Language-Team: \n"
@@ -26,50 +26,49 @@ msgid "Memory Test"
 msgstr "Test della memoria"
 
 #: genlocale:54 genlocale:65 genlocale:75
-#, fuzzy
 msgid "Change language"
-msgstr "Ritorni a menu principale"
+msgstr "Cambia lingua"
 
 #: genlocale:55 genlocale:66 genlocale:76
 msgid "Change keyboard layout"
-msgstr ""
+msgstr "Cambia layout tastiera"
 
 #: genlocale:56 genlocale:67 genlocale:77
 msgid "Change boot options"
-msgstr ""
+msgstr "Cambia opzioni boot"
 
 #: genlocale:57 genlocale:68 genlocale:78
 msgid "Boot to runlevel '3' (text mode)"
-msgstr ""
+msgstr "Avvia con il runlevel '3' (modalità testuale)"
 
 #: genlocale:58 genlocale:69 genlocale:79
 msgid "Boot to runlevel '4' (graphical login) (default)"
-msgstr ""
+msgstr "Avvia con il runlevel '4' (login gafico) (default)"
 
 #: genlocale:59 genlocale:70 genlocale:80
 msgid "Enable 'Copy everything to RAM'"
-msgstr ""
+msgstr "Abilita 'Copia tutto in RAM'"
 
 #: genlocale:60 genlocale:71 genlocale:81
 msgid "Disable 'Copy everything to RAM' (default)"
-msgstr ""
+msgstr "Disabilita 'Copia tutto in RAM' (default)"
 
 #: genlocale:61 genlocale:72 genlocale:82
 msgid "Enable numlock on boot"
-msgstr ""
+msgstr "Abilita numlock al boot"
 
 #: genlocale:62 genlocale:73 genlocale:83
 msgid "Disable numlock on boot (default)"
-msgstr ""
+msgstr "Disabilita numlock al boot (default)"
 
 #: genlocale:63 genlocale:74 genlocale:84
 msgid "Enable synaptics fdi (sometimes unreliable)"
-msgstr ""
+msgstr "Abilita synaptics fdi (a volte inaffidabile)"
 
 #: genlocale:64 genlocale:75 genlocale:85
 msgid "Disable synaptics fdi (reliable) (default)"
-msgstr ""
+msgstr "Disablita synaptics fdi (affidabile) (default)"
 
 #: genlocale:65 genlocale:76 genlocale:86
 msgid "Return to boot menu"
-msgstr ""
+msgstr "Torna indietro al menu di boot"

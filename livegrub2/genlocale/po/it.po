@@ -16,12 +16,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: genlocale:52 genlocale:63 genlocale:73
-#, fuzzy
 msgid "Start Salix Live"
 msgstr "Avvia Salix Live"
 
 #: genlocale:53 genlocale:64 genlocale:74
-#, fuzzy
 msgid "Memory Test"
 msgstr "Test della memoria"
 

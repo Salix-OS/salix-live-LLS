@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: genlocale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 22:54+0200\n"
+"POT-Creation-Date: 2010-05-27 22:25+0200\n"
 "PO-Revision-Date: 2010-05-26 01:37+0100\n"
 "Last-Translator: Andreas Born <futur{{DOT}}andy{{AT}}googlemail{{DOT}}com>\n"
 "Language-Team: \n"
@@ -16,71 +16,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: genlocale:52 genlocale:63 genlocale:73
-#, fuzzy
 msgid "Start Salix Live"
 msgstr "Lancer Salix Live"
 
 #: genlocale:53 genlocale:64 genlocale:74
-#, fuzzy
 msgid "Memory Test"
 msgstr "Tester la mémoire (RAM)"
 
 #: genlocale:54 genlocale:65 genlocale:75
-#, fuzzy
 msgid "Change language"
 msgstr "Changer la langue"
 
 #: genlocale:55 genlocale:66 genlocale:76
-#, fuzzy
 msgid "Change keyboard layout"
 msgstr "Changer la disposition du clavier"
 
 #: genlocale:56 genlocale:67 genlocale:77
-#, fuzzy
 msgid "Change boot options"
 msgstr "Changer les options de démarrage"
 
 #: genlocale:57 genlocale:68 genlocale:78
-#, fuzzy
 msgid "Boot to runlevel '3' (text mode)"
 msgstr "Démarrer en runlevel '3' (mode texte)"
 
 #: genlocale:58 genlocale:69 genlocale:79
-#, fuzzy
 msgid "Boot to runlevel '4' (graphical login) (default)"
 msgstr "Démarrer en runlevel '4' (mode graphique) (défaut)"
 
 #: genlocale:59 genlocale:70 genlocale:80
-#, fuzzy
 msgid "Enable 'Copy everything to RAM'"
-msgstr "Activer la 'Copie de tout vers la RAM'"
+msgstr "Activer la 'Copie intégrale vers la RAM'"
 
 #: genlocale:60 genlocale:71 genlocale:81
-#, fuzzy
 msgid "Disable 'Copy everything to RAM' (default)"
-msgstr "Désactiver la 'Copie de tout vers la RAM' (défaut)"
+msgstr "Désactiver la 'Copie intégrale vers la RAM' (défaut)"
 
 #: genlocale:61 genlocale:72 genlocale:82
-#, fuzzy
 msgid "Enable numlock on boot"
 msgstr "Activer le verrou numérique au démarrage"
 
 #: genlocale:62 genlocale:73 genlocale:83
-#, fuzzy
 msgid "Disable numlock on boot (default)"
 msgstr "Désactiver le verrou numérique au démarrage (défaut)"
 
 #: genlocale:63 genlocale:74 genlocale:84
-#, fuzzy
 msgid "Enable synaptics fdi (sometimes unreliable)"
-msgstr "Retourner au menu de démarrage"
+msgstr "Activer la prise en charge Synaptic FDI du pavé tactile (parfois non fiable)"
 
 #: genlocale:64 genlocale:75 genlocale:85
-#, fuzzy
 msgid "Disable synaptics fdi (reliable) (default)"
-msgstr "Désactiver le FDI synaptics/touchscreen (fiable) (défaut)"
+msgstr "Désactiver la prise en charge Synaptic FDI du pavé tactile (fiable) (défaut)"
 
 #: genlocale:65 genlocale:76 genlocale:86
-#, fuzzy
 msgid "Return to boot menu"
 msgstr "Retourner au menu de démarrage"

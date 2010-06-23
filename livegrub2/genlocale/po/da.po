@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: genlocale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 22:54+0200\n"
+"POT-Creation-Date: 2010-05-27 22:25+0200\n"
 "PO-Revision-Date: 2010-05-26 01:37+0100\n"
 "Last-Translator: Andreas Born <futur{{DOT}}andy{{AT}}googlemail{{DOT}}com>\n"
 "Language-Team: \n"
@@ -16,27 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: genlocale:52 genlocale:63 genlocale:73
-#, fuzzy
 msgid "Start Salix Live"
 msgstr "Start Salix Live"
 
 #: genlocale:53 genlocale:64 genlocale:74
-#, fuzzy
 msgid "Memory Test"
 msgstr "Hukommelsestest"
 
 #: genlocale:54 genlocale:65 genlocale:75
-#, fuzzy
 msgid "Change language"
-msgstr "Gensyn med hoved menu"
+msgstr "Skift sprog"
 
 #: genlocale:55 genlocale:66 genlocale:76
 msgid "Change keyboard layout"
-msgstr ""
+msgstr "Skift tastaturlayout"
 
 #: genlocale:56 genlocale:67 genlocale:77
 msgid "Change boot options"
-msgstr ""
+msgstr "Tilpas opstart"
 
 #: genlocale:57 genlocale:68 genlocale:78
 msgid "Boot to runlevel '3' (text mode)"

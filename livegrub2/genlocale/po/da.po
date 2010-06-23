@@ -37,19 +37,19 @@ msgstr "Tilpas opstart"
 
 #: genlocale:57 genlocale:68 genlocale:78
 msgid "Boot to runlevel '3' (text mode)"
-msgstr ""
+msgstr "Opstart til runlevel 3 (tekst-tilstand)"
 
 #: genlocale:58 genlocale:69 genlocale:79
 msgid "Boot to runlevel '4' (graphical login) (default)"
-msgstr ""
+msgstr "Opstart til runlevel 4 (grafisk login) (standard)"
 
 #: genlocale:59 genlocale:70 genlocale:80
 msgid "Enable 'Copy everything to RAM'"
-msgstr ""
+msgstr "Aktivér \"Kopiér alt til RAM\""
 
 #: genlocale:60 genlocale:71 genlocale:81
 msgid "Disable 'Copy everything to RAM' (default)"
-msgstr ""
+msgstr "Deaktivér \"Kopiér alt til RAM\" (standard)"
 
 #: genlocale:61 genlocale:72 genlocale:82
 msgid "Enable numlock on boot"

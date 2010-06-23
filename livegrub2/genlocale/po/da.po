@@ -53,20 +53,20 @@ msgstr "Deaktivér \"Kopiér alt til RAM\" (standard)"
 
 #: genlocale:61 genlocale:72 genlocale:82
 msgid "Enable numlock on boot"
-msgstr ""
+msgstr "Aktivér numlock ved opstart"
 
 #: genlocale:62 genlocale:73 genlocale:83
 msgid "Disable numlock on boot (default)"
-msgstr ""
+msgstr "Deaktivér numlock ved opstart (standard)"
 
 #: genlocale:63 genlocale:74 genlocale:84
 msgid "Enable synaptics fdi (sometimes unreliable)"
-msgstr ""
+msgstr "Aktivér Synaptics FDI (potentielt ustabilt)"
 
 #: genlocale:64 genlocale:75 genlocale:85
 msgid "Disable synaptics fdi (reliable) (default)"
-msgstr ""
+msgstr "Deaktivér Synaptics FDI (stabilt)"
 
 #: genlocale:65 genlocale:76 genlocale:86
 msgid "Return to boot menu"
-msgstr ""
+msgstr "Tilbage til opstartsmenu"

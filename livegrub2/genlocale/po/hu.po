@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: genlocale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 22:54+0200\n"
+"POT-Creation-Date: 2010-05-27 22:25+0200\n"
 "PO-Revision-Date: 2010-05-26 01:37+0100\n"
 "Last-Translator: Andreas Born <futur{{DOT}}andy{{AT}}googlemail{{DOT}}com>\n"
 "Language-Team: \n"
@@ -16,60 +16,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: genlocale:52 genlocale:63 genlocale:73
-#, fuzzy
 msgid "Start Salix Live"
-msgstr "Salix Live inditasa"
+msgstr "Salix Live inditása"
 
 #: genlocale:53 genlocale:64 genlocale:74
-#, fuzzy
 msgid "Memory Test"
-msgstr "Memoriateszt"
+msgstr "Memóriateszt"
 
 #: genlocale:54 genlocale:65 genlocale:75
-#, fuzzy
 msgid "Change language"
-msgstr "Nyelv valtoztatasa"
+msgstr "Nyelv választása"
 
 #: genlocale:55 genlocale:66 genlocale:76
 msgid "Change keyboard layout"
-msgstr ""
+msgstr "Billentyűzet kiosztás választása"
 
 #: genlocale:56 genlocale:67 genlocale:77
 msgid "Change boot options"
-msgstr ""
+msgstr "Betöltési opciók választása"
 
 #: genlocale:57 genlocale:68 genlocale:78
 msgid "Boot to runlevel '3' (text mode)"
-msgstr ""
+msgstr "Indítás '3'-as futási szinten (szöveges mód)"
 
 #: genlocale:58 genlocale:69 genlocale:79
 msgid "Boot to runlevel '4' (graphical login) (default)"
-msgstr ""
+msgstr "Indítás '4'-es futási szinten (grafikus bejelentkezés) (alapértelmezett)"
 
 #: genlocale:59 genlocale:70 genlocale:80
 msgid "Enable 'Copy everything to RAM'"
-msgstr ""
+msgstr "Engedélyezi a 'Minden másolása a RAM-ba' opciót"
 
 #: genlocale:60 genlocale:71 genlocale:81
 msgid "Disable 'Copy everything to RAM' (default)"
-msgstr ""
+msgstr "Titlja a 'Minden másolása a RAM-ba' funkciót (alapértelmezett)"
 
 #: genlocale:61 genlocale:72 genlocale:82
 msgid "Enable numlock on boot"
-msgstr ""
+msgstr "Numerikus billentyűzet engedélyezése indításkor"
 
 #: genlocale:62 genlocale:73 genlocale:83
 msgid "Disable numlock on boot (default)"
-msgstr ""
+msgstr "Numerikus billentyűzet tiltása indításkor (alapértelmezett)"
 
 #: genlocale:63 genlocale:74 genlocale:84
 msgid "Enable synaptics fdi (sometimes unreliable)"
-msgstr ""
+msgstr "Engedélyezi a synaptics fdi használatát (néha megbízhatatlan)"
 
 #: genlocale:64 genlocale:75 genlocale:85
 msgid "Disable synaptics fdi (reliable) (default)"
-msgstr ""
+msgstr "Tiltja a synaptics fdi használatát (megbízható) (alapértelmezett)"
 
 #: genlocale:65 genlocale:76 genlocale:86
 msgid "Return to boot menu"
-msgstr ""
+msgstr "Vissza az indító menübe"

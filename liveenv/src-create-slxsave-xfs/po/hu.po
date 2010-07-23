@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: slxsave-xfs\n"
@@ -33,17 +33,12 @@ msgstr "Hiba: xfsprogs csomagot telepíteni kell a futtatáshoz"
 #: ../root/usr/sbin/create-slxsave-xfs-gui:52
 #, sh-format
 msgid "Persistent changes"
-msgstr ""
+msgstr "Változásmentés fájl változásai"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:54
 #, sh-format
-msgid ""
-"If you wish, you can save any of your work or modification performed while in a LiveCD session.\\n"
-"\\n"
-"To do this however, you must first create a special \"persistent file\" which will have a pre-decided fixed-size and will be formatted as a linux file system.\\n"
-"\\n"
-"Once this file is created, simply reboot the LiveCD for your changes to become persistent from then on."
-msgstr ""
+msgid "If you wish, you can save any of your work or modification performed while in a LiveCD session.\\n\\nTo do this however, you must first create a special \"persistent file\" which will have a pre-decided fixed-size and will be formatted as a linux file system.\\n\\nOnce this file is created, simply reboot the LiveCD for your changes to become persistent from then on."
+msgstr "Ha szeretné akkor mentheti a munkáit a LiveCD használata közben is.\\n\\nEhhez elsőként szüksége van egy speciális \"változásmentés\" fájl létrehozására ami fix méretű és linuxos fájlrendszerre van formázva.\\n\\nHa létrehozta ezt a fájlt akkor a LiveCD újraindítása után is egyszerűen tudja használni és a módosításai érvényesülnek a következő indításkor."
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:57
 #, sh-format
@@ -53,7 +48,7 @@ msgstr "Csatolási pont választás"
 #: ../root/usr/sbin/create-slxsave-xfs-gui:60
 #, sh-format
 msgid "Choose the mountpoint where to save the persistent file:"
-msgstr ""
+msgstr "Kérem válasszon csatolási pontot a változásmentés fájl részére"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:61
 #, sh-format
@@ -73,7 +68,7 @@ msgstr "Méret választás"
 #: ../root/usr/sbin/create-slxsave-xfs-gui:80
 #, sh-format
 msgid "Choose the size in megabytes (maximum $MAXSIZE) for persistent file on $MOUNTPOINT:"
-msgstr ""
+msgstr "Válasszon fálj méretet megabájtban  (maximum $MAXSIZE) a változásmentés fájl részére itt $MOUNTPOINT:"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:89
 #: ../root/usr/sbin/create-slxsave-xfs-gui:114
@@ -96,13 +91,10 @@ msgstr "slxsave.xfs ($SIZE MB) sikeresen létrehozva itt: $MOUNTPOINT"
 msgid "slxsave.xfs ($SIZE MB) cannot be created in $MOUNTPOINT"
 msgstr "slxsave.xfs ($SIZE MB) nem sikerült létrehozni itt: $MOUNTPOINT"
 
-#: persistence-wizard.desktop.in.h:1
-#: persistence-wizard-kde.desktop.in.h:1
+#: persistence-wizard.desktop.in.h:1 persistence-wizard-kde.desktop.in.h:1
 msgid "Create a slxsave.xfs file in order to persist changes in the live env."
-msgstr ""
+msgstr "Egy slxsave.xfs fájl létrehozása hogy a változások tartósan megmaradjanak a LiveCD környezetben."
 
-#: persistence-wizard.desktop.in.h:2
-#: persistence-wizard-kde.desktop.in.h:2
+#: persistence-wizard.desktop.in.h:2 persistence-wizard-kde.desktop.in.h:2
 msgid "Persistence Wizard"
-msgstr ""
-
+msgstr "Változásmentés Varázsló"

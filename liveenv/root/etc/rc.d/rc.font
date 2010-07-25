@@ -3,5 +3,5 @@
 # This selects your default screen font from among the ones in
 # /usr/share/kbd/consolefonts.
 #
-#setfont -v ter-v16n
-unicode_start ter-v16n
+#setfont -v
+unicode_start

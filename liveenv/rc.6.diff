@@ -1,4 +1,4 @@
---- /etc/rc.d/rc.6	2009-09-06 00:59:31.000000000 +0200
+--- /home/jrd/salix/sysvinit-scripts/tags/13.0.2/rc.6	2010-04-30 14:42:40.000000000 +0200
 +++ root/etc/rc.d/rc.6	2009-12-06 00:23:49.039337540 +0100
 @@ -9,6 +9,12 @@
  # Author:	Miquel van Smoorenburg <miquels@drinkel.nl.mugnet.org>

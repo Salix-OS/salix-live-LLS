@@ -1,18 +1,10 @@
---- /etc/rc.d/rc.services	2010-03-10 01:10:31.000000000 +0100
-+++ root/etc/rc.d/rc.services	2010-01-16 15:04:58.111694511 +0100
-@@ -2,13 +2,13 @@
- 
- # We won't start these services from here, don't play with this list ;)
- blacklist(){
--for mask in \~ .new rc.S rc.M rc.K rc.4 rc.0 rc.6 .conf rc.services rc.inet1 rc.inet2 rc.inetd rc.rpc \
-+for mask in \~ .new rc.S rc.M rc.K rc.4 rc.0 rc.6 .conf rc.services rc.inet1 rc.inet2 rc.rpc \
- 	rc.modules rc.local rc.keymap rc.hald rc.wicd rc.sample rc.font rc.serial rc.udev rc.uwd rc.acpid rc.wireless \
- 	rc.alsa rc.numlock rc.syslog rc.cups rc.famd rc.gpm \
- 	rc.messagebus rc.licences rc.scanluns rc.ntpd rc.bluetooth \
- 	rc.dnsmasq rc.snmpd rc.lprng rc.atalk rc.saslauthd rc.sendmail \
- 	rc.mysqld rc.httpd rc.openldap rc.samba rc.gpm rc.sysvinit \
--	rc.pcmcia rc.fuse rc.modules.local rc.modules-$(uname -r) ; do
-+	rc.pcmcia rc.fuse rc.modules.local rc.modules-$(uname -r) rc.live ; do
- 	echo $1 | grep $mask
- done
- }
+--- /home/jrd/salix/sysvinit-scripts/tags/13.0.2/rc.services	2010-04-30 14:42:40.000000000 +0200
++++ root/etc/rc.d/rc.services	2010-07-10 15:46:58.596049352 +0200
+@@ -28,6 +28,7 @@
+ 		'rc.K', \
+ 		'rc.keymap', \
+ 		'rc.licences', \
++		'rc.live', \
+ 		'rc.local', \
+ 		'rc.lprng', \
+ 		'rc.M', \

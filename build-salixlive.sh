@@ -19,12 +19,12 @@ if [ "$UID" -ne "0" ]; then
 fi
 export KVER=$(uname -r)
 export DISTRO=salix
-export VER=13.0
-#export RLZ=$(date +%Y%m%d)
-export RLZ=
+export VER=13.0.1
+#export RLZ=$(date +%Y%m%d,%H:%M)
+#export RLZ=rc1
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
-export BBVER=1.15.2
+export BBVER=1.17.0
 export BBURL=http://busybox.net/downloads/busybox-$BBVER.tar.bz2
 export FUFSVER=0.4.2
 export FUFSURL=http://funionfs.apiou.org/file/funionfs-$FUFSVER.tar.gz

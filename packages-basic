@@ -22,6 +22,7 @@ dri2proto
 encodings
 evieext
 fixesproto
+font-adobe-100dpi
 font-alias
 font-bh-100dpi
 font-bh-75dpi
@@ -295,8 +296,8 @@ xmodmap
 xorg-cf-files
 xorg-server
 xorg-server-xnest
-xorg-server-xvfb
 xorg-server-xephyr
+xorg-server-xvfb
 xpr
 xprehashprinterlist
 xprop

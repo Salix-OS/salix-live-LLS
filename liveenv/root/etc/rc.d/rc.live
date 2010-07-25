@@ -51,7 +51,12 @@ numlock="`cmdline_value numlock`"
 if [ -z "$numlock" ]; then
   numlock=off
 fi
-/usr/sbin/keyboardsetup $keyb $numlock
+# scim: Override default SCIM settings
+scim="`cmdline_value scim`"
+if [ -z "$scim" ]; then
+  scim=off
+fi
+/usr/sbin/keyboardsetup -k $keyb -n $numlock -s $scim
 
 # synaptics: Use the syanptics fdi for HAL
 synpatics="`cmdline_value synaptics`"

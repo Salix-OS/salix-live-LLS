@@ -1,4 +1,4 @@
-DirectFB
+ConsoleKit
 GConf
 ORBit2
 Xdialog
@@ -20,6 +20,7 @@ desktop-file-utils
 dmxproto
 dri2proto
 encodings
+eggdbus
 evieext
 fixesproto
 font-adobe-100dpi
@@ -47,6 +48,7 @@ gamin
 gccmakedep
 gd
 gdm
+giflib
 glew
 glproto
 gmime
@@ -67,7 +69,6 @@ intltool
 jasper
 kbproto
 ktsuss
-lbxproxy
 lcms
 libFS
 libICE
@@ -116,7 +117,6 @@ libgsf
 libhangul
 libidl
 libjpeg
-liblbxutil
 libmng
 libnotify
 liboil
@@ -126,7 +126,6 @@ librsvg
 libsexy
 libtheora
 libtiff
-libungif
 libvisual
 libwnck
 libx86
@@ -149,8 +148,8 @@ obsidian-cursors
 pango
 pcre
 pixman
+polkit
 printproto
-proxymngr
 radeontool
 randrproto
 rarian
@@ -179,7 +178,6 @@ shared-mime-info
 showfont
 sinhala_lklug-font-ttf
 smproxy
-splashy
 startup-notification
 svgalib
 t1lib
@@ -201,6 +199,7 @@ xaw3d
 xbacklight
 xbitmaps
 xcb-proto
+xcb-util
 xclipboard
 xcmiscproto
 xcmsdb
@@ -215,15 +214,11 @@ xev
 xextproto
 xf86-input-acecad
 xf86-input-aiptek
-xf86-input-citron
-xf86-input-elographics
 xf86-input-evdev
 xf86-input-fpit
-xf86-input-hyperpen
 xf86-input-joystick
 xf86-input-keyboard
 xf86-input-mouse
-xf86-input-mutouch
 xf86-input-penmount
 xf86-input-synaptics
 xf86-input-vmmouse
@@ -243,7 +238,7 @@ xf86-video-intel
 xf86-video-mach64
 xf86-video-mga
 xf86-video-neomagic
-xf86-video-newport
+xf86-video-nouveau
 xf86-video-nv
 xf86-video-openchrome
 xf86-video-r128
@@ -364,6 +359,7 @@ mozilla-firefox-l10n-ko
 mozilla-firefox-l10n-ku
 mozilla-firefox-l10n-lt
 mozilla-firefox-l10n-lv
+mozilla-firefox-l10n-mk
 mozilla-firefox-l10n-ml
 mozilla-firefox-l10n-mr
 mozilla-firefox-l10n-nb-NO
@@ -385,6 +381,7 @@ mozilla-firefox-l10n-sq
 mozilla-firefox-l10n-sr
 mozilla-firefox-l10n-sv-SE
 mozilla-firefox-l10n-ta
+mozilla-firefox-l10n-ta-LK
 mozilla-firefox-l10n-te
 mozilla-firefox-l10n-th
 mozilla-firefox-l10n-tr

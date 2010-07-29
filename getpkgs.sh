@@ -5,10 +5,10 @@ mkdir -p slapt-get
 cat <<EOF > slapt-getrc
 WORKINGDIR=$PWD/slapt-get
 EXCLUDE=.*-[0-9]+dl$,x86_64
-SOURCE=http://salix.enialis.net/i486/slackware-13.0/
-SOURCE=http://salix.enialis.net/i486/slackware-13.0/extra/
-SOURCE=http://salix.enialis.net/i486/slackware-13.0/patches/:OFFICIAL
-SOURCE=http://salix.enialis.net/i486/13.0/:PREFERRED
+SOURCE=http://salix.enialis.net/i486/slackware-13.1/
+SOURCE=http://salix.enialis.net/i486/slackware-13.1/extra/
+SOURCE=http://salix.enialis.net/i486/slackware-13.1/patches/:OFFICIAL
+SOURCE=http://salix.enialis.net/i486/13.1/:PREFERRED
 EOF
 export ROOT=$PWD
 mkdir -p var/log/packages

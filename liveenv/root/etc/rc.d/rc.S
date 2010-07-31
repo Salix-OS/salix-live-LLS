@@ -6,13 +6,18 @@
 #
 # Tweaked for Salix by George Vlahavas <vlahavas~at~gmail~dot~com>
 
-# Start splashy
-[ -x /usr/sbin/splashy ] && /usr/sbin/splashy boot | splashy_chvt 8
+# modified for colorized screen messages and local needs
+. /etc/shell-colors
+
+# Tell the viewers what's going to happen.
+echo
+echo -e "${BOLDYELLOW}Initializing.${COLOR_RESET}"
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
-# Mount /proc right away:
-/sbin/mount -v proc /proc -n -t proc
+# Try to mount /proc:
+echo -e "${BOLDCYAN}Mounting proc filesystem:${COLOR_RESET}"
+/sbin/mount -v proc /proc -n -t proc 2> /dev/null
 
 # Mount sysfs next, if the kernel supports it:
 if [ -d /sys ]; then
@@ -22,8 +27,6 @@ if [ -d /sys ]; then
     fi
   fi
 fi
-
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 25"
 
 # Initialize udev to manage /dev entries and hotplugging for 2.6.x kernels.
 # You may turn off udev by making the /etc/rc.d/rc.udev file non-executable
@@ -35,7 +38,7 @@ fi
 # promise to list all of them), and make any additional device nodes that you
 # need in the /dev directory.  Even USB and IEEE1394 devices will need to have
 # the modules loaded by hand if udev is not used with a 2.6 kernel.  So use it.  :-)
-if grep -wq sysfs /proc/mounts && grep -wq tmpfs /proc/filesystems ; then
+if grep -wq sysfs /proc/mounts && grep -q tmpfs /proc/filesystems ; then
   if ! grep -wq nohotplug /proc/cmdline ; then
     if [ -x /etc/rc.d/rc.udev ]; then
       /bin/sh /etc/rc.d/rc.udev start
@@ -43,15 +46,13 @@ if grep -wq sysfs /proc/mounts && grep -wq tmpfs /proc/filesystems ; then
   fi
 fi
 
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 30"
-
 # Initialize the Logical Volume Manager.
 # This won't start unless we find /etc/lvmtab (LVM1) or
 # /etc/lvm/backup/ (LVM2).  This is created by /sbin/vgscan, so to
 # use LVM you must run /sbin/vgscan yourself the first time (and
 # create some VGs and LVs).
 if [ -r /etc/lvmtab -o -d /etc/lvm/backup ]; then
-  echo "Initializing LVM (Logical Volume Manager):"
+  echo -e "${BOLDWHITE}Initializing LVM (Logical Volume Manager):${COLOR_RESET}"
   # Check for device-mapper support.
   if ! grep -wq device-mapper /proc/devices ; then
     # Try to load a device-mapper kernel module:
@@ -67,7 +68,7 @@ if [ -r /etc/lvmtab -o -d /etc/lvm/backup ]; then
 fi
 
 # Open any volumes created by cryptsetup:
-if [ -f /etc/crypttab -a -x /sbin/cryptsetup.static ]; then
+if [ -f /etc/crypttab -a -x /sbin/cryptsetup ]; then
   # First, check for device-mapper support.
   if ! grep -wq device-mapper /proc/devices ; then
     # If device-mapper exists as a module, try to load it.
@@ -85,19 +86,19 @@ if [ -f /etc/crypttab -a -x /sbin/cryptsetup.static ]; then
     if echo $OPTS | grep -wq ro ; then LUKSOPTS="${LUKSOPTS} --readonly" ; fi
 
     # Skip LUKS volumes that were already unlocked (in the initrd):
-    /sbin/cryptsetup.static status $LUKS 1>/dev/null 2>/dev/null && continue
-    if /sbin/cryptsetup.static isLuks $DEV 2>/dev/null ; then
+    /sbin/cryptsetup status $LUKS 1>/dev/null 2>/dev/null && continue
+    if /sbin/cryptsetup isLuks $DEV 2>/dev/null ; then
       echo "Unlocking LUKS crypt volume '${LUKS}' on device '$DEV':"
       if [ -n "${PASS}" ]; then
         if [ -f ${PASS} ]; then
-          /sbin/cryptsetup.static ${LUKSOPTS} --key-file=${PASS} luksOpen $DEV $LUKS
+          /sbin/cryptsetup ${LUKSOPTS} --key-file=${PASS} luksOpen $DEV $LUKS
         elif [ "${PASS}" != "none" ]; then
           # A password field of 'none' indicates a line for swap:
-          echo "${PASS}" | /sbin/cryptsetup.static ${LUKSOPTS} luksOpen $DEV $LUKS
+          echo "${PASS}" | /sbin/cryptsetup ${LUKSOPTS} luksOpen $DEV $LUKS
         fi
       else
         for i in seq 1 3 ; do
-          /sbin/cryptsetup.static ${LUKSOPTS} luksOpen $DEV $LUKS </dev/tty0 >/dev/tty0 2>&1
+          /sbin/cryptsetup ${LUKSOPTS} luksOpen $DEV $LUKS </dev/tty0 >/dev/tty0 2>&1
           [ $? -eq 0 ] && break
         done
       fi
@@ -105,20 +106,19 @@ if [ -f /etc/crypttab -a -x /sbin/cryptsetup.static ]; then
       # If any of the volumes is to be used as encrypted swap,
       # then encrypt it using a random key and run mkswap:
       echo "Creating encrypted swap on device '$DEV' mapped to '${LUKS}':"
-      /sbin/cryptsetup.static --cipher=aes --key-file=/dev/urandom --key-size=256 create $LUKS $DEV
+      /sbin/cryptsetup --cipher=aes --key-file=/dev/urandom --key-size=256 create $LUKS $DEV
       mkswap /dev/mapper/$LUKS
     fi
   done
 fi
 
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 35"
-
 # Enable swapping:
-/sbin/swapon -a
+echo -e "${BOLDCYAN}Enabling swap partition:${COLOR_RESET}"
+/sbin/swapon -a 2> /dev/null
 
 # Start FUSE, if requested:
 if [ -x /etc/rc.d/rc.fuse ]; then
-  sh /etc/rc.d/rc.fuse start
+  /bin/sh /etc/rc.d/rc.fuse start
 fi
 
 # Set the system time from the hardware clock using hwclock --hctosys.
@@ -129,15 +129,13 @@ if [ -x /sbin/hwclock ]; then
     CLOCK_OPT="--directisa"
   fi
   if grep -wq "^UTC" /etc/hardwareclock ; then
-    echo "Setting system time from the hardware clock (UTC)."
+    echo -e "${BOLDRED}Setting system time from the hardware clock (UTC).${COLOR_RESET}"
     /sbin/hwclock $CLOCK_OPT --utc --hctosys
   else
-    echo "Setting system time from the hardware clock (localtime)."
+    echo -e "${BOLDWHITE}Setting system time from the hardware clock (localtime).${COLOR_RESET}"
     /sbin/hwclock $CLOCK_OPT --localtime --hctosys
   fi
 fi
-
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 40"
 
 # Test to see if the root partition is read-only, like it ought to be.
 READWRITE=no
@@ -157,7 +155,7 @@ fi
 if [ ! $READWRITE = yes ]; then
   RETVAL=0
   if [ ! -r /etc/fastboot ]; then
-    echo "Checking root filesystem:"
+    echo -e "${BOLDCYAN}Checking root filesystem:${COLOR_RESET}"
     /sbin/fsck $FORCEFSCK -C -a /
     RETVAL=$?
   fi
@@ -197,7 +195,7 @@ if [ ! $READWRITE = yes ]; then
     reboot -f
   fi
   # Remount the root filesystem in read-write mode
-  echo "Remounting root device with read-write enabled."
+  echo -e "${BOLDCYAN}Remounting root device with read-write enabled.${COLOR_RESET}"
   /sbin/mount -w -v -n -o remount /
   if [ $? -gt 0 ] ; then
     echo
@@ -251,8 +249,11 @@ fi # Done checking root filesystem
 # Any /etc/mtab that exists here is old, so we delete it to start over:
 #/bin/rm -f /etc/mtab*
 # Remounting the / partition will initialize the new /etc/mtab:
+#echo -e "${BOLDCYAN}Creating /etc/mtab.${COLOR_RESET}"
 #/sbin/mount -w -o remount /
+### /modified for Live ###
 
+### modified for Live ###
 # Read in the correct / filesystem complete with arguments so mount will
 # show them correctly. This does not stop those arguments from functioning
 # but does prevent a small bug with /etc/mtab.
@@ -268,56 +269,10 @@ if [ -d /sys/bus ]; then
   /sbin/mount -f sysfs /sys -t sysfs
 fi
 
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 45"
-
-### modified for Live ###
-grub2=$(egrep -o '(^|[[:space:]])grub2=[^[:space:]]+' /proc/cmdline | cut -d "=" -f 2- | tail -n 1)
-if [ "$grub2" = "install" ]; then
-  partition=$(cat /proc/mounts|grep ' /boot'|cut -d' '  -f1|sed s:/dev/::)
-  # can be written ?
-  touch /boot/touch 2> /dev/null
-  if [ $? -eq 0 ]; then
-    rm -f /boot/touch
-    if [ ! -z `pidof -o %PPID /usr/sbin/splashy` ]; then
-      /usr/sbin/splashy_update "progress 100"
-      /usr/sbin/splashy_chvt 1
-      kill -9 `pidof -o %PPID /usr/sbin/splashy`
-    fi
-    if [ -x /usr/bin/chvt ]; then
-      /usr/bin/chvt 1
-    fi
-    clear
-    echo ''
-    echo '+------------------------------+'
-    echo '| Installing grub2 boot loader |'
-    echo '+------------------------------+'
-    echo ''
-    needsreboot=0
-    disk=${partition%${partition: -1}}
-    grub-install --root-directory=/mnt/live/mnt/$partition --no-floppy --recheck /dev/$disk
-    if [ $? -eq 0 ]; then
-      echo -e "\n\nGrub2 installed in $disk !\nRebooting..."
-      rm -f /mnt/live/mnt/$partition/{ubn*,ldlinux.sys,syslinux.cfg,vesamenu.c32}
-      needsreboot=1
-      sleep 3
-      echo ''
-    else
-      echo -e "\n\nError : Grub2 failed to installed in $disk !\nContinue booting..."
-      sleep 3
-      echo ''
-    fi
-    if [ $needsreboot -eq 1 ]; then
-      init 6
-    fi
-    unset needsreboot
-  fi
-  unset partition disk
-fi
-### /modified for Live ###
-
 # Configure ISA Plug-and-Play devices:
 if [ -r /etc/isapnp.conf ]; then
   if [ -x /sbin/isapnp ]; then
+  	echo -e "${BOLDWHITE}Configuring ISA Plug-and-Play devices.${COLOR_RESET}"
     /sbin/isapnp /etc/isapnp.conf
   fi
 fi
@@ -334,23 +289,24 @@ if [ -x /etc/rc.d/rc.modules.local -a -r /proc/modules ]; then
   /bin/sh /etc/rc.d/rc.modules.local
 elif [ -x /etc/rc.d/rc.modules-$(uname -r) -a -r /proc/modules ]; then
   echo "Running /etc/rc.d/rc.modules-$(uname -r):"
-  . /etc/rc.d/rc.modules-$(uname -r)
+  /bin/sh /etc/rc.d/rc.modules-$(uname -r)
 elif [ -x /etc/rc.d/rc.modules -a -r /proc/modules -a -L /etc/rc.d/rc.modules ]; then
   echo "Running /etc/rc.d/rc.modules -> $(readlink /etc/rc.d/rc.modules):"
-  . /etc/rc.d/rc.modules
+  /bin/sh /etc/rc.d/rc.modules
 elif [ -x /etc/rc.d/rc.modules -a -r /proc/modules ]; then
   echo "Running /etc/rc.d/rc.modules:"
-  . /etc/rc.d/rc.modules
+  /bin/sh /etc/rc.d/rc.modules
 fi
 
 # Configure runtime kernel parameters:
 if [ -x /sbin/sysctl -a -r /etc/sysctl.conf ]; then
+  echo -e "${BOLDWHITE}Setting kernel runtime parameters:${COLOR_RESET}"
   /sbin/sysctl -e -p /etc/sysctl.conf
 fi
 
 # Check all the non-root filesystems:
 if [ ! -r /etc/fastboot ]; then
-  echo "Checking non-root filesystems:"
+  echo -e "${BOLDCYAN}Checking non-root filesystems:${COLOR_RESET}"
   /sbin/fsck $FORCEFSCK -C -R -A -a
 fi
 
@@ -365,8 +321,6 @@ if grep -wq usbfs /proc/filesystems; then
   fi
 fi
 
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 50"
-
 # Mount non-root file systems in fstab, but not NFS or SMB 
 # because TCP/IP is not yet configured, and not proc or sysfs
 # because those have already been mounted.  Also check that
@@ -374,7 +328,7 @@ fi
 # it.  With a 2.6.x or newer kernel udev mounts devpts.
 # We also need to wait a little bit to let USB and other
 # hotplugged devices settle (sorry to slow down the boot):
-echo "Mounting non-root local filesystems:"
+echo -e "${BOLDCYAN}Mounting non-root filesystems:${COLOR_RESET}"
 sleep 3
 if /bin/grep -wq devpts /proc/mounts ; then
   /sbin/mount -a -v -t nonfs,nosmbfs,nocifs,noproc,nosysfs,nodevpts
@@ -385,7 +339,7 @@ fi
 # Enable swapping again.  This is needed in case a swapfile is used,
 # as it can't be enabled until the filesystem it resides on has been
 # mounted read-write.
-/sbin/swapon -a
+/sbin/swapon -a 2> /dev/null
 
 # Clean up some temporary files:
 rm -f /var/run/* /var/run/*/* /var/run/*/*/* /etc/nologin \
@@ -419,22 +373,20 @@ fi
 
 # If there are SystemV init scripts for this runlevel, run them.
 if [ -x /etc/rc.d/rc.sysvinit ]; then
-  . /etc/rc.d/rc.sysvinit
+  /bin/sh /etc/rc.d/rc.sysvinit
 fi
-
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 55"
 
 # Run serial port setup script:
 # CAREFUL!  This can make some systems hang if the rc.serial script isn't
 # set up correctly.  If this happens, you may have to edit the file from a
 # boot disk, and/or set it as non-executable:
 if [ -x /etc/rc.d/rc.serial ]; then
-  sh /etc/rc.d/rc.serial start
+  /bin/sh /etc/rc.d/rc.serial start
 fi
 
 # Carry an entropy pool between reboots to improve randomness.
 if [ -f /etc/random-seed ]; then
-  echo "Using /etc/random-seed to initialize /dev/urandom."
+  echo -e "${BOLDWHITE}Using /etc/random-seed to initialize /dev/urandom.${COLOR_RESET}"
   cat /etc/random-seed > /dev/urandom
 fi
 # Use the pool size from /proc, or 512 bytes:
@@ -444,7 +396,4 @@ else
   dd if=/dev/urandom of=/etc/random-seed count=1 bs=512 2> /dev/null
 fi
 chmod 600 /etc/random-seed
-
-# Clear the screen
-clear
 

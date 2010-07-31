@@ -9,12 +9,18 @@
 # Author:	Miquel van Smoorenburg <miquels@drinkel.nl.mugnet.org>
 # Modified by:  Patrick J. Volkerding, <volkerdi@slackware.com>
 #
-### Modified for Live ###
-#
+# Modified for Salix by: George Vlahavas <vlahavas~at~gmail~dot~com>
+
+# modified for colorized screen messages and local needs
+. /etc/shell-colors
 
 ### modified for Live ###
 . /usr/lib/liblinuxlive
 ### /modified for Live ###
+
+# Tell the viewers what's going to happen...
+echo
+echo -e "${BOLDYELLOW}Preparing to halt all processes.${COLOR_RESET}"
 
 # Set the path.
 PATH=/sbin:/etc:/bin:/usr/bin
@@ -27,7 +33,7 @@ fi
 # Set linefeed mode to avoid staircase effect.
 /bin/stty onlcr
 
-echo -e "\n\033[01;31mRunning shutdown script $0:\033[00m"
+echo -e "${BOLDBLUE}Running shutdown script $0.${COLOR_RESET}"
 
 # Find out how we were called.
 case "$0" in
@@ -51,10 +57,10 @@ if [ -x /sbin/hwclock ]; then
     CLOCK_OPT="--directisa"
   fi
   if grep -q "^UTC" /etc/hardwareclock 2> /dev/null ; then
-    echo "Saving system time to the hardware clock (UTC)."
+    echo -e "${BOLDWHITE}Saving system time to the hardware clock (UTC).${COLOR_RESET}"
     /sbin/hwclock $CLOCK_OPT --utc --systohc
   else
-    echo "Saving system time to the hardware clock (localtime)."
+    echo -e "${BOLDWHITE}Saving system time to the hardware clock (localtime).${COLOR_RESET}"
     /sbin/hwclock  $CLOCK_OPT --localtime --systohc
   fi
 fi
@@ -101,11 +107,11 @@ fi
 
 # Stop D-Bus:
 if [ -x /etc/rc.d/rc.messagebus ]; then
-  sh /etc/rc.d/rc.messagebus stop
+  /bin/sh /etc/rc.d/rc.messagebus stop
 fi
 
 # Unmount any NFS, SMB, or CIFS filesystems:
-echo "Unmounting remote filesystems."
+echo -e "${BOLDCYAN}Unmounting remote filesystems.${COLOR_RESET}"
 /bin/umount -v -a -r -t nfs,smbfs,cifs
 
 # Try to shut down pppd:
@@ -142,6 +148,7 @@ fi
 
 # Turn off process accounting:
 if [ -x /sbin/accton -a -r /var/log/pacct ]; then
+  echo -e "${BOLDWHITE}Turning off process accounting.${COLOR_RESET}"
   /sbin/accton off
 fi
 
@@ -164,13 +171,13 @@ fi
 # Try to turn off quota.
 if /bin/grep -q quota /etc/fstab ; then
   if [ -x /sbin/quotaoff ]; then
-    echo "Turning off filesystem quotas."
+    echo -e "${BOLDWHITE}Turning off filesystem quotas.${COLOR_RESET}"
     /sbin/quotaoff -a
   fi
 fi
 
 # Carry a random seed between reboots.
-echo "Saving random seed from /dev/urandom in /etc/random-seed."
+echo -e "${BOLDWHITE}Saving random seed from /dev/urandom in /etc/random-seed.${COLOR_RESET}"
 # Use the pool size from /proc, or 512 bytes:
 if [ -r /proc/sys/kernel/random/poolsize ]; then
   /bin/dd if=/dev/urandom of=/etc/random-seed count=1 bs=$(cat /proc/sys/kernel/random/poolsize) 2> /dev/null
@@ -189,14 +196,15 @@ fi
 
 ### modified for Live ###
 # Turn off swap:
-#echo "Turning off swap."
+#echo -e "${BOLDCYAN}Turning off swap.${COLOR_RESET}"
 #/sbin/swapoff -a
+echo -e "${BOLDCYAN}Syncing.${COLOR_RESET}"
 /bin/sync
 ### /modified for Live ###
 
 # Umount any LVM volumes:
 if /bin/mount | /bin/grep -q '^/dev/mapper/' ; then
-  echo "Unmounting LVM volumes."
+  echo -e "${BOLDCYAN}Unmounting LVM volumes.${COLOR_RESET}"
   /bin/umount -v $(/bin/mount | /bin/grep '^/dev/mapper/' | /bin/cut -d ' ' -f 3 | /bin/tac)
 fi
 
@@ -205,12 +213,12 @@ fi
 grep -v ' /mnt/live' /etc/mtab > /etc/mtablive && mv /etc/mtablive /etc/mtab
 ### /modified for Live ###
 
-echo "Unmounting local file systems."
+echo -e "${BOLDCYAN}Unmounting local file systems.${COLOR_RESET}"
 /bin/umount -v -a -t no,proc,sysfs
 
 ### modified for Live ###
 if [ ! -x /mnt/live/cleanup ]; then
-  echo "Remounting root filesystem read-only."
+  echo -e "${BOLDCYAN}Remounting root filesystem read-only.${COLOR_RESET}"
   /bin/mount -v -n -o remount,ro /
 fi	
 ### /modified for Live ###
@@ -219,21 +227,22 @@ fi
 /bin/sync
 
 # Close any volumes opened by cryptsetup:
-if [ -f /etc/crypttab -a -x /sbin/cryptsetup.static ]; then
+if [ -f /etc/crypttab -a -x /sbin/cryptsetup ]; then
   cat /etc/crypttab | grep -v "^#" | grep -v "^$" | while read line; do
     # NOTE: we only support LUKS formatted volumes (except for swap)!
     LUKS=$(echo $line | tr '\t' ' ' | tr -s ' ' | cut -f1 -d' ')
     DEV=$(echo $line | tr '\t' ' ' | tr -s ' ' | cut -f2 -d' ')
     OPTS=$(echo $line | tr '\t' ' ' | tr -s ' ' | cut -f4 -d' ')
-    if /sbin/cryptsetup.static isLuks $DEV 2>/dev/null ; then
-      echo "Locking LUKS crypt volume '${LUKS}':"
-      /sbin/cryptsetup.static luksClose ${LUKS}
+    if /sbin/cryptsetup isLuks $DEV 2>/dev/null ; then
+      echo -e "${BOLDCYAN}Locking LUKS crypt volume ${BOLDGREEN}'${LUKS}'${BOLDCYAN}:${COLOR_RESET}"
+      /sbin/cryptsetup luksClose ${LUKS}
     elif echo $OPTS | grep -wq swap ; then
       # If any of the volumes was used as encrypted swap,
       # then run mkswap on the underlying device -
       # in case other Linux installations on this computer should use it:
-      echo "Erasing encrypted swap '${LUKS}' and restoring normal swap on ${DEV}:"
-      /sbin/cryptsetup.static remove ${LUKS}
+      echo -e "${BOLDCYAN}Erasing encrypted swap
+      ${BOLDGREEN}'${LUKS}'${BOLDCYAN} and restoring normal swap on ${DEV}:${COLOR_RESET}"
+      /sbin/cryptsetup remove ${LUKS}
       mkswap $DEV
     fi
   done
@@ -241,7 +250,7 @@ fi
 
 # Deactivate LVM volume groups:
 if [ -r /etc/lvmtab -o -d /etc/lvm/backup ]; then
-  echo "Deactivating LVM volume groups:"
+  echo -e "${BOLDCYAN}Deactivating LVM volume groups:${COLOR_RESET}"
   /sbin/vgchange -an --ignorelockingfailure
 fi
 
@@ -264,7 +273,7 @@ if [ -x /sbin/genpowerd ]; then
     /sbin/genpowerd -k
     if [ ! $? = 0 ]; then
       echo
-      echo "There was an error signaling the UPS."
+      echo -e "${BOLDRED}There was an error signaling the UPS.${COLOR_RESET}"
       echo "Perhaps you need to edit /etc/genpowerd.conf to configure"
       echo "the serial line and UPS type."
       # Wasting 15 seconds of precious power:
@@ -282,10 +291,12 @@ fi
 ### /modified for Live ###
 
 # Now halt (poweroff with APM or ACPI enabled kernels) or reboot.
+echo
 if [ "$command" = "reboot" ]; then
-  echo "Rebooting."
+  echo -e "${BOLDYELLOW}Rebooting.${COLOR_RESET}"
   /sbin/reboot
 else
+  echo -e "${BOLDYELLOW}Powering down.${COLOR_RESET}"
   /sbin/poweroff
 fi
 

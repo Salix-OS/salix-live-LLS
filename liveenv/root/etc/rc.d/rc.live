@@ -76,13 +76,7 @@ if [ "`cmdline_parameter autologin`" ]; then
   sed -i 's/AutomaticLoginEnable=.*/AutomaticLoginEnable=true/' /etc/gdm/custom.conf
 fi
 
-# Updates dynamic library cache, essential for modular structure.
-if [ -x /sbin/ldconfig ]; then
-  /sbin/ldconfig
+# Starts hal daemon.
+if [ -x /etc/rc.d/rc.hald ]; then
+  /bin/sh /etc/rc.d/rc.hald start
 fi
-
-# Re-generate modules dependencies
-/sbin/depmod -a
-
-# Re-starts hal daemon, just in case.
-/usr/sbin/hald --daemon=yes

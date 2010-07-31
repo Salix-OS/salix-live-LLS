@@ -10,11 +10,10 @@
 # Author:	Fred N. van Kempen, <waltje@uwalt.nl.mugnet.org>
 #		Heavily modified by Patrick Volkerding <volkerdi@slackware.com>
 #
-### Modified for Live ###
-#
+# Modified for Salix by: George Vlahavas <vlahavas~at~gmail~dot~com>
 
-
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] &&	/usr/sbin/splashy_update "progress 60"
+# modified for colorized screen messages and local needs
+. /etc/shell-colors
 
 ### modified for Live ###
 ## LiveCD library
@@ -22,13 +21,8 @@
 ### /modified for Live ###
 
 # Tell the viewers what's going to happen.
-echo "Going multiuser..."
-
-# Update all the shared library links:
-if [ -x /sbin/ldconfig ]; then
-  echo "Updating shared library links:  /sbin/ldconfig &"
-  /sbin/ldconfig &
-fi
+echo
+echo -e "${BOLDYELLOW}Going to multi user mode.${COLOR_RESET}"
 
 # Screen blanks after 15 minutes idle time, and powers down in one hour
 # if the kernel supports APM or ACPI power management:
@@ -39,8 +33,8 @@ if [ -r /etc/HOSTNAME ]; then
   /bin/hostname $(cat /etc/HOSTNAME | cut -f1 -d .)
 else
   # fall back on this old default:
-  echo "salix.salixos.org" > /etc/HOSTNAME
-  /bin/hostname salix
+  echo "darkstar.example.net" > /etc/HOSTNAME
+  /bin/hostname darkstar
 fi
 
 # Save the contents of 'dmesg':
@@ -76,17 +70,9 @@ if [ -x /etc/rc.d/rc.syslog -a -x /usr/sbin/syslogd -a -d /var/log ]; then
   . /etc/rc.d/rc.syslog start
 fi
 
-# Update the X font indexes:
-if [ -x /usr/bin/fc-cache ]; then
-  echo "Updating X font indexes:  /usr/bin/fc-cache -f &"
-  /usr/bin/fc-cache -f &
-fi
-
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 70"
-
 # If we are returning from single-user mode we will need to restart
 # udevd on systems that use udev:
-if grep -wq sysfs /proc/mounts && grep -wq tmpfs /proc/filesystems ; then
+if grep -wq sysfs /proc/mounts && grep -q tmpfs /proc/filesystems ; then
   if ! grep -wq nohotplug /proc/cmdline ; then
     if [ -x /etc/rc.d/rc.udev ]; then
       /bin/sh /etc/rc.d/rc.udev start
@@ -112,17 +98,14 @@ fi
 # Mount any additional filesystem types that haven't already been mounted:
 mount -a -v 2> /dev/null | grep -v "already mounted"
 
-# Start the Network Time Protocol daemon:
-if [ -x /etc/rc.d/rc.ntpd ]; then
-  sh /etc/rc.d/rc.ntpd start
-fi
+
 
 # Remove stale locks and junk files (must be done after mount -a!)
 /bin/rm -f /var/lock/* /var/spool/uucp/LCK..* /tmp/.X*lock /tmp/core /core 2> /dev/null
 
 # Remove stale hunt sockets so the game can start.
 if [ -r /tmp/hunt -o -r /tmp/hunt.stats ]; then
-  echo "Removing your stale hunt sockets from /tmp."
+  echo -e "${BOLDWHITE}Removing stale hunt sockets from /tmp.${COLOR_RESET}"
   /bin/rm -f /tmp/hunt*
 fi
 
@@ -134,70 +117,36 @@ chmod 1777 /tmp /var/tmp
 # If APM is enabled in the kernel, start apmd:
 if [ -e /proc/apm ]; then
   if [ -x /usr/sbin/apmd ]; then
-    echo "Starting APM daemon:  /usr/sbin/apmd"
+    echo -e "${BOLDWHITE}Starting APM daemon:${COLOR_RESET}  /usr/sbin/apmd"
     /usr/sbin/apmd
   fi
 elif [ -x /etc/rc.d/rc.acpid ]; then # otherwise, start acpid:
   . /etc/rc.d/rc.acpid start
 fi
 
-# Update any existing icon cache files:
-if find /usr/share/icons 2> /dev/null | grep -q icon-theme.cache ; then
-  for theme_dir in /usr/share/icons/* ; do
-    if [ -r ${theme_dir}/icon-theme.cache ]; then
-      echo "Updating icon-theme.cache in ${theme_dir}..."
-      /usr/bin/gtk-update-icon-cache -t -f ${theme_dir} 1> /dev/null 2> /dev/null &
-    fi
-  done
-  # This would be a large file and probably shouldn't be there.
-  if [ -r /usr/share/icons/icon-theme.cache ]; then
-    echo "Deleting icon-theme.cache in /usr/share/icons..."
-    #/usr/bin/gtk-update-icon-cache -t -f /usr/share/icons 1> /dev/null 2> /dev/null &
-    rm -f /usr/share/icons/icon-theme.cache
-  fi
-fi
-
-# Update mime database:
-if [ -x /usr/bin/update-mime-database -a -d /usr/share/mime ]; then
-  echo "Updating MIME database:  /usr/bin/update-mime-database /usr/share/mime &"
-  /usr/bin/update-mime-database /usr/share/mime 1> /dev/null 2> /dev/null &
-fi
-
 # Start D-Bus:
 if [ -x /etc/rc.d/rc.messagebus ]; then
-  sh /etc/rc.d/rc.messagebus start
+  /bin/sh /etc/rc.d/rc.messagebus start
 fi
 
 ### modified for Live ###
 # Start HAL:
 #if [ -x /etc/rc.d/rc.hald ]; then
-#  sh /etc/rc.d/rc.hald start
+#  /bin/sh /etc/rc.d/rc.hald start
 #fi
+### /modified for Live ###
 
+### modified for Live ###
 # Start Bluetooth:
 #if [ -x /etc/rc.d/rc.bluetooth ]; then
-#  sh /etc/rc.d/rc.bluetooth start
+#  /bin/sh /etc/rc.d/rc.bluetooth start
 #fi
 ### /modified for Live ###
 
 # Start wicd:
 if [ -x /etc/rc.d/rc.wicd ]; then
-  sh /etc/rc.d/rc.wicd start
+  . /etc/rc.d/rc.wicd start
 fi
-
-# These GTK+/pango files need to be kept up to date for
-# proper input method, pixbuf loaders, and font support.
-if [ -x /usr/bin/update-gtk-immodules ]; then
-  /usr/bin/update-gtk-immodules --verbose
-fi
-if [ -x /usr/bin/update-gdk-pixbuf-loaders ]; then
-  /usr/bin/update-gdk-pixbuf-loaders --verbose
-fi
-if [ -x /usr/bin/update-pango-querymodules ]; then
-  /usr/bin/update-pango-querymodules --verbose
-fi
-
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 80"
 
 # Start dnsmasq, a simple DHCP/DNS server:
 if [ -x /etc/rc.d/rc.dnsmasq ]; then
@@ -207,6 +156,11 @@ fi
 # Start snmpd:
 if [ -x /etc/rc.d/rc.snmpd ]; then
   /etc/rc.d/rc.snmpd start
+fi
+
+# Start the Network Time Protocol daemon:
+if [ -x /etc/rc.d/rc.ntpd ]; then
+  /bin/sh /etc/rc.d/rc.ntpd start
 fi
 
 # Start the print spooling system.  This will usually be LPRng (lpd) or CUPS.
@@ -233,7 +187,7 @@ fi
 
 # If we're using udev, make /dev/cdrom and any other optical drive symlinks
 # if some udev rule hasn't made them already:
-if grep -wq sysfs /proc/mounts && grep -wq tmpfs /proc/filesystems; then
+if grep -wq sysfs /proc/mounts && grep -q tmpfs /proc/filesystems; then
   if ! grep -wq nohotplug /proc/cmdline ; then
     if [ -x /lib/udev/rc.optical-symlinks -a -x /etc/rc.d/rc.udev ]; then
       /bin/sh /lib/udev/rc.optical-symlinks
@@ -249,7 +203,7 @@ fi
 # You'll also need to configure a similar block in /etc/rc.d/rc.6 if you want
 # support for stopping the UPS's inverter after the machine halts.
 #if [ -x /sbin/genpowerd ]; then
-#  echo "Starting genpowerd daemon..."
+#  echo -e "${BOLDWHITE}Starting genpowerd daemon.${COLOR_RESET}"
 #  /sbin/genpowerd
 #fi
 
@@ -267,11 +221,13 @@ fi
 # If you want cron to actually log activity to /var/log/cron, then change
 # -l10 to -l8 to increase the logging level.
 if [ -x /usr/sbin/crond ]; then
+  echo -e "${BOLDWHITE}Starting the cron scheduling daemon:${COLOR_RESET}"
   /usr/sbin/crond -l10 >>/var/log/cron 2>&1
 fi
 
 # Start atd (manages jobs scheduled with 'at'):
 if [ -x /usr/sbin/atd ]; then
+  echo -e "${BOLDWHITE}Starting the at scheduling daemon:${COLOR_RESET}"
   /usr/sbin/atd -b 15 -l 1
 fi
 
@@ -297,16 +253,14 @@ if grep -q quota /etc/fstab ; then
     /bin/rm -f $quotafs/{a,}quota.{group,user}.new
   done
   if [ -x /sbin/quotacheck ]; then
-    echo "Checking filesystem quotas:  /sbin/quotacheck -avugm"
+    echo -e "${BOLDCYAN}Checking filesystem quotas:${COLOR_RESET}  /sbin/quotacheck -avugm"
     /sbin/quotacheck -avugm
   fi
   if [ -x /sbin/quotaon ]; then
-    echo "Activating filesystem quotas:  /sbin/quotaon -avug"
+    echo -e "${BOLDCYAN}Activating filesystem quotas:${COLOR_RESET}  /sbin/quotaon -avug"
     /sbin/quotaon -avug
   fi
 fi
-
-[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 90"
 
 # Start the SASL authentication server.  This provides SASL
 # authentication services for sendmail:
@@ -328,8 +282,7 @@ fi
 # Load a custom keymap if the user has an rc.keymap script.
 #if [ -x /etc/rc.d/rc.keymap ]; then
 #  . /etc/rc.d/rc.keymap
-#fi
-
+# Load custom preferences for Live session including keymap.
 if [ -x /etc/rc.d/rc.live ]; then
   . /etc/rc.d/rc.live
 fi
@@ -371,20 +324,7 @@ if [ -x /etc/rc.d/rc.services ]; then
 	python /etc/rc.d/rc.services
 fi
 
-# Exit splashy here
-if [ ! -z `pidof -o %PPID /usr/sbin/splashy` ]; then
-	/usr/sbin/splashy_update "progress 100"
-	/usr/sbin/splashy_chvt 1
-	kill -9 `pidof -o %PPID /usr/sbin/splashy`
-fi
-
-# Change to VT1, in case splashy was running in VT8 and was exited by
-# the user. We don't want the display to stay stuck in VT8.
-if [ -x /usr/bin/chvt ]; then
-	/usr/bin/chvt 1
-fi
-
-# Start the local setup procedure.
+# Start numlockx if it's activated.
 if [ -x /etc/rc.d/rc.numlock ]; then
   . /etc/rc.d/rc.numlock start
 fi

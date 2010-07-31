@@ -1,13 +1,10 @@
 #!/bin/sh
 # Load the mixer settings and OSS compatibility for ALSA.
 # (the Advanced Linux Sound Architecture)
-#
-### Modified for Live ###
-#
 
 # A function to load the ALSA mixer settings:
 load_alsa_mixer() {
-### modified for Live ###
+  ### modified for Live ###
   # Volume is muted by default. Set it to 71% unless nosound boot option given:
   if ! cat /proc/cmdline | grep -w nosound >/dev/null 2>/dev/null; then
     if [ -r /etc/asound.state ]; then
@@ -15,12 +12,12 @@ load_alsa_mixer() {
       /usr/sbin/alsactl restore
     else
       echo "Setting sound volume: 71%"
-      for SCONTROL in {"Master","PCM","Front","Surround","Center","CD","Video"}; do
+      for SCONTROL in {"Master","PCM","Front","Surround","Center","CD","Video" "Wave" "Music" "AC97" "Headphone"}; do
         /usr/bin/amixer -q sset $SCONTROL 71% unmute 2>/dev/null
       done
     fi
   fi
-### /modified for Live ###
+  ### /modified for Live ###
 }
 
 # A function to load the ALSA OSS compat modules:

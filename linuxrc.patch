@@ -1,5 +1,5 @@
---- src/linux-live-6.3.0/initrd/linuxrc	2009-04-24 17:38:32.000000000 +0200
-+++ linuxrc	2010-01-08 20:56:07.281174402 +0100
+--- linux-live-6.3.0-orig/initrd/linuxrc	2009-04-24 17:38:32.000000000 +0200
++++ linux-live-6.3.0/initrd/linuxrc	2010-07-31 17:08:21.928022980 +0200
 @@ -11,7 +11,8 @@
  
  . liblinuxlive # it requires proc to be mounted
@@ -10,13 +10,7 @@
  
  # Don't print kernel messages to konsole now.
  # Syslog will reset printk settings, no need to remember it here anymore.
-@@ -28,21 +29,27 @@
- # start hotplugging before hw drivers load
- mdev_start_hotplug
- 
-+[ -z "$DEBUG_IS_ENABLED" -a -z "$(cmdline_parameter nosplash)" -a -x /usr/sbin/splashy ] && /usr/sbin/splashy boot
-+
- # Then load drivers for data storage and input devices
+@@ -32,15 +33,17 @@
  modprobe_usb_modules
  modprobe_pcmcia_modules
  
@@ -34,12 +28,8 @@
 +export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
-+[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 5"
-+
  # Find livecd data directory by searching for livecd.sgn file
- SGN=$(cmdline_value sgnfile)
- if [ "$SGN" = "" ]; then SGN=livecd.sgn; fi
-@@ -95,9 +102,13 @@
+@@ -95,7 +98,9 @@
  fi
  
  echolog "using $LIVECDNAME data from $DATA"
@@ -48,12 +38,8 @@
 +export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
-+[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 10"
-+
  echolog "setting up directory for changes"
- CHANGESVAL=$(cmdline_value changes)
- 
-@@ -106,6 +117,7 @@
+@@ -106,6 +111,7 @@
     echolog $CHANGESMNT
  fi
  
@@ -61,19 +47,15 @@
  debug_shell
  
  mount_device "$CHANGESMNT" $MEMORY # removes $MEMORY if CHANGESMNT is wrong
-@@ -153,8 +165,11 @@
+@@ -153,6 +159,7 @@
  mkdir -p $CHANGES
  mkdir -p $IMAGES
  
 +export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
-+[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 15"
-+
  # store the xino file in memory in all cases, it's faster and safer
- if [ "$XINO" != "$MEMORY" ]; then
-    mkdir -p $XINO
-@@ -165,6 +180,7 @@
+@@ -165,6 +172,7 @@
  mount -t aufs -o nowarn_perm,xino=$XINO/.aufs.xino,br:$CHANGES=rw aufs $UNION
  if [ $? -ne 0 ]; then dmesg | tail -n 1; fatal "can't setup union (aufs)"; fi
  
@@ -81,19 +63,15 @@
  debug_shell
  
  # If toram or copy2ram boot parameter is present, copy all fs modules to RAM.
-@@ -186,8 +202,11 @@
+@@ -186,6 +194,7 @@
     cd_autoeject 0
  fi
  
 +export INITRAMDISK UNION DATAFROM MEMORY MOUNTDIR LOOPMOUNT DATA CHANGES CHANGESVAL CHANGESMNT IMAGES
  debug_shell
  
-+[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 20"
-+
  # DATA contains path to the base directory of all fs modules which need
- # to be mounted and inserted into live filesystem. Do it now.
- echolog "inserting all modules and creating live filesystem"
-@@ -197,6 +216,7 @@
+@@ -197,6 +206,7 @@
  # in the case if changes= boot argument is used. If not, it doesn't hurt
  union_insert_modules $UNION $MEMORY $IMAGES
  
@@ -101,12 +79,7 @@
  debug_shell
  
  echolog "copying content of rootcopy directory"
-@@ -207,9 +227,12 @@
- #    rm from memory once ??
- #fi
- 
-+[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "progress 25"
-+
+@@ -210,6 +220,7 @@
  echolog "copying liblinuxlive library to union"
  cp -af /liblinuxlive $UNION/usr/lib/
  
@@ -114,7 +87,7 @@
  debug_shell
  
  echolog "recreating /etc/fstab and /mnt directories"
-@@ -236,6 +259,7 @@
+@@ -236,6 +247,7 @@
  # Error output goes to null, as nothing is mounted with copy2ram
  mount -n -o rbind $(dirname $DATA)/boot $UNION/boot 2>/dev/null
  
@@ -122,7 +95,7 @@
  debug_shell
  
  # Union contains all the files and directories unioned from all modules.
-@@ -272,21 +296,30 @@
+@@ -272,21 +284,29 @@
  # using /sbin/init or whatever was found.
  header "linux live end, starting $LIVECDNAME"
  
@@ -142,7 +115,6 @@
 +rm -f /dev/initctl
 +mkfifo -m 600 /dev/initctl
 +runlevel=$(cmdline_parameter [0123456])
-+[ ! -z "$(pidof splashy)" ] && /usr/sbin/splashy_update "exit"
  cp -af $INIT /bin
  if [ $? -eq 0 ]; then
     pivot_root . $INITRAMDISK

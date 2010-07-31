@@ -1,5 +1,5 @@
---- src/linux-live-6.3.0/initrd/cleanup	2007-11-13 16:11:40.000000000 +0100
-+++ cleanup	2010-03-07 16:33:53.451809996 +0100
+--- linux-live-6.3.0-orig/initrd/cleanup	2007-11-13 16:11:40.000000000 +0100
++++ linux-live-6.3.0/initrd/cleanup	2010-07-31 17:08:58.010022000 +0200
 @@ -48,17 +48,21 @@
  
  fumount $MOUNTDIR/*

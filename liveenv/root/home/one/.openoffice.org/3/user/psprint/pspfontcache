@@ -1,195 +1,230 @@
-PspFontCacheFile format 3
-FontCacheDirectory:1258925885:/usr/lib/openoffice.org/basis3.1/share/fonts/truetype
-File:DejaVuSerifBold.ttf
-2;1
-DejaVu Serif
--1;DejaVuSerif-Bold;0;8;5;2;65535;938;235;173;0;2630;1173;2630;1173;0;1;1;0;Bold
-
-File:LiberationSans-Italic.ttf
-2;1
-Liberation Sans
--1;LiberationSans-Italic;2;5;5;2;65535;905;211;116;0;1333;1116;1333;1116;0;1;1;8;Italic
-
-File:LiberationMono-Italic.ttf
-2;1
-Liberation Mono
--1;LiberationMono-Italic;2;5;5;1;65535;832;300;132;0;798;1132;798;1132;0;1;1;8;Italic
-
-File:DejaVuSansBoldOblique.ttf
-2;1
-DejaVu Sans
--1;DejaVuSans-BoldOblique;1;8;5;2;65535;928;235;163;0;3070;1163;3070;1163;0;1;1;0;Bold Oblique
-
-File:DejaVuMonoSans.ttf
-2;1
-DejaVu Sans Mono
--1;DejaVuSansMono;0;5;5;1;65535;928;235;163;0;1275;1163;1275;1163;0;1;1;0;Book
-
+PspFontCacheFile format 4
+FontCacheDirectory:1272222806:/usr/lib/openoffice.org/basis3.2/share/fonts/truetype
 File:LiberationMono-Bold.ttf
 2;1
 Liberation Mono
 -1;LiberationMono-Bold;0;8;5;1;65535;832;300;132;0;640;1132;640;1132;0;1;1;8;Bold
 
-File:DejaVuSerif.ttf
+File:DejaVuSans-BoldOblique.ttf
 2;1
-DejaVu Serif
--1;DejaVuSerif;0;5;5;2;65535;928;235;163;0;2448;1163;2448;1163;0;1;1;0;Book
+DejaVu Sans
+-1;DejaVuSans-BoldOblique;1;8;5;2;65535;928;235;163;0;3064;1163;3064;1163;0;1;1;0;Bold Oblique
 
-File:LiberationSerif-Regular.ttf
-2;1
-Liberation Serif
--1;LiberationSerif-Regular;0;5;5;2;65535;891;216;107;0;1182;1107;1182;1107;0;1;1;8;Regular
-
-File:LiberationSans-BoldItalic.ttf
-2;1
-Liberation Sans
--1;LiberationSans-BoldItalic;2;8;5;2;65535;905;211;116;0;1336;1116;1336;1116;0;1;1;8;Bold Italic
-
-File:DejaVuCondensedSerifItalic.ttf
-2;1
-DejaVu Serif;DejaVu Serif Condensed
--1;DejaVuSerifCondensed-Italic;2;5;4;2;65535;928;235;163;0;2240;1163;2240;1163;0;1;1;0;Condensed Italic
-
-File:DejaVuMonoSansBold.ttf
+File:DejaVuSansMono-Oblique.ttf
 2;1
 DejaVu Sans Mono
--1;DejaVuSansMono-Bold;0;8;5;1;65535;928;235;163;0;1177;1163;1177;1163;0;1;1;0;Bold
+-1;DejaVuSansMono-Oblique;1;5;5;1;65535;928;235;163;0;1148;1163;1148;1163;0;1;1;0;Oblique
 
-File:DejaVuSansExtraLight.ttf
+File:DejaVuSansCondensed-Bold.ttf
 2;1
-DejaVu Sans;DejaVu Sans Light
--1;DejaVuSans-ExtraLight;0;2;5;2;65535;928;235;163;0;2391;1163;2391;1163;0;1;1;0;ExtraLight
+DejaVu Sans;DejaVu Sans Condensed
+-1;DejaVuSansCondensed-Bold;0;8;4;2;65535;928;235;163;0;2739;1163;2739;1163;0;1;1;0;Condensed Bold
+
+File:GenBkBasI.ttf
+2;1
+Gentium Book Basic
+-1;GentiumBookBasic-Italic;2;5;5;2;65535;874;283;157;0;1330;1157;1330;1157;0;1;1;0;Italic
+
+File:GenBasBI.ttf
+2;1
+Gentium Basic
+-1;GentiumBasic-BoldItalic;2;8;5;2;65535;874;283;157;0;1407;1157;1407;1157;0;1;1;0;Bold Italic
+
+File:DejaVuSerifCondensed-Bold.ttf
+2;1
+DejaVu Serif;DejaVu Serif Condensed
+-1;DejaVuSerifCondensed-Bold;0;8;4;2;65535;938;235;173;0;2368;1173;2368;1173;0;1;1;0;Condensed Bold
+
+File:DejaVuSansMono.ttf
+2;1
+DejaVu Sans Mono
+-1;DejaVuSansMono;0;5;5;1;65535;928;235;163;0;1274;1163;1274;1163;0;1;1;0;Book
 
 File:LiberationMono-BoldItalic.ttf
 2;1
 Liberation Mono
 -1;LiberationMono-BoldItalic;2;8;5;1;65535;832;300;132;0;791;1132;791;1132;0;1;1;8;Bold Italic
 
-File:DejaVuSerifItalic.ttf
+File:LiberationMono-Italic.ttf
+2;1
+Liberation Mono
+-1;LiberationMono-Italic;2;5;5;1;65535;832;300;132;0;798;1132;798;1132;0;1;1;8;Italic
+
+File:DejaVuSerif.ttf
 2;1
 DejaVu Serif
--1;DejaVuSerif-Italic;2;5;5;2;65535;928;235;163;0;2489;1163;2489;1163;0;1;1;0;Italic
+-1;DejaVuSerif;0;5;5;2;65535;928;235;163;0;2448;1163;2448;1163;0;1;1;0;Book
 
-File:DejaVuCondensedSansOblique.ttf
+File:LiberationMono-Regular.ttf
+2;1
+Liberation Mono
+-1;LiberationMono;0;5;5;1;65535;832;300;132;0;632;1132;632;1132;0;1;1;8;Regular
+
+File:GenBkBasR.ttf
+2;1
+Gentium Book Basic
+-1;GentiumBookBasic;0;5;5;2;65535;874;283;157;0;1501;1157;1501;1157;0;1;1;0;Regular
+
+File:DejaVuSansCondensed.ttf
 2;1
 DejaVu Sans;DejaVu Sans Condensed
--1;DejaVuSansCondensed-Oblique;1;5;4;2;65535;928;235;163;0;2407;1163;2407;1163;0;1;1;0;Condensed Oblique
+-1;DejaVuSansCondensed;0;5;4;2;65535;928;235;163;0;2430;1163;2430;1163;0;1;1;0;Condensed
+
+File:DejaVuSerifCondensed.ttf
+2;1
+DejaVu Serif;DejaVu Serif Condensed
+-1;DejaVuSerifCondensed;0;5;4;2;65535;928;235;163;0;2203;1163;2203;1163;0;1;1;0;Condensed
+
+File:LiberationSans-Regular.ttf
+2;1
+Liberation Sans
+-1;LiberationSans;0;5;5;2;65535;905;211;116;0;1253;1116;1253;1116;0;1;1;8;Regular
 
 File:DejaVuSans.ttf
 2;1
 DejaVu Sans
 -1;DejaVuSans;0;5;5;2;65535;928;235;163;0;2700;1163;2700;1163;0;1;1;0;Book
 
-File:DejaVuCondensedSansBoldOblique.ttf
+File:GenBkBasB.ttf
 2;1
-DejaVu Sans;DejaVu Sans Condensed
--1;DejaVuSansCondensed-BoldOblique;1;8;4;2;65535;928;235;163;0;2764;1163;2764;1163;0;1;1;0;Condensed Bold Oblique
+Gentium Book Basic
+-1;GentiumBookBasic-Bold;0;8;5;2;65535;874;283;157;0;1579;1157;1579;1157;0;1;1;0;Bold
 
-File:DejaVuSansBold.ttf
+File:DejaVuSans-ExtraLight.ttf
 2;1
-DejaVu Sans
--1;DejaVuSans-Bold;0;8;5;2;65535;928;235;163;0;3044;1163;3044;1163;0;1;1;0;Bold
+DejaVu Sans;DejaVu Sans Light
+-1;DejaVuSans-ExtraLight;0;2;5;2;65535;928;235;163;0;2391;1163;2391;1163;0;1;1;0;ExtraLight
 
-File:LiberationSans-Regular.ttf
-2;1
-Liberation Sans
--1;LiberationSans-Regular;0;5;5;2;65535;905;211;116;0;1253;1116;1253;1116;0;1;1;8;Regular
-
-File:LiberationMono-Regular.ttf
-2;1
-Liberation Mono
--1;LiberationMono-Regular;0;5;5;1;65535;832;300;132;0;632;1132;632;1132;0;1;1;8;Regular
-
-File:LiberationSerif-Bold.ttf
-2;1
-Liberation Serif
--1;LiberationSerif-Bold;0;8;5;2;65535;891;216;107;0;1266;1107;1266;1107;0;1;1;8;Bold
-
-File:LiberationSerif-BoldItalic.ttf
-2;1
-Liberation Serif
--1;LiberationSerif-BoldItalic;2;8;5;2;65535;891;216;107;0;1328;1107;1328;1107;0;1;1;8;Bold Italic
-
-File:DejaVuCondensedSerif.ttf
+File:DejaVuSerifCondensed-Italic.ttf
 2;1
 DejaVu Serif;DejaVu Serif Condensed
--1;DejaVuSerifCondensed;0;5;4;2;65535;928;235;163;0;2203;1163;2203;1163;0;1;1;0;Condensed
+-1;DejaVuSerifCondensed-Italic;2;5;4;2;65535;928;235;163;0;2235;1163;2235;1163;0;1;1;0;Condensed
 
-File:opens___.ttf
-2;1
-OpenSymbol
--1;OpenSymbol;0;5;5;2;65535;799;200;-1;0;1262;999;1262;999;0;1;1;8;Regular
-
-File:DejaVuCondensedSans.ttf
-2;1
-DejaVu Sans;DejaVu Sans Condensed
--1;DejaVuSansCondensed;0;5;4;2;65535;928;235;163;0;2430;1163;2430;1163;0;1;1;0;Condensed
-
-File:DejaVuCondensedSerifBold.ttf
-2;1
-DejaVu Serif;DejaVu Serif Condensed
--1;DejaVuSerifCondensed-Bold;0;8;4;2;65535;938;235;173;0;2368;1173;2368;1173;0;1;1;0;Condensed Bold
-
-File:DejaVuSerifBoldItalic.ttf
+File:DejaVuSerif-Bold.ttf
 2;1
 DejaVu Serif
--1;DejaVuSerif-BoldItalic;2;8;5;2;65535;938;235;173;0;2665;1173;2665;1173;0;1;1;0;Bold Italic
+-1;DejaVuSerif-Bold;0;8;5;2;65535;938;235;173;0;2630;1173;2630;1173;0;1;1;0;Bold
+
+File:DejaVuSansMono-BoldOblique.ttf
+2;1
+DejaVu Sans Mono
+-1;DejaVuSansMono-BoldOblique;1;8;5;1;65535;928;235;163;0;1232;1163;1232;1163;0;1;1;0;Bold Oblique
 
 File:LiberationSerif-Italic.ttf
 2;1
 Liberation Serif
 -1;LiberationSerif-Italic;2;5;5;2;65535;891;216;107;0;1263;1107;1263;1107;0;1;1;8;Italic
 
-File:DejaVuCondensedSerifBoldItalic.ttf
+File:LiberationSerif-Bold.ttf
 2;1
-DejaVu Serif;DejaVu Serif Condensed
--1;DejaVuSerifCondensed-BoldItalic;2;8;4;2;65535;938;235;173;0;2398;1173;2398;1173;0;1;1;0;Condensed Bold Italic
+Liberation Serif
+-1;LiberationSerif-Bold;0;8;5;2;65535;891;216;107;0;1266;1107;1266;1107;0;1;1;8;Bold
 
-File:DejaVuMonoSansBoldOblique.ttf
-2;1
-DejaVu Sans Mono
--1;DejaVuSansMono-BoldOblique;1;8;5;1;65535;928;235;163;0;1235;1163;1235;1163;0;1;1;0;Bold Oblique
-
-File:LiberationSans-Bold.ttf
-2;1
-Liberation Sans
--1;LiberationSans-Bold;0;8;5;2;65535;905;211;116;0;1246;1116;1246;1116;0;1;1;8;Bold
-
-File:DejaVuSansOblique.ttf
+File:DejaVuSans-Oblique.ttf
 2;1
 DejaVu Sans
 -1;DejaVuSans-Oblique;1;5;5;2;65535;928;235;163;0;2674;1163;2674;1163;0;1;1;0;Oblique
 
-File:DejaVuCondensedSansBold.ttf
+File:opens___.ttf
+2;1
+OpenSymbol
+-1;OpenSymbol;0;5;5;2;65535;799;200;-1;0;1262;999;1262;999;0;1;1;8;Regular
+
+File:GenBasI.ttf
+2;1
+Gentium Basic
+-1;GentiumBasic-Italic;2;5;5;2;65535;874;283;157;0;1292;1157;1292;1157;0;1;1;0;Italic
+
+File:DejaVuSansCondensed-BoldOblique.ttf
 2;1
 DejaVu Sans;DejaVu Sans Condensed
--1;DejaVuSansCondensed-Bold;0;8;4;2;65535;928;235;163;0;2739;1163;2739;1163;0;1;1;0;Condensed Bold
+-1;DejaVuSansCondensed-BoldOblique;1;8;4;2;65535;928;235;163;0;2758;1163;2758;1163;0;1;1;0;Condensed Bold Oblique
 
-File:DejaVuMonoSansOblique.ttf
+File:LiberationSans-BoldItalic.ttf
 2;1
-DejaVu Sans Mono
--1;DejaVuSansMono-Oblique;1;5;5;1;65535;928;235;163;0;1151;1163;1151;1163;0;1;1;0;Oblique
+Liberation Sans
+-1;LiberationSans-BoldItalic;2;8;5;2;65535;905;211;116;0;1336;1116;1336;1116;0;1;1;8;Bold Italic
 
-FontCacheDirectory:1258925811:/usr/share/fonts/TTF
-File:Samyak_Malayalam.ttf
+File:GenBasR.ttf
 2;1
-Samyak
--1;Samyak_Malayalam;0;6;5;2;65535;1365;469;834;0;2587;1834;2587;1834;0;1;1;0;_Malayalam
+Gentium Basic
+-1;GentiumBasic;0;5;5;2;65535;874;283;157;0;1477;1157;1477;1157;0;1;1;0;Regular
 
-File:lohit_pa.ttf
+File:LiberationSerif-BoldItalic.ttf
 2;1
-Lohit Punjabi
--1;Lohit-Punjabi;0;5;5;2;65535;732;244;-24;0;1707;976;1707;976;0;1;1;2;Regular
+Liberation Serif
+-1;LiberationSerif-BoldItalic;2;8;5;2;65535;891;216;107;0;1328;1107;1328;1107;0;1;1;8;Bold Italic
+
+File:DejaVuSerif-BoldItalic.ttf
+2;1
+DejaVu Serif
+-1;DejaVuSerif-BoldItalic;2;8;5;2;65535;938;235;173;0;2658;1173;2658;1173;0;1;1;0;Bold Italic
+
+File:DejaVuSerifCondensed-BoldItalic.ttf
+2;1
+DejaVu Serif;DejaVu Serif Condensed
+-1;DejaVuSerifCondensed-BoldItalic;2;8;4;2;65535;938;235;173;0;2393;1173;2393;1173;0;1;1;0;Condensed Bold Italic
+
+File:DejaVuSansCondensed-Oblique.ttf
+2;1
+DejaVu Sans;DejaVu Sans Condensed
+-1;DejaVuSansCondensed-Oblique;1;5;4;2;65535;928;235;163;0;2407;1163;2407;1163;0;1;1;0;Condensed Oblique
+
+File:GenBkBasBI.ttf
+2;1
+Gentium Book Basic
+-1;GentiumBookBasic-BoldItalic;2;8;5;2;65535;874;283;157;0;1445;1157;1445;1157;0;1;1;0;Bold Italic
+
+File:GenBasB.ttf
+2;1
+Gentium Basic
+-1;GentiumBasic-Bold;0;8;5;2;65535;874;283;157;0;1549;1157;1549;1157;0;1;1;0;Bold
 
 File:LiberationSans-Italic.ttf
 2;1
 Liberation Sans
 -1;LiberationSans-Italic;2;5;5;2;65535;905;211;116;0;1333;1116;1333;1116;0;1;1;8;Italic
 
-File:LiberationMono-Italic.ttf
+File:LiberationSans-Bold.ttf
 2;1
-Liberation Mono
--1;LiberationMono-Italic;2;5;5;1;65535;832;300;132;0;798;1132;798;1132;0;1;1;8;Italic
+Liberation Sans
+-1;LiberationSans-Bold;0;8;5;2;65535;905;211;116;0;1246;1116;1246;1116;0;1;1;8;Bold
+
+File:DejaVuSansMono-Bold.ttf
+2;1
+DejaVu Sans Mono
+-1;DejaVuSansMono-Bold;0;8;5;1;65535;928;235;163;0;1176;1163;1176;1163;0;1;1;0;Bold
+
+File:LiberationSerif-Regular.ttf
+2;1
+Liberation Serif
+-1;LiberationSerif;0;5;5;2;65535;891;216;107;0;1182;1107;1182;1107;0;1;1;8;Regular
+
+File:DejaVuSerif-Italic.ttf
+2;1
+DejaVu Serif
+-1;DejaVuSerif-Italic;2;5;5;2;65535;928;235;163;0;2483;1163;2483;1163;0;1;1;0;Italic
+
+File:DejaVuSans-Bold.ttf
+2;1
+DejaVu Sans
+-1;DejaVuSans-Bold;0;8;5;2;65535;928;235;163;0;3044;1163;3044;1163;0;1;1;0;Bold
+
+FontCacheDirectory:1273850327:/usr/share/fonts/TTF
+File:LinLibertineC_Re-4.0.3.ttf
+2;1
+Linux Libertine C
+-1;LinLibertineC;0;5;5;2;65535;894;246;140;0;6615;1140;6615;1140;0;1;1;0;Regular
+
+File:lohit_pa.ttf
+2;1
+Lohit Punjabi
+-1;Lohit-Punjabi;0;5;5;2;65535;732;244;-24;0;1707;976;1707;976;0;1;1;2;Regular
+
+File:sinhala_lklug.ttf
+2;1
+LKLUG
+-1;LKLUG;0;5;5;2;65535;869;415;284;0;2179;1284;2179;1284;0;1;1;0;Regular
 
 File:Malige-n.ttf
 2;1
@@ -201,45 +236,70 @@ File:luxirbi.ttf
 Luxi Serif
 -1;LuxiSerif-BoldOblique;1;8;5;2;65535;958;210;168;0;1358;1168;1358;1168;0;1;1;0;Bold Oblique
 
+File:LinLibertine_Re-4.4.1.ttf
+2;1
+Linux Libertine
+-1;LinLibertine;0;5;5;2;65535;894;246;140;0;7252;1140;7252;1140;0;1;1;0;Regular
+
+File:LiberationMono-Bold.ttf
+2;1
+Liberation Mono
+-1;LiberationMono-Bold;0;8;5;1;65535;832;300;132;0;640;1132;640;1132;0;1;1;8;Bold
+
 File:Kedage-i.ttf
 2;1
 Kedage
 -1;KedageNormalItalic;2;5;5;2;65535;1000;660;660;0;2485;1660;2485;1660;0;1;1;8;NormalItalic
 
-File:DejaVuSansCondensed-Bold.ttf
+File:DejaVuSans-BoldOblique.ttf
 2;1
-DejaVu Sans;DejaVu Sans Condensed
--1;DejaVuSansCondensed-Bold;0;8;4;2;65535;928;235;163;0;2739;1163;2739;1163;0;1;1;0;Condensed Bold
+DejaVu Sans
+-1;DejaVuSans-BoldOblique;1;8;5;2;65535;928;235;163;0;3064;1163;3064;1163;0;1;1;0;Bold Oblique
 
 File:luxisri.ttf
 2;1
 Luxi Sans
 -1;LuxiSans-Oblique;1;5;5;2;65535;944;210;154;0;1318;1154;1318;1154;0;1;1;0;Oblique
 
+File:JamrulNormal.ttf
+2;1
+Jamrul
+-1;JamrulNormal;0;6;6;2;65535;1034;418;452;0;2185;1452;2185;1452;0;1;1;0;Normal
+
+File:DejaVuSansMono-Oblique.ttf
+2;1
+DejaVu Sans Mono
+-1;DejaVuSansMono-Oblique;1;5;5;1;65535;928;235;163;0;1148;1163;1148;1163;0;1;1;0;Oblique
+
 File:utkal.ttf
 2;1
 ori1Uni;utkal
 -1;utkal;0;6;5;2;65535;1192;629;821;0;2312;1821;2312;1821;0;1;1;0;Medium
 
-File:TSCu_paranarb.ttf
+File:MuktiNarrowBold.ttf
 2;1
-TSCu_Paranar
--1;TSCu_Paranar;0;8;5;2;65535;724;326;50;0;1768;1050;1768;1050;0;1;1;4;Bold
+Mukti Narrow
+-1;muktinarrowbold;0;8;5;2;65535;1241;438;679;0;1772;1679;1772;1679;0;1;1;0;Regular
 
 File:Malige-t.ttf
 2;1
 Mallige
 -1;MalligeBoldItalic;2;8;5;2;65535;1000;660;660;0;2736;1660;2736;1660;0;1;1;8;BoldItalic
 
-File:TSCu_Paranar.ttf
+File:DejaVuSansCondensed-Bold.ttf
 2;1
-TSCu_Paranar
--1;TSCu_Paranar;0;5;5;2;65535;724;326;50;0;1729;1050;1729;1050;0;1;1;4;Regular
+DejaVu Sans;DejaVu Sans Condensed
+-1;DejaVuSansCondensed-Bold;0;8;4;2;65535;928;235;163;0;2739;1163;2739;1163;0;1;1;0;Condensed Bold
 
 File:MuktiNarrow.ttf
 2;1
 Mukti Narrow
 -1;muktinarrow;0;5;5;2;65535;1241;438;679;0;1773;1679;1773;1679;0;1;1;0;Regular
+
+File:DejaVuSerifCondensed-Bold.ttf
+2;1
+DejaVu Serif;DejaVu Serif Condensed
+-1;DejaVuSerifCondensed-Bold;0;8;4;2;65535;938;235;173;0;2368;1173;2368;1173;0;1;1;0;Condensed Bold
 
 File:wqy-zenhei.ttc
 2;2
@@ -258,25 +318,30 @@ File:luxirr.ttf
 Luxi Serif
 -1;LuxiSerif;0;5;5;2;65535;944;210;154;0;1186;1154;1186;1154;0;1;1;0;Regular
 
-File:DejaVuSerifCondensed-BoldItalic.ttf
+File:DejaVuSansMono.ttf
 2;1
-DejaVu Serif;DejaVu Serif Condensed
--1;DejaVuSerifCondensed-BoldItalic;2;8;4;2;65535;938;235;173;0;2398;1173;2398;1173;0;1;1;0;Condensed Bold Italic
+DejaVu Sans Mono
+-1;DejaVuSansMono;0;5;5;1;65535;928;235;163;0;1274;1163;1274;1163;0;1;1;0;Book
 
 File:Pothana2000.ttf
 2;1
 Pothana2000
 -1;Pothana2000;0;5;5;2;65535;880;840;720;0;2485;1720;2485;1720;0;1;1;2;Pothana2000
 
-File:padmaa-Medium-0.5.ttf
-2;1
-padmaa;padmmaa
--1;padmaa-Medium;0;6;5;2;65535;770;381;151;0;1392;1151;1392;1151;0;1;1;8;regular
-
-File:LiberationMono-Bold.ttf
+File:LiberationMono-BoldItalic.ttf
 2;1
 Liberation Mono
--1;LiberationMono-Bold;0;8;5;1;65535;832;300;132;0;640;1132;640;1132;0;1;1;8;Bold
+-1;LiberationMono-BoldItalic;2;8;5;1;65535;832;300;132;0;791;1132;791;1132;0;1;1;8;Bold Italic
+
+File:LinLibertine_It-4.0.6.ttf
+2;1
+Linux Libertine
+-1;LinLibertineI;2;5;5;2;65535;894;246;140;0;6615;1140;6615;1140;0;1;1;0;Italic
+
+File:LiberationMono-Italic.ttf
+2;1
+Liberation Mono
+-1;LiberationMono-Italic;2;5;5;1;65535;832;300;132;0;798;1132;798;1132;0;1;1;8;Italic
 
 File:DejaVuSerif.ttf
 2;1
@@ -288,40 +353,45 @@ File:lohit_bn.ttf
 Lohit Bengali
 -1;Lohit-Bengali;0;5;5;2;65535;751;305;56;0;1402;1056;1402;1056;0;1;1;2;Regular
 
-File:LiberationSerif-Regular.ttf
+File:LiberationMono-Regular.ttf
 2;1
-Liberation Serif
--1;LiberationSerif-Regular;0;5;5;2;65535;891;216;107;0;1182;1107;1182;1107;0;1;1;8;Regular
+Liberation Mono
+-1;LiberationMono-Regular;0;5;5;1;65535;832;300;132;0;632;1132;632;1132;0;1;1;8;Regular
 
-File:LiberationSans-BoldItalic.ttf
+File:DejaVuSansCondensed.ttf
 2;1
-Liberation Sans
--1;LiberationSans-BoldItalic;2;8;5;2;65535;905;211;116;0;1336;1116;1336;1116;0;1;1;8;Bold Italic
+DejaVu Sans;DejaVu Sans Condensed
+-1;DejaVuSansCondensed;0;5;4;2;65535;928;235;163;0;2430;1163;2430;1163;0;1;1;0;Condensed
+
+File:padmaa-Medium-0.5.ttf
+2;1
+padmaa;padmmaa
+-1;padmaa-Medium;0;6;5;2;65535;770;381;151;0;1392;1151;1392;1151;0;1;1;8;regular
 
 File:luxisbi.ttf
 2;1
 Luxi Sans
 -1;LuxiSans-BoldOblique;1;8;5;2;65535;952;210;162;0;1324;1162;1324;1162;0;1;1;0;Bold Oblique
 
-File:TSCu_paranari.ttf
+File:Samyak_Malayalam.ttf
 2;1
-TSCu_Paranar
--1;TSCu_Paranar;2;5;5;2;65535;724;326;50;0;1710;1050;1710;1050;0;1;1;4;Italic
+Samyak
+-1;Samyak_Malayalam;0;6;5;2;65535;1365;469;834;0;2587;1834;2587;1834;0;1;1;0;_Malayalam
 
 File:luxisr.ttf
 2;1
 Luxi Sans
 -1;LuxiSans;0;5;5;2;65535;944;210;154;0;1203;1154;1203;1154;0;1;1;0;Regular
 
-File:LiberationMono-BoldItalic.ttf
-2;1
-Liberation Mono
--1;LiberationMono-BoldItalic;2;8;5;1;65535;832;300;132;0;791;1132;791;1132;0;1;1;8;Bold Italic
-
 File:Kedage-b.ttf
 2;1
 Kedage
 -1;KedageBold;0;8;5;2;65535;1000;660;660;0;2429;1660;2429;1660;0;1;1;8;Bold
+
+File:DejaVuSerifCondensed.ttf
+2;1
+DejaVu Serif;DejaVu Serif Condensed
+-1;DejaVuSerifCondensed;0;5;4;2;65535;928;235;163;0;2203;1163;2203;1163;0;1;1;0;Condensed
 
 File:luxirb.ttf
 2;1
@@ -333,20 +403,20 @@ File:Gargi_1.7.ttf
 Gargi_1.7
 -1;Gargi_1.7;0;6;5;2;65535;931;276;207;0;2359;1207;2359;1207;0;1;1;0;Medium
 
-File:sazanami-mincho.ttf
-2;1
-Sazanami Mincho;さざなみ明朝
--1;Sazanami-Mincho-Regular;0;6;5;2;65535;973;156;129;1;1300;1129;1300;1129;0;1;1;8;Regular
-
 File:TSCu_Comic.ttf
 2;1
 TSCu_Comic
 -1;TSCu_Comic;0;5;5;2;65535;766;348;114;0;1785;1114;1785;1114;0;1;1;2;Normal
 
-File:DejaVuSans-ExtraLight.ttf
+File:LiberationSans-Regular.ttf
 2;1
-DejaVu Sans;DejaVu Sans Light
--1;DejaVuSans-ExtraLight;0;2;5;2;65535;928;235;163;0;2391;1163;2391;1163;0;1;1;0;ExtraLight
+Liberation Sans
+-1;LiberationSans-Regular;0;5;5;2;65535;905;211;116;0;1253;1116;1253;1116;0;1;1;8;Regular
+
+File:FreeSansBold.ttf
+2;1
+FreeSans
+-1;FreeSansBold;0;8;5;2;65535;979;355;334;0;1337;1334;1337;1334;0;1;1;0;Bold
 
 File:Rekha.ttf
 2;1
@@ -358,50 +428,50 @@ File:DejaVuSans.ttf
 DejaVu Sans
 -1;DejaVuSans;0;5;5;2;65535;928;235;163;0;2700;1163;2700;1163;0;1;1;0;Book
 
+File:padmaa-Bold-0.5.ttf
+2;1
+padmaa;padmmaa
+-1;padmaa-Bold;0;8;5;2;65535;770;381;151;0;1471;1151;1471;1151;0;1;1;8;Bold
+
+File:DejaVuSans-ExtraLight.ttf
+2;1
+DejaVu Sans;DejaVu Sans Light
+-1;DejaVuSans-ExtraLight;0;2;5;2;65535;928;235;163;0;2391;1163;2391;1163;0;1;1;0;ExtraLight
+
 File:DejaVuSerifCondensed-Italic.ttf
 2;1
 DejaVu Serif;DejaVu Serif Condensed
--1;DejaVuSerifCondensed-Italic;2;5;4;2;65535;928;235;163;0;2240;1163;2240;1163;0;1;1;0;Condensed
-
-File:sinhala_lklug.ttf
-2;1
-LKLUG
--1;LKLUG;0;5;5;2;65535;869;415;284;0;2179;1284;2179;1284;0;1;1;0;Regular
-
-File:DejaVuSans-Bold.ttf
-2;1
-DejaVu Sans
--1;DejaVuSans-Bold;0;8;5;2;65535;928;235;163;0;3044;1163;3044;1163;0;1;1;0;Bold
-
-File:LiberationSans-Regular.ttf
-2;1
-Liberation Sans
--1;LiberationSans-Regular;0;5;5;2;65535;905;211;116;0;1253;1116;1253;1116;0;1;1;8;Regular
-
-File:LiberationMono-Regular.ttf
-2;1
-Liberation Mono
--1;LiberationMono-Regular;0;5;5;1;65535;832;300;132;0;632;1132;632;1132;0;1;1;8;Regular
+-1;DejaVuSerifCondensed-Italic;2;5;4;2;65535;928;235;163;0;2235;1163;2235;1163;0;1;1;0;Condensed
 
 File:luxisb.ttf
 2;1
 Luxi Sans
 -1;LuxiSans-Bold;0;8;5;2;65535;952;210;162;0;1212;1162;1212;1162;0;1;1;0;Bold
 
-File:TAMu_Kadampari.ttf
+File:TSCu_paranari.ttf
 2;1
-TAMu_Kadambri
--1;TAMu_Kadambri-Regular;0;5;5;2;65535;877;217;94;0;1745;1094;1745;1094;0;1;1;0;Regular
+TSCu_Paranar
+-1;TSCu_Paranar;2;5;5;2;65535;724;326;50;0;1710;1050;1710;1050;0;1;1;4;Italic
 
-File:LiberationSerif-Bold.ttf
+File:TAMu_Kalyani.ttf
 2;1
-Liberation Serif
--1;LiberationSerif-Bold;0;8;5;2;65535;891;216;107;0;1266;1107;1266;1107;0;1;1;8;Bold
+TAMu_Kalyani
+-1;TAMu_Kalyani;0;5;5;2;65535;804;204;8;0;1603;1008;1603;1008;0;1;1;0;Regular
+
+File:DejaVuSerif-Bold.ttf
+2;1
+DejaVu Serif
+-1;DejaVuSerif-Bold;0;8;5;2;65535;938;235;173;0;2630;1173;2630;1173;0;1;1;0;Bold
 
 File:Kedage-n.ttf
 2;1
 Kedage
 -1;KedageNormal;0;5;5;2;65535;1000;660;660;0;2458;1660;2458;1660;0;1;1;8;Normal
+
+File:sazanami-gothic.ttf
+2;1
+Sazanami Gothic;さざなみゴシック
+-1;Sazanami-Gothic-Regular;0;6;5;2;65535;995;203;198;1;1091;1198;1091;1198;0;1;1;8;Regular
 
 File:luximri.ttf
 2;1
@@ -413,20 +483,20 @@ File:lohit_ta.ttf
 Lohit Tamil
 -1;Lohit-Tamil;0;5;5;2;65535;683;288;-29;0;1622;971;1622;971;0;1;1;2;Regular
 
-File:DejaVuSansMono-Bold.ttf
+File:LikhanNormal.ttf
 2;1
-DejaVu Sans Mono
--1;DejaVuSansMono-Bold;0;8;5;1;65535;928;235;163;0;1177;1163;1177;1163;0;1;1;0;Bold
+Likhan
+-1;LikhanNormal;0;6;5;2;65535;1044;302;346;0;2018;1346;2018;1346;0;1;1;0;Normal
 
-File:LiberationSerif-BoldItalic.ttf
+File:Biolinum_Re-0.4.1.ttf
 2;1
-Liberation Serif
--1;LiberationSerif-BoldItalic;2;8;5;2;65535;891;216;107;0;1328;1107;1328;1107;0;1;1;8;Bold Italic
+Linux Biolinum
+-1;LinBiolinum;0;5;5;2;65535;894;246;140;0;7252;1140;7252;1140;0;1;1;0;Regular
 
-File:DejaVuSansCondensed-BoldOblique.ttf
+File:kalimati.ttf
 2;1
-DejaVu Sans;DejaVu Sans Condensed
--1;DejaVuSansCondensed-BoldOblique;1;8;4;2;65535;928;235;163;0;2764;1163;2764;1163;0;1;1;0;Condensed Bold Oblique
+Kalimati;नालिमाटी
+-1;Kalimati;0;5;5;2;65535;1241;438;679;0;2028;1679;2028;1679;0;1;1;65544;Regular
 
 File:TSCu_Times.ttf
 2;1
@@ -438,45 +508,55 @@ File:Kedage-t.ttf
 Kedage
 -1;KedageBoldItalic;2;8;5;2;65535;1000;660;660;0;2444;1660;2444;1660;0;1;1;8;BoldItalic
 
+File:DejaVuSansMono-BoldOblique.ttf
+2;1
+DejaVu Sans Mono
+-1;DejaVuSansMono-BoldOblique;1;8;5;1;65535;928;235;163;0;1232;1163;1232;1163;0;1;1;0;Bold Oblique
+
 File:lohit_hi.ttf
 2;1
 Lohit Hindi
 -1;Lohit-Hindi;0;5;5;2;65535;732;377;109;0;1400;1109;1400;1109;0;1;1;2;Regular
 
-File:DejaVuSerif-BoldItalic.ttf
+File:LinLibertine_BI-4.0.5.ttf
 2;1
-DejaVu Serif
--1;DejaVuSerif-BoldItalic;2;8;5;2;65535;938;235;173;0;2665;1173;2665;1173;0;1;1;0;Bold Italic
+Linux Libertine
+-1;LinLibertineBI;2;8;5;2;65535;894;246;140;0;6618;1140;6618;1140;0;1;1;0;Bold Italic
 
-File:DejaVuSansMono.ttf
+File:LiberationSerif-Italic.ttf
 2;1
-DejaVu Sans Mono
--1;DejaVuSansMono;0;5;5;1;65535;928;235;163;0;1275;1163;1275;1163;0;1;1;0;Book
+Liberation Serif
+-1;LiberationSerif-Italic;2;5;5;2;65535;891;216;107;0;1263;1107;1263;1107;0;1;1;8;Italic
 
-File:DejaVuSansMono-BoldOblique.ttf
+File:TSCu_Paranar.ttf
 2;1
-DejaVu Sans Mono
--1;DejaVuSansMono-BoldOblique;1;8;5;1;65535;928;235;163;0;1235;1163;1235;1163;0;1;1;0;Bold Oblique
+TSCu_Paranar
+-1;TSCu_Paranar;0;5;5;2;65535;724;326;50;0;1729;1050;1729;1050;0;1;1;4;Regular
+
+File:LiberationSerif-Bold.ttf
+2;1
+Liberation Serif
+-1;LiberationSerif-Bold;0;8;5;2;65535;891;216;107;0;1266;1107;1266;1107;0;1;1;8;Bold
+
+File:DejaVuSans-Oblique.ttf
+2;1
+DejaVu Sans
+-1;DejaVuSans-Oblique;1;5;5;2;65535;928;235;163;0;2674;1163;2674;1163;0;1;1;0;Oblique
 
 File:lohit_gu.ttf
 2;1
 Lohit Gujarati
 -1;Lohit-Gujarati;0;5;5;2;65535;732;244;-24;0;1474;976;1474;976;0;1;1;2;Regular
 
-File:JamrulNormal.ttf
+File:DejaVuSansCondensed-BoldOblique.ttf
 2;1
-Jamrul
--1;JamrulNormal;0;6;6;2;65535;1034;418;452;0;2185;1452;2185;1452;0;1;1;0;Normal
+DejaVu Sans;DejaVu Sans Condensed
+-1;DejaVuSansCondensed-BoldOblique;1;8;4;2;65535;928;235;163;0;2758;1163;2758;1163;0;1;1;0;Condensed Bold Oblique
 
-File:TAMu_Maduram.ttf
+File:aakar-medium.ttf
 2;1
-TAMu_Maduram
--1;TAMu_Maduram;0;5;5;2;65535;818;216;34;0;1838;1034;1838;1034;0;1;1;2;Normal
-
-File:DejaVuSerif-Italic.ttf
-2;1
-DejaVu Serif
--1;DejaVuSerif-Italic;2;5;5;2;65535;928;235;163;0;2489;1163;2489;1163;0;1;1;0;Italic
+aratii;release;aakar
+-1;aakar-Medium;0;6;5;2;65535;902;315;217;0;1819;1217;1819;1217;0;1;1;8;gnubha
 
 File:luximr.ttf
 2;1
@@ -488,10 +568,20 @@ File:mitra.ttf
 Mitra Mono;\u09ae\u09bf\u09a4\u09cd\u09b0
 -1;Mitra;0;5;5;1;65535;781;218;-1;0;2054;999;2054;999;0;1;1;0;Regular
 
-File:DejaVuSansCondensed.ttf
+File:LinLibertine_Bd-4.1.0.ttf
 2;1
-DejaVu Sans;DejaVu Sans Condensed
--1;DejaVuSansCondensed;0;5;4;2;65535;928;235;163;0;2430;1163;2430;1163;0;1;1;0;Condensed
+Linux Libertine
+-1;LinLibertineB;0;8;5;2;65535;894;246;140;0;6615;1140;6615;1140;0;1;1;0;Bold
+
+File:sazanami-mincho.ttf
+2;1
+Sazanami Mincho;さざなみ明朝
+-1;Sazanami-Mincho-Regular;0;6;5;2;65535;973;156;129;1;1300;1129;1300;1129;0;1;1;8;Regular
+
+File:LiberationSans-BoldItalic.ttf
+2;1
+Liberation Sans
+-1;LiberationSans-BoldItalic;2;8;5;2;65535;905;211;116;0;1336;1116;1336;1116;0;1;1;8;Bold Italic
 
 File:luximbi.ttf
 2;1
@@ -503,110 +593,105 @@ File:Malige-i.ttf
 Mallige
 -1;MalligeNormalItalic;2;5;5;2;65535;1000;660;660;0;2816;1660;2816;1660;0;1;1;8;NormalItalic
 
-File:aakar-medium.ttf
+File:TSCu_paranarb.ttf
 2;1
-aratii;release;aakar
--1;aakar-Medium;0;6;5;2;65535;902;315;217;0;1819;1217;1819;1217;0;1;1;8;gnubha
+TSCu_Paranar
+-1;TSCu_Paranar;0;8;5;2;65535;724;326;50;0;1768;1050;1768;1050;0;1;1;4;Bold
 
 File:Vemana.ttf
 2;1
 Vemana2000;Pothana2000
 -1;Vemana2000;0;5;5;2;65535;880;840;720;0;2359;1720;2359;1720;0;1;1;2;Pothana2000
 
+File:TAMu_Maduram.ttf
+2;1
+TAMu_Maduram
+-1;TAMu_Maduram;0;5;5;2;65535;818;216;34;0;1838;1034;1838;1034;0;1;1;2;Normal
+
 File:TibMachUni.ttf
 2;1
 Tibetan Machine Uni
 -1;Tibetan_Machine_Uni;0;5;5;2;65535;1218;781;999;0;2760;1999;2760;1999;0;1;1;0;Regular
 
-File:LiberationSerif-Italic.ttf
+File:LiberationSerif-BoldItalic.ttf
 2;1
 Liberation Serif
--1;LiberationSerif-Italic;2;5;5;2;65535;891;216;107;0;1263;1107;1263;1107;0;1;1;8;Italic
+-1;LiberationSerif-BoldItalic;2;8;5;2;65535;891;216;107;0;1328;1107;1328;1107;0;1;1;8;Bold Italic
 
-File:DejaVuSerifCondensed.ttf
+File:DejaVuSerif-BoldItalic.ttf
+2;1
+DejaVu Serif
+-1;DejaVuSerif-BoldItalic;2;8;5;2;65535;938;235;173;0;2658;1173;2658;1173;0;1;1;0;Bold Italic
+
+File:DejaVuSerifCondensed-BoldItalic.ttf
 2;1
 DejaVu Serif;DejaVu Serif Condensed
--1;DejaVuSerifCondensed;0;5;4;2;65535;928;235;163;0;2203;1163;2203;1163;0;1;1;0;Condensed
-
-File:DejaVuSerifCondensed-Bold.ttf
-2;1
-DejaVu Serif;DejaVu Serif Condensed
--1;DejaVuSerifCondensed-Bold;0;8;4;2;65535;938;235;173;0;2368;1173;2368;1173;0;1;1;0;Condensed Bold
-
-File:luximb.ttf
-2;1
-Luxi Mono
--1;LuxiMono-Bold;0;8;5;1;65535;952;210;162;0;713;1162;713;1162;0;1;1;0;Bold
-
-File:DejaVuSans-Oblique.ttf
-2;1
-DejaVu Sans
--1;DejaVuSans-Oblique;1;5;5;2;65535;928;235;163;0;2674;1163;2674;1163;0;1;1;0;Oblique
-
-File:TAMu_Kalyani.ttf
-2;1
-TAMu_Kalyani
--1;TAMu_Kalyani;0;5;5;2;65535;804;204;8;0;1603;1008;1603;1008;0;1;1;0;Regular
-
-File:sazanami-gothic.ttf
-2;1
-Sazanami Gothic;さざなみゴシック
--1;Sazanami-Gothic-Regular;0;6;5;2;65535;995;203;198;1;1091;1198;1091;1198;0;1;1;8;Regular
-
-File:LiberationSans-Bold.ttf
-2;1
-Liberation Sans
--1;LiberationSans-Bold;0;8;5;2;65535;905;211;116;0;1246;1116;1246;1116;0;1;1;8;Bold
-
-File:ani.ttf
-2;1
-Ani
--1;Ani;0;5;5;2;65535;1241;438;679;0;1938;1679;1938;1679;0;1;1;0;Regular
+-1;DejaVuSerifCondensed-BoldItalic;2;8;4;2;65535;938;235;173;0;2393;1173;2393;1173;0;1;1;0;Condensed Bold Italic
 
 File:DejaVuSansCondensed-Oblique.ttf
 2;1
 DejaVu Sans;DejaVu Sans Condensed
 -1;DejaVuSansCondensed-Oblique;1;5;4;2;65535;928;235;163;0;2407;1163;2407;1163;0;1;1;0;Condensed Oblique
 
-File:MuktiNarrowBold.ttf
+File:luximb.ttf
 2;1
-Mukti Narrow
--1;muktinarrowbold;0;8;5;2;65535;1241;438;679;0;1772;1679;1772;1679;0;1;1;0;Regular
+Luxi Mono
+-1;LuxiMono-Bold;0;8;5;1;65535;952;210;162;0;713;1162;713;1162;0;1;1;0;Bold
 
-File:DejaVuSerif-Bold.ttf
+File:TAMu_Kadampari.ttf
 2;1
-DejaVu Serif
--1;DejaVuSerif-Bold;0;8;5;2;65535;938;235;173;0;2630;1173;2630;1173;0;1;1;0;Bold
+TAMu_Kadambri
+-1;TAMu_Kadambri-Regular;0;5;5;2;65535;877;217;94;0;1745;1094;1745;1094;0;1;1;0;Regular
 
-File:DejaVuSansMono-Oblique.ttf
+File:Biolinum_Bd-0.4.1.ttf
+2;1
+Linux Biolinum
+-1;LinBiolinumB;0;8;5;2;65535;894;246;140;0;7252;1140;7252;1140;0;1;1;0;Bold
+
+File:ani.ttf
+2;1
+Ani
+-1;Ani;0;5;5;2;65535;1241;438;679;0;1938;1679;1938;1679;0;1;1;0;Regular
+
+File:LiberationSans-Italic.ttf
+2;1
+Liberation Sans
+-1;LiberationSans-Italic;2;5;5;2;65535;905;211;116;0;1333;1116;1333;1116;0;1;1;8;Italic
+
+File:LiberationSans-Bold.ttf
+2;1
+Liberation Sans
+-1;LiberationSans-Bold;0;8;5;2;65535;905;211;116;0;1246;1116;1246;1116;0;1;1;8;Bold
+
+File:DejaVuSansMono-Bold.ttf
 2;1
 DejaVu Sans Mono
--1;DejaVuSansMono-Oblique;1;5;5;1;65535;928;235;163;0;1151;1163;1151;1163;0;1;1;0;Oblique
-
-File:DejaVuSans-BoldOblique.ttf
-2;1
-DejaVu Sans
--1;DejaVuSans-BoldOblique;1;8;5;2;65535;928;235;163;0;3070;1163;3070;1163;0;1;1;0;Bold Oblique
+-1;DejaVuSansMono-Bold;0;8;5;1;65535;928;235;163;0;1176;1163;1176;1163;0;1;1;0;Bold
 
 File:luxirri.ttf
 2;1
 Luxi Serif
 -1;LuxiSerif-Oblique;1;5;5;2;65535;944;210;154;0;1295;1154;1295;1154;0;1;1;8;Oblique
 
-File:padmaa-Bold-0.5.ttf
-2;1
-padmaa;padmmaa
--1;padmaa-Bold;0;8;5;2;65535;770;381;151;0;1471;1151;1471;1151;0;1;1;8;Bold
-
 File:Malige-b.ttf
 2;1
 Mallige
 -1;MalligeBold;0;8;5;2;65535;1000;660;660;0;2712;1660;2712;1660;0;1;1;8;Bold
 
-File:LikhanNormal.ttf
+File:LiberationSerif-Regular.ttf
 2;1
-Likhan
--1;LikhanNormal;0;6;5;2;65535;1044;302;346;0;2018;1346;2018;1346;0;1;1;0;Normal
+Liberation Serif
+-1;LiberationSerif-Regular;0;5;5;2;65535;891;216;107;0;1182;1107;1182;1107;0;1;1;8;Regular
+
+File:DejaVuSerif-Italic.ttf
+2;1
+DejaVu Serif
+-1;DejaVuSerif-Italic;2;5;5;2;65535;928;235;163;0;2483;1163;2483;1163;0;1;1;0;Italic
+
+File:DejaVuSans-Bold.ttf
+2;1
+DejaVu Sans
+-1;DejaVuSans-Bold;0;8;5;2;65535;928;235;163;0;3044;1163;3044;1163;0;1;1;0;Bold
 
 File:chandas1-1.ttf
 2;1
@@ -618,7 +703,7 @@ File:Saab.ttf
 Saab
 -1;Saab;0;5;5;2;65535;1000;660;660;0;1767;1660;1767;1660;0;1;1;0;Regular
 
-FontCacheDirectory:1258925856:/usr/share/fonts/Type1
+FontCacheDirectory:1272774281:/usr/share/fonts/Type1
 File:n021024l.pfb
 1;1
 Nimbus Roman No9 L
@@ -628,6 +713,11 @@ File:n021003l.pfb
 1;1
 Nimbus Roman No9 L
 -1;NimbusRomNo9L-Regu;0;5;0;2;91;924;281;205;0;1031;662;1031;662;0;1;1;n021003l.afm;Regular
+
+File:UTRG____.pfa
+1;1
+Utopia
+-1;Utopia-Regular;0;5;0;2;91;890;250;140;0;1158;692;1158;692;0;1;1;UTRG____.afm;Regular
 
 File:n022023l.pfb
 1;1
@@ -644,10 +734,10 @@ File:n021004l.pfb
 Nimbus Roman No9 L
 -1;NimbusRomNo9L-Medi;0;6;0;2;91;960;341;301;0;1093;676;1093;676;0;1;1;n021004l.afm;Medium
 
-File:c0649bt_.pfb
+File:UTI_____.pfa
 1;1
-Bitstream Charter
--1;CharterBT-Italic;2;5;0;2;91;980;237;217;0;1175;672;1175;672;0;1;1;c0649bt_.afm;Italic
+Utopia
+-1;Utopia-Italic;2;5;0;2;91;890;250;140;0;1205;692;1205;692;0;1;1;UTI_____.afm;Italic
 
 File:n019063l.pfb
 1;1
@@ -663,11 +753,6 @@ File:n022024l.pfb
 1;1
 Nimbus Mono L
 -1;NimbusMonL-BoldObli;1;8;0;2;91;1029;278;307;0;914;583;914;583;0;1;1;n022024l.afm;Bold Oblique
-
-File:c0419bt_.pfb
-1;1
-Courier 10 Pitch
--1;Courier10PitchBT-Roman;0;5;0;1;91;858;299;157;0;664;579;664;579;0;1;1;c0419bt_.afm;Regular
 
 File:n022003l.pfb
 1;1
@@ -724,11 +809,6 @@ File:b018012l.pfb
 URW Bookman L
 -1;URWBookmanL-Ligh;0;6;0;2;91;942;268;210;0;1266;681;1266;681;0;1;1;b018012l.afm;Light
 
-File:c0648bt_.pfb
-1;1
-Bitstream Charter
--1;CharterBT-Roman;0;5;0;2;91;963;237;200;0;1194;672;1194;672;0;1;1;c0648bt_.afm;Regular
-
 File:a010035l.pfb
 1;1
 URW Gothic L
@@ -759,16 +839,6 @@ File:d050000l.pfb
 Dingbats
 -1;Dingbats;0;5;0;2;10;819;143;-38;0;981;691;981;691;0;1;1;d050000l.afm;Regular
 
-File:c0633bt_.pfb
-1;1
-Bitstream Charter
--1;CharterBT-BoldItalic;2;8;0;2;91;972;237;209;0;1243;672;1243;672;0;1;1;c0633bt_.afm;Bold Italic
-
-File:c0583bt_.pfb
-1;1
-Courier 10 Pitch
--1;Courier10PitchBT-Bold;0;8;0;1;91;875;310;185;0;665;579;665;579;0;1;1;c0583bt_.afm;Bold
-
 File:a010015l.pfb
 1;1
 URW Gothic L
@@ -778,6 +848,11 @@ File:n019024l.pfb
 1;1
 Nimbus Sans L
 -1;NimbusSanL-BoldItal;2;8;0;2;91;979;309;288;0;1199;729;1199;729;0;1;1;n019024l.afm;Bold Italic
+
+File:UTBI____.pfa
+1;1
+Utopia
+-1;Utopia-BoldItalic;2;8;0;2;91;916;250;166;0;1297;692;1297;692;0;1;1;UTBI____.afm;Bold Italic
 
 File:n019003l.pfb
 1;1
@@ -794,30 +869,20 @@ File:c059013l.pfb
 Century Schoolbook L
 -1;CenturySchL-Roma;0;6;0;2;91;993;302;295;0;1188;722;1188;722;0;1;1;c059013l.afm;Roman
 
+File:UTB_____.pfa
+1;1
+Utopia
+-1;Utopia-Bold;0;8;0;2;91;916;250;166;0;1249;692;1249;692;0;1;1;UTB_____.afm;Bold
+
 File:n019004l.pfb
 1;1
 Nimbus Sans L
 -1;NimbusSanL-Bold;0;8;0;2;91;979;307;286;0;1097;729;1097;729;0;1;1;n019004l.afm;Bold
 
-File:c0611bt_.pfb
-1;1
-Courier 10 Pitch
--1;Courier10PitchBT-BoldItalic;2;8;0;1;91;875;310;185;0;665;579;665;579;0;1;1;c0611bt_.afm;Bold Italic
-
 File:b018015l.pfb
 1;1
 URW Bookman L
 -1;URWBookmanL-DemiBold;0;8;0;2;91;1000;306;306;0;1346;681;1346;681;0;1;1;b018015l.afm;Demi Bold
-
-File:c0632bt_.pfb
-1;1
-Bitstream Charter
--1;CharterBT-Bold;0;8;0;2;91;963;237;200;0;1263;672;1263;672;0;1;1;c0632bt_.afm;Bold
-
-File:c0582bt_.pfb
-1;1
-Courier 10 Pitch
--1;Courier10PitchBT-Italic;2;5;0;1;91;858;299;157;0;664;579;664;579;0;1;1;c0582bt_.afm;Italic
 
 File:c059036l.pfb
 1;1
@@ -834,146 +899,121 @@ File:c059016l.pfb
 Century Schoolbook L
 -1;CenturySchL-Bold;0;8;0;2;91;1011;372;383;0;1230;722;1230;722;0;1;1;c059016l.afm;Bold
 
-FontCacheDirectory:1258925883:/usr/lib/openoffice.org3/program/../basis-link/share/psprint/fontmetric
+FontCacheDirectory:1272222807:/usr/lib/openoffice.org3/program/../basis-link/share/psprint/fontmetric
 File:Times-Roman.afm
 3;1
 Times
 -1;Times-Roman;0;6;0;2;91;898;218;116;0;1000;662;1000;662;0;1;1;Roman
-
-File:ITCBookman-Demi.afm
-3;1
-ITC Bookman
--1;Bookman-Demi;0;7;0;2;91;934;250;184;0;1346;681;1346;681;0;1;1;Demi
 
 File:Courier.afm
 3;1
 Courier
 -1;Courier;0;6;0;1;91;805;250;55;0;715;562;715;562;0;1;1
 
-File:NewCenturySchlbk-BoldItalic.afm
+File:Palatino-Italic.afm
 3;1
-New Century Schoolbook
--1;NewCenturySchlbk-BoldItalic;2;8;0;2;91;991;250;241;0;1147;722;1147;722;0;1;1;Bold Italic
-
-File:ITCAvantGarde-Book.afm
-3;1
-ITC Avant Garde Gothic
--1;AvantGarde-Book;0;3;0;2;91;955;222;177;0;1148;740;1148;740;0;1;1;Book
-
-File:ITCAvantGarde-DemiOblique.afm
-3;1
-ITC Avant Garde Gothic
--1;AvantGarde-DemiOblique;2;7;0;2;91;1021;251;272;0;1256;740;1256;740;0;1;1;Demi Oblique
-
-File:Helvetica-Oblique.afm
-3;1
-Helvetica
--1;Helvetica-Oblique;2;6;0;2;91;931;225;156;0;1116;718;1116;718;0;1;1;Oblique
-
-File:NewCenturySchlbk-Roman.afm
-3;1
-New Century Schoolbook
--1;NewCenturySchlbk-Roman;0;6;0;2;91;965;250;215;0;1000;722;1000;722;0;1;1;Roman
-
-File:Helvetica.afm
-3;1
-Helvetica
--1;Helvetica;0;6;0;2;91;931;225;156;0;1000;718;1000;718;0;1;1
-
-File:Courier-Oblique.afm
-3;1
-Courier
--1;Courier-Oblique;2;6;0;1;91;805;250;55;0;849;562;849;562;0;1;1;Oblique
+Palatino
+-1;Palatino-Italic;2;6;0;2;91;918;276;194;0;1010;692;1010;692;0;1;1;Italic
 
 File:Courier-Bold.afm
 3;1
 Courier
 -1;Courier-Bold;0;8;0;1;91;801;250;51;0;749;562;749;562;0;1;1;Bold
 
-File:ITCBookman-Light.afm
+File:ITCBookman-LightItalic.afm
 3;1
 ITC Bookman
--1;Bookman-Light;0;3;0;2;91;908;251;159;0;1266;681;1266;681;0;1;1;Light
+-1;Bookman-LightItalic;2;3;0;2;91;883;250;133;0;1269;681;1269;681;0;1;1;Light Italic
 
-File:ZapfDingbats.afm
-3;1
-ITC Zapf Dingbats
--1;ZapfDingbats;0;6;0;2;10;820;143;-37;0;981;820;981;820;0;1;1
-
-File:Palatino-Italic.afm
-3;1
-Palatino
--1;Palatino-Italic;2;6;0;2;91;918;276;194;0;1010;692;1010;692;0;1;1;Italic
-
-File:ITCBookman-DemiItalic.afm
+File:ITCBookman-Demi.afm
 3;1
 ITC Bookman
--1;Bookman-DemiItalic;2;7;0;2;91;941;250;191;0;1333;681;1333;681;0;1;1;Demi Italic
+-1;Bookman-Demi;0;7;0;2;91;934;250;184;0;1346;681;1346;681;0;1;1;Demi
 
-File:Palatino-Roman.afm
-3;1
-Palatino
--1;Palatino-Roman;0;6;0;2;91;927;283;210;0;1021;692;1021;692;0;1;1;Roman
-
-File:ITCZapfChancery-MediumItalic.afm
-3;1
-ITC Zapf Chancery
--1;ZapfChancery-MediumItalic;2;6;0;2;91;831;314;145;0;1065;708;1065;708;0;1;1;Medium Italic
-
-File:Times-Bold.afm
-3;1
-Times
--1;Times-Bold;0;8;0;2;91;935;218;153;0;1000;676;1000;676;0;1;1;Bold
-
-File:Helvetica-BoldOblique.afm
+File:Helvetica.afm
 3;1
 Helvetica
--1;Helvetica-BoldOblique;2;8;0;2;91;962;228;190;0;1114;718;1114;718;0;1;1;Bold Oblique
+-1;Helvetica;0;6;0;2;91;931;225;156;0;1000;718;1000;718;0;1;1
 
 File:NewCenturySchlbk-Bold.afm
 3;1
 New Century Schoolbook
 -1;NewCenturySchlbk-Bold;0;8;0;2;91;988;250;238;0;1000;722;1000;722;0;1;1;Bold
 
-File:Courier-BoldOblique.afm
-3;1
-Courier
--1;Courier-BoldOblique;2;8;0;1;91;801;250;51;0;869;562;869;562;0;1;1;Bold Oblique
-
-File:ITCAvantGarde-Demi.afm
-3;1
-ITC Avant Garde Gothic
--1;AvantGarde-Demi;0;7;0;2;91;1021;251;272;0;1222;740;1222;740;0;1;1;Demi
-
-File:ITCBookman-LightItalic.afm
-3;1
-ITC Bookman
--1;Bookman-LightItalic;2;3;0;2;91;883;250;133;0;1269;681;1269;681;0;1;1;Light Italic
-
-File:NewCenturySchlbk-Italic.afm
+File:NewCenturySchlbk-BoldItalic.afm
 3;1
 New Century Schoolbook
--1;NewCenturySchlbk-Italic;2;6;0;2;91;958;250;208;0;994;722;994;722;0;1;1;Italic
+-1;NewCenturySchlbk-BoldItalic;2;8;0;2;91;991;250;241;0;1147;722;1147;722;0;1;1;Bold Italic
 
-File:Palatino-BoldItalic.afm
+File:ITCZapfChancery-MediumItalic.afm
 3;1
-Palatino
--1;Palatino-BoldItalic;2;8;0;2;91;926;271;197;0;1073;681;1073;681;0;1;1;Bold Italic
+ITC Zapf Chancery
+-1;ZapfChancery-MediumItalic;2;6;0;2;91;831;314;145;0;1065;708;1065;708;0;1;1;Medium Italic
 
-File:Helvetica-Bold.afm
+File:ZapfDingbats.afm
 3;1
-Helvetica
--1;Helvetica-Bold;0;8;0;2;91;962;228;190;0;1003;718;1003;718;0;1;1;Bold
+ITC Zapf Dingbats
+-1;ZapfDingbats;0;6;0;2;10;820;143;-37;0;981;820;981;820;0;1;1
+
+File:ITCAvantGarde-Book.afm
+3;1
+ITC Avant Garde Gothic
+-1;AvantGarde-Book;0;3;0;2;91;955;222;177;0;1148;740;1148;740;0;1;1;Book
 
 File:Times-Italic.afm
 3;1
 Times
 -1;Times-Italic;2;6;0;2;91;883;217;100;0;1010;653;1010;653;0;1;1;Italic
 
-File:Times-BoldItalic.afm
+File:Helvetica-Oblique.afm
+3;1
+Helvetica
+-1;Helvetica-Oblique;2;6;0;2;91;931;225;156;0;1116;718;1116;718;0;1;1;Oblique
+
+File:ITCBookman-Light.afm
+3;1
+ITC Bookman
+-1;Bookman-Light;0;3;0;2;91;908;251;159;0;1266;681;1266;681;0;1;1;Light
+
+File:ITCAvantGarde-Demi.afm
+3;1
+ITC Avant Garde Gothic
+-1;AvantGarde-Demi;0;7;0;2;91;1021;251;272;0;1222;740;1222;740;0;1;1;Demi
+
+File:Courier-Oblique.afm
+3;1
+Courier
+-1;Courier-Oblique;2;6;0;1;91;805;250;55;0;849;562;849;562;0;1;1;Oblique
+
+File:NewCenturySchlbk-Italic.afm
+3;1
+New Century Schoolbook
+-1;NewCenturySchlbk-Italic;2;6;0;2;91;958;250;208;0;994;722;994;722;0;1;1;Italic
+
+File:Courier-BoldOblique.afm
+3;1
+Courier
+-1;Courier-BoldOblique;2;8;0;1;91;801;250;51;0;869;562;869;562;0;1;1;Bold Oblique
+
+File:ITCAvantGarde-DemiOblique.afm
+3;1
+ITC Avant Garde Gothic
+-1;AvantGarde-DemiOblique;2;7;0;2;91;1021;251;272;0;1256;740;1256;740;0;1;1;Demi Oblique
+
+File:Palatino-BoldItalic.afm
+3;1
+Palatino
+-1;Palatino-BoldItalic;2;8;0;2;91;926;271;197;0;1073;681;1073;681;0;1;1;Bold Italic
+
+File:Times-Bold.afm
 3;1
 Times
--1;Times-BoldItalic;2;8;0;2;91;921;218;139;0;996;669;996;669;0;1;1;Bold Italic
+-1;Times-Bold;0;8;0;2;91;935;218;153;0;1000;676;1000;676;0;1;1;Bold
+
+File:Palatino-Roman.afm
+3;1
+Palatino
+-1;Palatino-Roman;0;6;0;2;91;927;283;210;0;1021;692;1021;692;0;1;1;Roman
 
 File:ITCAvantGarde-BookOblique.afm
 3;1
@@ -985,9 +1025,34 @@ File:Palatino-Bold.afm
 Palatino
 -1;Palatino-Bold;0;8;0;2;91;924;266;190;0;1000;681;1000;681;0;1;1;Bold
 
+File:ITCBookman-DemiItalic.afm
+3;1
+ITC Bookman
+-1;Bookman-DemiItalic;2;7;0;2;91;941;250;191;0;1333;681;1333;681;0;1;1;Demi Italic
+
+File:NewCenturySchlbk-Roman.afm
+3;1
+New Century Schoolbook
+-1;NewCenturySchlbk-Roman;0;6;0;2;91;965;250;215;0;1000;722;1000;722;0;1;1;Roman
+
+File:Helvetica-BoldOblique.afm
+3;1
+Helvetica
+-1;Helvetica-BoldOblique;2;8;0;2;91;962;228;190;0;1114;718;1114;718;0;1;1;Bold Oblique
+
+File:Helvetica-Bold.afm
+3;1
+Helvetica
+-1;Helvetica-Bold;0;8;0;2;91;962;228;190;0;1003;718;1003;718;0;1;1;Bold
+
+File:Times-BoldItalic.afm
+3;1
+Times
+-1;Times-BoldItalic;2;8;0;2;91;921;218;139;0;996;669;996;669;0;1;1;Bold Italic
+
 File:Symbol.afm
 3;1
 Symbol
 -1;Symbol;0;6;0;2;10;1010;293;303;0;1090;1010;1090;1010;0;1;1
 
-EmptyFontCacheDirectory:1259351542:/home/one/.openoffice.org/3/user/psprint/fontmetric
+EmptyFontCacheDirectory:1280593915:/home/one/.openoffice.org/3/user/psprint/fontmetric

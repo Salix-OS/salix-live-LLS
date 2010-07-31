@@ -1,5 +1,5 @@
---- /home/jrd/salix/sysvinit-scripts/tags/13.0.2/rc.services	2010-04-30 14:42:40.000000000 +0200
-+++ root/etc/rc.d/rc.services	2010-07-10 15:46:58.596049352 +0200
+--- /etc/rc.d/rc.services	2010-07-23 13:35:53.000000000 +0200
++++ root/etc/rc.d/rc.services	2010-07-31 17:53:51.371023189 +0200
 @@ -28,6 +28,7 @@
  		'rc.K', \
  		'rc.keymap', \

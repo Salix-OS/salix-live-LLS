@@ -8,7 +8,7 @@
  <node oor:name="Help">
   <node oor:name="Registration">
    <prop oor:name="ReminderDate" oor:type="xs:string">
-    <value>Patch9420</value>
+    <value>Patch9483</value>
    </prop>
   </node>
  </node>

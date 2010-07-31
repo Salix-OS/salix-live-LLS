@@ -18,9 +18,10 @@ if [ "$UID" -ne "0" ]; then
   exit 1
 fi
 export KVER=$(uname -r)
+export ARCH64=$(uname -m|grep 64 >/dev/null && echo 1 || echo 0)
 export DISTRO=salix
-export VER=13.0.1
-#export RLZ=$(date +%Y%m%d,%H:%M)
+export VER=13.1
+export RLZ=$(date +%Y%m%d,%H:%M)
 #export RLZ=rc1
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
@@ -256,51 +257,28 @@ sed -i -e "s/^LIVECDNAME=.*/LIVECDNAME=\"${DISTRO}live\"/ ; s@^ROOT=.*@ROOT=$ROO
 # CD Label
 sed -i -e "s/CDLABEL=.*/CDLABEL=${DISTRO}live/" cd-root/linux/make_iso.*
 # Live CD name on boot
-cp $startdir/liblinuxlive.patch $startdir/linuxrc.patch $startdir/cleanup.patch .
 sed -i -e "s/__LIVECDNAME__/$DISTRO Live v.$VER${RLZ:+-$RLZ}/" linuxrc.patch
-# patch liblinuxlive, linuxrc and cleanup in the initrd.
-patch -p2 < liblinuxlive.patch
-cp initrd/liblinuxlive tools/ $startdir/src/$lastmodule/usr/lib/
-patch -p2 < linuxrc.patch
-patch -p2 < cleanup.patch
+# patch liblinuxlive, linuxrc and cleanup.
+cat $startdir/liblinuxlive.patch $startdir/linuxrc.patch $startdir/cleanup.patch | patch -p1
+cp tools/liblinuxlive $startdir/src/$lastmodule/usr/lib/
 # remove the installation process of the linux live tools + patch for fake-uname
 sed -i -e 's:.*\. \./install.*:echo "":' -e 's@:/usr/sbin:@:/sbin:/usr/sbin:@' -e 's/^read NEWLIVECDNAME/NEWLIVECDNAME=""/' -e 's/^read NEWKERNEL/NEWKERNEL=""/' -e 's/^read junk//' build
 # remove the need to build aufs as a module for the initrd
 sed -i 's:^rcopy \(.*/aufs .*\):rcopy_ex \1:' initrd/initrd_create
 # increase the size of the initrd
 sed -i 's:6666:8000:' .config
-sed -i 's:6666:8000:' cd-root/boot/dos/config
-sed -i 's:6666:8000:' cd-root/boot/syslinux/syslinux.cfg
-sed -i 's:6666:8000:' cd-root/boot/isolinux/isolinux.cfg
 echo3 "Install BusyBox..."
 rm -rf initrd/rootfs/bin/{busybox,eject}
 cp -rf ../busybox-$BBVER/_install/{bin,sbin}/* initrd/rootfs/bin/
 # remove the busybox symlinks creation in the initrd_create process.
 sed -i -e 's/ln -s busybox .*/echo -n/' initrd/initrd_create
-echo3 "Install splashy and DirectDB in initrd..."
-ROOT2=$ROOT
-export ROOT=$PWD/initrd/rootfs
-installpkg $startdir/PKGS/splashy-*.txz
-installpkg $startdir/PKGS/DirectFB-*.txz
-installpkg $startdir/PKGS/libpng-*.txz
-mkdir -p initrd/rootfs/usr/share/splashy/themes
-cp -r $startdir/liveenv/root/usr/share/splashy/themes/* initrd/rootfs/usr/share/splashy/themes/
-export ROOT=$ROOT2
-unset ROOT2
-rm -rf initrd/rootfs/var \
-       initrd/rootfs/usr/doc \
-       initrd/rootfs/usr/include \
-       initrd/rootfs/usr/lib/pkgconfig \
-       initrd/rootfs/usr/man \
-       initrd/rootfs/usr/share/locale/?? \
-       initrd/rootfs/usr/src
-rm -f  initrd/rootfs/usr/bin/libpng* \
-       initrd/rootfs/usr/sbin/splashy_config
-cp $startdir/libs/libm.so.6 initrd/rootfs/lib/
-cp $startdir/libs/libsysfs.so.2 initrd/rootfs/lib/
-cp $startdir/libs/libgcc_s.so.1 initrd/rootfs/usr/lib/
-cp $startdir/libs/libglib-2.0.so.0 initrd/rootfs/usr/lib/
-cp $startdir/libs/libblkid.so.1.0 initrd/rootfs/lib/
+LIBDIR=32
+[ $ARCH64 = 1 ] && LIBDIR=64
+cp $startdir/libs/$LIBDIR/libm.so.6 initrd/rootfs/lib/
+cp $startdir/libs/$LIBDIR/libsysfs.so.2 initrd/rootfs/lib/
+cp $startdir/libs/$LIBDIR/libgcc_s.so.1 initrd/rootfs/usr/lib/
+cp $startdir/libs/$LIBDIR/libglib-2.0.so.0 initrd/rootfs/usr/lib/
+cp $startdir/libs/$LIBDIR/libblkid.so.1.0 initrd/rootfs/lib/
 # remove any files present
 rm -rf /tmp/live_data_*
 # create ISO structure and create initrd.gz
@@ -366,22 +344,21 @@ cp /usr/lib/grub/i386-pc/boot.img boot/grub/
 cp -ar ${startdir}/livegrub2/build/* .
 find . -type d -name '.svn' | xargs -i@ rm -rf @
 cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
-# patch the bootinst.bat file Salixlive
-sed -i -e "s/Slax/${DISTRO}live/" boot/bootinst.bat
-# add the unix script for installing grub2 on USB too
-echo3 "Adding install-on-USB"
-cp $startdir/install-on-USB boot/
-# add our bootinst.sh
-echo3 "Adding bootinst.sh"
-cp $startdir/bootinst.sh boot/
-# add our syslinux 32 and 64 bits
-echo3 "Adding syslinux 32 and 64 bits"
-rm -r boot/syslinux
-cp -r $startdir/syslinux boot/
+# remove uneeded/unwanted files
+rm -r boot/dos boot/isolinux boot/pxelinux.cfg boot/syslinux boot/bootinst.bat boot/*.c32 boot/liloinst.sh
+# add the unix script for installing grub2 on USB under Unix
+echo3 "Adding install-on-USB.sh"
+cp $startdir/install-on-USB.sh boot/
+# add the batch script and utilities for installing grub2 on USB under Windows
+echo3 "Adding install-on-USB.cmd"
+cp $startdir/install-on-USB.cmd $startdir/4windows/* boot/
+# add grub2 MBR stage and post-MBR stage
+echo3 "Adding grub2 stages"
+cp -r $startdir/grub_* boot/
 # add the standard kernel
 echo3 "Adding the standard kernel too"
 mkdir -p packages/std-kernel
-cp $startdir/std-kernel/*.txz packages/std-kernel/
+cp $startdir/std-kernel/kernel-* packages/std-kernel/
 # add the Salix Live Guide
 echo3 "Adding Salix StartupGuide"
 mkdir -p docs

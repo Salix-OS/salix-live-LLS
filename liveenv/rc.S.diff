@@ -1,42 +1,6 @@
---- /home/jrd/salix/sysvinit-scripts/tags/13.0.2/rc.S	2010-04-30 14:42:40.000000000 +0200
-+++ root/etc/rc.d/rc.S	2010-03-07 20:25:56.513077701 +0100
-@@ -23,6 +23,8 @@
-   fi
- fi
- 
-+[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 25"
-+
- # Initialize udev to manage /dev entries and hotplugging for 2.6.x kernels.
- # You may turn off udev by making the /etc/rc.d/rc.udev file non-executable
- # or giving the "nohotplug" option at boot, but in the 2.6.x+ kernels udev
-@@ -41,7 +43,7 @@
-   fi
- fi
- 
--[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 5"
-+[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 30"
- 
- # Initialize the Logical Volume Manager.
- # This won't start unless we find /etc/lvmtab (LVM1) or
-@@ -109,7 +111,7 @@
-   done
- fi
- 
--[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 10"
-+[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 35"
- 
- # Enable swapping:
- /sbin/swapon -a
-@@ -135,7 +137,7 @@
-   fi
- fi
- 
--[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 15"
-+[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 40"
- 
- # Test to see if the root partition is read-only, like it ought to be.
- READWRITE=no
-@@ -245,15 +247,17 @@
+--- /etc/rc.d/rc.S	2010-07-23 13:35:53.000000000 +0200
++++ root/etc/rc.d/rc.S	2010-07-31 17:46:15.061022421 +0200
+@@ -245,16 +245,20 @@
    read junk;
  fi # Done checking root filesystem
  
@@ -45,9 +9,13 @@
 -/bin/rm -f /etc/mtab*
 +#/bin/rm -f /etc/mtab*
  # Remounting the / partition will initialize the new /etc/mtab:
+-echo -e "${BOLDCYAN}Creating /etc/mtab.${COLOR_RESET}"
 -/sbin/mount -w -o remount /
++#echo -e "${BOLDCYAN}Creating /etc/mtab.${COLOR_RESET}"
 +#/sbin/mount -w -o remount /
++### /modified for Live ###
  
++### modified for Live ###
  # Read in the correct / filesystem complete with arguments so mount will
  # show them correctly. This does not stop those arguments from functioning
  # but does prevent a small bug with /etc/mtab.
@@ -57,75 +25,3 @@
  
  # Fix /etc/mtab to list sys and proc if they were not yet entered in
  # /etc/mtab because / was still mounted read-only:
-@@ -264,7 +268,52 @@
-   /sbin/mount -f sysfs /sys -t sysfs
- fi
- 
--[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 25"
-+[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 45"
-+
-+### modified for Live ###
-+grub2=$(egrep -o '(^|[[:space:]])grub2=[^[:space:]]+' /proc/cmdline | cut -d "=" -f 2- | tail -n 1)
-+if [ "$grub2" = "install" ]; then
-+  partition=$(cat /proc/mounts|grep ' /boot'|cut -d' '  -f1|sed s:/dev/::)
-+  # can be written ?
-+  touch /boot/touch 2> /dev/null
-+  if [ $? -eq 0 ]; then
-+    rm -f /boot/touch
-+    if [ ! -z `pidof -o %PPID /usr/sbin/splashy` ]; then
-+      /usr/sbin/splashy_update "progress 100"
-+      /usr/sbin/splashy_chvt 1
-+      kill -9 `pidof -o %PPID /usr/sbin/splashy`
-+    fi
-+    if [ -x /usr/bin/chvt ]; then
-+      /usr/bin/chvt 1
-+    fi
-+    clear
-+    echo ''
-+    echo '+------------------------------+'
-+    echo '| Installing grub2 boot loader |'
-+    echo '+------------------------------+'
-+    echo ''
-+    needsreboot=0
-+    disk=${partition%${partition: -1}}
-+    grub-install --root-directory=/mnt/live/mnt/$partition --no-floppy --recheck /dev/$disk
-+    if [ $? -eq 0 ]; then
-+      echo -e "\n\nGrub2 installed in $disk !\nRebooting..."
-+      rm -f /mnt/live/mnt/$partition/{ubn*,ldlinux.sys,syslinux.cfg,vesamenu.c32}
-+      needsreboot=1
-+      sleep 3
-+      echo ''
-+    else
-+      echo -e "\n\nError : Grub2 failed to installed in $disk !\nContinue booting..."
-+      sleep 3
-+      echo ''
-+    fi
-+    if [ $needsreboot -eq 1 ]; then
-+      init 6
-+    fi
-+    unset needsreboot
-+  fi
-+  unset partition disk
-+fi
-+### /modified for Live ###
- 
- # Configure ISA Plug-and-Play devices:
- if [ -r /etc/isapnp.conf ]; then
-@@ -316,7 +365,7 @@
-   fi
- fi
- 
--[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 35"
-+[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 50"
- 
- # Mount non-root file systems in fstab, but not NFS or SMB 
- # because TCP/IP is not yet configured, and not proc or sysfs
-@@ -373,7 +422,7 @@
-   . /etc/rc.d/rc.sysvinit
- fi
- 
--[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 50"
-+[ ! -z `pidof -o %PPID /usr/sbin/splashy` ] && /usr/sbin/splashy_update "progress 55"
- 
- # Run serial port setup script:
- # CAREFUL!  This can make some systems hang if the rc.serial script isn't

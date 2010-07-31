@@ -1,12 +1,6 @@
---- /etc/rc.d/rc.alsa	2010-02-07 23:48:59.000000000 +0100
-+++ root/etc/rc.d/rc.alsa	2009-12-05 19:22:53.136801570 +0100
-@@ -1,62 +1,26 @@
- #!/bin/sh
- # Load the mixer settings and OSS compatibility for ALSA.
- # (the Advanced Linux Sound Architecture)
-+#
-+### Modified for Live ###
-+#
+--- /etc/rc.d/rc.alsa	2010-04-30 08:54:05.000000000 +0200
++++ root/etc/rc.d/rc.alsa	2010-07-31 17:52:06.969126626 +0200
+@@ -4,59 +4,20 @@
  
  # A function to load the ALSA mixer settings:
  load_alsa_mixer() {
@@ -61,7 +55,7 @@
 -EOF
 -      echo "Storing default ALSA mixer settings:  /usr/sbin/alsactl store"
 -      /usr/sbin/alsactl store
-+### modified for Live ###
++  ### modified for Live ###
 +  # Volume is muted by default. Set it to 71% unless nosound boot option given:
 +  if ! cat /proc/cmdline | grep -w nosound >/dev/null 2>/dev/null; then
 +    if [ -r /etc/asound.state ]; then
@@ -69,12 +63,12 @@
 +      /usr/sbin/alsactl restore
 +    else
 +      echo "Setting sound volume: 71%"
-+      for SCONTROL in {"Master","PCM","Front","Surround","Center","CD","Video"}; do
++      for SCONTROL in {"Master","PCM","Front","Surround","Center","CD","Video" "Wave" "Music" "AC97" "Headphone"}; do
 +        /usr/bin/amixer -q sset $SCONTROL 71% unmute 2>/dev/null
 +      done
      fi
    fi
-+### /modified for Live ###
++  ### /modified for Live ###
  }
  
  # A function to load the ALSA OSS compat modules:

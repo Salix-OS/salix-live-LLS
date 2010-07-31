@@ -4,8 +4,7 @@
       <hostname>salixlive</hostname>
       <hostId>007f0100</hostId>
       <osName>Linux</osName>
-      <osVersion>2.6.29.6-smp-live</osVersion>
-      <osArchitecture>i386</osArchitecture>
+      <osVersion>2.6.33.4-smp-live</osVersion>
       <systemModel>GenuineIntel</systemModel>
       <systemManufacturer/>
       <cpuManufacturer>GenuineIntel</cpuManufacturer>

@@ -1,34 +1,33 @@
---- /home/jrd/salix/sysvinit-scripts/tags/13.0.2/rc.6	2010-04-30 14:42:40.000000000 +0200
-+++ root/etc/rc.d/rc.6	2009-12-06 00:23:49.039337540 +0100
-@@ -9,6 +9,12 @@
- # Author:	Miquel van Smoorenburg <miquels@drinkel.nl.mugnet.org>
- # Modified by:  Patrick J. Volkerding, <volkerdi@slackware.com>
- #
-+### Modified for Live ###
-+#
-+
+--- /etc/rc.d/rc.6	2010-07-23 13:35:53.000000000 +0200
++++ root/etc/rc.d/rc.6	2010-07-31 17:29:04.025022769 +0200
+@@ -14,6 +14,10 @@
+ # modified for colorized screen messages and local needs
+ . /etc/shell-colors
+ 
 +### modified for Live ###
 +. /usr/lib/liblinuxlive
 +### /modified for Live ###
- 
- # Set the path.
- PATH=/sbin:/etc:/bin:/usr/bin
-@@ -181,10 +187,12 @@
++
+ # Tell the viewers what's going to happen...
+ echo
+ echo -e "${BOLDYELLOW}Preparing to halt all processes.${COLOR_RESET}"
+@@ -190,10 +194,13 @@
    rm -f /var/lock/subsys/*
  fi
  
 +### modified for Live ###
  # Turn off swap:
--echo "Turning off swap."
+-echo -e "${BOLDCYAN}Turning off swap.${COLOR_RESET}"
 -/sbin/swapoff -a
-+#echo "Turning off swap."
++#echo -e "${BOLDCYAN}Turning off swap.${COLOR_RESET}"
 +#/sbin/swapoff -a
++echo -e "${BOLDCYAN}Syncing.${COLOR_RESET}"
  /bin/sync
 +### /modified for Live ###
  
  # Umount any LVM volumes:
  if /bin/mount | /bin/grep -q '^/dev/mapper/' ; then
-@@ -192,11 +200,20 @@
+@@ -201,11 +208,20 @@
    /bin/umount -v $(/bin/mount | /bin/grep '^/dev/mapper/' | /bin/cut -d ' ' -f 3 | /bin/tac)
  fi
  
@@ -37,21 +36,21 @@
 +grep -v ' /mnt/live' /etc/mtab > /etc/mtablive && mv /etc/mtablive /etc/mtab
 +### /modified for Live ###
 +
- echo "Unmounting local file systems."
+ echo -e "${BOLDCYAN}Unmounting local file systems.${COLOR_RESET}"
  /bin/umount -v -a -t no,proc,sysfs
  
--echo "Remounting root filesystem read-only."
+-echo -e "${BOLDCYAN}Remounting root filesystem read-only.${COLOR_RESET}"
 -/bin/mount -v -n -o remount,ro /
 +### modified for Live ###
 +if [ ! -x /mnt/live/cleanup ]; then
-+  echo "Remounting root filesystem read-only."
++  echo -e "${BOLDCYAN}Remounting root filesystem read-only.${COLOR_RESET}"
 +  /bin/mount -v -n -o remount,ro /
 +fi	
 +### /modified for Live ###
  
  # This never hurts:
  /bin/sync
-@@ -256,6 +273,14 @@
+@@ -266,6 +282,14 @@
    fi
  fi
  
@@ -64,5 +63,5 @@
 +### /modified for Live ###
 +
  # Now halt (poweroff with APM or ACPI enabled kernels) or reboot.
+ echo
  if [ "$command" = "reboot" ]; then
-   echo "Rebooting."

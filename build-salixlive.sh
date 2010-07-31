@@ -331,16 +331,15 @@ echo3 "Adding Grub2..."
 cd $startdir/src/iso
 # prepare the grub2 initial tree
 rm -rf boot/grub # just for sure
-sed -e "s;aux_dir=\`mktemp -d\`;aux_dir=\"${PWD}\";" \
-    -e "s/genisoimage/false/" \
-    -e 's/\(rm -rf ${aux_dir}\)/# \1/' \
-    /usr/bin/grub-mkrescue > grub-mkrescue
-chmod +x grub-mkrescue
-# ask grub2 to build the initial tree without making an ISO
-./grub-mkrescue xy.iso
-rm -f grub-mkrescue xy.iso
+# ask grub2 to build the rescue ISO to get the initial tree
+grub-mkrescue --output=rescue.iso
+mkdir rescue
+mount -o loop rescue.iso rescue
+cp -r rescue/boot/* boot/
+chmod u+w -R boot
+umount rescue
+rm -r rescue*
 grub-mkimage -o boot/grub/core.img
-cp /usr/lib/grub/i386-pc/boot.img boot/grub/
 cp -ar ${startdir}/livegrub2/build/* .
 find . -type d -name '.svn' | xargs -i@ rm -rf @
 cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
@@ -369,7 +368,7 @@ cp $startdir/packages-* packages/
 # create the iso
 echo3 "Creating ISO..."
 find . -name '.svn' -exec rm -rf '{}' \; 2>/dev/null
-mkisofs -b boot/grub/grub_eltorito \
+mkisofs -b boot/grub/i386-pc/eltorito.img \
 	-no-emul-boot -boot-load-size 4 -boot-info-table \
 	-o "$startdir/$ISO_NAME" -r -J .
 ( cd "$startdir" && md5sum "$ISO_NAME" > "$ISO_NAME.md5" )

@@ -19,6 +19,7 @@ cat packages-* | sort > PKGSLIST
 nb=$(cat PKGSLIST | wc -l)
 i=0
 d0=$(date +%s)
+cat /dev/null > pkgs_in_errors
 cat PKGSLIST | while read p; do
   i=$(( $i + 1 ))
   clear
@@ -35,7 +36,7 @@ cat PKGSLIST | while read p; do
   timeremain=$((($nb - $i) * $offset / $i))
   echo 'Remaining time (estimated) :' $(date -d "1970-01-01 UTC +$timeremain seconds" +%M:%S)
   echo ''
-  /usr/sbin/slapt-get -c $PWD/slapt-getrc -i -d -y --no-dep $p
+  /usr/sbin/slapt-get -c $PWD/slapt-getrc -i -d -y --no-dep $p || echo $p >> pkgs_in_errors
 done
 mkdir -p PKGS
 find slapt-get -name '*.t[gx]z' -exec mv '{}' PKGS/ \; && rm -rf slapt-get* var PKGSLIST

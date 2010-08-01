@@ -208,6 +208,13 @@ EOF
           echo ""
           ./var/log/setup/setup.$s $ROOT
         done
+        echo "Running 'chroot . /usr/bin/update-gtk-immodules'"
+        chroot . /usr/bin/update-gtk-immodules
+        echo "Running 'chroot . /usr/bin/update-gdk-pixbuf-loaders'"
+        chroot . /usr/bin/update-gdk-pixbuf-loaders
+        echo "Running 'chroot . /usr/bin/update-pango-querymodules'"
+        chroot . /usr/bin/update-pango-querymodules
+        chmod a+r-x+X -R etc/gtk-2.0 etc/pango
       )
     fi
     umount $ROOT
@@ -257,9 +264,9 @@ sed -i -e "s/^LIVECDNAME=.*/LIVECDNAME=\"${DISTRO}live\"/ ; s@^ROOT=.*@ROOT=$ROO
 # CD Label
 sed -i -e "s/CDLABEL=.*/CDLABEL=${DISTRO}live/" cd-root/linux/make_iso.*
 # Live CD name on boot
-sed -i -e "s/__LIVECDNAME__/$DISTRO Live v.$VER${RLZ:+-$RLZ}/" linuxrc.patch
+sed -e "s/__LIVECDNAME__/$DISTRO Live v.$VER${RLZ:+-$RLZ}/" $startdir/linuxrc.patch > linuxrc.patch
 # patch liblinuxlive, linuxrc and cleanup.
-cat $startdir/liblinuxlive.patch $startdir/linuxrc.patch $startdir/cleanup.patch | patch -p1
+cat $startdir/liblinuxlive.patch linuxrc.patch $startdir/cleanup.patch | patch -p1
 cp tools/liblinuxlive $startdir/src/$lastmodule/usr/lib/
 # remove the installation process of the linux live tools + patch for fake-uname
 sed -i -e 's:.*\. \./install.*:echo "":' -e 's@:/usr/sbin:@:/sbin:/usr/sbin:@' -e 's/^read NEWLIVECDNAME/NEWLIVECDNAME=""/' -e 's/^read NEWKERNEL/NEWKERNEL=""/' -e 's/^read junk//' build
@@ -276,9 +283,11 @@ LIBDIR=32
 [ $ARCH64 = 1 ] && LIBDIR=64
 cp $startdir/libs/$LIBDIR/libm.so.6 initrd/rootfs/lib/
 cp $startdir/libs/$LIBDIR/libsysfs.so.2 initrd/rootfs/lib/
+cp $startdir/libs/$LIBDIR/libblkid.so.1.0 initrd/rootfs/lib/
+cp $startdir/libs/$LIBDIR/libuuid.so.1 initrd/rootfs/lib/
+mkdir -p initrd/rootfs/usr/lib
 cp $startdir/libs/$LIBDIR/libgcc_s.so.1 initrd/rootfs/usr/lib/
 cp $startdir/libs/$LIBDIR/libglib-2.0.so.0 initrd/rootfs/usr/lib/
-cp $startdir/libs/$LIBDIR/libblkid.so.1.0 initrd/rootfs/lib/
 # remove any files present
 rm -rf /tmp/live_data_*
 # create ISO structure and create initrd.gz
@@ -312,7 +321,7 @@ while read m; do
     fi
   fi
   if [ ! -e iso/${DISTRO}live/base/$m.lzm ]; then
-    mksquashfs $startdir/src/$m iso/${DISTRO}live/base/$m.lzm -b 1M -lzmadic 1M -processors 1
+    dir2lzm $startdir/src/$m iso/${DISTRO}live/base/$m.lzm
     chmod a+r-wx iso/${DISTRO}live/base/$m.lzm
   fi
 done < $modules

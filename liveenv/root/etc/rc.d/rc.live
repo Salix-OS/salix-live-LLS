@@ -41,6 +41,19 @@ if [ -w /usr/lib/thunderbird/greprefs/all.js ]; then
   sed -i -e 's/pref("intl.locale.matchOS",                 false);/pref("intl.locale.matchOS",                 true);/g' /usr/lib/thunderbird/greprefs/all.js
 fi
 
+# synaptics: Use the syanptics fdi for HAL
+synpatics="`cmdline_value synaptics`"
+if [ "$synpatics" = "on" ]; then
+  mkdir -p /etc/hal/fdi/policy
+  if [ ! -e /etc/hal/fdi/policy/11-x11-synaptics.fdi ]; then
+    cp /usr/lib/salixlive/11-x11-synaptics.fdi /etc/hal/fdi/policy/
+  fi
+else
+  if [ -e /etc/hal/fdi/policy/11-x11-synaptics.fdi ]; then
+    rm -f /etc/hal/fdi/policy/11-x11-synaptics.fdi
+  fi
+fi
+
 # keyb: Override default keyb settings
 keyb="`cmdline_value keyb`"
 if [ -z "$keyb" ]; then
@@ -58,25 +71,7 @@ if [ -z "$scim" ]; then
 fi
 /usr/sbin/keyboardsetup -k $keyb -n $numlock -s $scim
 
-# synaptics: Use the syanptics fdi for HAL
-synpatics="`cmdline_value synaptics`"
-if [ "$synpatics" = "on" ]; then
-  mkdir -p /etc/hal/fdi/policy
-  if [ ! -e /etc/hal/fdi/policy/11-x11-synaptics.fdi ]; then
-    cp /usr/lib/salixlive/11-x11-synaptics.fdi /etc/hal/fdi/policy/
-  fi
-else
-  if [ -e /etc/hal/fdi/policy/11-x11-synaptics.fdi ]; then
-    rm -f /etc/hal/fdi/policy/11-x11-synaptics.fdi
-  fi
-fi
-
 # autologin: Enables autologin in GDM
 if [ "`cmdline_parameter autologin`" ]; then
   sed -i 's/AutomaticLoginEnable=.*/AutomaticLoginEnable=true/' /etc/gdm/custom.conf
-fi
-
-# Starts hal daemon.
-if [ -x /etc/rc.d/rc.hald ]; then
-  /bin/sh /etc/rc.d/rc.hald start
 fi

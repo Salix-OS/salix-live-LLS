@@ -1,0 +1,2 @@
+#!/bin/sh
+# This is for having no error at boot when using fsck -C -a / on a aufs root mount point.

@@ -4,8 +4,8 @@
  
  fumount $MOUNTDIR/*
  
++umount -a -r -d 2> /dev/null
 +lo=$(losetup|cut -d: -f1); for d in $lo; do losetup -d $d; done
-+umount -a -r 2> /dev/null
 +
  # eject cdrom devices
 -for MNT in $(ls -1 $MOUNTDIR 2>/dev/null); do
@@ -27,7 +27,7 @@
 +    read -t 10
 +    /bin/eject -t $bootcd 2>/dev/null
 +  fi
-+  rm -f /bootdev
++  mount -t proc none /proc && mount -o remount,rw / && rm -f /bootdev && mount -o remount,ro / && umount /proc
 +fi
  
  if [ "$DEBUG_IS_ENABLED" ]; then

@@ -142,6 +142,7 @@ mkcomposecache
 mkfontdir
 mkfontscale
 mozilla-firefox
+mozilla-firefox-salix
 notification-daemon
 numlockx
 obsidian-cursors
@@ -149,6 +150,9 @@ pango
 pcre
 pixman
 polkit
+pygtk
+pygobject
+pycairo
 printproto
 radeontool
 randrproto
@@ -160,6 +164,7 @@ resourceproto
 rgb
 rstart
 salix-artwork
+salixtools-gtk
 sazanami-fonts-ttf
 scim
 scim-anthy
@@ -328,6 +333,7 @@ mozilla-firefox-l10n-cy
 mozilla-firefox-l10n-da
 mozilla-firefox-l10n-de
 mozilla-firefox-l10n-el
+mozilla-firefox-l10n-en-GB
 mozilla-firefox-l10n-eo
 mozilla-firefox-l10n-es-AR
 mozilla-firefox-l10n-es-CL
@@ -373,13 +379,16 @@ mozilla-firefox-l10n-rm
 mozilla-firefox-l10n-ro
 mozilla-firefox-l10n-ru
 mozilla-firefox-l10n-si
+mozilla-firefox-l10n-sk
 mozilla-firefox-l10n-sl
 mozilla-firefox-l10n-sq
 mozilla-firefox-l10n-sr
 mozilla-firefox-l10n-sv-SE
 mozilla-firefox-l10n-ta
+mozilla-firefox-l10n-te
 mozilla-firefox-l10n-th
 mozilla-firefox-l10n-tr
 mozilla-firefox-l10n-uk
 mozilla-firefox-l10n-vi
+mozilla-firefox-l10n-zh-CN
 mozilla-firefox-l10n-zh-TW

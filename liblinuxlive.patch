@@ -1,5 +1,5 @@
 --- linux-live-6.3.0-orig/tools/liblinuxlive	2009-02-10 12:42:05.000000000 +0100
-+++ linux-live-6.3.0/tools/liblinuxlive	2010-07-31 17:06:15.463023398 +0200
++++ linux-live-6.3.0/tools/liblinuxlive	2010-08-10 21:51:31.521022447 +0200
 @@ -255,7 +255,7 @@
     fi
  
@@ -47,6 +47,15 @@
     done
  }
  
+@@ -646,7 +649,7 @@
+ {
+    debug_log "list_partition_devices" "$*"
+    if [ "$(cmdline_parameter nohd)" != "" ]; then return 1; fi
+-   cat /proc/partitions | grep -v loop | grep -v major | grep -v '^$' | sed -r "s:^[0-9 ]+:/dev/:"
++   cat /proc/partitions | grep -v loop | grep -v major | grep -v '^$' | sort -r | sed -r "s:^[0-9 ]+:/dev/:"
+    if [ -e /dev/mapper/control ]; then # list LVM partitions if available
+       ls -1 /dev/mapper/ | grep -v "^control\$" | sed -r "s:^:/dev/mapper/:"
+    fi
 @@ -861,6 +864,7 @@
     echolog "starting linux filesystem support"
     modprobe_module ext2

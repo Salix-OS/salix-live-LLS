@@ -3,6 +3,7 @@ asunder
 aumix
 babl
 bc
+bluez
 bluez-firmware
 bluez-hcidump
 brasero
@@ -10,8 +11,8 @@ catfish
 claws-mail
 cups
 depfinder
-dirac
 djvulibre
+dirac
 enchant
 esound
 evince
@@ -49,6 +50,7 @@ hplip
 ipw2100-fw
 ipw2200-fw
 iso-codes
+iw
 iwlwifi-1000-ucode
 iwlwifi-3945-ucode
 iwlwifi-4965-ucode
@@ -84,8 +86,9 @@ mjpegtools
 mpg123
 musepack-tools
 mutagen
-ndisgtk
 net-snmp
+ndisgtk
+notify-python
 obex-data-server
 obexfs
 obexftp
@@ -97,17 +100,14 @@ pidgin
 pitivi
 poppler
 poppler-data
-pycairo
 pycups
-pygobject
 pygoocanvas
-pygtk
+pyxdg
 rt2860-firmware
 rt2870-firmware
 rt61-firmware
 rt71w-firmware
 salix-codecs-installer
-salixtools-gtk
 salix-update-notifier
 samba
 sane

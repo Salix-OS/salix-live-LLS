@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Salix IRC support
+Name[el]=Υποστήριξη μέσω IRC
+Name[de]=Salix IRC Support
+Comment=Get on-line support for Salix using IRC
+Comment[el]=Λάβετε υποστήριξη για το Salix χρησιμοποιώντας το IRC
+Comment[de]=Hilfe im Salix Online Chat bekommen
+Categories=Application;
+Exec=midori http://webchat.freenode.net/?randomnick=1&channels=salix&prompt=1
+Icon=salix-irc
+Terminal=false
+StartupNotify=false

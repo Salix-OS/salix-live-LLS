@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Salix Online
+Name[el]=Salix Online
+Name[de]=Salix Online
+Comment=Open the Salix homepage with Midori
+Comment[el]=Επισκευτείτε τον ιστότοπο του Salix
+Comment[de]=Salix Homepage öffnen
+Categories=Application;
+Exec=midori http://salix.sourceforge.net
+Icon=salix-web
+Terminal=false
+StartupNotify=false

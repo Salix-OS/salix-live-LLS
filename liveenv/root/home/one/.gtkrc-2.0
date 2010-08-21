@@ -1,3 +1,0 @@
-gtk-print-preview-command = "epdfview %f"
-gtk-theme-name = "Clearlooks"
-gtk-icon-theme-name = "gnome-brave"

@@ -29,7 +29,7 @@ export BBVER=1.17.0
 export BBURL=http://busybox.net/downloads/busybox-$BBVER.tar.bz2
 export FUFSVER=0.4.2
 export FUFSURL=http://funionfs.apiou.org/file/funionfs-$FUFSVER.tar.gz
-export ISO_NAME=${DISTRO}live-$VER${RLZ:+-$RLZ}.iso
+export ISO_NAME=${DISTRO}live-lxde-$VER${RLZ:+-$RLZ}.iso
 export KERNELPKGNAME=kernelive
 echo3() {
   echo ''

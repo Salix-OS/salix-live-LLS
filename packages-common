@@ -1,5 +1,5 @@
 kernel-headers
 ndiswrapper
 rootuser-settings
-user-settings
-zzz-settings
+user-settings-lxde
+zzz-settings-lxde

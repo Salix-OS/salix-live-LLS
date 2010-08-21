@@ -1,7 +1,0 @@
-use_default_menu=true
-menu_file=/etc/xfce/xdg/menus/xfce-applications.menu
-icon_file=/usr/share/icons/hicolor/48x48/apps/salix.png
-show_menu_icons=true
-button_title=Salix
-show_button_title=true
-

@@ -9,6 +9,7 @@ SOURCE=http://salix.enialis.net/i486/slackware-13.1/
 SOURCE=http://salix.enialis.net/i486/slackware-13.1/extra/
 SOURCE=http://salix.enialis.net/i486/slackware-13.1/patches/:OFFICIAL
 SOURCE=http://salix.enialis.net/i486/13.1/:PREFERRED
+SOURCE=http://enialis.net/~jrd/salix/
 EOF
 export ROOT=$PWD
 mkdir -p var/log/packages

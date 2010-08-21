@@ -81,7 +81,6 @@ gzip
 hal
 hal-info
 hdparm
-htop
 icmpinfo
 indent
 inetd
@@ -94,6 +93,8 @@ isapnptools
 ispell
 jfsutils
 kbd
+kernel-firmware
+kernel-headers
 less
 lha
 libao

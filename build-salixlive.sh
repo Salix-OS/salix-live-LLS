@@ -353,7 +353,10 @@ cp -ar ${startdir}/livegrub2/build/* .
 find . -type d -name '.svn' | xargs -i@ rm -rf @
 cat ${startdir}/livegrub2/grub.cfg >> boot/grub/grub.cfg
 # remove uneeded/unwanted files
-rm -r boot/dos boot/isolinux boot/pxelinux.cfg boot/syslinux boot/bootinst.bat boot/*.c32 boot/liloinst.sh
+rm -r boot/dos boot/isolinux boot/pxelinux.cfg boot/syslinux boot/bootinst.* boot/*.c32 boot/liloinst.sh salixlive/make_iso.*
+# copy the mod files and lst files to the grub directory too for USB support.
+find boot/grub -name '*.mod' -exec cp -v '{}' boot/grub/ \;
+find boot/grub -name '*.lst' -exec cp -v '{}' boot/grub/ \;
 # add the unix script for installing grub2 on USB under Unix
 echo3 "Adding install-on-USB.sh"
 cp $startdir/install-on-USB.sh boot/

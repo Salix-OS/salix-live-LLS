@@ -68,7 +68,7 @@ goto start
   rem Windows has restriction on reading/writing to a physical drive: you must read/write only using sectors (512 bytes).
   "%DD%" if=%disk% of=%TEMP%\mbr count=1 bs=512 2>nul
   rem Trying with 'dd' and 'od' to read the 4 LBA bytes of the first partition
-  rem 454 = 446 + 1 (active?) + 3 (CHS start address) + 1 (type) + 3 (CHS end address)
+  rem 454 = 446 (bootloader) + 1 (active?) + 3 (CHS start address) + 1 (type) + 3 (CHS end address)
   "%DD%" if=%TEMP%\mbr of=%TEMP%\firstsector count=4 bs=1 skip=454 2>nul
   for /f "delims=" %%r in ('"%OD%" -td4 -An %TEMP%\firstsector') do set /a GAP=%%r
   del %TEMP%\mbr %TEMP%\firstsector
@@ -106,7 +106,7 @@ goto start
   rem Windows has restriction on reading/writing to a physical drive: you must read/write only using sectors (512 bytes) and seek is not working.
   "%DD%" if=%disk% of=%TEMP%\64s count=64 bs=512 2>nul
   "%DD%" if=%GRUB_MBR% of=%TEMP%\64s count=440 bs=1 conv=notrunc 2>nul
-  "%DD%" if=%GRUB_POST_MBR% of=%TEMP%\64s count=63 bs=512 seek=1 conv=notrunc 2>nul
+  "%DD%" if=%GRUB_POST_MBR% of=%TEMP%\64s count=62 bs=512 seek=1 conv=notrunc 2>nul
   "%DD%" if=%TEMP%\64s of=%disk% count=64 bs=512 conv=notrunc
   del %TEMP%\64s
   endlocal

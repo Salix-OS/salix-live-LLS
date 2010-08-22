@@ -75,15 +75,9 @@ move_first_partition() {
 
 check_post_mbr_gap() {
   DEVICE=$1
-  which fdisk >/dev/null 2>&1
-  GAP=0
-  if [ $? -eq 0 ]; then
-    GAP=$(fdisk -l -u $DEVICE | grep "^${DEVICE}1" | awk '{print $3}')
-  else
-    # trying with 'dd' and 'od' to read the 4 LBA bytes of the first partition
-    # 454 = 446 + 1 (active?) + 3 (CHS start address) + 1 (type) + 3 (CHS end address)
-    GAP=$(dd if=$DEVICE count=4 bs=1 skip=454 2>/dev/null | od -td4 -An)
-  fi
+  # trying with 'dd' and 'od' to read the 4 LBA bytes of the first partition
+  # 454 = 446 (bootloader) + 1 (active?) + 3 (CHS start address) + 1 (type) + 3 (CHS end address)
+  GAP=$(dd if=$DEVICE count=4 bs=1 skip=454 2>/dev/null | od -td4 -An)
   if ([ -z "$GAP" ] || [ $GAP -lt 63 ]); then
     echo "Error: the post MBR gap is missing or not large enough (63 sectors)." >&2
     echo "  Yours appears to be of $GAP sectors." >&2
@@ -101,7 +95,7 @@ install_grub2() {
   read R
   if ([ "$R" = "y" ] || [ "$R" = "Y" ]); then
     dd if="$DIR/boot/grub_mbr" of=$DEVICE count=440 bs=1 conv=notrunc
-    dd if="$DIR/boot/grub_post_mbr_gap" of=$DEVICE count=63 bs=512 seek=1 conv=notrunc
+    dd if="$DIR/boot/grub_post_mbr_gap" of=$DEVICE count=62 bs=512 seek=1 conv=notrunc
   fi
 }
 

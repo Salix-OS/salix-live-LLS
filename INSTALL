@@ -1,7 +1,7 @@
 What packages are needed ?
 At least:
  - fake-uname (optionnal but usefull)
- - kernelsource (exploded in a directory, linked from /usr/src/)
+ - kernelsource (exploded in a directory, linked from /usr/src/ ; or installed)
  - kernelive (not installed)
  - squashfs-tools
  - linux-live
@@ -40,6 +40,8 @@ You must add at least the following packages:
 8/ run build-salixlive.sh (and wait) to output you an ISO file ready to burn or to be put on an USB key (not with Unetbootin, but with install-on-USB).
 
 Good luck ^_^
+
+P.S. liveenv directory is used to create a special package for special modifications for the live environment.
 
 --
 Akuna <akuna@free.fr>

@@ -1,5 +1,5 @@
 --- /etc/rc.d/rc.S	2010-07-23 13:35:53.000000000 +0200
-+++ root/etc/rc.d/rc.S	2010-07-31 17:46:15.061022421 +0200
++++ root/etc/rc.d/rc.S	2010-08-20 20:39:07.898721749 +0200
 @@ -245,16 +245,20 @@
    read junk;
  fi # Done checking root filesystem

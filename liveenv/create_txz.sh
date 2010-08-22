@@ -14,6 +14,9 @@ SALIXLIVEINSTALLER=$('ls' -1 ../PKGS/salix-live-installer-*.txz)
 tar xf $GPARTED usr/share/applications
 tar xf $SALIXLIVEINSTALLER usr/share/applications
 cp usr/share/applications/*.desktop root/home/one/Desktop/
+# Remove *-kde.desktop files for liveuser "one", 
+# they are not required for a lxde version
+rm root/home/one/Desktop/*-kde.desktop
 rm -rf usr
 cp -ar root/* $T/
 cd $T

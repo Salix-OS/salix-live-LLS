@@ -149,7 +149,6 @@ mkcomposecache
 mkfontdir
 mkfontscale
 midori
-mozilla-firefox-salix
 notification-daemon
 numlockx
 obsidian-cursors
@@ -159,9 +158,6 @@ pango
 pcmanfm
 pcre
 pixman
-pygtk
-pygobject
-pycairo
 printproto
 radeontool
 randrproto
@@ -173,7 +169,6 @@ resourceproto
 rgb
 rstart
 salix-artwork
-salixtools-gtk
 sazanami-fonts-ttf
 scripts
 scrnsaverproto

@@ -1,0 +1,88 @@
+diff -ru linux-live-6.3.0-32/initrd/addlocaleslib linux-live-6.3.0/initrd/addlocaleslib
+--- linux-live-6.3.0-32/initrd/addlocaleslib	2010-08-24 22:52:36.612452764 +0200
++++ linux-live-6.3.0/initrd/addlocaleslib	2010-08-24 22:55:05.935430118 +0200
+@@ -32,10 +32,10 @@
+    TARGET="$1"; shift
+    ADDLOCALE="$*"
+ 
+-   MYLOCALE=$ROOT/usr/lib/locale # system locales (sorting, days in week, etc)
++   MYLOCALE=$ROOT/usr/lib64/locale # system locales (sorting, days in week, etc)
+    MYI18NLOC=$ROOT/usr/share/i18n/locales # the same like above
+    MYALIAS=$ROOT/usr/share/locale/locale.alias # eg. to translate 'czech' to 'cs_CZ.ISO-8859-2'
+-   MYGCONV=$ROOT/usr/lib/gconv # codepages (compiled charmaps I guess)
++   MYGCONV=$ROOT/usr/lib64/gconv # codepages (compiled charmaps I guess)
+ 
+    for NAME in $(echo $ADDLOCALE | tr ',' ' '); do
+       ALIAS=$(cat $MYALIAS | egrep ^$NAME[[:space:]])
+@@ -52,7 +52,7 @@
+       GCONV=$(echo $GCONV | cut -d "@" -f 1)
+       cp_parents $GCONV $TARGET $ROOT
+ 
+-      GCONVDEP=$(ldd $GCONV | grep -v linux-gate.so | grep -v libc.so | grep -v ld-linux.so)
++      GCONVDEP=$(ldd $GCONV | grep -v linux-gate.so | grep -v libc.so | grep -v ld-linux-x86-64.so)
+       GCONVDEP=$(echo $GCONVDEP | cut -d " " -f 1)
+       if [ "$GCONVDEP" ]; then cp_parents $MYGCONV/$GCONVDEP $TARGET $ROOT; fi
+ 
+diff -ru linux-live-6.3.0-32/initrd/initrd_create linux-live-6.3.0/initrd/initrd_create
+--- linux-live-6.3.0-32/initrd/initrd_create	2010-08-24 22:52:36.204450527 +0200
++++ linux-live-6.3.0/initrd/initrd_create	2010-08-24 23:17:36.399485972 +0200
+@@ -80,9 +80,9 @@
+    exit 1
+ fi
+ 
+-if [ "$(ls -1 rootfs/lib)" = "" ]; then
++if [ "$(ls -1 rootfs/lib64)" = "" ]; then
+    echo "cannot find essential libc libraries."
+-   echo "please add ld-linux and libc.so to $(pwd)./rootfs/lib"
++   echo "please add ld-linux and libc.so to $(pwd)./rootfs/lib64"
+    exit 1
+ fi
+ 
+@@ -91,7 +91,7 @@
+ mkdir $INITRD_TREE
+ 
+ debug "creating directories"
+-mkdir -p $INITRD_TREE/{etc,dev,bin,mnt,proc,lib,sys,tmp,var/log}
++mkdir -p $INITRD_TREE/{etc,dev,bin,mnt,proc,lib64,sys,tmp,var/log}
+ 
+ debug "creating some essential devices in rootdisk"
+ mknod $INITRD_TREE/dev/console c 5 1
+diff -ru linux-live-6.3.0-32/initrd/liblinuxlive linux-live-6.3.0/initrd/liblinuxlive
+--- linux-live-6.3.0-32/initrd/liblinuxlive	2010-08-24 22:52:36.191457231 +0200
++++ linux-live-6.3.0/initrd/liblinuxlive	2010-08-24 23:16:21.589464804 +0200
+@@ -244,11 +244,11 @@
+    if [ "$LOCALE" = "" ]; then LOCALE=$(cmdline_value language); fi
+    if [ "$LOCALE" = "" ]; then LOCALE=$(cmdline_value lang); fi
+ 
+-   # if not found, set it to locale from usr/lib/locale,
++   # if not found, set it to locale from usr/lib64/locale,
+    # but only if there is just ONE directory, nothing more
+    # (so we are sure which one to use)
+    if [ "$LOCALE" = "" ]; then
+-      for LOCALE in $(ls -A1p /usr/lib/locale 2>/dev/null | grep / | sed -r "s:[/]|[.].*::"); do
++      for LOCALE in $(ls -A1p /usr/lib64/locale 2>/dev/null | grep / | sed -r "s:[/]|[.].*::"); do
+          i="1$i"
+       done
+       if [ "$i" != "1" ]; then LOCALE=""; fi
+Seulement dans linux-live-6.3.0-32/initrd/rootfs: lib
+Seulement dans linux-live-6.3.0/initrd/rootfs: lib64
+Seulement dans linux-live-6.3.0-32/initrd/rootfs/usr/lib: libgcc_s.so.1
+Seulement dans linux-live-6.3.0-32/initrd/rootfs/usr/lib: libglib-2.0.so.0
+Seulement dans linux-live-6.3.0/initrd/rootfs/usr: lib64
+diff -ru linux-live-6.3.0-32/tools/liblinuxlive linux-live-6.3.0/tools/liblinuxlive
+--- linux-live-6.3.0-32/tools/liblinuxlive	2010-08-24 22:52:36.191457231 +0200
++++ linux-live-6.3.0/tools/liblinuxlive	2010-08-24 23:16:21.589464804 +0200
+@@ -244,11 +244,11 @@
+    if [ "$LOCALE" = "" ]; then LOCALE=$(cmdline_value language); fi
+    if [ "$LOCALE" = "" ]; then LOCALE=$(cmdline_value lang); fi
+ 
+-   # if not found, set it to locale from usr/lib/locale,
++   # if not found, set it to locale from usr/lib64/locale,
+    # but only if there is just ONE directory, nothing more
+    # (so we are sure which one to use)
+    if [ "$LOCALE" = "" ]; then
+-      for LOCALE in $(ls -A1p /usr/lib/locale 2>/dev/null | grep / | sed -r "s:[/]|[.].*::"); do
++      for LOCALE in $(ls -A1p /usr/lib64/locale 2>/dev/null | grep / | sed -r "s:[/]|[.].*::"); do
+          i="1$i"
+       done
+       if [ "$i" != "1" ]; then LOCALE=""; fi

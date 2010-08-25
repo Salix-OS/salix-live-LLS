@@ -8,7 +8,7 @@ VER=$(cat version)
 RLZ=$(cat release)
 T=$(mktemp -d)
 HERE="$PWD"
-FIREFOXVER=$('ls' -1 ../PKGS/mozilla-firefox-*-*-*.txz | head -n 1 | sed 's/.*-.*-\([^-]*\)-[^-]*-[^-*]\.txz/\1/')
+FIREFOXVER=$('ls' -1 ../PKGS/mozilla-firefox-*-*-*.txz | head -n 1 | sed 's/.*-.*-\([^-]*\)-[^-]*-[^-]*\.txz/\1/')
 TFF=$(mktemp -d)
 cd $TFF
 tar xf $HERE/../PKGS/mozilla-firefox-$FIREFOXVER-*.txz

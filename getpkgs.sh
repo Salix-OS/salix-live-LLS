@@ -15,12 +15,11 @@ mkdir -p var/log/packages
 /usr/sbin/slapt-get -c $PWD/slapt-getrc -u
 echo "ready ?"
 read pause
-cat packages-* | sort > PKGSLIST
-nb=$(cat PKGSLIST | wc -l)
+nb=$(cat packages-* | wc -l)
 i=0
 d0=$(date +%s)
 cat /dev/null > pkgs_in_errors
-cat PKGSLIST | while read p; do
+cat packages-* | sort | while read p; do
   i=$(( $i + 1 ))
   clear
   echo '⋅⋅⋅---=== getpkgs.sh ===---⋅⋅⋅'
@@ -39,4 +38,4 @@ cat PKGSLIST | while read p; do
   /usr/sbin/slapt-get -c $PWD/slapt-getrc -i -d -y --no-dep $p || echo $p >> pkgs_in_errors
 done
 mkdir -p PKGS
-find slapt-get -name '*.t[gx]z' -exec mv '{}' PKGS/ \; && rm -rf slapt-get* var PKGSLIST
+find slapt-get -name '*PACKAGES.TXT.gz' -exec mv '{}' PKGS/ \; && find slapt-get -name '*.t[gx]z' -exec mv '{}' PKGS/ \; && rm -rf slapt-get* var

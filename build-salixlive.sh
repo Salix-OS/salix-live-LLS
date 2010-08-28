@@ -21,8 +21,8 @@ export KVER=$(uname -r)
 export ARCH64=$(uname -m|grep 64 >/dev/null && echo 1 || echo 0)
 export DISTRO=salix
 export VER=13.1
-export RLZ=$(date +%Y%m%d,%H:%M)
-#export RLZ=rc1
+#export RLZ=64_$(date +%Y%m%d,%H:%M)
+export RLZ=32_beta1
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.17.0
@@ -104,13 +104,13 @@ if [ -z "$kmodule" ]; then
         # module where the kernel live is
         kmodule=$m
       fi
-      file=$(find $startdir/PKGS -name "$p-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
+      file=$(find -L $startdir/PKGS -name "$p-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
       if [ ! -e "$file" ]; then
         quit "$p, referenced by module $m, is not available in $startdir/PKGS/"
         exit 1
       fi
       if [ $p = $KERNELPKGNAME ]; then
-        filekernel=$(find $startdir/PKGS -name "$p-$(uname -r|sed 's/-/./g')-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
+        filekernel=$(find -L $startdir/PKGS -name "$p-$(uname -r|sed 's/-/./g')-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
         if [ ! -e "$filekernel" ]; then
           quit "$file does not match you kernel version returned by 'uname -r'. Please install fake-uname to match it."
           exit 1
@@ -168,7 +168,7 @@ while read m; do
       timeremain=$((($nb - $i) * $offset / $i))
       echo 'Remaining time (estimated) :' $(date -d "1970-01-01 UTC +$timeremain seconds" +%M:%S)
       echo ''
-      file=$(find $startdir/PKGS -name "$p-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
+      file=$(find -L $startdir/PKGS -name "$p-*"|grep "$p-[^-]\+-[^-]\+-[^-]\+.t[gblx]z"|head -n 1)
       installpkg $file
     done
     # dotnew
@@ -203,6 +203,8 @@ EOF
     if [ $lastmodule = $m ]; then
       (
         cd $ROOT
+        # /dev/null could be needed and will not be usable, so the trick is to delete it, and then delete the "deletion".
+        rm ./dev/null
         for s in 04.mkfontdir 07.update-desktop-database 07.update-mime-database 08.gtk-update-icon-cache htmlview services; do
           echo "Running '/var/log/setup/setup.$s $ROOT'"
           echo ""
@@ -218,6 +220,10 @@ EOF
       )
     fi
     umount $ROOT
+    if [ $lastmodule = $m ]; then
+      # delete the deletion of /dev/null
+      rm -rf $m/dev
+    fi
     # remove any fakely deleted files in RO branches, default suffix is _DELETED~
     find "$startdir/src/$m" -name '*_DELETED~' -exec rm -rf '{}' \;
   fi
@@ -267,29 +273,39 @@ sed -i -e "s/CDLABEL=.*/CDLABEL=${DISTRO}live/" cd-root/linux/make_iso.*
 sed -e "s/__LIVECDNAME__/$DISTRO Live v.$VER${RLZ:+-$RLZ}/" $startdir/linuxrc.patch > linuxrc.patch
 # patch liblinuxlive, linuxrc and cleanup.
 cat $startdir/liblinuxlive.patch linuxrc.patch $startdir/cleanup.patch | patch -p1
+if [ $ARCH64 = 1 ]; then
+  cat $startdir/linuxlive64.patch | patch -p1
+  rm -rf initrd/rootfs/lib initrd/rootfs/usr/lib initrd/rootfs/bin/{blkid,blockdev}
+  tar xf $startdir/linuxlive64libs.tar.xz
+fi
 cp tools/liblinuxlive $startdir/src/$lastmodule/usr/lib/
 # remove the installation process of the linux live tools + patch for fake-uname
 sed -i -e 's:.*\. \./install.*:echo "":' -e 's@:/usr/sbin:@:/sbin:/usr/sbin:@' -e 's/^read NEWLIVECDNAME/NEWLIVECDNAME=""/' -e 's/^read NEWKERNEL/NEWKERNEL=""/' -e 's/^read junk//' build
 # remove the need to build aufs as a module for the initrd
 sed -i 's:^rcopy \(.*/aufs .*\):rcopy_ex \1:' initrd/initrd_create
 # increase the size of the initrd
-sed -i 's:6666:8000:' .config
+sed -i 's:RAM0SIZE=.*:RAM0SIZE=10000:' .config
 echo3 "Install BusyBox..."
 rm -rf initrd/rootfs/bin/{busybox,eject}
 cp -rf ../busybox-$BBVER/_install/{bin,sbin}/* initrd/rootfs/bin/
 # remove the busybox symlinks creation in the initrd_create process.
 sed -i -e 's/ln -s busybox .*/echo -n/' initrd/initrd_create
-LIBDIR=32
-[ $ARCH64 = 1 ] && LIBDIR=64
-cp $startdir/libs/$LIBDIR/libm.so.6 initrd/rootfs/lib/
-cp $startdir/libs/$LIBDIR/libsysfs.so.2 initrd/rootfs/lib/
-cp $startdir/libs/$LIBDIR/libblkid.so.1.0 initrd/rootfs/lib/
-cp $startdir/libs/$LIBDIR/libuuid.so.1 initrd/rootfs/lib/
-mkdir -p initrd/rootfs/usr/lib
-cp $startdir/libs/$LIBDIR/libgcc_s.so.1 initrd/rootfs/usr/lib/
-cp $startdir/libs/$LIBDIR/libglib-2.0.so.0 initrd/rootfs/usr/lib/
+# TODO: to remove, and use either a .tar.xz with all the libs or dynamically find the needed libs in the system.
+if [ $ARCH64 = 0 ]; then
+  cp $startdir/libs/32/libm.so.6 initrd/rootfs/lib/
+  cp $startdir/libs/32/libsysfs.so.2 initrd/rootfs/lib/
+  cp $startdir/libs/32/libblkid.so.1.0 initrd/rootfs/lib/
+  cp $startdir/libs/32/libuuid.so.1 initrd/rootfs/lib/
+  mkdir -p initrd/rootfs/usr/lib
+  cp $startdir/libs/32/libgcc_s.so.1 initrd/rootfs/usr/lib/
+  cp $startdir/libs/32/libglib-2.0.so.0 initrd/rootfs/usr/lib/
+fi
 # remove any files present
 rm -rf /tmp/live_data_*
+# hack for fake_uname support
+ln -s $(which uname) .
+# remove the mksquashfs that is in tools and that is old and only for 32 bits
+rm tools/mksquashfs
 # create ISO structure and create initrd.gz
 ./build
 cd $startdir/src

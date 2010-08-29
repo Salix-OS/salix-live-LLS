@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: salix-live-bootmenu\n"
@@ -17,87 +17,58 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: genlocale:52
-#: genlocale:63
-#: genlocale:73
+#: genlocale:52 genlocale:63 genlocale:73
 msgid "Start Salix Live"
 msgstr "Starta Salix Live"
 
-#: genlocale:53
-#: genlocale:64
-#: genlocale:74
+#: genlocale:53 genlocale:64 genlocale:74
 msgid "Memory Test"
 msgstr "Minnes Test"
 
-#: genlocale:54
-#: genlocale:65
-#: genlocale:75
+#: genlocale:54 genlocale:65 genlocale:75
 msgid "Change language"
 msgstr "Ändra språk"
 
-#: genlocale:55
-#: genlocale:66
-#: genlocale:76
+#: genlocale:55 genlocale:66 genlocale:76
 msgid "Change keyboard layout"
 msgstr "Ändra tangentbords layout"
 
-#: genlocale:56
-#: genlocale:67
-#: genlocale:77
+#: genlocale:56 genlocale:67 genlocale:77
 msgid "Change boot options"
 msgstr "Ändra start parametrar"
 
-#: genlocale:57
-#: genlocale:68
-#: genlocale:78
+#: genlocale:57 genlocale:68 genlocale:78
 msgid "Boot to runlevel '3' (text mode)"
 msgstr "Starta till körnivå '3' (text läge)"
 
-#: genlocale:58
-#: genlocale:69
-#: genlocale:79
+#: genlocale:58 genlocale:69 genlocale:79
 msgid "Boot to runlevel '4' (graphical login) (default)"
 msgstr "Starta till körnivå '4' (grafisk inloggning) (standard)"
 
-#: genlocale:59
-#: genlocale:70
-#: genlocale:80
+#: genlocale:59 genlocale:70 genlocale:80
 msgid "Enable 'Copy everything to RAM'"
 msgstr "Aktivera 'Kopiera allt till RAM'"
 
-#: genlocale:60
-#: genlocale:71
-#: genlocale:81
+#: genlocale:60 genlocale:71 genlocale:81
 msgid "Disable 'Copy everything to RAM' (default)"
 msgstr "Avaktivera 'Kopiera allt till RAM' (standard)"
 
-#: genlocale:61
-#: genlocale:72
-#: genlocale:82
+#: genlocale:61 genlocale:72 genlocale:82
 msgid "Enable numlock on boot"
 msgstr "Aktivera numlock vid uppstart"
 
-#: genlocale:62
-#: genlocale:73
-#: genlocale:83
+#: genlocale:62 genlocale:73 genlocale:83
 msgid "Disable numlock on boot (default)"
 msgstr "Avaktivera numlock vid uppstart (standard)"
 
-#: genlocale:63
-#: genlocale:74
-#: genlocale:84
+#: genlocale:63 genlocale:74 genlocale:84
 msgid "Enable synaptics fdi (sometimes unreliable)"
-msgstr ""
+msgstr "Aktivera synaptics FDI (ibland opålitlig)"
 
-#: genlocale:64
-#: genlocale:75
-#: genlocale:85
+#: genlocale:64 genlocale:75 genlocale:85
 msgid "Disable synaptics fdi (reliable) (default)"
-msgstr ""
+msgstr "Inaktivera synaptics FDI (tillförlitlig) (standard)"
 
-#: genlocale:65
-#: genlocale:76
-#: genlocale:86
+#: genlocale:65 genlocale:76 genlocale:86
 msgid "Return to boot menu"
 msgstr "Återgå till boot meny"
-

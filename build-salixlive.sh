@@ -386,10 +386,6 @@ cp -r $startdir/grub_* boot/
 echo3 "Adding the standard kernel too"
 mkdir -p packages/std-kernel
 cp $startdir/std-kernel/kernel-* packages/std-kernel/
-# add the Salix Live Guide
-echo3 "Adding Salix StartupGuide"
-mkdir -p docs
-cp $startdir/SalixStartupGuide*.pdf docs/
 # add the packages lists
 echo3 "Adding packages lists"
 cp $startdir/packages-* packages/

@@ -7,69 +7,97 @@ msgid ""
 msgstr ""
 "Project-Id-Version: genlocale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 22:54+0200\n"
-"PO-Revision-Date: 2010-05-26 01:37+0100\n"
-"Last-Translator: Andreas Born <futur{{DOT}}andy{{AT}}googlemail{{DOT}}com>\n"
+"POT-Creation-Date: 2010-05-27 22:25+0200\n"
+"PO-Revision-Date: 2010-09-05 18:47+0200\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: genlocale:52 genlocale:63 genlocale:73
+#: genlocale:52
+#: genlocale:63
+#: genlocale:73
 #, fuzzy
 msgid "Start Salix Live"
 msgstr "Salix Çalisan'i baslat"
 
-#: genlocale:53 genlocale:64 genlocale:74
+#: genlocale:53
+#: genlocale:64
+#: genlocale:74
 #, fuzzy
 msgid "Memory Test"
 msgstr "Bellek Sinamasi"
 
-#: genlocale:54 genlocale:65 genlocale:75
-#, fuzzy
+#: genlocale:54
+#: genlocale:65
+#: genlocale:75
 msgid "Change language"
-msgstr "Ana menüye dön"
+msgstr "Dil' i değiştir"
 
-#: genlocale:55 genlocale:66 genlocale:76
+#: genlocale:55
+#: genlocale:66
+#: genlocale:76
 msgid "Change keyboard layout"
-msgstr ""
+msgstr "Klavye düzenini değiştir"
 
-#: genlocale:56 genlocale:67 genlocale:77
+#: genlocale:56
+#: genlocale:67
+#: genlocale:77
 msgid "Change boot options"
-msgstr ""
+msgstr "Açılış seçeneklerini değiştir"
 
-#: genlocale:57 genlocale:68 genlocale:78
+#: genlocale:57
+#: genlocale:68
+#: genlocale:78
 msgid "Boot to runlevel '3' (text mode)"
-msgstr ""
+msgstr "'3' düzey ile aç (metin arayüz)"
 
-#: genlocale:58 genlocale:69 genlocale:79
+#: genlocale:58
+#: genlocale:69
+#: genlocale:79
 msgid "Boot to runlevel '4' (graphical login) (default)"
-msgstr ""
+msgstr "'4' düzey ile aç (grafik arayüzlü)(varsayılan)"
 
-#: genlocale:59 genlocale:70 genlocale:80
+#: genlocale:59
+#: genlocale:70
+#: genlocale:80
 msgid "Enable 'Copy everything to RAM'"
-msgstr ""
+msgstr "'Herşeyin belleğe kopyalanması' ' nı aktif yap"
 
-#: genlocale:60 genlocale:71 genlocale:81
+#: genlocale:60
+#: genlocale:71
+#: genlocale:81
 msgid "Disable 'Copy everything to RAM' (default)"
-msgstr ""
+msgstr "'Herşeyin belleğe kopyalanması' ' nı pasif yap (varsayılan)"
 
-#: genlocale:61 genlocale:72 genlocale:82
+#: genlocale:61
+#: genlocale:72
+#: genlocale:82
 msgid "Enable numlock on boot"
-msgstr ""
+msgstr "Açılışta numlock' u aktif et"
 
-#: genlocale:62 genlocale:73 genlocale:83
+#: genlocale:62
+#: genlocale:73
+#: genlocale:83
 msgid "Disable numlock on boot (default)"
-msgstr ""
+msgstr "Açılışta numlock' u pasif yap (varsayılan)"
 
-#: genlocale:63 genlocale:74 genlocale:84
+#: genlocale:63
+#: genlocale:74
+#: genlocale:84
 msgid "Enable synaptics fdi (sometimes unreliable)"
-msgstr ""
+msgstr "Touchpad' i aktif yap(bazen sağlıksız)"
 
-#: genlocale:64 genlocale:75 genlocale:85
+#: genlocale:64
+#: genlocale:75
+#: genlocale:85
 msgid "Disable synaptics fdi (reliable) (default)"
-msgstr ""
+msgstr "Touchpad' i pasif yap(sağlıklı)"
 
-#: genlocale:65 genlocale:76 genlocale:86
+#: genlocale:65
+#: genlocale:76
+#: genlocale:86
 msgid "Return to boot menu"
-msgstr ""
+msgstr "Açılış menüsüne geri dön"
+

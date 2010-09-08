@@ -10,9 +10,11 @@ T=$(mktemp -d)
 HERE="$PWD"
 GPARTED=$('ls' -1 ../PKGS/gparted-*.txz)
 SALIXLIVEINSTALLER=$('ls' -1 ../PKGS/salix-live-installer-*.txz)
+SALIXSTARTUPGUIDE=$('ls' -1 ../PKGS/salix-startup-guide-*.txz)
 ./src-create-slxsave-xfs/compile.sh
 tar xf $GPARTED usr/share/applications
 tar xf $SALIXLIVEINSTALLER usr/share/applications
+tar xf $SALIXSTARTUPGUIDE usr/share/applications
 cp usr/share/applications/*.desktop root/home/one/Desktop/
 # Remove *-kde.desktop files for liveuser "one", 
 # they are not required for a lxde version

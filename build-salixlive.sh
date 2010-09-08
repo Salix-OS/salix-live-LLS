@@ -22,7 +22,7 @@ export ARCH64=$(uname -m|grep 64 >/dev/null && echo 1 || echo 0)
 export DISTRO=salix
 export VER=13.1
 #export RLZ=64_$(date +%Y%m%d,%H:%M)
-export RLZ=32_beta1
+export RLZ=32_rc1
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.17.0
@@ -386,10 +386,6 @@ cp -r $startdir/grub_* boot/
 echo3 "Adding the standard kernel too"
 mkdir -p packages/std-kernel
 cp $startdir/std-kernel/kernel-* packages/std-kernel/
-# add the Salix Live Guide
-echo3 "Adding Salix StartupGuide"
-mkdir -p docs
-cp $startdir/SalixStartupGuide*.pdf docs/
 # add the packages lists
 echo3 "Adding packages lists"
 cp $startdir/packages-* packages/

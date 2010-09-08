@@ -27,8 +27,10 @@ geany
 gftp
 ghostscript
 ghostscript-fonts-std
+gigolo
 gnome-mime-data
 gnome-mount
+gnome-python
 gnumeric
 goffice
 gpa
@@ -72,6 +74,7 @@ libsndfile
 lilosetup
 lxtask
 madplay
+meld
 mjpegtools
 mpg123
 mtpaint
@@ -89,6 +92,7 @@ pidgin
 poppler
 poppler-data
 pycups
+pyorbit
 pyxdg
 rt2860-firmware
 rt2870-firmware

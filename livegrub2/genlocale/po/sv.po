@@ -2,85 +2,73 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: genlocale\n"
+"Project-Id-Version: salix-live-bootmenu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 22:54+0200\n"
-"PO-Revision-Date: 2010-05-26 01:37+0100\n"
-"Last-Translator: Andreas Born <futur{{DOT}}andy{{AT}}googlemail{{DOT}}com>\n"
+"POT-Creation-Date: 2010-05-27 22:25+0200\n"
+"PO-Revision-Date: 2010-08-29 15:40+0100\n"
+"Last-Translator: Ingemar Karlsson <ingemar@ingk.se>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: SWEDEN\n"
 
 #: genlocale:52 genlocale:63 genlocale:73
-#, fuzzy
 msgid "Start Salix Live"
-msgstr "Salix Liveを起動する"
+msgstr "Starta Salix Live"
 
 #: genlocale:53 genlocale:64 genlocale:74
-#, fuzzy
 msgid "Memory Test"
-msgstr "メモリーテスト"
+msgstr "Minnes Test"
 
 #: genlocale:54 genlocale:65 genlocale:75
-#, fuzzy
 msgid "Change language"
-msgstr "言語設定"
+msgstr "Ändra språk"
 
 #: genlocale:55 genlocale:66 genlocale:76
-#, fuzzy
 msgid "Change keyboard layout"
-msgstr "キーボードの設定"
+msgstr "Ändra tangentbords layout"
 
 #: genlocale:56 genlocale:67 genlocale:77
-#, fuzzy
 msgid "Change boot options"
-msgstr "チートコードを使用する"
+msgstr "Ändra start parametrar"
 
 #: genlocale:57 genlocale:68 genlocale:78
-#, fuzzy
 msgid "Boot to runlevel '3' (text mode)"
-msgstr "ランレベル３で起動する (テキストモード)"
+msgstr "Starta till körnivå '3' (text läge)"
 
 #: genlocale:58 genlocale:69 genlocale:79
-#, fuzzy
 msgid "Boot to runlevel '4' (graphical login) (default)"
-msgstr "ランレベル４で起動する (グラフィック·ログイン) (デフォルト)"
+msgstr "Starta till körnivå '4' (grafisk inloggning) (standard)"
 
 #: genlocale:59 genlocale:70 genlocale:80
-#, fuzzy
 msgid "Enable 'Copy everything to RAM'"
-msgstr "LiveCDのコンテントを全てをRAMにコピーする"
+msgstr "Aktivera 'Kopiera allt till RAM'"
 
 #: genlocale:60 genlocale:71 genlocale:81
-#, fuzzy
 msgid "Disable 'Copy everything to RAM' (default)"
-msgstr "LiveCDのコンテントを必要に応じてRAMにコピーする (デフォルト)"
+msgstr "Avaktivera 'Kopiera allt till RAM' (standard)"
 
 #: genlocale:61 genlocale:72 genlocale:82
-#, fuzzy
 msgid "Enable numlock on boot"
-msgstr "数値ロックキーを起動時に有効化する"
+msgstr "Aktivera numlock vid uppstart"
 
 #: genlocale:62 genlocale:73 genlocale:83
-#, fuzzy
 msgid "Disable numlock on boot (default)"
-msgstr "数値ロックキーを起動時に有効化しない (デフォルト)"
+msgstr "Avaktivera numlock vid uppstart (standard)"
 
 #: genlocale:63 genlocale:74 genlocale:84
-#, fuzzy
 msgid "Enable synaptics fdi (sometimes unreliable)"
-msgstr "synaptics fdiを有効化する (問題があるかもしれません)"
+msgstr "Aktivera synaptics FDI (ibland opålitlig)"
 
 #: genlocale:64 genlocale:75 genlocale:85
-#, fuzzy
 msgid "Disable synaptics fdi (reliable) (default)"
-msgstr "synaptics fdiを有効化しない (デフォルト)"
+msgstr "Inaktivera synaptics FDI (tillförlitlig) (standard)"
 
 #: genlocale:65 genlocale:76 genlocale:86
-#, fuzzy
 msgid "Return to boot menu"
-msgstr "ブート·メニューに戻る"
+msgstr "Återgå till boot meny"

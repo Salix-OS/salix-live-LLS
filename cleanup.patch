@@ -1,6 +1,6 @@
 --- linux-live-6.3.0-orig/initrd/cleanup	2007-11-13 16:11:40.000000000 +0100
 +++ linux-live-6.3.0/initrd/cleanup	2010-07-31 17:08:58.010022000 +0200
-@@ -48,17 +48,21 @@
+@@ -48,17 +48,22 @@
  
  fumount $MOUNTDIR/*
  
@@ -19,8 +19,9 @@
 -   fi
 -done
 +if [ -e /bootdev ]; then
++  bootcd=$(cut -d' ' -f1 /bootdev)
++  mount -t proc none /proc && umount $bootcd; umount /proc
 +  if [ "$(grep iso9660 /bootdev)" ]; then
-+    bootcd=$(cut -d' ' -f1 /bootdev)
 +    echo "Ejecting $bootcd..."
 +    /bin/eject $bootcd 2>/dev/null
 +    echo "CD tray will be closed in 10 seconds or hit enter..."

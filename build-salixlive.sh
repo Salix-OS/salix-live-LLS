@@ -22,7 +22,7 @@ export ARCH64=$(uname -m|grep 64 >/dev/null && echo 1 || echo 0)
 export DISTRO=salix
 export VER=13.1
 #export RLZ=64_$(date +%Y%m%d,%H:%M)
-export RLZ=32_rc1
+export RLZ=rc2
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.17.0
@@ -87,12 +87,12 @@ while read m; do
     num=$((num + 1))
   fi
 done < $startdir/MODULES_INFOS
-export RDEF=''
-export kmodule=''
-export lastmodule=''
-#export RDEF=K
-#export kmodule=05-kernel
-#export lastmodule=07-live
+#export RDEF=''
+#export kmodule=''
+#export lastmodule=''
+export RDEF=K
+export kmodule=05-kernel
+export lastmodule=07-live
 if [ -z "$kmodule" ]; then
   while read m; do
     list=($(echo "$m"|cut -d\| -f3-))
@@ -392,7 +392,9 @@ cp $startdir/packages-* packages/
 # create the iso
 echo3 "Creating ISO..."
 find . -name '.svn' -exec rm -rf '{}' \; 2>/dev/null
+CDNAME="${DISTRO}Live_${VER}"
+echo $CDNAME
 mkisofs -b boot/grub/i386-pc/eltorito.img \
 	-no-emul-boot -boot-load-size 4 -boot-info-table \
-	-o "$startdir/$ISO_NAME" -r -J .
+	-o "$startdir/$ISO_NAME" -r -J -A "$CDNAME" -V "$CDNAME" .
 ( cd "$startdir" && md5sum "$ISO_NAME" > "$ISO_NAME.md5" )

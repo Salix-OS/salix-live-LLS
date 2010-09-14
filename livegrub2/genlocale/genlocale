@@ -63,6 +63,7 @@ langavailable = [
     ['pl_PL.utf8', 'Polish', 'Polski', ['pl']],
     ['pt_PT.utf8', 'Portuguese', 'Português', ['pt-latin1']],
     ['ru_RU.utf8', 'Russian', 'Русский', ['ru_win']],
+    ['sv_SE.utf8', 'Swedish', 'Svenska', ['sv-latin1']],
     ['tr_TR.utf8', 'Turkish', 'Türkçe', ['trq']],
     ['uk_UA.utf8', 'Ukrainian', 'Українська', ['ua']],
 ]

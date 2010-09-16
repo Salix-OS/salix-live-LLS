@@ -18,10 +18,12 @@ rm -rf $TFF
 GPARTED=$('ls' -1 ../PKGS/gparted-*.txz)
 SALIXLIVEINSTALLER=$('ls' -1 ../PKGS/salix-live-installer-*.txz)
 SALIXSTARTUPGUIDE=$('ls' -1 ../PKGS/salix-startup-guide-*.txz)
+LIVECLONE=$('ls' -1 ../PKGS/liveclone-*.txz)
 ./src-create-slxsave-xfs/compile.sh
 tar xf $GPARTED usr/share/applications
 tar xf $SALIXLIVEINSTALLER usr/share/applications
 tar xf $SALIXSTARTUPGUIDE usr/share/applications
+tar xf $LIVECLONE usr/share/applications
 cp usr/share/applications/*.desktop root/home/one/Desktop/
 rm -rf usr
 cp -ar root/* $T/

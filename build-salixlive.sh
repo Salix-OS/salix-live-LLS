@@ -87,12 +87,12 @@ while read m; do
     num=$((num + 1))
   fi
 done < $startdir/MODULES_INFOS
-#export RDEF=''
-#export kmodule=''
-#export lastmodule=''
-export RDEF=C
-export kmodule=05-kernel
-export lastmodule=07-live
+export RDEF=''
+export kmodule=''
+export lastmodule=''
+#export RDEF=C
+#export kmodule=05-kernel
+#export lastmodule=07-live
 if [ -z "$kmodule" ]; then
   while read m; do
     list=($(echo "$m"|cut -d\| -f3-))

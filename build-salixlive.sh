@@ -22,7 +22,7 @@ export ARCH64=$(uname -m|grep 64 >/dev/null && echo 1 || echo 0)
 export DISTRO=salix
 export VER=13.1.1
 #export RLZ=64_$(date +%Y%m%d,%H:%M)
-export RLZ=rc3
+export RLZ=""
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
 export BBVER=1.17.2
@@ -90,7 +90,7 @@ done < $startdir/MODULES_INFOS
 #export RDEF=''
 #export kmodule=''
 #export lastmodule=''
-export RDEF=K
+export RDEF=C
 export kmodule=05-kernel
 export lastmodule=07-live
 if [ -z "$kmodule" ]; then

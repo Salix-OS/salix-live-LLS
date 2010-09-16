@@ -49,4 +49,6 @@ mkisofs -b boot/grub/i386-pc/eltorito.img \
 	-o "$startdir/grub2menu.iso" -r -J .
 cd $startdir
 rm -rf $isodir
-qemu -cdrom grub2menu.iso && rm grub2menu.iso
+qemu -cdrom grub2menu.iso
+read R
+rm grub2menu.iso

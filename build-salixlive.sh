@@ -20,12 +20,12 @@ fi
 export KVER=$(uname -r)
 export ARCH64=$(uname -m|grep 64 >/dev/null && echo 1 || echo 0)
 export DISTRO=salix
-export VER=13.1
+export VER=13.1.1
 #export RLZ=64_$(date +%Y%m%d,%H:%M)
-export RLZ=32_beta2
+export RLZ=32
 export LLVER=6.3.0
 export LLURL=ftp://ftp.slax.org/Linux-Live/linux-live-$LLVER.tar.gz
-export BBVER=1.17.0
+export BBVER=1.17.2
 export BBURL=http://busybox.net/downloads/busybox-$BBVER.tar.bz2
 export FUFSVER=0.4.2
 export FUFSURL=http://funionfs.apiou.org/file/funionfs-$FUFSVER.tar.gz
@@ -90,7 +90,7 @@ done < $startdir/MODULES_INFOS
 #export RDEF=''
 #export kmodule=''
 #export lastmodule=''
-export RDEF=K
+export RDEF=C
 export kmodule=05-kernel
 export lastmodule=07-live
 if [ -z "$kmodule" ]; then

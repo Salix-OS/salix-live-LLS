@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Ingemar Karlsson <po@ingk.se>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: salix live persistent wizard\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-25 00:10+0100\n"
-"PO-Revision-Date: 2010-09-21 18:00+0100\n"
+"PO-Revision-Date: 2010-09-26 10:55+0100\n"
 "Last-Translator: Ingemar Karlsson <ingemar@ingk.se>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Storleks val"
 #: ../root/usr/sbin/create-slxsave-xfs-gui:80
 #, sh-format
 msgid "Choose the size in megabytes (maximum $MAXSIZE) for persistent file on $MOUNTPOINT:"
-msgstr "Välj storleken i megabytes (maximalt $MAXSIZE) för den permanenta file på $MOUNTPOINT:"
+msgstr "Välj storleken i megabytes (maximalt $MAXSIZE) för den permanenta filen på $MOUNTPOINT:"
 
 #: ../root/usr/sbin/create-slxsave-xfs-gui:89
 #: ../root/usr/sbin/create-slxsave-xfs-gui:114
@@ -111,5 +111,5 @@ msgstr "Skapa en slxsave.xfs fil för att permanent kunna spara ändringar i liv
 #: persistence-wizard.desktop.in.h:2
 #: persistence-wizard-kde.desktop.in.h:2
 msgid "Persistence Wizard"
-msgstr "Bestående Guide"
+msgstr "Permanent Guide"
 

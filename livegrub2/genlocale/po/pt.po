@@ -16,71 +16,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: genlocale:52 genlocale:63 genlocale:73
-#, fuzzy
 msgid "Start Salix Live"
 msgstr "Iniciar o Salix Live"
 
 #: genlocale:53 genlocale:64 genlocale:74
-#, fuzzy
 msgid "Memory Test"
 msgstr "Testar a Memória (RAM)"
 
 #: genlocale:54 genlocale:65 genlocale:75
-#, fuzzy
 msgid "Change language"
 msgstr "Voltar ao menu principal"
 
 #: genlocale:55 genlocale:66 genlocale:76
-#, fuzzy
 msgid "Change keyboard layout"
 msgstr "Alterar configuração do teclado"
 
 #: genlocale:56 genlocale:67 genlocale:77
-#, fuzzy
 msgid "Change boot options"
 msgstr "Alterar opções de Boot"
 
 #: genlocale:57 genlocale:68 genlocale:78
-#, fuzzy
 msgid "Boot to runlevel '3' (text mode)"
 msgstr "Inicia para nivel '3' (Modo texto)"
 
 #: genlocale:58 genlocale:69 genlocale:79
-#, fuzzy
 msgid "Boot to runlevel '4' (graphical login) (default)"
 msgstr "Inicia para nivel '4' (Login gráfico) (Predefenido)"
 
 #: genlocale:59 genlocale:70 genlocale:80
-#, fuzzy
 msgid "Enable 'Copy everything to RAM'"
 msgstr "Habilitar 'Copy everything to RAM'"
 
 #: genlocale:60 genlocale:71 genlocale:81
-#, fuzzy
 msgid "Disable 'Copy everything to RAM' (default)"
 msgstr "Desabilitar 'Copiar tudo para a RAM' (predefenido)"
 
 #: genlocale:61 genlocale:72 genlocale:82
-#, fuzzy
 msgid "Enable numlock on boot"
 msgstr "Habilitar numlock ao iniciar"
 
 #: genlocale:62 genlocale:73 genlocale:83
-#, fuzzy
 msgid "Disable numlock on boot (default)"
 msgstr "Desabilitar numlock ao iniciar"
 
 #: genlocale:63 genlocale:74 genlocale:84
-#, fuzzy
 msgid "Enable synaptics fdi (sometimes unreliable)"
 msgstr "Habilitar synaptics fdi (por vezes pouco fiável)"
 
 #: genlocale:64 genlocale:75 genlocale:85
-#, fuzzy
 msgid "Disable synaptics fdi (reliable) (default)"
 msgstr "Desabilitar synaptics fdi (fiável) (Predefenido)"
 
 #: genlocale:65 genlocale:76 genlocale:86
-#, fuzzy
 msgid "Return to boot menu"
 msgstr "Regrassar ao menu de Boot"

@@ -1,9 +1,8 @@
 set nocompatible
 set bs=2
-set tw=0
+set tw=72
 set cindent
 
-set ts=2 st=2 sw=2 ai et nobk ml
 set mouse=a
 
 set nowrapscan
@@ -30,7 +29,7 @@ set t_Sf=\e[3%dm
 set t_Sb=\e[4%dm
 endif
 
-colorscheme evening
+colorscheme xemacs
 
 syntax on
 

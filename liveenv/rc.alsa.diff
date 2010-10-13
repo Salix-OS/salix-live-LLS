@@ -1,5 +1,5 @@
 --- /etc/rc.d/rc.alsa	2010-04-30 08:54:05.000000000 +0200
-+++ root/etc/rc.d/rc.alsa	2010-07-31 17:52:06.969126626 +0200
++++ root/etc/rc.d/rc.alsa	2010-10-13 16:07:02.092621250 +0200
 @@ -4,59 +4,20 @@
  
  # A function to load the ALSA mixer settings:

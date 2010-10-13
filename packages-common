@@ -1,5 +1,5 @@
 kernel-headers
 ndiswrapper
-rootuser-settings
-user-settings
+rootuser-settings-kde
+user-settings-kde
 zzz-settings

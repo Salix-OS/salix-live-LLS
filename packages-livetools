@@ -1,5 +1,6 @@
 ash
-squashfs-tools
 linux-live
 liveclone
 salix-live-installer
+salix-startup-guide
+squashfs-tools

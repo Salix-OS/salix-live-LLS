@@ -24,6 +24,7 @@ iwlwifi-4965-ucode
 iwlwifi-5000-ucode
 iwlwifi-5150-ucode
 iwlwifi-6000-ucode
+jre
 k3b
 kaffeine
 kdegraphics
@@ -31,8 +32,9 @@ kdenetwork
 kdepim
 kdepim-runtime
 kdeutils
-kmix
+kdewebdev
 koffice
+konq-plugins
 ktorrent
 libdvdnav
 libdvdread
@@ -42,10 +44,11 @@ libmtp
 libnl
 libsamplerate
 libspectre
+libvncserver
 lilosetup
 mutagen
+mysql
 ndisgtk
-ndiswrapper
 net-snmp
 os-prober
 poppler

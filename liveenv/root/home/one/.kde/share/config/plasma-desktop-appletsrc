@@ -1,21 +1,52 @@
-[Containments][17]
+[Containments][1][Wallpaper][image]
+slideTimer=10
+slidepaths=/usr/share/wallpapers/
+userswallpapers=
+wallpaper=/usr/share/wallpapers/sheytanbv36.png
+wallpapercolor=56,111,150
+wallpaperposition=0
+
+[Containments][25]
 activity=
 desktop=-1
 formfactor=0
 geometry=0,0,800,600
 immutability=1
 location=0
-plugin=folderview
+plugin=desktop
 screen=0
 wallpaperplugin=image
 wallpaperpluginmode=SingleImage
 zvalue=0
 
-[Containments][17][Wallpaper][image]
+[Containments][25][Applets][2]
+activity=
+desktop=-1
+formfactor=0
+geometry=13,0,600,400
+immutability=1
+location=0
+plugin=folderview
+screen=-1
+zvalue=13
+
+[Containments][25][Applets][2][Configuration]
+activity=
+desktop=-1
+formfactor=0
+geometry=55,0,600,400
+immutability=1
+location=0
+plugin=folderview
+screen=-1
+url=desktop:/
+zvalue=15
+
+[Containments][25][Wallpaper][image]
 slideTimer=10
 slidepaths=/usr/share/wallpapers/
 userswallpapers=
-wallpaper=/usr/share/wallpapers/Salix_Sunset.jpg
+wallpaper=/usr/share/wallpapers/sheytanbv36.png
 wallpapercolor=56,111,150
 wallpaperposition=0
 
@@ -31,10 +62,10 @@ screen=0
 zvalue=150
 
 [Containments][3][Applets][10]
-geometry=746,1,54,27
+geometry=724,1,54,27
 immutability=1
 plugin=digital-clock
-zvalue=0
+zvalue=10
 
 [Containments][3][Applets][10][Configuration][ExtenderItems][4]
 extenderIconName=view-pim-calendar
@@ -46,13 +77,13 @@ sourceAppletId=10
 sourceAppletPluginName=digital-clock
 
 [Containments][3][Applets][10][LayoutInformation]
-Order=8
+Order=9
 
 [Containments][3][Applets][14]
-geometry=526,1,27,27
+geometry=165,1,27,27
 immutability=1
 plugin=icon
-zvalue=0
+zvalue=6
 
 [Containments][3][Applets][14][Configuration]
 Url=file:///usr/share/applications/kde4/konsole.desktop
@@ -61,10 +92,10 @@ Url=file:///usr/share/applications/kde4/konsole.desktop
 Order=5
 
 [Containments][3][Applets][15]
-geometry=495,1,27,27
+geometry=134,1,27,27
 immutability=1
 plugin=icon
-zvalue=0
+zvalue=5
 
 [Containments][3][Applets][15][Configuration]
 Url=file:///usr/share/applications/kde4/dolphin.desktop
@@ -73,10 +104,10 @@ Url=file:///usr/share/applications/kde4/dolphin.desktop
 Order=4
 
 [Containments][3][Applets][18]
-geometry=433,1,27,27
+geometry=72,1,27,27
 immutability=1
 plugin=icon
-zvalue=2
+zvalue=3
 
 [Containments][3][Applets][18][Configuration]
 Url=file:///usr/share/applications/kde4/konqbrowser.desktop
@@ -101,10 +132,10 @@ Order=0
 global=
 
 [Containments][3][Applets][20]
-geometry=464,1,27,27
+geometry=103,1,27,27
 immutability=1
 plugin=icon
-zvalue=0
+zvalue=4
 
 [Containments][3][Applets][20][Configuration]
 Url=file:///usr/share/applications/kde4/systemsettings.desktop
@@ -112,35 +143,44 @@ Url=file:///usr/share/applications/kde4/systemsettings.desktop
 [Containments][3][Applets][20][LayoutInformation]
 Order=3
 
+[Containments][3][Applets][26]
+geometry=196,1,27,27
+immutability=1
+plugin=notifier
+zvalue=15
+
+[Containments][3][Applets][26][LayoutInformation]
+Order=6
+
 [Containments][3][Applets][5]
-geometry=705,1,37,27
+geometry=31,1,37,27
 immutability=1
 plugin=pager
-zvalue=2
+zvalue=7
 
 [Containments][3][Applets][5][LayoutInformation]
-Order=7
-
-[Containments][3][Applets][6]
-geometry=31,1,398,27
-immutability=1
-plugin=tasks
-zvalue=0
-
-[Containments][3][Applets][6][LayoutInformation]
 Order=1
 
+[Containments][3][Applets][6]
+geometry=227,1,345,27
+immutability=1
+plugin=tasks
+zvalue=14
+
+[Containments][3][Applets][6][LayoutInformation]
+Order=7
+
 [Containments][3][Applets][7]
-geometry=557,1,144,27
+geometry=576,1,144,27
 immutability=1
 plugin=systemtray
-zvalue=0
+zvalue=11
 
 [Containments][3][Applets][7][Configuration][ExtenderItems][1]
 extenderIconName=
 extenderItemName=jobGroup
 extenderItemPosition=0
-extenderTitle=1 running job (0 seconds remaining)
+extenderTitle=
 isCollapsed=false
 isGroup=true
 sourceAppletId=7
@@ -158,15 +198,15 @@ sourceAppletId=7
 sourceAppletPluginName=systemtray
 
 [Containments][3][Applets][7][LayoutInformation]
-Order=6
+Order=8
 
 [Containments][3][Applets][7][PopupApplet]
-DialogHeight=59
-DialogWidth=366
+DialogHeight=6
+DialogWidth=0
 
 [Containments][3][Configuration]
-maximumSize=800,28
-minimumSize=800,28
+maximumSize=1280,28
+minimumSize=1280,28
 
 [General]
 immutability=2

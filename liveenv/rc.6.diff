@@ -1,5 +1,5 @@
 --- /etc/rc.d/rc.6	2010-07-23 13:35:53.000000000 +0200
-+++ root/etc/rc.d/rc.6	2010-10-13 16:07:02.093622857 +0200
++++ root/etc/rc.d/rc.6	2010-07-31 17:29:04.025022769 +0200
 @@ -14,6 +14,10 @@
  # modified for colorized screen messages and local needs
  . /etc/shell-colors

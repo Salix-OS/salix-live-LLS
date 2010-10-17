@@ -8,13 +8,13 @@ VER=$(cat version)
 RLZ=$(cat release)
 T=$(mktemp -d)
 HERE="$PWD"
-FIREFOXVER=$('ls' -1 ../PKGS/mozilla-firefox-*-*-*.txz | head -n 1 | sed 's/.*-.*-\([^-]*\)-[^-]*-[^-]*\.txz/\1/')
-TFF=$(mktemp -d)
-cd $TFF
-tar xf $HERE/../PKGS/mozilla-firefox-$FIREFOXVER-*.txz
-FIREFOXMILESTONE=$(grep Milestone /usr/lib/firefox-$FIREFOXVER/platform.ini | sed 's/^Milestone=\(.*\)/\1/')
-cd -
-rm -rf $TFF
+#FIREFOXVER=$('ls' -1 ../PKGS/mozilla-firefox-*-*-*.txz | head -n 1 | sed 's/.*-.*-\([^-]*\)-[^-]*-[^-]*\.txz/\1/')
+#TFF=$(mktemp -d)
+#cd $TFF
+#tar xf $HERE/../PKGS/mozilla-firefox-$FIREFOXVER-*.txz
+#FIREFOXMILESTONE=$(grep Milestone /usr/lib/firefox-$FIREFOXVER/platform.ini | sed 's/^Milestone=\(.*\)/\1/')
+#cd -
+#rm -rf $TFF
 GPARTED=$('ls' -1 ../PKGS/gparted-*.txz)
 SALIXLIVEINSTALLER=$('ls' -1 ../PKGS/salix-live-installer-*.txz)
 SALIXSTARTUPGUIDE=$('ls' -1 ../PKGS/salix-startup-guide-*.txz)

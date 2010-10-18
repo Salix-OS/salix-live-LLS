@@ -1,0 +1,33 @@
+[$Version]
+update_info=kfmclient_3_2.upd:kfmclient_3_2
+
+[FMSettings]
+AlwaysTabbedMode=false
+KonquerorTabforExternalURL=false
+MMBOpensTab=true
+MouseMiddleClickClosesTab=false
+NewTabsInFront=false
+OpenAfterCurrentPage=false
+PermanentCloseButton=true
+PopupsWithinTabs=false
+TabCloseActivatePrevious=false
+
+[HTML Settings]
+AutomaticDetectionLanguage=1
+
+[KFileDialog Settings]
+Height 600=450
+Recent Files[$e]=$HOME/user-settings/SLKBUILD,$HOME/salix-theme/salix-splash-theme.tar.gz,$HOME/salix-theme/SLKBUILD,$HOME/root-settings/SLKBUILD
+Width 800=720
+
+[SearchBar]
+CurrentEngine=google
+History list=\\0
+Mode=1
+SuggestionEnabled=true
+
+[Undo]
+Number of Closed Windows=8
+
+[UserSettings]
+HomeURL=http://www.salixos.org

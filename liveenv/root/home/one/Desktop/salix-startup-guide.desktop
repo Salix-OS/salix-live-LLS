@@ -1,0 +1,13 @@
+[Desktop Entry]
+Categories=Application;
+Exec=salix-startup-guide
+Icon=salix
+Name=Salix Startup Guide
+Name[fr]=Guide de Démarrage Salix
+Comment=A startup guide in PDF for discovering Salix
+Comment[fr]=Un guide de démarrage en PDF pour découvrir Salix
+StartupNotify=true
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Version=1.0

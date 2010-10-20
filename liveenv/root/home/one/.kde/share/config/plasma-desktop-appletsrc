@@ -10,7 +10,7 @@ wallpaperposition=0
 activity=
 desktop=-1
 formfactor=0
-geometry=0,0,800,600
+geometry=0,0,1280,800
 immutability=1
 location=0
 plugin=desktop
@@ -54,7 +54,7 @@ wallpaperposition=0
 activity=
 desktop=-1
 formfactor=2
-geometry=0,-34,800,28
+geometry=0,-34,1280,28
 immutability=1
 location=4
 plugin=panel
@@ -62,7 +62,7 @@ screen=0
 zvalue=150
 
 [Containments][3][Applets][10]
-geometry=724,1,54,27
+geometry=1226,1,54,27
 immutability=1
 plugin=digital-clock
 zvalue=10
@@ -77,10 +77,10 @@ sourceAppletId=10
 sourceAppletPluginName=digital-clock
 
 [Containments][3][Applets][10][LayoutInformation]
-Order=9
+Order=10
 
 [Containments][3][Applets][14]
-geometry=165,1,27,27
+geometry=171,1,27,27
 immutability=1
 plugin=icon
 zvalue=6
@@ -92,7 +92,7 @@ Url=file:///usr/share/applications/kde4/konsole.desktop
 Order=5
 
 [Containments][3][Applets][15]
-geometry=134,1,27,27
+geometry=140,1,27,27
 immutability=1
 plugin=icon
 zvalue=5
@@ -104,7 +104,7 @@ Url=file:///usr/share/applications/kde4/dolphin.desktop
 Order=4
 
 [Containments][3][Applets][18]
-geometry=72,1,27,27
+geometry=78,1,27,27
 immutability=1
 plugin=icon
 zvalue=3
@@ -132,7 +132,7 @@ Order=0
 global=
 
 [Containments][3][Applets][20]
-geometry=103,1,27,27
+geometry=109,1,27,27
 immutability=1
 plugin=icon
 zvalue=4
@@ -144,7 +144,7 @@ Url=file:///usr/share/applications/kde4/systemsettings.desktop
 Order=3
 
 [Containments][3][Applets][26]
-geometry=196,1,27,27
+geometry=202,1,27,27
 immutability=1
 plugin=notifier
 zvalue=15
@@ -153,7 +153,7 @@ zvalue=15
 Order=6
 
 [Containments][3][Applets][5]
-geometry=31,1,37,27
+geometry=31,1,43,27
 immutability=1
 plugin=pager
 zvalue=7
@@ -162,16 +162,16 @@ zvalue=7
 Order=1
 
 [Containments][3][Applets][6]
-geometry=227,1,345,27
+geometry=233,1,841,27
 immutability=1
 plugin=tasks
 zvalue=14
 
 [Containments][3][Applets][6][LayoutInformation]
-Order=7
+Order=8
 
 [Containments][3][Applets][7]
-geometry=576,1,144,27
+geometry=1078,1,144,27
 immutability=1
 plugin=systemtray
 zvalue=11
@@ -198,7 +198,7 @@ sourceAppletId=7
 sourceAppletPluginName=systemtray
 
 [Containments][3][Applets][7][LayoutInformation]
-Order=8
+Order=9
 
 [Containments][3][Applets][7][PopupApplet]
 DialogHeight=6

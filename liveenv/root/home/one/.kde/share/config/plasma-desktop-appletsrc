@@ -10,7 +10,7 @@ wallpaperposition=0
 activity=
 desktop=-1
 formfactor=0
-geometry=0,0,1280,800
+geometry=0,0,800,600
 immutability=1
 location=0
 plugin=desktop
@@ -62,7 +62,7 @@ screen=0
 zvalue=150
 
 [Containments][3][Applets][10]
-geometry=1226,1,54,27
+geometry=1204,1,54,27
 immutability=1
 plugin=digital-clock
 zvalue=10
@@ -77,7 +77,7 @@ sourceAppletId=10
 sourceAppletPluginName=digital-clock
 
 [Containments][3][Applets][10][LayoutInformation]
-Order=10
+Order=9
 
 [Containments][3][Applets][14]
 geometry=171,1,27,27
@@ -162,16 +162,16 @@ zvalue=7
 Order=1
 
 [Containments][3][Applets][6]
-geometry=233,1,841,27
+geometry=233,1,819,27
 immutability=1
 plugin=tasks
 zvalue=14
 
 [Containments][3][Applets][6][LayoutInformation]
-Order=8
+Order=7
 
 [Containments][3][Applets][7]
-geometry=1078,1,144,27
+geometry=1056,1,144,27
 immutability=1
 plugin=systemtray
 zvalue=11
@@ -198,7 +198,7 @@ sourceAppletId=7
 sourceAppletPluginName=systemtray
 
 [Containments][3][Applets][7][LayoutInformation]
-Order=9
+Order=8
 
 [Containments][3][Applets][7][PopupApplet]
 DialogHeight=6
@@ -209,4 +209,4 @@ maximumSize=1280,28
 minimumSize=1280,28
 
 [General]
-immutability=2
+immutability=1

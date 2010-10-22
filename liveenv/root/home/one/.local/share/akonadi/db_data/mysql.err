@@ -1,0 +1,19 @@
+InnoDB: The first specified data file ./ibdata1 did not exist:
+InnoDB: a new database to be created!
+101022 15:42:35  InnoDB: Setting file ./ibdata1 size to 10 MB
+InnoDB: Database physically writes the file full: wait...
+101022 15:42:35  InnoDB: Log file ./ib_logfile0 did not exist: new to be created
+InnoDB: Setting log file ./ib_logfile0 size to 64 MB
+InnoDB: Database physically writes the file full: wait...
+101022 15:42:35  InnoDB: Log file ./ib_logfile1 did not exist: new to be created
+InnoDB: Setting log file ./ib_logfile1 size to 64 MB
+InnoDB: Database physically writes the file full: wait...
+InnoDB: Doublewrite buffer not found: creating new
+InnoDB: Doublewrite buffer created
+InnoDB: Creating foreign key constraint system tables
+InnoDB: Foreign key constraint system tables created
+101022 15:42:35  InnoDB: Started; log sequence number 0 0
+101022 15:42:35 [Warning] Can't open and lock time zone table: Table 'mysql.time_zone_leap_second' doesn't exist trying to live without them
+101022 15:42:35 [ERROR] Can't open and lock privilege tables: Table 'mysql.servers' doesn't exist
+101022 15:42:35 [Note] /usr/libexec/mysqld: ready for connections.
+Version: '5.1.46-log'  socket: '/home/one/.local/share/akonadi/db_misc/mysql.socket'  port: 0  Source distribution

@@ -123,7 +123,7 @@ zvalue=0
 
 [Containments][3][Applets][19][Configuration]
 Share=false
-icon=salix
+icon=salix-kde
 
 [Containments][3][Applets][19][LayoutInformation]
 Order=0

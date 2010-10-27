@@ -398,3 +398,4 @@ mkisofs -b boot/grub/i386-pc/eltorito.img \
 	-no-emul-boot -boot-load-size 4 -boot-info-table \
 	-o "$startdir/$ISO_NAME" -r -J -A "$CDNAME" -V "$CDNAME" .
 ( cd "$startdir" && md5sum "$ISO_NAME" > "$ISO_NAME.md5" )
+

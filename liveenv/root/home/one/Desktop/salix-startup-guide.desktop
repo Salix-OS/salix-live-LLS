@@ -1,7 +1,7 @@
 [Desktop Entry]
 Categories=Application;
 Exec=salix-startup-guide
-Icon=salix
+Icon=salixguide-logo
 Name=Salix Startup Guide
 Name[fr]=Guide de Démarrage Salix
 Comment=A startup guide in PDF for discovering Salix

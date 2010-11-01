@@ -75,3 +75,9 @@ fi
 if [ "`cmdline_parameter autologin`" ]; then
   sed -i 's/AutomaticLoginEnable=.*/AutomaticLoginEnable=true/' /etc/gdm/custom.conf
 fi
+
+# set localization added by Dimitris Tzemos
+if [ -x /usr/sbin/set_kde_localization ]; then
+   /usr/sbin/set_kde_localization
+fi
+   

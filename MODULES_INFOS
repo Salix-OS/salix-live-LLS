@@ -5,3 +5,5 @@ module=common,packages-common
 module=kernel,packages-kernel
 module=livetools,packages-livetools
 module=live,packages-live
+module=localization,packages-localization
+

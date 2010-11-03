@@ -61,11 +61,11 @@ msgstr "Vypnout numerickou klávesnici při bootování (základní)"
 
 #: genlocale:63 genlocale:74 genlocale:84
 msgid "Enable synaptics fdi (sometimes unreliable)"
-msgstr ""
+msgstr "Zapnout synaptics fdi (občas nespolehlivé)"
 
 #: genlocale:64 genlocale:75 genlocale:85
 msgid "Disable synaptics fdi (reliable) (default)"
-msgstr ""
+msgstr "Vypnout synaptics fdi (spolehlivé) (základní)"
 
 #: genlocale:65 genlocale:76 genlocale:86
 msgid "Return to boot menu"

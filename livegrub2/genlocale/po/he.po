@@ -1,0 +1,103 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-27 22:25+0200\n"
+"PO-Revision-Date: 2010-11-07 18:24+0200\n"
+"Last-Translator: my name <email@address.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: genlocale:52
+#: genlocale:63
+#: genlocale:73
+msgid "Start Salix Live"
+msgstr "Start Salix Live"
+
+#: genlocale:53
+#: genlocale:64
+#: genlocale:74
+msgid "Memory Test"
+msgstr "Memory Test"
+
+#: genlocale:54
+#: genlocale:65
+#: genlocale:75
+msgid "Change language"
+msgstr "Change language"
+
+#: genlocale:55
+#: genlocale:66
+#: genlocale:76
+msgid "Change keyboard layout"
+msgstr "שינוי מערך המקלדת"
+
+#: genlocale:56
+#: genlocale:67
+#: genlocale:77
+msgid "Change boot options"
+msgstr "שינוי אפשרויות אתחול"
+
+# the display/view needs to be tested
+#: genlocale:57
+#: genlocale:68
+#: genlocale:78
+msgid "Boot to runlevel '3' (text mode)"
+msgstr "אתחול אל runlevel '3' (מצב טקסט)"
+
+# the display/view needs to be tested
+#: genlocale:58
+#: genlocale:69
+#: genlocale:79
+msgid "Boot to runlevel '4' (graphical login) (default)"
+msgstr "אתחול אל runlevel '4' (התחברות גרפית) (ברירת מחדל)"
+
+#: genlocale:59
+#: genlocale:70
+#: genlocale:80
+msgid "Enable 'Copy everything to RAM'"
+msgstr "לאפשר 'העתקת הכל אל RAM'"
+
+#: genlocale:60
+#: genlocale:71
+#: genlocale:81
+msgid "Disable 'Copy everything to RAM' (default)"
+msgstr "לנטרל 'העתקת הכל אל RAM' (ברירת מחדל)"
+
+#: genlocale:61
+#: genlocale:72
+#: genlocale:82
+msgid "Enable numlock on boot"
+msgstr "לאפשר את numlock בזמן אתחול"
+
+#: genlocale:62
+#: genlocale:73
+#: genlocale:83
+msgid "Disable numlock on boot (default)"
+msgstr "לנטרל את numlock בזמן אתחול (ברירת מחדל)"
+
+#: genlocale:63
+#: genlocale:74
+#: genlocale:84
+msgid "Enable synaptics fdi (sometimes unreliable)"
+msgstr "לאפשר את synaptics fdi (לעיתים לא קריא)"
+
+#: genlocale:64
+#: genlocale:75
+#: genlocale:85
+msgid "Disable synaptics fdi (reliable) (default)"
+msgstr "לנטרל את synaptics fdi (קריא) (ברירת מחדל)"
+
+#: genlocale:65
+#: genlocale:76
+#: genlocale:86
+msgid "Return to boot menu"
+msgstr "חזרה אל תפריט האתחול"
+

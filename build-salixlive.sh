@@ -20,7 +20,7 @@ fi
 export KVER=$(uname -r)
 export ARCH64=$(uname -m|grep 64 >/dev/null && echo 1 || echo 0)
 export DISTRO=salix
-export VER=13.1.1
+export VER=xfce-13.1.2
 #export RLZ=64_$(date +%Y%m%d,%H:%M)
 export RLZ=
 export LLVER=6.3.0

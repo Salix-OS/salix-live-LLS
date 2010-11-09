@@ -14,7 +14,7 @@ FREE=$('df' -k .|tail -n1|awk '{print $4}')
 AFTER=$(( $FREE - 1024 * $SIZE ))
 if [ $AFTER -gt 0 ]; then
   dd if=/dev/zero of=slxsave.xfs bs=1M count=$SIZE
-  mkfs.xfs slxsave.xfs
+  mkfs.xfs -f slxsave.xfs
   echo ""
   echo "slxsave.xfs is ready."
 else

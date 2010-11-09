@@ -1,7 +1,6 @@
 ConsoleKit
 GConf
 ORBit2
-Xdialog
 aalib
 alsa-lib
 alsa-oss
@@ -142,7 +141,6 @@ mkcomposecache
 mkfontdir
 mkfontscale
 mozilla-firefox
-mozilla-firefox-salix
 notification-daemon
 numlockx
 obsidian-cursors

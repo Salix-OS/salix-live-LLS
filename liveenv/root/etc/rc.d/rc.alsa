@@ -12,7 +12,7 @@ load_alsa_mixer() {
       /usr/sbin/alsactl restore
     else
       echo "Setting sound volume: 71%"
-      for SCONTROL in {"Master","PCM","Front","Surround","Center","CD","Video","Wave","Music","AC97","Headphone"}; do
+      for SCONTROL in {"Master","PCM","Front","Surround","Center","CD","Video","Wave","Music","AC97","Headphone","Speaker"}; do
         /usr/bin/amixer -q sset $SCONTROL 71% unmute 2>/dev/null
       done
     fi
